@@ -1,0 +1,318 @@
+{
+  "name": "product",
+  "description": "product.",
+  "type": "project",
+  "homepage": "",
+  "keywords": [],
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "CPQ",
+      "role": "Chief architect"
+    }
+  ],
+  "repositories": {
+    "drupal_packagist": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/7"
+    },
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.org/"
+    },
+
+    "aws_sdk": {
+      "type": "vcs",
+      "url": "https://github.com/deviantintegral/aws-sdk-php.git"
+    },
+
+    "drupal_doctrine_cache": {
+      "type": "vcs",
+      "url": "https://github.com/deviantintegral/drupal-doctrine-cache.git"
+    },
+
+    "drupal_grammar_parser_library": {
+      "type": "package",
+      "package": {
+        "name": "drupal/gplib",
+        "version": "1.1",
+        "type": "drupal-module",
+        "dist": {
+          "url": "https://ftp.drupal.org/files/projects/grammar_parser_lib-7.x-1.1.zip",
+          "type": "zip"
+        }
+      }
+    },
+
+    "drupal_coder": {
+      "type": "package",
+      "package": {
+        "name": "drupal/coder",
+        "version": "8.2.12",
+        "type": "drupal-module",
+        "dist": {
+          "url": "https://ftp.drupal.org/files/projects/coder-8.x-2.12.zip",
+          "type": "zip"
+        }
+      }
+    },
+
+    "drupal_composer": {
+      "type": "package",
+      "package": {
+        "name": "drupal/composer",
+        "version": "1.4",
+        "type": "drupal-module",
+        "dist": {
+          "url": "https://ftp.drupal.org/files/projects/composer-8.x-1.4.zip",
+          "type": "zip"
+        }
+      }
+    }
+  },
+  "require": {
+    "php": "^7.1",
+    "ext-mbstring": "*",
+    "ext-spl": "*",
+    "ext-pcre": "*",
+    "ext-dom": "*",
+    "ext-xml": "*",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-soap": "*",
+    "ext-memcached": "^2.2 || ^3.0",
+    "ext-reflection": "*",
+
+    "hirak/prestissimo": "^0.3.0",
+    "zaporylie/composer-drupal-optimizations": "^1.0",
+
+    "composer/installers": "^1.0",
+    "oomphinc/composer-installers-extender": "^1.0",
+    "balbuf/drupal-libraries-installer": "^1.0",
+    "wikimedia/composer-merge-plugin": "^1.0",
+    "cweagans/composer-patches": "^1.0",
+
+    "kriswallsmith/assetic": "~1.2",
+    "doctrine/collections": "~1.0",
+    "doctrine/inflector": "~1.0",
+    "symfony/filesystem": "~2.8",
+    "symfony/process": "~2.8",
+    "symfony/yaml": "~2.8",
+    "drush/drush": "8.1.10",
+    "drush/config-extra": "^1.0.0",
+    "dompdf/dompdf": "^0.8.0 <=0.8.2",
+    "mobiledetect/mobiledetectlib": "~2.8.24",
+    "google/apiclient": "2.1.3",
+    "guzzlehttp/guzzle": "~6.0",
+    "guzzlehttp/guzzle-services": "~1.1.0",
+    "namshi/cuzzle": "2.0.3",
+    "league/uri": "4.1.1",
+    "belt/underscore": "^1.1",
+    "ilya/belt": "^2.1.0",
+    "devco/event-emitter": "1.0.2",
+    "inacho/php-credit-card-validator": "1.*",
+    "symfony/polyfill": "~1.10.0",
+    "psr/log": "~1.0.0",
+    "psr/cache": "~1.0.0",
+    "cache/taggable-cache": "~0.5.0",
+    "cache/hierarchical-cache": "~0.4.0",
+    "cache/memcache-adapter": "~0.3.0",
+    "tedivm/stash": "~0.15.0",
+    "endroid/qrcode": "1.7.2",
+    "verdant/xml2array": "dev-master",
+    "pelago/emogrifier": "^1.0",
+    "donatj/phpuseragentparser": "^0.11.0",
+    "bbrala/php7-ereg-shim": "~1.0.0",
+    "defuse/php-encryption": "^2.2.0",
+    "spomky-labs/otphp": "^9.0",
+    "cmdisp/monolog-microsoft-teams": "^1.0",
+    "drupal/composer": "1.4",
+    "drupal/registry_rebuild": "2.5",
+    "drupal/drupal": "7.67",
+    "drupal/admin_menu": "3.0-rc6",
+    "drupal/admin_theme": "1.0",
+    "drupal/admin_views": "1.6",
+    "drupal/autoload": "2.0",
+    "drupal/backup_migrate": "3.6",
+    "drupal/commerce": "1.x-dev#f646b4f7a7",
+    "drupal/commerce_extra_panes": "1.1",
+    "drupal/commerce_features": "1.x-dev#7e86f94",
+    "drupal/commerce_paypal": "2.7",
+    "drupal/commerce_pricelist": "1.1",
+    "drupal/commerce_rules_extra": "2.x-dev#afc359d068969fb5ba89c7c7cee3d7a8ed7a0284",
+    "drupal/commerce_discount": "1.0-beta5",
+    "drupal/commerce_discount_extra": "1.0-rc4",
+    "drupal/commerce_coupon": "2.0",
+    "drupal/commerce_cp": "1.3",
+    "drupal/commerce_shipping": "2.x-dev#b60c05db2581807f117b176935ec830eb6750c36",
+    "drupal/composer_manager": "1.8",
+    "drupal/countryicons": "2.0-beta1",
+    "drupal/countryicons_shiny": "2.0",
+    "drupal/countryicons_gosquared": "1.0",
+    "drupal/custom_search": "1.20",
+    "drupal/entity": "1.9",
+    "drupal/entitycache": "1.5",
+    "drupal/entityform": "2.0-rc4",
+    "drupal/entityqueue": "1.5",
+    "drupal/entityreference": "1.5",
+    "drupal/features": "1.0",
+    "drupal/features_extra": "1.0",
+    "drupal/features_override": "2.0-rc3",
+    "drupal/field_group": "1.6",
+    "drupal/gdpr": "^1.0-alpha10",
+    "drupal/libraries": "2.5",
+    "drupal/multifield": "1.0-alpha4",
+    "drupal/search_api": "1.17",
+    "drupal/search_api_autocomplete": "1.3",
+    "drupal/token": "1.7",
+    "drupal/token_filter": "1.1",
+    "drupal/token_insert": "2.4",
+    "drupal/transliteration": "3.2",
+    "drupal/uuid": "1.3",
+    "drupal/uuid_entity_autocomplete": "1.0-beta1",
+    "drupal/uuid_link": "1.0-beta3",
+    "drupal/views": "3.15",
+    "drupal/views_bulk_operations": "3.5",
+    "drupal/weight": "3.1",
+    "drupal/xautoload": "5.7"
+  },
+  "require-dev": {
+    "drupal/devel": "1.7"
+  },
+  "conflict": {
+    "drupal/core": "8.*"
+  },
+  "scripts": {},
+  "config": {
+    "sort-packages": false,
+    "platform": {
+      "php": "7.1.2"
+    },
+    "vendor-dir": "vendor",
+    "discard-changes": "stash",
+    "optimize-autoloader": true,
+    "preferred-install": {}
+  },
+  "autoload": {
+    "psr-0": {
+      "UIComposerHooks\\": "hooks/"
+    },
+    "psr-4": {}
+  },
+  "extra": {
+    "merge-plugin": {
+      "require": [],
+      "merge-extra": true,
+      "merge-extra-deep": true
+    },
+    "drupal-libraries": {
+      "joyride": "https://github.com/zurb/joyride/archive/v2.0.3.zip",
+      "phpsass": "https://github.com/richthegeek/phpsass/archive/2014-03-20.zip",
+      "simplehtmldom": "https://downloads.sourceforge.net/project/simplehtmldom/simplehtmldom/1.5/simplehtmldom_1_5.zip?use_mirror=superb-dca2"
+    },
+    "installer-types": [],
+    "installer-paths": {
+      "vendor/drupal/drupal": [
+        "type:drupal-core"
+      ],
+
+      "drush/{$name}": [
+        "type:drupal-drush",
+        "drupal/casperjs",
+        "drupal/composer",
+        "drupal/drush_sql_sync_pipe",
+        "drupal/drush_entity",
+        "drupal/httprl_spider",
+        "drupal/registry_rebuild",
+        "drupal/site_audit"
+      ],
+
+      "modules/contributed/{$name}": [
+        "type:drupal-module"
+      ],
+      "modules/custom/{$name}": [
+        "type:drupal-custom-module"
+      ],
+
+      "themes/contributed/{$name}": [
+        "type:drupal-theme"
+      ],
+      "themes/custom/{$name}": [
+        "type:drupal-custom-theme"
+      ],
+
+      "libraries/aws-sdk-for-php": [
+        "drupal/awssdk_library"
+      ],
+      "libraries/{$name}": [
+        "type:drupal-library"
+      ],
+
+      "profiles/contributed/{$name}": [
+        "type:drupal-profile"
+      ]
+    },
+    "patches": {
+      "drupal/drupal": {
+        "Certain URL fragments cause javascript error when collapsible fieldset is present on page (https://www.drupal.org/node/2395065)": "patches/collapse.patch"
+      },
+      "drupal/autologout": {
+        "Automatically log out anonymous users": "patches/autologout.patch"
+      },
+      "drupal/cdn": {
+        "advagg (https://www.drupal.org/project/advagg) module hooks": "https://www.drupal.org/files/cdn-1942230-18-advagg-hooks.patch",
+        "Remove file_create_url function when processing css background images": "patches/cdn-css-aggregation.patch"
+      },
+      "drupal/ctools": {
+        "Modal windows": "patches/ctools.patch"
+      },
+      "drupal/commerce": {
+        "Commerce checkout": "patches/commerce_checkout.patch"
+      },
+      "drupal/commerce_paypal": {
+        "Order status update patch": "patches/commerce_paypal_checkout_complete.patch"
+      },
+      "drupal/commerce_shipping": {
+        "Fix for shipping rates recalculation": "patches/commerce_shipping.patch"
+      },
+      "drupal/disclaimer": {
+        "Custom cookie name.": "https://www.drupal.org/files/issues/does-not-work-with-custom-cookie-name-2499005.patch"
+      },
+      "drupal/features": {
+        "array_diff_assoc()": "https://www.drupal.org/files/1588596-11-features-array_diff_assoc_recursive.patch"
+      },
+      "drupal/file_entity": {
+        "Use correct S3 URLs": "https://www.drupal.org/files/issues/2479483.2-uri-alter.patch"
+      },
+      "drupal/memcache_storage": {
+        "Initialize session object": "https://www.drupal.org/files/issues/initialize_session_object-2348955.patch"
+      },
+      "drupal/multifield": {
+        "Allow for image field to be empty": "patches/multifield.patch",
+        "Call to undefined function multifield_extract_multifield_machine_name() (https://www.drupal.org/project/multifield/issues/2546900)": "https://www.drupal.org/files/issues/multifield-2546900-include-module-file-2.patch",
+        "Recoverable fatal error: Argument 1 passed to multifield_extract_multifield_machine_name() must be of the type array, null given (https://www.drupal.org/project/multifield/issues/2451011)": "https://www.drupal.org/files/issues/multifield-2451011-3.patch"
+      },
+      "drupal/print": {
+        "Customer proxy rewrite, email validation etc.": "patches/print.patch"
+      },
+      "drupal/search_api": {
+        "Summary, score error suppression": "patches/search_api.patch"
+      },
+      "drupal/stage_file_proxy": {
+        "Add an option to skip SSL verification (https://www.drupal.org/project/stage_file_proxy/issues/3008351)": "https://www.drupal.org/files/issues/2019-04-26/stage_file_proxy-add-verify-option-3008351-2.patch"
+      },
+      "drupal/views": {
+        "Sorting, sort orders, theme hook suggestions": "patches/views.patch"
+      },
+      "dompdf/dompdf": {
+        "Version (exact version is required by the print module)": "patches/dompdf.VERSION.patch"
+      },
+      "drupal/mail_settings_checker": {
+        "Removing the hardcoded file locations": "patches/mail_settings_checker.patch"
+      }
+    },
+    "composer-exit-on-patch-failure": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

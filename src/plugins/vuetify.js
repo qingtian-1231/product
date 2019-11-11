@@ -1,11 +1,11 @@
-// src/plugins/vuetify.js
-
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import 'vuetify/dist/vuetify.min.css'
+import 'vuetify/src/stylus/app.styl'
 
-Vue.use(Vuetify)
-
-const opts = {}
-
-export default new Vuetify(opts)
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#CBAA5C',
+    secondary: '#083759'
+  },
+  iconfont: 'mdi'
+})

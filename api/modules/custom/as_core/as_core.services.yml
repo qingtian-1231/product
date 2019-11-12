@@ -1,0 +1,12 @@
+# vim: ft=yaml:sts=2:sw=2:et
+---
+services:
+  as_core.request_subscriber:
+    class: Drupal\as_core\EventSubscriber\AsCoreRequestSubscriber
+    arguments: ['@cache.default', '@http_client', '@datetime.time']
+    tags:
+      - { name: 'event_subscriber' }
+
+  as_core.request:
+    class: Drupal\as_core\Request
+    arguments: ['@request_stack']

@@ -1,4 +1,4 @@
-# test2
+# product
 
 ## Project setup
 ```

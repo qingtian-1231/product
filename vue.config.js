@@ -34,6 +34,9 @@ module.exports = {
       'vue-lazyload': 'VueLazyload',
       'lodash': '_'
     },
+    devServer: {
+      disableHostCheck: true,
+    }
   },
   css: {
     requireModuleExtension: false

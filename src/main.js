@@ -4,6 +4,11 @@ import router from './router'
 import store from './store'
 import 'vuetify/dist/vuetify.min.css'
 
+if (process.env.NODE_ENV === 'development') {
+  Vue.config.debug = true
+  Vue.config.devtools = true
+}
+
 Vue.config.productionTip = false
 
 Vue.prototype.$vuetify.theme = {

@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <core-toolbar />
+    <core-toolbar></core-toolbar>
 
-    <core-drawer />
+    <core-drawer></core-drawer>
 
-    <core-view />
+    <core-view></core-view>
 
-    <core-footer />
+    <core-footer></core-footer>
 
-    <core-cta />
+    <core-cta></core-cta>
   </v-app>
 </template>
 

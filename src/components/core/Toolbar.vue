@@ -2,7 +2,24 @@
   <v-toolbar
     app
     flat
+    color="primary"
   >
+    <template v-slot:extension color="secondary">
+      <v-tabs
+              v-model="currentItem"
+              color="secondary"
+              fixed-tabs
+              slider-color="yellow"
+      >
+        <v-tab
+                v-for="item in items"
+                :key="item"
+                :href="'#tab-' + item"
+        >
+          {{ item }}
+        </v-tab>
+      </v-tabs>
+    </template>
     <v-toolbar-side-icon
       class="hidden-md-and-up"
       @click="toggleDrawer"
@@ -52,6 +69,16 @@
   } from 'vuex'
 
   export default {
+    data: () => ({
+      currentItem: 'tab-Web',
+      items: [
+        'Web', 'Shopping', 'Videos', 'Images'
+      ],
+      more: [
+        'News', 'Maps', 'Books', 'Flights', 'Apps'
+      ],
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    }),
     computed: {
       ...mapGetters(['links'])
     },
@@ -65,6 +92,11 @@
 
         this.$vuetify.goTo(item.href)
       }
+    },
+
+    created() {
+
+      console.log(this.links);
     }
   }
 </script>

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\as_core;
+namespace Drupal\pro_core;
 
 use Symfony\Component\HttpFoundation\Request as DocumentsRequest;
 use Symfony\Component\HttpFoundation\RequestStack;

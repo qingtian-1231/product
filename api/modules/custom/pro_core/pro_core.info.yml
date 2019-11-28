@@ -1,0 +1,7 @@
+# vim: ft=yaml:sts=2:sw=2:et
+---
+name: 'PRO core'
+type: module
+description: 'custom product core.'
+package: 'custom'
+core: 8.x

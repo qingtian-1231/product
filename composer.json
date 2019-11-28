@@ -63,7 +63,15 @@
     "vlucas/phpdotenv": "^3.0.0",
     "drupal/module_filter": "^3.1",
     "drupal/restui": "^1.17",
-    "drupal/commerce": "^2.15"
+    "drupal/commerce": "^2.15",
+    "drupal/admin_toolbar": "^2.0",
+    "drupal/jsonapi_extras": "^3.12",
+    "drupal/rest_menu_items": "^2.9",
+    "drupal/simple_oauth": "^4.3",
+    "drupal/fontawesome_menu_icons": "^1.5",
+    "drupal/examples": "^1.0",
+    "drupal/field_group": "^1.0",
+    "drupal/search_api": "^1.15"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
@@ -152,7 +160,7 @@
   "extra": {
     "merge-plugin": {
       "require": [
-        "api/modules/custom/as_core/composer.json"
+        "api/modules/custom/pro_core/composer.json"
       ],
       "merge-extra": true,
       "merge-extra-deep": true
@@ -160,7 +168,8 @@
     "drupal-libraries": {
       "d3": "https://github.com/d3/d3/archive/v3.5.17.zip",
       "highlightjs": "https://github.com/components/highlightjs/archive/9.12.0.zip",
-      "urijs": "https://github.com/medialize/URI.js/archive/gh-pages.zip"
+      "urijs": "https://github.com/medialize/URI.js/archive/gh-pages.zip",
+      "fontawesome-iconpicker": "https://github.com/itsjavi/fontawesome-iconpicker/archive/3.0.0.zip"
     },
     "installer-types": [],
     "installer-paths": {

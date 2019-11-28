@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import 'vuetify/dist/vuetify.min.css'
 
+console.log(process.env.NODE_ENV, 'process.env.NODE_ENV')
 if (process.env.NODE_ENV === 'development') {
   Vue.config.debug = true
   Vue.config.devtools = true
@@ -28,8 +29,11 @@ Vue.prototype.$vuetify.theme = {
   warning: '#FFC107'
 }
 
-new Vue({
-  store,
-  router,
-  render: h => h(App)
-}).$mount('#app')
+store.dispatch('getApiMenu').then(() => {
+  new Vue({
+    store,
+    router,
+    render: h => h(App)
+  }).$mount('#app')
+})
+

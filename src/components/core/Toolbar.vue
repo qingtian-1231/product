@@ -2,24 +2,7 @@
   <v-toolbar
     app
     flat
-    color="primary"
   >
-    <template v-slot:extension color="secondary">
-      <v-tabs
-              v-model="currentItem"
-              color="secondary"
-              fixed-tabs
-              slider-color="yellow"
-      >
-        <v-tab
-                v-for="item in items"
-                :key="item"
-                :href="'#tab-' + item"
-        >
-          {{ item }}
-        </v-tab>
-      </v-tabs>
-    </template>
     <v-toolbar-side-icon
       class="hidden-md-and-up"
       @click="toggleDrawer"
@@ -62,41 +45,26 @@
 </template>
 
 <script>
-  // Utilities
-  import {
-    mapGetters,
-    mapMutations
-  } from 'vuex'
+    // Utilities
+    import {
+        mapGetters,
+        mapMutations
+    } from 'vuex'
 
-  export default {
-    data: () => ({
-      currentItem: 'tab-Web',
-      items: [
-        'Web', 'Shopping', 'Videos', 'Images'
-      ],
-      more: [
-        'News', 'Maps', 'Books', 'Flights', 'Apps'
-      ],
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-    }),
-    computed: {
-      ...mapGetters(['links'])
-    },
+    export default {
+        computed: {
+            ...mapGetters(['links'])
+        },
 
-    methods: {
-      ...mapMutations(['toggleDrawer']),
-      onClick (e, item) {
-        e.stopPropagation()
+        methods: {
+            ...mapMutations(['toggleDrawer']),
+            onClick (e, item) {
+                e.stopPropagation()
 
-        if (item.to || !item.href) return
+                if (item.to || !item.href) return
 
-        this.$vuetify.goTo(item.href)
-      }
-    },
-
-    created() {
-
-      console.log(this.links);
+                this.$vuetify.goTo(item.href)
+            }
+        }
     }
-  }
 </script>

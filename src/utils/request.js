@@ -1,10 +1,12 @@
 import axios from 'axios'
 import { getCookie } from '../utils/cookie.js'
+import config from '../config'
 
+const isDev = process.env.NODE_ENV !== 'production'
 const clientId = 'ghost-frontend'
 const clientSecret = 'cdd1a03354b5'
 const sessionKey = 'ghost:session'
-const apiServer = '/ghost/api/v0.1/'
+const apiServer = isDev ? config.dev.apiServer : config.prod.apiServer
 
 function request (isAdmin) {
     const session = getCookie(sessionKey)

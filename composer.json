@@ -69,7 +69,9 @@
     "drupal/rest_menu_items": "^2.9",
     "drupal/simple_oauth": "^4.3",
     "drupal/fontawesome_menu_icons": "^1.5",
-    "drupal/examples": "^1.0"
+    "drupal/examples": "^1.0",
+    "drupal/field_group": "^1.0",
+    "drupal/search_api": "^1.15"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

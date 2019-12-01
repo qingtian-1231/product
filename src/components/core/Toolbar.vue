@@ -1,12 +1,44 @@
 <template>
   <v-toolbar
     app
-    flat
+    color="primary"
+    dark
+    extended
   >
     <v-toolbar-side-icon
       class="hidden-md-and-up"
       @click="toggleDrawer"
     />
+
+    <template v-slot:extension>
+      <v-container
+        mx-auto
+        py-0
+      >
+        <v-layout>
+          <v-img
+            :src="require('@/assets/logo.png')"
+            class="mr-5"
+            contain
+            height="48"
+            width="48"
+            max-width="48"
+            @click="$vuetify.goTo(0)"
+          />
+          <v-btn
+            v-for="(link, i) in menuLinks"
+            :key="i"
+            :to="link.relative"
+            class="ml-0 hidden-sm-and-down"
+            flat
+            @click="onClick($event, item)"
+          >
+            <v-icon>home</v-icon>
+            {{ link.title }}
+          </v-btn>
+        </v-layout>
+      </v-container>
+    </template>
     <v-container
       mx-auto
       py-0
@@ -21,24 +53,13 @@
           max-width="48"
           @click="$vuetify.goTo(0)"
         />
-        <v-btn
-          v-for="(link, i) in links"
-          :key="i"
-          :to="link.to"
-          class="ml-0 hidden-sm-and-down"
-          flat
-          @click="onClick($event, item)"
-        >
-          {{ link.text }}
-        </v-btn>
         <v-spacer />
-        <v-text-field
-          append-icon="mdi-magnify"
-          flat
-          hide-details
-          solo-inverted
-          style="max-width: 300px;"
-        />
+        <v-btn icon>
+          <v-icon>shopping_cart</v-icon>
+        </v-btn>
+        <v-btn icon>
+          <v-icon>search</v-icon>
+        </v-btn>
       </v-layout>
     </v-container>
   </v-toolbar>
@@ -46,18 +67,16 @@
 
 <script>
     // Utilities
-    import {
-        mapGetters,
-        mapMutations
-    } from 'vuex'
+    import { mapState } from 'vuex'
 
     export default {
         computed: {
-            ...mapGetters(['links'])
+            ...mapState({
+                menuLinks: state => state.core.menuItems
+            }),
         },
 
         methods: {
-            ...mapMutations(['toggleDrawer']),
             onClick (e, item) {
                 e.stopPropagation()
 

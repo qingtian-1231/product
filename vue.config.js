@@ -12,21 +12,6 @@ module.exports = {
         Popper: ['popper.js', 'default']
       })
     ],
-    module: {
-      rules: [
-        {
-          test: /\.s(c|a)ss$/,
-          use: [
-            // Creates `style` nodes from JS strings
-            'style-loader',
-            // Translates CSS into CommonJS
-            'css-loader',
-            // Compiles Sass to CSS
-            'sass-loader',
-          ],
-        },
-      ]
-    },
     externals: {
       'jquery': 'jQuery',
       'vue': 'Vue',

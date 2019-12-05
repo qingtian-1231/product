@@ -1,39 +1,75 @@
 import Vue from 'vue'
+import Vuetify from 'vuetify'
+import './plugins/base'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import 'vuetify/dist/vuetify.min.css'
+// For Nprogress 页面加载动画.
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
-console.log(process.env.NODE_ENV, 'process.env.NODE_ENV')
-if (process.env.NODE_ENV === 'development') {
+const isDev = process.env.NODE_ENV !== 'production'
+
+if (isDev) {
   Vue.config.debug = true
   Vue.config.devtools = true
 }
 
 Vue.config.productionTip = false
+/**
+ * 关于NProgress 更多设置和用法.
+ * @see https://github.com/rstacruz/nprogress/
+ */
 
-Vue.prototype.$vuetify.theme = {
-  // orange
-  primary: '#CBAA5C',
-  // sliver
-  secondary: '#083759',
-  // cyan
-  accent: '#8c9eff',
-  // blue '#2196F3'
-  info: '#3b7fc4',
-  // green '#4CAF50' is the default value
-  success: '#42c02e',
-  // red
-  error: '#b71c1c',
-  // yellow
-  warning: '#FFC107'
-}
+NProgress.inc(0.2)
+NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false })
+
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  // 每个路由跳转时都将其跳转的路由推给百度
+  if (!isDev && window._hmt) {
+    // console.log(window._hmt)
+    if (to.path) {
+      // console.log(to.path)
+      window._hmt.push(['_trackPageview', to.fullPath])
+    }
+  }
+
+  let meta
+
+  // 使title在vue-router中可配置
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+
+  if (to.meta.keywords) {
+    meta = document.getElementsByTagName('meta')
+    meta['keywords'].setAttribute('content', to.meta.keywords)
+  }
+
+  if (to.meta.description) {
+    meta = document.getElementsByTagName('meta')
+    meta['description'].setAttribute('content', to.meta.description)
+  }
+
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})
 
 store.dispatch('getApiMenu').then(() => {
   new Vue({
     store,
     router,
-    render: h => h(App)
+    vuetify: new Vuetify({
+      theme: {
+        primary: '#CBAA5C',
+        secondary: '#083759'
+      },
+      iconfont: 'mdi'
+    }),
+    render: h => h(App),
   }).$mount('#app')
 })
-

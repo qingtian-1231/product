@@ -1,68 +1,52 @@
 <template>
-  <v-toolbar
-    app
-    color="primary"
+  <v-app-bar
+    fixed
     dark
-    extended
+    prominent
+    hide-on-scroll
   >
-    <v-toolbar-side-icon
-      class="hidden-md-and-up"
-      @click="toggleDrawer"
-    />
+    <template v-slot:img="{ props }">
+      <v-img
+        v-bind="props"
+        gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+      ></v-img>
+    </template>
+
+    <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+    <v-toolbar-title>Title</v-toolbar-title>
+
+    <v-spacer></v-spacer>
+
+    <v-btn icon>
+      <v-icon>mdi-magnify</v-icon>
+    </v-btn>
+
+    <v-btn icon>
+      <v-icon>mdi-heart</v-icon>
+    </v-btn>
+
+    <v-btn icon>
+      <v-icon>mdi-dots-vertical</v-icon>
+    </v-btn>
 
     <template v-slot:extension>
-      <v-container
-        mx-auto
-        py-0
+      <v-tabs
+        v-model="model"
+        centered
+        slider-color="yellow"
+        background-color="primary"
       >
-        <v-layout>
-          <v-img
-            :src="require('@/assets/logo.png')"
-            class="mr-5"
-            contain
-            height="48"
-            width="48"
-            max-width="48"
-            @click="$vuetify.goTo(0)"
-          />
-          <v-btn
-            v-for="(link, i) in menuLinks"
-            :key="i"
-            :to="link.relative"
-            class="ml-0 hidden-sm-and-down"
-            flat
-            @click="onClick($event, item)"
-          >
-            <v-icon>home</v-icon>
-            {{ link.title }}
-          </v-btn>
-        </v-layout>
-      </v-container>
+        <v-tab
+          v-for="(link, i) in menuLinks"
+          :key="i"
+          :href="`${link.relative}`"
+        >
+          <v-icon>home</v-icon>{{ link.title }}
+        </v-tab>
+      </v-tabs>
     </template>
-    <v-container
-      mx-auto
-      py-0
-    >
-      <v-layout>
-        <v-img
-          :src="require('@/assets/logo.png')"
-          class="mr-5"
-          contain
-          height="48"
-          width="48"
-          max-width="48"
-          @click="$vuetify.goTo(0)"
-        />
-        <v-spacer />
-        <v-btn icon>
-          <v-icon>shopping_cart</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>search</v-icon>
-        </v-btn>
-      </v-layout>
-    </v-container>
-  </v-toolbar>
+  </v-app-bar>
 </template>
 
 <script>

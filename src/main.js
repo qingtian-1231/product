@@ -65,10 +65,27 @@ store.dispatch('getApiMenu').then(() => {
     router,
     vuetify: new Vuetify({
       theme: {
-        primary: '#CBAA5C',
-        secondary: '#083759'
+        themes: {
+          light: {
+            primary: '#4CAF50',
+            secondary: '#ff5722',
+            accent: '#8c9eff',
+            error: '#b71c1c',
+          },
+          dark: {
+            primary: '#4caf50',
+          },
+        },
       },
-      iconfont: 'mdi'
+      breakpoint: {
+        thresholds: {
+          xs: 340,
+          sm: 540,
+          md: 800,
+          lg: 1460,
+        },
+        scrollBarWidth: 24,
+      }
     }),
     render: h => h(App),
   }).$mount('#app')

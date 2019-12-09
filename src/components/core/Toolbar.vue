@@ -19,13 +19,9 @@
       <v-container class="fill-height px-0 py-0">
         <v-row class="mx-0 header-main-menu">
           <v-col class="px-0" cols="12" sm="2">
-            <v-card
-              class="pa-2"
-              outlined
-              tile
-            >
-              One of three columns
-            </v-card>
+            <v-btn @click.stop="openLoginSheet" class="mx-2" fab dark small color="secondary">
+              <v-icon dark>perm_identity</v-icon>
+            </v-btn>
           </v-col>
           <v-col class="py-0" cols="12" sm="8">
             <v-tabs
@@ -190,12 +186,16 @@
     },
 
     methods: {
-      onClick(e, item) {
+      onClick (e, item) {
         e.stopPropagation()
 
         if (item.to || !item.href) return
 
         this.$vuetify.goTo(item.href)
+      },
+
+      openLoginSheet () {
+        this.$store.state.core.loginStatus = !this.$store.state.core.loginStatus
       }
     }
   }

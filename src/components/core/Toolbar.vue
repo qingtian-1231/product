@@ -202,6 +202,7 @@
 </script>
 <style lang="scss">
   header {
+    border-shadow: none;
 
     a.logo {
       padding: 0px 0;
@@ -212,6 +213,7 @@
     .v-toolbar__extension {
       background-color: #fff;
       padding: 0;
+      border-bottom: 1px solid #e2e2e2;
     }
 
     .header-main-menu {

@@ -18,16 +18,16 @@
     <template v-slot:extension>
       <v-container class="fill-height px-0 py-0">
         <v-row class="mx-0 header-main-menu">
-          <v-col class="px-0" cols="12" sm="2">
+          <v-col class="px-0" cols="12" sm="1">
             <v-btn @click.stop="openLoginSheet" class="mx-2" fab dark small color="secondary">
               <v-icon dark>perm_identity</v-icon>
             </v-btn>
           </v-col>
-          <v-col class="py-0" cols="12" sm="8">
+          <v-col class="py-0" cols="12" sm="9">
             <v-tabs
               v-model="model"
               centered
-              slider-color="yellow"
+              slider-color="secondary"
               background-color="white"
               color="grey"
             >
@@ -202,7 +202,7 @@
 </script>
 <style lang="scss">
   header {
-    border-shadow: none;
+    box-shadow: none !important;
 
     a.logo {
       padding: 0px 0;
@@ -221,6 +221,15 @@
 
       .v-tabs {
         height: 100%;
+
+        .v-tab.v-tab {
+          color: #333 !important;
+          opacity: 1 !important;
+
+          .v-icon {
+            color: #333 !important;
+          }
+        }
 
         .v-item-group {
           height: 100%;

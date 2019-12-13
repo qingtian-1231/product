@@ -34,7 +34,8 @@
               <v-tab
                 v-for="(link, i) in menuLinks"
                 :key="i"
-                :href="`${link.relative}`"
+                :to="link.relative"
+                @click="headerMenuClick($event, link)"
               >
                 <v-icon>home</v-icon>
                 {{ link.title }}
@@ -186,9 +187,10 @@
     },
 
     methods: {
-      onClick (e, item) {
+      headerMenuClick: function (e, item) {
         e.stopPropagation()
 
+        console.log(item, 'item');
         if (item.to || !item.href) return
 
         this.$vuetify.goTo(item.href)

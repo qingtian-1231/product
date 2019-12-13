@@ -2,9 +2,15 @@
   <base-card dark>
     <v-img
       class="grey lighten-2"
-      height="400"
+      height="auto"
       width="100%"
-      :src="require('@/assets/articles/blurcamera.jpg')"
+      contain
+      :src="require('@/assets/home/keyvisual_homepage_mega.jpg')"
+      :srcset="require('@/assets/home/keyvisual_homepage_tiny.jpg') + ' 480w,'
+      + require('@/assets/home/keyvisual_homepage_small.jpg') + ' 640w,'
+      + require('@/assets/home/keyvisual_homepage_medium.jpg') + ' 768w,'
+      + require('@/assets/home/keyvisual_homepage_big.jpg') + ' 1024w,'
+      + require('@/assets/home/keyvisual_homepage_mega.jpg') + ' 1600w'"
     >
       <v-layout
         fill-height
@@ -13,24 +19,21 @@
       >
         <v-flex
           xs12
-          md7
-          offset-md5
+          md12
         >
-          <h1 class="display-3 font-weight-light">
-            The Art Of Travel
-          </h1>
-          <div class="subheading text-uppercase pl-2 mb-4">
-            Finding Beauty, One flight at a time
-          </div>
-          <v-btn
-            color="primary"
-            depressed
-            round
-          >
-            Subscribe
-          </v-btn>
+          <search></search>
         </v-flex>
       </v-layout>
     </v-img>
   </base-card>
 </template>
+
+<script>
+  export default {
+    name: 'Banner',
+
+    components: {
+      Search: () => import('@/components/home/Search')
+    }
+  }
+</script>

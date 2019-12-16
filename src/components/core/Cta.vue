@@ -5,10 +5,10 @@
     bottom
     right
     color="secondary"
-    href="https://github.com/vuetifyjs/theme-blog"
+    @click="$vuetify.goTo(0)"
     target="_blank"
     rel="noopener"
   >
-    <v-icon>mdi-download</v-icon>
+    <v-icon>mdi-chevron-up</v-icon>
   </v-btn>
 </template>

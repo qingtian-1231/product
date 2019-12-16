@@ -2,7 +2,7 @@
   <div id="home">
     <banner />
 
-    <about />
+    <features />
 
     <subscribe />
 
@@ -15,7 +15,7 @@
     name: 'Home',
 
     components: {
-      About: () => import('@/components/home/About'),
+      Features: () => import('@/components/home/Features'),
       Banner: () => import('@/components/home/Banner'),
       Social: () => import('@/components/home/Social'),
       Subscribe: () => import('@/components/home/Subscribe')

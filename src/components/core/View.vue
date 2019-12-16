@@ -8,7 +8,6 @@
       width="100%"
       hide-overlay
       height="calc(100% - 144px)"
-      @transitionend="testtest"
       @input="updateLoginStatus"
     >
       <v-row justify="center" class="mx-0">
@@ -190,5 +189,5 @@ Lab Assistant.</span>
       overflow-y: auto
       box-shadow: none
       .cutome-card
-        border:0
+        border: 0
 </style>

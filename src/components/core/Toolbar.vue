@@ -169,7 +169,7 @@
 <script>
   // Utilities
   import { mapState } from 'vuex'
-  import Logo from '../svg/logo'
+  import Logo from '../svg/Logo'
 
   export default {
     components: {Logo},

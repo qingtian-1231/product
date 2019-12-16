@@ -10,7 +10,7 @@
 </template>
 <script>
   export default {
-    name: 'product-logo',
+    name: 'icon-logo',
     data: function () {
       return {}
     }

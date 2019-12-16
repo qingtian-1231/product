@@ -30,6 +30,6 @@
     }
   }
 </script>
-<style lang="scss">
+<style lang="sass">
   @import "sass/app.sass"
 </style>

@@ -22,7 +22,7 @@ Vue.config.productionTip = false
  */
 
 NProgress.inc(0.2)
-NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false })
+NProgress.configure({ easing: 'ease', speed: 500, showSpinner: true })
 
 router.beforeEach((to, from, next) => {
   NProgress.start()

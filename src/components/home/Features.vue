@@ -11,7 +11,6 @@
             class="mx-auto features-product"
             max-width="400"
             :elevation="hover ? 18 : 2"
-            v-on:mouseover="testaa(cardElevation)"
           >
             <v-card-title>
               <icon-dispersions bg-color-class="styrene-acrylics"></icon-dispersions>
@@ -144,11 +143,7 @@
       }
     },
 
-    methods: {
-      testaa: function () {
-        console.log(12312)
-      }
-    }
+    methods: {}
   }
 </script>
 

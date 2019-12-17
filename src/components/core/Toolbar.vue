@@ -1,5 +1,6 @@
 <template>
   <v-app-bar
+    id="app-header"
     fixed
     dark
     hide-on-scroll
@@ -7,7 +8,7 @@
     extension-height="72"
     color="primary"
   >
-    <v-container class="fill-height">
+    <v-container class="fill-height app-tool-bar">
       <v-row>
         <a href="/" class="logo">
           <Logo></Logo>
@@ -16,14 +17,14 @@
       </v-row>
     </v-container>
     <template v-slot:extension>
-      <v-container class="fill-height px-0 py-0">
+      <v-container class="fill-height px-0 py-0 app-tool-bar-extention">
         <v-row class="mx-0 header-main-menu">
-          <v-col class="px-0" cols="12" sm="1">
+          <v-col class="px-0 login-layout" cols="12" sm="1">
             <v-btn @click.stop="openLoginSheet" class="mx-2" fab dark small color="secondary">
               <v-icon dark>perm_identity</v-icon>
             </v-btn>
           </v-col>
-          <v-col class="py-0" cols="12" sm="9">
+          <v-col class="py-0 menu-layout" cols="12" sm="10">
             <v-tabs
               v-model="model"
               centered
@@ -31,18 +32,31 @@
               background-color="white"
               color="grey"
             >
-              <v-tab
-                v-for="(link, i) in menuLinks"
-                :key="i"
-                :to="link.relative"
-                @click="headerMenuClick($event, link)"
-              >
-                <v-icon>home</v-icon>
-                {{ link.title }}
-              </v-tab>
+              <template v-for="(link, i) in menuLinks">
+                <template v-if="link.dialog">
+                  <v-tab
+                    :key="i"
+                    @click="headerMenuClick($event, link)"
+                  >
+                    <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+                    {{ link.title }}
+                  </v-tab>
+                </template>
+
+                <template v-else>
+                  <v-tab
+                    :key="i"
+                    :to="link.relative"
+                    @click="headerMenuClick($event, link)"
+                  >
+                    <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+                    {{ link.title }}
+                  </v-tab>
+                </template>
+              </template>
             </v-tabs>
           </v-col>
-          <v-col class="px-0" cols="12" sm="2">
+          <v-col class="px-0 search-layout" cols="12" sm="1">
             <v-menu
               bottom
               left
@@ -172,7 +186,7 @@
   import Logo from '../svg/Logo'
 
   export default {
-    components: {Logo},
+    components: { Logo },
 
     data: function () {
       return {
@@ -190,8 +204,13 @@
       headerMenuClick: function (e, item) {
         e.stopPropagation()
 
-        console.log(item, 'item');
-        if (item.to || !item.href) return
+        if (item.dialog) {
+          this.$store.state.core.requestDialog = true
+        }
+
+        if (item.to || !item.href) {
+          return
+        }
 
         this.$vuetify.goTo(item.href)
       },
@@ -204,6 +223,28 @@
 </script>
 <style lang="scss">
   header {
+    .app-tool-bar {
+      padding-left: 50px;
+      padding-right: 50px;
+      @media screen and (min-width: 1264px) {
+        max-width: 1665px;
+      }
+    }
+
+    .app-tool-bar-extention {
+      @media screen and (min-width: 1264px) {
+        max-width: 1665px;
+      }
+
+      .login-layout {
+        padding-left: 50px !important;
+
+        button {
+          margin: 0 !important;
+        }
+      }
+    }
+
     box-shadow: none !important;
 
     a.logo {

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app v-scroll="onScroll">
     <core-toolbar></core-toolbar>
 
     <core-drawer></core-drawer>
@@ -26,6 +26,19 @@
     data () {
       return {
         //
+      }
+    },
+
+    methods: {
+      onScroll: function () {
+        let appHeader = document.getElementById('app-header')
+        let _that = this
+
+        if (appHeader.style.transform === 'translateY(0px)' || document.documentElement.scrollTop === 0) {
+          _that.$store.state.core.hiddenTopAppBar = false
+        } else if (appHeader.style.transform === 'translateY(-72px)' || document.documentElement.scrollTop > 173) {
+          _that.$store.state.core.hiddenTopAppBar = true
+        }
       }
     }
   }

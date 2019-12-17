@@ -9,6 +9,7 @@
       hide-overlay
       height="calc(100% - 144px)"
       @input="updateLoginStatus"
+      :class="hiddenTopAppBar ? 'hidden-to-app-bar' : ''"
     >
       <v-row justify="center" class="mx-0">
         <v-col cols="12" sm="12">
@@ -89,6 +90,25 @@ Lab Assistant.</span>
       </v-row>
 
     </v-navigation-drawer>
+    <v-dialog
+      v-model="requestDialog"
+      transition="dialog-bottom-transition"
+      scrollable
+      persistent
+      max-width="940px"
+    >
+      <v-card>
+        <v-toolbar>
+          <v-btn icon dark @click="closeRequestDialog()">
+            <v-icon color="black">close</v-icon>
+          </v-btn>
+<!--          <v-toolbar-title>product</v-toolbar-title>-->
+          <v-spacer></v-spacer>
+        </v-toolbar>
+        <online-request-form></online-request-form>
+<!--        <login-form @fatherMethod="closeDialog"></login-form>-->
+      </v-card>
+    </v-dialog>
   </v-content>
 </template>
 <script>
@@ -96,8 +116,11 @@ Lab Assistant.</span>
   import { mapState } from 'vuex'
   import { validationMixin } from 'vuelidate'
   import { required, maxLength, email } from 'vuelidate/lib/validators'
+  import OnlineRequestForm from '../OnlineRequestForm'
 
   export default {
+    components: { OnlineRequestForm },
+
     mixins: [validationMixin],
 
     validations: {
@@ -128,7 +151,9 @@ Lab Assistant.</span>
 
     computed: {
       ...mapState({
-        loginStatus: state => state.core.loginStatus
+        loginStatus: state => state.core.loginStatus,
+        hiddenTopAppBar: state => state.core.hiddenTopAppBar,
+        requestDialog: state => state.core.requestDialog
       }),
 
       checkboxErrors () {
@@ -163,6 +188,10 @@ Lab Assistant.</span>
     },
 
     methods: {
+      closeRequestDialog () {
+        this.$store.state.core.requestDialog = false
+      },
+
       updateLoginStatus (value) {
         this.$store.state.core.loginStatus = value
       },
@@ -188,6 +217,9 @@ Lab Assistant.</span>
       top: 144px!important
       overflow-y: auto
       box-shadow: none
+
+      &.hidden-to-app-bar
+        top: 72px!important
       .cutome-card
         border: 0
 </style>

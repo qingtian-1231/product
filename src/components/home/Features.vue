@@ -150,6 +150,8 @@
 <style lang="scss" scoped>
   #features {
     margin-top: -13%;
+    max-width: 1070px;
+    min-width: 1070px;
   }
 
   .features-card {

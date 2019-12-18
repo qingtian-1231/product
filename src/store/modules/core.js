@@ -17,6 +17,8 @@ const mutations = {
       switch (menuItem.title.toLowerCase()) {
         case 'home':
           menuItem.options.icon = 'home'
+          menuItem.relative = '/'
+          console.log(menuItem, 'menuItem');
           break
 
         case 'products':

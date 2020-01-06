@@ -5,7 +5,10 @@
 
 module.exports = {
     prod: {
-        apiServer: 'http://api.product.cpq'
+        apiServer: 'http://api.basf.infiniteread.com'
+    },
+    test: {
+        apiServer: 'http://api.basf.infiniteread.com'
     },
     dev: {
         apiServer: 'http://api.product.cpq'

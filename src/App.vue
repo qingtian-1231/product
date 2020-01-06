@@ -2,6 +2,10 @@
   <v-app v-scroll="onScroll">
     <core-toolbar></core-toolbar>
 
+    <template v-if="showFilterbar">
+      <core-filterbar :title="title"></core-filterbar>
+    </template>
+
     <core-drawer></core-drawer>
 
     <core-view></core-view>
@@ -21,12 +25,27 @@
       CoreDrawer: () => import('@/components/core/Drawer'),
       CoreFooter: () => import('@/components/core/Footer'),
       CoreToolbar: () => import('@/components/core/Toolbar'),
+      CoreFilterbar: () => import('@/components/core/Filterbar'),
       CoreView: () => import('@/components/core/View')
     },
+
     data () {
       return {
-        //
+        showFilterbar: false,
+        title: 'Products'
       }
+    },
+
+    watch: {
+      '$route' (to, from) {
+          console.log('route change: ' + from.name)
+          if (to.name === 'Products' || to.name === 'Formulations') {
+            this.title = to.name
+            this.showFilterbar = true
+          } else {
+            this.showFilterbar = false
+          }
+        }
     },
 
     methods: {

@@ -1,5 +1,5 @@
 <template>
-  <v-content id="home" style="padding: 144px 0 0;">
+  <v-content id="home" :style="`padding: ${paddingTop}px 0 0;`">
     <router-view />
     <v-navigation-drawer
       v-model="loginStatus"
@@ -66,7 +66,7 @@
                 @blur="$v.checkbox.$touch()"
               ></v-checkbox>
 
-              <v-btn rounded color="secondary" dark>Rounded Button<v-icon right dark>keyboard_arrow_right</v-icon></v-btn>
+              <v-btn block rounded color="secondary" dark>登录<v-icon right dark>keyboard_arrow_right</v-icon></v-btn>
             </form>
           </v-card>
 
@@ -84,7 +84,15 @@ Lab Assistant.</span>
             <blockquote class="blockquote px-0 py-8">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores modi quidem veniam, expedita quis laboriosam, ullam facere adipisci, iusto, voluptate sapiente corrupti asperiores rem nemo numquam fuga ab at.
             </blockquote>
-            <v-btn rounded color="secondary" dark>Rounded Button<v-icon right dark>keyboard_arrow_right</v-icon></v-btn>
+            <v-btn
+              block
+              rounded
+              color="secondary"
+              dark
+              :to="{ name: 'Register' }"
+            >
+              注册<v-icon right dark>keyboard_arrow_right</v-icon>
+            </v-btn>
           </v-card>
         </v-col>
       </v-row>
@@ -102,11 +110,9 @@ Lab Assistant.</span>
           <v-btn icon dark @click="closeRequestDialog()">
             <v-icon color="black">close</v-icon>
           </v-btn>
-<!--          <v-toolbar-title>product</v-toolbar-title>-->
           <v-spacer></v-spacer>
         </v-toolbar>
-        <online-request-form></online-request-form>
-<!--        <login-form @fatherMethod="closeDialog"></login-form>-->
+        <online-request-form @fatherMethod="closeRequestDialog()"></online-request-form>
       </v-card>
     </v-dialog>
   </v-content>
@@ -146,6 +152,18 @@ Lab Assistant.</span>
           'Item 4',
         ],
         checkbox: false,
+        paddingTop: 144,
+      }
+    },
+
+    watch: {
+      '$route' (to, from) {
+        console.log('route change: ' + from.name)
+        if (to.name === 'Products' || to.name === 'Formulations') {
+          this.paddingTop = 200
+        } else {
+          this.paddingTop = 144
+        }
       }
     },
 

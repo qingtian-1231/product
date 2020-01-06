@@ -29,6 +29,7 @@
               v-model="model"
               centered
               slider-color="secondary"
+              slider-size="4"
               background-color="white"
               color="grey"
             >

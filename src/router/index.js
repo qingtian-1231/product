@@ -5,6 +5,8 @@ import Industry from '../views/Industry'
 import Products from '../views/Products'
 import Formulations from '../views/Formulations'
 import SampleOrder from '../views/SampleOrder'
+import Register from '../views/Register'
+import NotFound from '../views/NotFound'
 
 Vue.use(Router)
 
@@ -36,6 +38,20 @@ export default new Router({
       path: '/sample-order',
       name: 'SampleOrder',
       component: SampleOrder
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    },
+    {
+      path: '/notfound',
+      name: 'NotFound',
+      component: NotFound
+    },
+    {
+      path: '*',
+      redirect: '/notfound'
     }
   ]
 })

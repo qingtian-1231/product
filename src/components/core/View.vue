@@ -13,6 +13,29 @@
     >
       <v-row justify="center" class="mx-0">
         <v-col cols="12" sm="12">
+          <ul>
+            <template v-for="(link, i) in menuLinks">
+              <template v-if="link.dialog">
+                <li
+                  :key="i"
+                  @click="headerMenuClick($event, link)"
+                >
+                  <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+                  {{ link.title }}
+                </li>
+              </template>
+              <template v-else>
+                <li
+                  :key="i"
+                  :to="link.relative"
+                  @click="headerMenuClick($event, link)"
+                >
+                  <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+                  {{ link.title }}
+                </li>
+              </template>
+            </template>
+          </ul>
           <v-card
             class="mx-auto px-6 cutome-card"
             outlined
@@ -20,7 +43,7 @@
             <v-card-title class="px-0 my-5">
               <span class="headline">Login</span>
               <v-spacer></v-spacer>
-              <v-btn dark icon class="black--text">
+              <v-btn dark icon @click.stop="closeLoginSheet" class="black--text">
                 <v-icon>keyboard_arrow_left</v-icon>
               </v-btn>
             </v-card-title>
@@ -169,6 +192,7 @@ Lab Assistant.</span>
 
     computed: {
       ...mapState({
+        menuLinks: state => state.core.menuItems,
         loginStatus: state => state.core.loginStatus,
         hiddenTopAppBar: state => state.core.hiddenTopAppBar,
         requestDialog: state => state.core.requestDialog
@@ -206,6 +230,10 @@ Lab Assistant.</span>
     },
 
     methods: {
+      closeLoginSheet () {
+        this.$store.state.core.loginStatus = !this.$store.state.core.loginStatus
+      },
+
       closeRequestDialog () {
         this.$store.state.core.requestDialog = false
       },

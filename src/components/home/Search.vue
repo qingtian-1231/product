@@ -57,5 +57,9 @@
   #home_search {
     width: 30%;
     margin-top: -8%;
+
+    @media screen and (max-width: 640px) {
+      width: 100%;
+    }
   }
 </style>

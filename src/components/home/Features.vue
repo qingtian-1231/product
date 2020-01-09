@@ -5,7 +5,7 @@
     class="bounceUp-enter-active"
   >
     <v-row dense>
-      <v-col cols="3" class="features-card">
+      <v-col cols="12" md="3" class="features-card">
         <v-hover v-slot:default="{ hover }">
           <v-card
             class="mx-auto features-product"
@@ -35,7 +35,7 @@
       </v-col>
 
 
-      <v-col cols="3" class="features-card">
+      <v-col cols="12" sm="3" class="features-card">
         <v-hover v-slot:default="{ hover }">
           <v-card
             class="mx-auto features-product"
@@ -66,7 +66,7 @@
       </v-col>
 
 
-      <v-col cols="3" class="features-card">
+      <v-col cols="12" sm="3" class="features-card">
         <v-hover v-slot:default="{ hover }">
           <v-card
             class="mx-auto features-product"
@@ -97,7 +97,7 @@
       </v-col>
 
 
-      <v-col cols="3" class="features-card">
+      <v-col cols="12" sm="3" class="features-card">
         <v-hover v-slot:default="{ hover }">
           <v-card
           class="mx-auto features-product"
@@ -152,6 +152,12 @@
     margin-top: -13%;
     max-width: 1070px;
     min-width: 1070px;
+
+    @media screen and (max-width: 640px) {
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+    }
   }
 
   .features-card {

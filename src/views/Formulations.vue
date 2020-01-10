@@ -20,11 +20,11 @@
                     ></v-checkbox>
                   </v-list-item-action>
 
-                  <a href="/product">
+                  <router-link :to="{name: 'Formulation', params: {id: '12312321'}}">
                     <v-list-item-avatar>
                       <icon-additives bg-color-class="wetting-agents"></icon-additives>
                     </v-list-item-avatar>
-                  </a>
+                  </router-link>
                   <v-list-item-content>
                     <v-list-item-title v-text="item.title"></v-list-item-title>
                   </v-list-item-content>

@@ -13,25 +13,31 @@
     >
       <v-row justify="center" class="mx-0">
         <v-col cols="12" sm="12">
-          <ul>
+          <ul class="d-md-none mobile-menu">
             <template v-for="(link, i) in menuLinks">
               <template v-if="link.dialog">
                 <li
                   :key="i"
-                  @click="headerMenuClick($event, link)"
                 >
-                  <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
-                  {{ link.title }}
+                  <a
+                    @click="headerMenuClick($event, link)"
+                  >
+                    <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+                    {{ link.title }}
+                  </a>
                 </li>
               </template>
               <template v-else>
                 <li
                   :key="i"
-                  :to="link.relative"
-                  @click="headerMenuClick($event, link)"
                 >
-                  <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
-                  {{ link.title }}
+                  <a
+                    :href="link.relative"
+                    @click="headerMenuClick($event, link)"
+                  >
+                    <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+                    {{ link.title }}
+                  </a>
                 </li>
               </template>
             </template>
@@ -253,6 +259,20 @@ Lab Assistant.</span>
         this.select = null
         this.checkbox = false
       },
+
+      headerMenuClick: function (e, item) {
+        e.stopPropagation()
+
+        if (item.dialog) {
+          this.$store.state.core.requestDialog = true
+        }
+
+        if (item.to || !item.href) {
+          return
+        }
+
+        this.$vuetify.goTo(item.href)
+      },
     }
   }
 </script>
@@ -263,6 +283,37 @@ Lab Assistant.</span>
       top: 144px!important
       overflow-y: auto
       box-shadow: none
+
+      .mobile-menu
+        background: #fff
+        margin: 0
+        overflow-y: auto
+        padding: 0 0 40px
+        text-align: left
+        transition: all .3s
+        min-width: 300px
+        border-bottom: 1px solid #e2e2e2
+
+        li
+          float: left
+          display: inline-block
+          position: relative
+          width: 100%
+
+          a
+            float: left
+            display: inline-block
+            position: relative
+            width: 100%
+            border-bottom: 4px solid transparent
+            height: 48px
+            padding: 10px
+            line-height: 32px
+            text-decoration: none
+            white-space: nowrap
+            font-size: 1em
+            transition: all .15s ease-in-out
+            color: #333
 
       &.hidden-to-app-bar
         top: 72px!important

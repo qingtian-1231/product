@@ -20,7 +20,7 @@
             <v-card-actions class="title-name">
               <v-list-item class="grow">
                 <h1>
-                  <a href="#/products/details/000000000030729933/basic-information">
+                  <a href="/product/0000000">
                     Acronal® 6292<v-icon>keyboard_arrow_right</v-icon>
                   </a>
                 </h1>
@@ -50,7 +50,7 @@
             <v-card-actions class="title-name">
               <v-list-item class="grow">
                 <h1>
-                  <a href="#/products/details/000000000030729933/basic-information">
+                  <a href="/product/0000000">
                     Acronal® 6292<v-icon>keyboard_arrow_right</v-icon>
                   </a>
                 </h1>
@@ -81,7 +81,7 @@
             <v-card-actions class="title-name">
               <v-list-item class="grow">
                 <h1>
-                  <a href="#/products/details/000000000030729933/basic-information">
+                  <a href="/product/0000000">
                     Acronal® 6292<v-icon>keyboard_arrow_right</v-icon>
                   </a>
                 </h1>
@@ -112,7 +112,7 @@
           <v-card-actions class="title-name">
             <v-list-item class="grow">
               <h1>
-                <a href="#/products/details/000000000030729933/basic-information">
+                <a href="/product/0000000">
                   Acronal® 6292<v-icon>keyboard_arrow_right</v-icon>
                 </a>
               </h1>
@@ -152,6 +152,7 @@
     margin-top: -13%;
     max-width: 1070px;
     min-width: 1070px;
+    padding: 4px;
 
     @media screen and (max-width: 640px) {
       width: 100%;

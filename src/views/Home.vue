@@ -4,7 +4,7 @@
 
     <features />
 
-    <subscribe />
+    <middle-content />
 
     <social />
   </div>
@@ -18,7 +18,7 @@
       Features: () => import('@/components/home/Features'),
       Banner: () => import('@/components/home/Banner'),
       Social: () => import('@/components/home/Social'),
-      Subscribe: () => import('@/components/home/Subscribe')
+      MiddleContent: () => import('@/components/home/MiddleContent')
     }
   }
 </script>

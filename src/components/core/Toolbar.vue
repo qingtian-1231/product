@@ -19,12 +19,18 @@
     <template v-slot:extension>
       <v-container class="fill-height px-0 py-0 app-tool-bar-extention">
         <v-row class="mx-0 header-main-menu">
-          <v-col class="px-0 login-layout" cols="12" sm="1">
+          <v-col class="px-0 login-layout" cols="6" md="1">
             <v-btn @click.stop="openLoginSheet" class="mx-2" fab dark small color="secondary">
-              <v-icon dark>perm_identity</v-icon>
+              <v-icon class="d-none d-md-block" dark>perm_identity</v-icon>
+              <template v-if="!loginStatus">
+                <v-icon class="d-md-none" dark>menu</v-icon>
+              </template>
+              <template v-else>
+                <v-icon class="d-md-none" dark>close</v-icon>
+              </template>
             </v-btn>
           </v-col>
-          <v-col class="py-0 menu-layout" cols="12" sm="10">
+          <v-col class="py-0 menu-layout hidden-sm-and-down" cols="12" sm="10">
             <v-tabs
               v-model="model"
               centered
@@ -57,7 +63,7 @@
               </template>
             </v-tabs>
           </v-col>
-          <v-col class="px-0 search-layout" cols="12" sm="1">
+          <v-col class="px-0 search-layout" cols="6" md="1">
             <v-menu
               bottom
               left
@@ -197,7 +203,8 @@
 
     computed: {
       ...mapState({
-        menuLinks: state => state.core.menuItems
+        menuLinks: state => state.core.menuItems,
+        loginStatus: state => state.core.loginStatus
       }),
     },
 
@@ -240,8 +247,18 @@
       .login-layout {
         padding-left: 50px !important;
 
+        @media screen and (max-width: 600px) {
+          padding-left: 10px !important;
+        }
+
         button {
           margin: 0 !important;
+        }
+      }
+
+      .search-layout {
+        @media screen and (max-width: 600px) {
+         text-align: right;
         }
       }
     }
@@ -252,6 +269,10 @@
       padding: 0px 0;
       position: relative;
       width: 127px;
+
+      .icon {
+        float: inherit;
+      }
     }
 
     .v-toolbar__extension {

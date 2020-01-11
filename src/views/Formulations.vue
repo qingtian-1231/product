@@ -20,32 +20,36 @@
                     ></v-checkbox>
                   </v-list-item-action>
 
-                  <a href="/product">
+                  <router-link :to="{name: 'Formulation', params: {id: '12312321'}}">
                     <v-list-item-avatar>
                       <icon-additives bg-color-class="wetting-agents"></icon-additives>
                     </v-list-item-avatar>
-                  </a>
+                  </router-link>
                   <v-list-item-content>
                     <v-list-item-title v-text="item.title"></v-list-item-title>
                   </v-list-item-content>
 
                   <v-list-item-action>
-                    <v-icon class="material-icons-outlined">pageview</v-icon>
+                    <v-btn icon>
+                      <v-icon class="material-icons-outlined" @click="previewFormulation">pageview</v-icon>
+                    </v-btn>
                   </v-list-item-action>
                   <v-list-item-action>
-                    <v-icon
-                      v-if="!active"
-                      color="grey lighten-1"
-                    >
-                      star_border
-                    </v-icon>
+                    <v-btn icon>
+                      <v-icon
+                        v-if="!active"
+                        color="grey lighten-1"
+                      >
+                        star_border
+                      </v-icon>
 
-                    <v-icon
-                      v-else
-                      color="yellow"
-                    >
-                      star
-                    </v-icon>
+                      <v-icon
+                        v-else
+                        color="yellow"
+                      >
+                        star
+                      </v-icon>
+                    </v-btn>
                   </v-list-item-action>
                 </v-list-item>
               </v-hover>
@@ -59,14 +63,35 @@
         </v-card>
       </v-row>
     </v-col>
+
+    <v-dialog
+      v-model="requestFormulationDialog"
+      transition="dialog-bottom-transition"
+      scrollable
+      persistent
+      max-width="344px"
+    >
+      <v-card>
+        <product-details @fatherMethod="closeRequestDialog()"></product-details>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 <script>
   // import IconDispersions from '../components/svg/Dispersions'
   import IconAdditives from '../components/svg/Additives'
+  import ProductDetails from '../components/ProductDetails'
+  import { mapState } from 'vuex'
 
   export default {
-    components: { IconAdditives },
+    components: { IconAdditives, ProductDetails },
+
+    computed: {
+      ...mapState({
+        requestFormulationDialog: state => state.core.requestFormulationDialog
+      }),
+    },
+
     data: () => ({
       selected: [2],
       items: [
@@ -168,6 +193,16 @@
         },
       ],
     }),
+
+    methods: {
+      previewFormulation () {
+        this.$store.state.core.requestFormulationDialog = true
+      },
+
+      closeRequestDialog () {
+        this.$store.state.core.requestFormulationDialog = false
+      },
+    }
   }
 </script>
 <style lang="scss" scoped>

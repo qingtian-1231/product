@@ -13,6 +13,35 @@
     >
       <v-row justify="center" class="mx-0">
         <v-col cols="12" sm="12">
+          <ul class="d-md-none mobile-menu">
+            <template v-for="(link, i) in menuLinks">
+              <template v-if="link.dialog">
+                <li
+                  :key="i"
+                >
+                  <a
+                    @click="headerMenuClick($event, link)"
+                  >
+                    <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+                    {{ link.title }}
+                  </a>
+                </li>
+              </template>
+              <template v-else>
+                <li
+                  :key="i"
+                >
+                  <a
+                    :href="link.relative"
+                    @click="headerMenuClick($event, link)"
+                  >
+                    <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+                    {{ link.title }}
+                  </a>
+                </li>
+              </template>
+            </template>
+          </ul>
           <v-card
             class="mx-auto px-6 cutome-card"
             outlined
@@ -20,7 +49,7 @@
             <v-card-title class="px-0 my-5">
               <span class="headline">Login</span>
               <v-spacer></v-spacer>
-              <v-btn dark icon class="black--text">
+              <v-btn dark icon @click.stop="closeLoginSheet" class="black--text">
                 <v-icon>keyboard_arrow_left</v-icon>
               </v-btn>
             </v-card-title>
@@ -66,7 +95,9 @@
                 @blur="$v.checkbox.$touch()"
               ></v-checkbox>
 
-              <v-btn block rounded color="secondary" dark>登录<v-icon right dark>keyboard_arrow_right</v-icon></v-btn>
+              <v-btn block rounded color="secondary" dark :to="{ name: 'Login' }">
+                登录<v-icon right dark>keyboard_arrow_right</v-icon>
+              </v-btn>
             </form>
           </v-card>
 
@@ -169,6 +200,7 @@ Lab Assistant.</span>
 
     computed: {
       ...mapState({
+        menuLinks: state => state.core.menuItems,
         loginStatus: state => state.core.loginStatus,
         hiddenTopAppBar: state => state.core.hiddenTopAppBar,
         requestDialog: state => state.core.requestDialog
@@ -206,6 +238,10 @@ Lab Assistant.</span>
     },
 
     methods: {
+      closeLoginSheet () {
+        this.$store.state.core.loginStatus = !this.$store.state.core.loginStatus
+      },
+
       closeRequestDialog () {
         this.$store.state.core.requestDialog = false
       },
@@ -225,6 +261,20 @@ Lab Assistant.</span>
         this.select = null
         this.checkbox = false
       },
+
+      headerMenuClick: function (e, item) {
+        e.stopPropagation()
+
+        if (item.dialog) {
+          this.$store.state.core.requestDialog = true
+        }
+
+        if (item.to || !item.href) {
+          return
+        }
+
+        this.$vuetify.goTo(item.href)
+      },
     }
   }
 </script>
@@ -235,6 +285,37 @@ Lab Assistant.</span>
       top: 144px!important
       overflow-y: auto
       box-shadow: none
+
+      .mobile-menu
+        background: #fff
+        margin: 0
+        overflow-y: auto
+        padding: 0 0 40px
+        text-align: left
+        transition: all .3s
+        min-width: 300px
+        border-bottom: 1px solid #e2e2e2
+
+        li
+          float: left
+          display: inline-block
+          position: relative
+          width: 100%
+
+          a
+            float: left
+            display: inline-block
+            position: relative
+            width: 100%
+            border-bottom: 4px solid transparent
+            height: 48px
+            padding: 10px
+            line-height: 32px
+            text-decoration: none
+            white-space: nowrap
+            font-size: 1em
+            transition: all .15s ease-in-out
+            color: #333
 
       &.hidden-to-app-bar
         top: 72px!important

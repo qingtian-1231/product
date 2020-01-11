@@ -6,7 +6,9 @@ const state = {
   menuItems: [],
   loginStatus: false,
   hiddenTopAppBar: false,
-  requestDialog: false
+  requestDialog: false,
+  requestProductDialog: false,
+  requestFormulationDialog: false,
 }
 
 const mutations = {

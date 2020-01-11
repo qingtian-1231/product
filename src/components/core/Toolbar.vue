@@ -269,6 +269,10 @@
       padding: 0px 0;
       position: relative;
       width: 127px;
+
+      .icon {
+        float: inherit;
+      }
     }
 
     .v-toolbar__extension {

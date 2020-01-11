@@ -9,14 +9,6 @@
           class="mx-auto"
           width="100%"
         >
-          test
-        </v-card>
-      </v-row>
-      <v-row dense>
-        <v-card
-          class="mx-auto"
-          width="100%"
-        >
 
           <v-list two-line>
             <template v-for="(item, index) in items">
@@ -38,22 +30,26 @@
                   </v-list-item-content>
 
                   <v-list-item-action>
-                    <v-icon class="material-icons-outlined">pageview</v-icon>
+                    <v-btn icon>
+                      <v-icon class="material-icons-outlined" @click="previewProduct">pageview</v-icon>
+                    </v-btn>
                   </v-list-item-action>
                   <v-list-item-action>
-                    <v-icon
-                      v-if="!active"
-                      color="grey lighten-1"
-                    >
-                      star_border
-                    </v-icon>
+                    <v-btn icon>
+                      <v-icon
+                        v-if="!active"
+                        color="grey lighten-1"
+                      >
+                        star_border
+                      </v-icon>
 
-                    <v-icon
-                      v-else
-                      color="yellow"
-                    >
-                      star
-                    </v-icon>
+                      <v-icon
+                        v-else
+                        color="yellow"
+                      >
+                        star
+                      </v-icon>
+                    </v-btn>
                   </v-list-item-action>
                 </v-list-item>
               </v-hover>
@@ -67,14 +63,35 @@
         </v-card>
       </v-row>
     </v-col>
+
+    <v-dialog
+      v-model="requestProductDialog"
+      transition="dialog-bottom-transition"
+      scrollable
+      persistent
+      max-width="344px"
+    >
+      <v-card>
+        <product-details @fatherMethod="closeRequestDialog()"></product-details>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 <script>
   // import IconDispersions from '../components/svg/Dispersions'
   import IconAdditives from '../components/svg/Additives'
+  import ProductDetails from '../components/ProductDetails'
+  import { mapState } from 'vuex'
 
   export default {
-    components: { IconAdditives },
+    components: { IconAdditives, ProductDetails },
+
+    computed: {
+      ...mapState({
+        requestProductDialog: state => state.core.requestProductDialog
+      }),
+    },
+
     data: () => ({
       selected: [2],
       items: [
@@ -176,6 +193,16 @@
         },
       ],
     }),
+
+    methods: {
+      previewProduct () {
+        this.$store.state.core.requestProductDialog = true
+      },
+
+      closeRequestDialog () {
+        this.$store.state.core.requestProductDialog = false
+      },
+    }
   }
 </script>
 <style lang="scss" scoped>

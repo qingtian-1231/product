@@ -95,7 +95,9 @@
                 @blur="$v.checkbox.$touch()"
               ></v-checkbox>
 
-              <v-btn block rounded color="secondary" dark>登录<v-icon right dark>keyboard_arrow_right</v-icon></v-btn>
+              <v-btn block rounded color="secondary" dark :to="{ name: 'Login' }">
+                登录<v-icon right dark>keyboard_arrow_right</v-icon>
+              </v-btn>
             </form>
           </v-card>
 

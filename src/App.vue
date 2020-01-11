@@ -62,6 +62,6 @@
     }
   }
 </script>
-<style lang="sass">
-  @import "sass/app.sass"
+<style lang="scss">
+  @import "scss/app.scss";
 </style>

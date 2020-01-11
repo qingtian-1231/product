@@ -73,6 +73,12 @@
     position: relative;
     width: 100%;
 
+    @media screen and (max-width: 640px) {
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+    }
+
     .col {
       border-radius: 8px;
       background: linear-gradient(0deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .8));

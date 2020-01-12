@@ -35,9 +35,9 @@
                     </v-btn>
                   </v-list-item-action>
                   <v-list-item-action>
-                    <v-btn icon>
+                    <v-btn icon @click="favoritesStar">
                       <v-icon
-                        v-if="!active"
+                        v-if="!starActive"
                         color="grey lighten-1"
                       >
                         star_border
@@ -94,6 +94,7 @@
 
     data: () => ({
       selected: [2],
+      starActive: false,
       items: [
         {
           action: '15 min',
@@ -195,6 +196,10 @@
     }),
 
     methods: {
+      favoritesStar () {
+        this.starActive = !this.starActive
+      },
+
       previewProduct () {
         this.$store.state.core.requestProductDialog = true
       },

@@ -18,7 +18,7 @@
     </v-container>
     <template v-slot:extension>
       <v-container class="fill-height px-0 py-0 app-tool-bar-extention">
-        <v-row class="mx-0 header-main-menu">
+        <v-row :class="`mx-0 ${headerMenuClass}`">
           <v-col class="px-0 login-layout" cols="6" md="1">
             <v-btn @click.stop="openLoginSheet" class="mx-2" fab dark small color="secondary">
               <v-icon class="d-none d-md-block" dark>perm_identity</v-icon>
@@ -65,12 +65,15 @@
           </v-col>
           <v-col class="px-0 search-layout" cols="6" md="1">
             <v-menu
+              v-model="shoppingCart"
+              :close-on-content-click="false"
               bottom
               left
               origin="right top"
               offset-y
               transition="scale-transition"
               class="mx-2"
+              absolute="true"
             >
               <template v-slot:activator="{ on }">
                 <v-btn
@@ -87,100 +90,132 @@
                     <template v-slot:badge>
                       <span>6</span>
                     </template>
-                    <v-icon>shopping_cart</v-icon>
+                    <v-icon>shopping_basket</v-icon>
                   </v-badge>
                 </v-btn>
               </template>
 
-              <v-card>
-                <v-list>
-                  <v-list-item>
-                    <v-list-item-avatar>
-                      <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
-                    </v-list-item-avatar>
-
-                    <v-list-item-content>
-                      <v-list-item-title>John Leider</v-list-item-title>
-                      <v-list-item-subtitle>Founder of Vuetify.js</v-list-item-subtitle>
-                    </v-list-item-content>
-
-                    <v-list-item-action>
-                      <v-btn
-                        :class="fav ? 'red--text' : ''"
-                        icon
-                        @click="fav = !fav"
-                      >
-                        <v-icon>mdi-heart</v-icon>
-                      </v-btn>
-                    </v-list-item-action>
-                  </v-list-item>
-                </v-list>
-
-                <v-divider></v-divider>
-
-                <v-list>
-                  <v-list-item>
-                    <v-list-item-action>
-                      <v-switch v-model="message" color="purple"></v-switch>
-                    </v-list-item-action>
-                    <v-list-item-title>Enable messages</v-list-item-title>
-                  </v-list-item>
-
-                  <v-list-item>
-                    <v-list-item-action>
-                      <v-switch v-model="hints" color="purple"></v-switch>
-                    </v-list-item-action>
-                    <v-list-item-title>Enable hints</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-
-                  <v-btn text @click="menu = false">Cancel</v-btn>
-                  <v-btn color="primary" text @click="menu = false">Save</v-btn>
-                </v-card-actions>
+              <v-card id="minibasket" class="basket mini open">
+                <div>
+                  <h2>
+                    <v-icon>shopping_basket</v-icon>
+                    Sample Basket
+                    <v-btn icon @click="shoppingCart = false">
+                      <v-icon>closed</v-icon>
+                    </v-btn>
+                  </h2>
+                  <ul>
+                    <li>
+                      <div class="item added product">
+                        <span>
+                          <router-link :to="{name: 'Product', params: {id: '12312321'}}">
+                            <icon-additives bg-color-class="default"></icon-additives>
+                            <b>AQACell® HIDE 6299</b>
+                          </router-link>
+                          <div class="select small closed">
+                            <v-select
+                              :items="productsItems"
+                              label="产品分量"
+                              height="32"
+                              outlined
+                              dense
+                              solo
+                            ></v-select>
+                          </div>
+                        </span>
+                        <span>
+                          <v-btn icon>
+                            <v-icon class="material-icons-outlined">delete</v-icon>
+                          </v-btn>
+                        </span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item added product">
+                        <span>
+                          <router-link :to="{name: 'Product', params: {id: '12312321'}}">
+                            <icon-additives bg-color-class="default"></icon-additives>
+                            <b>AQACell® HIDE 6299</b>
+                          </router-link>
+                          <div class="select small closed">
+                            <v-select
+                              :items="productsItems"
+                              label="产品分量"
+                              height="32"
+                              outlined
+                              dense
+                              solo
+                            ></v-select>
+                          </div>
+                        </span>
+                        <span>
+                          <v-btn icon>
+                            <v-icon class="material-icons-outlined">delete</v-icon>
+                          </v-btn>
+                        </span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item added product">
+                        <span>
+                          <router-link :to="{name: 'Product', params: {id: '12312321'}}">
+                            <icon-additives bg-color-class="default"></icon-additives>
+                            <b>AQACell® HIDE 6299</b>
+                          </router-link>
+                          <div class="select small closed">
+                            <v-select
+                              :items="productsItems"
+                              label="产品分量"
+                              height="32"
+                              outlined
+                              dense
+                              solo
+                            ></v-select>
+                          </div>
+                        </span>
+                        <span>
+                          <v-btn icon>
+                            <v-icon class="material-icons-outlined">delete</v-icon>
+                          </v-btn>
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                  <v-btn block color="grey" class="white--text" @click="shoppingCart = false">
+                    清空购物车
+                    <v-icon class="material-icons-outlined">
+                      delete
+                    </v-icon>
+                  </v-btn>
+                  <v-btn block color="primary" @click="shoppingCart = false">
+                    下单
+                    <v-icon class="material-icons-outlined">
+                      check
+                    </v-icon>
+                  </v-btn>
+                </div>
               </v-card>
             </v-menu>
-            <v-menu
-              bottom
-              left
-              origin="right top"
-              offset-y
-              transition="scale-transition"
+            <v-btn
+              fab
+              small
+              color="secondary"
+              v-on="on"
+              class="mx-2"
+              @click="openGlobalSearch"
             >
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  fab
-                  small
-                  color="secondary"
-                  v-on="on"
-                  class="mx-2"
-                >
-                  <v-icon>search</v-icon>
-                </v-btn>
-              </template>
-
-              <v-card>
-                <v-text-field
-                  append-icon="mic"
-                  class="mx-4"
-                  flat
-                  hide-details
-                  label="Search"
-                  prepend-inner-icon="search"
-                  solo-inverted
-                ></v-text-field>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-
-                  <v-btn text @click="menu = false">Cancel</v-btn>
-                  <v-btn color="primary" text @click="menu = false">Save</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-menu>
+              <v-icon>search</v-icon>
+            </v-btn>
           </v-col>
+        </v-row>
+        <v-row :class="`mx-0 ${searchGlobalClass}`">
+          <v-icon>search</v-icon>
+          <div class="search-input">
+            <input type="text" placeholder="Search" name="searchInput" id="smartSearch" value="">
+          </div>
+          <v-btn icon @click="closeGlobalSearch">
+            <v-icon>closed</v-icon>
+          </v-btn>
         </v-row>
       </v-container>
     </template>
@@ -191,12 +226,17 @@
   // Utilities
   import { mapState } from 'vuex'
   import Logo from '../svg/Logo'
+  import IconAdditives from '../svg/Additives'
 
   export default {
-    components: { Logo },
+    components: { Logo, IconAdditives },
 
     data: function () {
       return {
+        headerMenuClass: 'header-main-menu',
+        searchGlobalClass: 'search d-none',
+        productsItems: ['1000ml', '5000ml'],
+        shoppingCart: false,
         show: true
       }
     },
@@ -209,6 +249,16 @@
     },
 
     methods: {
+      openGlobalSearch () {
+        this.headerMenuClass = 'header-main-menu d-none'
+        this.searchGlobalClass = 'search'
+      },
+
+      closeGlobalSearch () {
+        this.headerMenuClass = 'header-main-menu'
+        this.searchGlobalClass = 'search  d-none'
+      },
+
       headerMenuClick: function (e, item) {
         e.stopPropagation()
 
@@ -298,6 +348,158 @@
 
         .v-item-group {
           height: 100%;
+        }
+      }
+    }
+
+    .search {
+      background: #fff;
+      height: 72px;
+      margin: 0;
+      overflow: hidden;
+      right: 0;
+      transition: all .3s;
+      width: 100%;
+
+      & > .v-icon {
+        display: block;
+        height: 32px;
+        left: 6px;
+        position: absolute;
+        top: 6px;
+        width: 32px;
+        z-index: 1;
+
+        @media screen and (min-width: 1024px) {
+          height: 48px;
+          left: 72px;
+          right: 0;
+          top: 15px;
+          width: 48px;
+          font-size: 48px;
+          color: #9c9c9c;
+        }
+      }
+
+      & > div {
+        border: none;
+        height: 100%;
+        padding-left: 120px;
+        width: 100%;
+
+        input {
+          border: none;
+          font-size: 1em;
+          color: #333;
+          line-height: 37px;
+          width: 100%;
+          z-index: 2;
+          background: none;
+          padding: 10px;
+          height: 100%;
+
+          &:focus {
+            border: none;
+            outline: unset;
+            outline-offset: unset;
+          }
+
+          @media screen and (min-width: 480px) {
+            line-height: 63px;
+            font-size: 1.5em;
+          }
+        }
+
+        & > .search-input {
+          width: 100%;
+        }
+      }
+
+      & > .v-btn {
+        background: #fff;
+        border-radius: 0;
+        height: 100% !important;
+        margin: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 72px !important;
+        color: #333 !important;
+      }
+    }
+  }
+
+  #minibasket {
+    padding: 10px 26px;
+
+    h2 {
+      padding: 15px 0;
+
+      & > .v-icon {
+        width: 40px;
+        height: 40px;
+        margin: -5px 5px 0 -10px;
+      }
+
+      .v-btn {
+        float: right;
+        height: 40px;
+        width: 40px;
+        margin: -5px -10px 0 0;
+      }
+    }
+
+    & > div {
+
+      & > ul {
+        border-bottom: 1px solid #eee;
+        border-top: 1px solid #eee;
+        margin: 0;
+        padding: 0;
+
+        li {
+          list-style: none;
+        }
+      }
+
+      & > .v-btn {
+        border: 1px solid #555;
+        display: inline-block;
+        height: 32px;
+        line-height: 1;
+        margin: 15px auto 0;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        width: 100%;
+      }
+    }
+
+    .item {
+
+      &.added {
+        padding: 10px 0;
+
+        & > span {
+          font-size: .8125em;
+
+          & > a {
+
+            & > .icon {
+              height: 24px;
+              margin-right: 10px;
+              width: 24px;
+            }
+          }
+
+          & > .select {
+            margin: 10px 0 10px 34px;
+            position: relative;
+
+            & > .v-input {
+              border: 1px solid rgba(255, 255, 255, 0);
+            }
+          }
         }
       }
     }

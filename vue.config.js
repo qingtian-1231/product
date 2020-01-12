@@ -20,6 +20,7 @@ module.exports = {
       'lodash': '_'
     },
     devServer: {
+      sockHost: 'basf.infiniteread.com',
       disableHostCheck: true,
     }
   },

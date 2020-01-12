@@ -72,7 +72,9 @@
     "drupal/examples": "^1.0",
     "drupal/field_group": "^3.0",
     "drupal/search_api": "^1.15",
-    "drupal/devel": "^2.1"
+    "drupal/devel": "^2.1",
+    "drupal/paragraphs": "^1.10",
+    "drupal/weight": "^3.1"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

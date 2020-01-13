@@ -50,6 +50,36 @@
                   </v-tab>
                 </template>
 
+                <template v-else-if="link.below">
+                  <v-tab
+                    :key="i"
+                    class="below-menu"
+                  >
+                    <v-menu offset-y>
+                      <template v-slot:activator="{ on }">
+                        <v-btn
+                          color="primary"
+                          dark
+                          icon
+                          v-on="on"
+                        >
+                          <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+                          {{ link.title }}
+                        </v-btn>
+                      </template>
+                      <v-list>
+                        <v-list-item
+                          v-for="(item, index) in link.below"
+                          :key="index"
+                          @click="test"
+                        >
+                          <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        </v-list-item>
+                      </v-list>
+                    </v-menu>
+                  </v-tab>
+                </template>
+
                 <template v-else>
                   <v-tab
                     :key="i"
@@ -306,6 +336,22 @@
         }
       }
 
+      .menu-layout {
+
+        .below-menu {
+          padding: 0;
+
+          & > .v-btn {
+            height: 100%;
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+            border-radius: 0;
+            margin: 0 16px;
+          }
+        }
+      }
+
       .search-layout {
         @media screen and (max-width: 600px) {
          text-align: right;
@@ -434,6 +480,7 @@
 
     h2 {
       padding: 15px 0;
+      text-align: center;
 
       & > .v-icon {
         width: 40px;

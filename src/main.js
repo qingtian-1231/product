@@ -7,6 +7,8 @@ import store from './store'
 // For Nprogress 页面加载动画.
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import SvgIcon from 'vue-svgicon'
+import './icons'   //引入svg-icon
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -59,6 +61,10 @@ router.afterEach(() => {
   NProgress.done()
 })
 
+Vue.use(SvgIcon, {
+  tagName: 'svgicon'
+})
+
 store.dispatch('getApiMenu').then(() => {
   new Vue({
     store,
@@ -67,8 +73,8 @@ store.dispatch('getApiMenu').then(() => {
       theme: {
         themes: {
           light: {
-            primary: '#4CAF50',
-            secondary: '#ff5722',
+            primary: '#028fd2',
+            secondary: '#78d3d3',
             accent: '#8c9eff',
             error: '#b71c1c',
           },

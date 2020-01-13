@@ -51,7 +51,7 @@
               </v-list>
             </v-menu>
           </v-col>
-          <v-col class="py-0 menu-layout hidden-sm-and-down" cols="12" sm="9">
+          <v-col class="py-0 menu-layout hidden-sm-and-down" cols="12" sm="8">
             <v-tabs
               v-model="model"
               centered
@@ -114,7 +114,7 @@
               </template>
             </v-tabs>
           </v-col>
-          <v-col class="px-0 search-layout" cols="6" md="1">
+          <v-col class="px-0 search-layout text-right" cols="6" md="2">
             <v-menu
               v-model="shoppingCart"
               :close-on-content-click="false"
@@ -402,6 +402,8 @@
       }
 
       .search-layout {
+        padding-right: 50px !important;
+        
         @media screen and (max-width: 600px) {
          text-align: right;
         }

@@ -22,7 +22,12 @@
 
                   <router-link :to="{name: 'Formulation', params: {id: '12312321'}}">
                     <v-list-item-avatar>
-                      <icon-additives bg-color-class="wetting-agents"></icon-additives>
+                      <template v-if="index % 2">
+                        <icon-features1 width="50" height="50"></icon-features1>
+                      </template>
+                      <template v-else>
+                        <icon-features4 width="50" height="50"></icon-features4>
+                      </template>
                     </v-list-item-avatar>
                   </router-link>
                   <v-list-item-content>
@@ -79,12 +84,13 @@
 </template>
 <script>
   // import IconDispersions from '../components/svg/Dispersions'
-  import IconAdditives from '../components/svg/Additives'
+  import IconFeatures1 from '../components/svg/features/Features-1'
+  import IconFeatures4 from '../components/svg/features/Features-4'
   import ProductDetails from '../components/ProductDetails'
   import { mapState } from 'vuex'
 
   export default {
-    components: { IconAdditives, ProductDetails },
+    components: { IconFeatures1, IconFeatures4, ProductDetails },
 
     computed: {
       ...mapState({

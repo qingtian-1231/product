@@ -74,7 +74,7 @@ store.dispatch('getApiMenu').then(() => {
         themes: {
           light: {
             primary: '#028fd2',
-            secondary: '#78d3d3',
+            secondary: '#239187',
             accent: '#8c9eff',
             error: '#b71c1c',
           },

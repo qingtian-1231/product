@@ -1,22 +1,29 @@
 <template>
   <i :class="`icon dispersions bgcolor ${bgColorClass}`" title="Dispersions: Styrene acrylics">
-    <svgicon name="features-2" width="100" height="100"></svgicon>
+    <svgicon name="features-2" :width="width" :height="height"></svgicon>
   </i>
 </template>
 <script>
   export default {
     name: 'icon-features-2',
     props: {
+      width: {
+        type: String,
+        required: false
+      },
+      height: {
+        type: String,
+        required: false
+      },
       bgColorClass: {
         type: String,
-        required: true
+        required: false
       }
     }
   }
 </script>
 <style lang="scss" scoped>
   i.dispersions {
-    border-radius: 50%;
     display: block;
     height: 96px;
     left: 0;

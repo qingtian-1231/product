@@ -19,7 +19,7 @@
     <template v-slot:extension>
       <v-container class="fill-height px-0 py-0 app-tool-bar-extention">
         <v-row :class="`mx-0 ${headerMenuClass}`">
-          <v-col class="px-0 login-layout" cols="6" md="1">
+          <v-col class="px-0 login-layout" cols="6" md="2">
             <v-btn @click.stop="openLoginSheet" class="mx-2" fab dark small color="secondary">
               <v-icon class="d-none d-md-block" dark>perm_identity</v-icon>
               <template v-if="!loginStatus">
@@ -29,8 +29,29 @@
                 <v-icon class="d-md-none" dark>close</v-icon>
               </template>
             </v-btn>
+            <v-menu offset-y>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  small
+                  fab
+                  color="primary"
+                  dark
+                  v-on="on"
+                >
+                  <v-icon>translate</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item>
+                  <v-list-item-title><a @click="switchChinese">中文</a></v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title><a @click="switchEnglish">English</a></v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </v-col>
-          <v-col class="py-0 menu-layout hidden-sm-and-down" cols="12" sm="10">
+          <v-col class="py-0 menu-layout hidden-sm-and-down" cols="12" sm="9">
             <v-tabs
               v-model="model"
               centered
@@ -279,6 +300,34 @@
     },
 
     methods: {
+      switchEnglish () {
+        let vm = this
+        vm.$store.commit('SWITCH_ENGLISH', {
+          path: 'en/api/menu_items/vue-app-menu'
+        })
+
+        vm.$store.dispatch('getApiMenu').then(() => {
+          vm.$store.commit('SET_SNACKBAR', {
+            globalSnackbar: true,
+            snackbarMessage: 'Your languages has been changed！'
+          })
+        })
+      },
+
+      switchChinese () {
+        let vm = this
+        vm.$store.commit('SWITCH_ENGLISH', {
+          path: 'api/menu_items/vue-app-menu'
+        })
+
+        vm.$store.dispatch('getApiMenu').then(() => {
+          vm.$store.commit('SET_SNACKBAR', {
+            globalSnackbar: true,
+            snackbarMessage: '您的语言切换成功！'
+          })
+        })
+      },
+
       openGlobalSearch () {
         this.headerMenuClass = 'header-main-menu d-none'
         this.searchGlobalClass = 'search'
@@ -332,7 +381,7 @@
         }
 
         button {
-          margin: 0 !important;
+          margin: 0 10px!important;
         }
       }
 

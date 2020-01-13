@@ -13,7 +13,7 @@
             :elevation="hover ? 18 : 2"
           >
             <v-card-title>
-              <icon-features1></icon-features1>
+              <icon-features1 width="100" height="100"></icon-features1>
               <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
             </v-card-title>
 
@@ -43,7 +43,7 @@
             max-width="400"
           >
             <v-card-title>
-              <icon-features2></icon-features2>
+              <icon-features2 width="100" height="100"></icon-features2>
               <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
             </v-card-title>
 
@@ -74,7 +74,7 @@
             max-width="400"
           >
             <v-card-title>
-              <icon-features3></icon-features3>
+              <icon-features3 width="100" height="100"></icon-features3>
               <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
             </v-card-title>
 
@@ -105,7 +105,7 @@
           max-width="400"
         >
           <v-card-title>
-            <icon-features4></icon-features4>
+            <icon-features4 width="100" height="100"></icon-features4>
             <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
           </v-card-title>
 
@@ -170,7 +170,7 @@
 
   .features-product {
     overflow: hidden;
-    padding: 100px 20px 50px 20px;
+    padding: 50px 20px 20px 20px;
     position: relative;
     transition: all .2s ease-in-out;
     white-space: normal;
@@ -198,10 +198,18 @@
 
     .v-card__actions {
 
+      & > div {
+        padding-left: 0;
+      }
+
       a {
         text-decoration: none;
         color: #333;
       }
+    }
+
+    .v-card__text {
+      padding-top: 0;
     }
   }
 </style>

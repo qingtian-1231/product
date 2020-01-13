@@ -1,12 +1,20 @@
 <template>
   <i :class="`icon additives bgcolor ${bgColorClass}`" title="Additives: Defoamers">
-    <svgicon name="features-1" width="100" height="100"></svgicon>
+    <svgicon name="features-1" :width="width" :height="height"></svgicon>
   </i>
 </template>
 <script>
   export default {
     name: "icon-features-1",
     props: {
+      width: {
+        type: String,
+        required: false
+      },
+      height: {
+        type: String,
+        required: false
+      },
       bgColorClass: {
         type: String,
         required: true
@@ -16,7 +24,6 @@
 </script>
 <style lang="scss" scoped>
   i.additives {
-    border-radius: 50%;
     display: block;
     height: 96px;
     left: 0;

@@ -13,10 +13,29 @@
     <core-footer></core-footer>
 
     <core-cta></core-cta>
+
+    <v-snackbar
+      top
+      right
+      timeout="3000"
+      v-model="globalSnackbar"
+      multi-line
+      color="secondary"
+    >
+      {{ snackbarMessage }}
+      <v-btn
+        color="white"
+        text
+        @click="setSnackbar"
+      >
+        关闭
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
 
   export default {
     name: 'App',
@@ -36,6 +55,13 @@
       }
     },
 
+    computed: {
+      ...mapState({
+        globalSnackbar: state => state.core.globalSnackbar,
+        snackbarMessage: state => state.core.snackbarMessage
+      }),
+    },
+
     watch: {
       '$route' (to, from) {
           console.log('route change: ' + from.name)
@@ -49,6 +75,13 @@
     },
 
     methods: {
+      setSnackbar () {
+        this.$store.commit('SET_SNACKBAR', {
+          globalSnackbar: false,
+          snackbarMessage: ''
+        })
+      },
+
       onScroll: function () {
         let appHeader = document.getElementById('app-header')
         let _that = this

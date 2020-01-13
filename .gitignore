@@ -24,6 +24,7 @@
 
 # Ignore Drupal's file directory.
 /api/sites/*/files
+/api/sites/private/backup_migrate/*
 
 # Ignore SimpleTest multi-site environment.
 /api/sites/simpletest

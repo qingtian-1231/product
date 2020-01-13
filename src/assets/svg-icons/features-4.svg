@@ -1,0 +1,63 @@
+<svg id="_4" data-name="4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="95" viewBox="0 0 78 95">
+  <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c142 79.160924, 2017/07/13-01:06:39        ">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description rdf:about=""/>
+   </rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                           
+<?xpacket end="w"?></metadata>
+<defs>
+    <style>
+      .cls-1 {
+        stroke: #d4deff;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+        fill-rule: evenodd;
+        fill: url(#linear-gradient);
+        filter: url(#filter);
+      }
+
+      .cls-2 {
+        opacity: 0.1;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="1329.63" y1="613.282" x2="1264.38" y2="548.032" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cf2636"/>
+      <stop offset="1" stop-color="#f1a979"/>
+    </linearGradient>
+    <filter id="filter" x="1259" y="535" width="79" height="96" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dx="1" dy="1.732" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="2.646"/>
+      <feFlood result="flood" flood-color="#b3b3b3"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="translate(-1259.5 -535.5)" style="fill: url(#linear-gradient); filter: url(#filter)">
+    <path id="形状_1" data-name="形状 1" class="cls-1" d="M1264.38,539.326h65.24v82.661l-32.56-15.96-32.68,15.96V539.326Z" style="stroke: inherit; filter: none; fill: inherit"/>
+  </g>
+  <use transform="translate(-1259.5 -535.5)" xlink:href="#形状_1" style="stroke: #d4deff; filter: none; fill: none"/>
+  <image id="图层_3" data-name="图层 3" class="cls-2" x="4.5" y="3.5" width="66" height="9" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAAAJCAQAAAAswjLMAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfkAQwUNyX2mxrjAAAARklEQVQ4y8XRwQ2AQAwDwU1kHQ/6bxYuPh4U4a1gZBc3i0Ou4hHiwkFEY2He8BIWZvKIocOIEWYHCcB/RzoXTYURp+IE4APm0BUTVB1NaQAAAABJRU5ErkJggg=="/>
+  <image id="分子" x="16.5" y="17.5" width="43" height="43" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAArCAQAAABLVLlLAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfkAQwUNyX2mxrjAAADlklEQVRIx63WfWjVVRzH8bPpfJj5kLZ8pLY0xAi0hNoMJZVyUUlpKhVUK/+QCHyICP+wB0zCSIgwlSyFmOIfESmGa2kpGmqWo8Tm2MyGQqmpMSGbtb36Y7+rv3vv797p2vn88Tvn+/2e9z1P33NuEHKo3GpHtDit1ksG54xLVLK5j2rp5aQn/i+2nxpctNI4gw0xx1fg2UTEIJOMuxbsZux3S5ptGf4xJiOylxV+AwfNzY+9E5eyAMF6bE6zFKsBPzsFXs2HfR+rEuZQolWrXhmRx1QI+noaTMiN3Y97E1exFmvN96hKM8zRqtXkK97XsCYXtlAzbkzErpNZGmPekahLtXqG9CK0hBCGhQshu/QPIewMR0NBKA5loW+YFAaG4vBX5B0YQrgY42RoExYmjLW3cxgdszTg9SutT/By7rV9GPUJ2AU4oiBm6dimd1S4TzXOG5YbW+ggPsywTnOJrExbGVvnZhPzp8N4F1CjXKEgGGGhNqxNiJ1ms2/t84aSzrIsGKcJHLVNrTawTbh25XIMskxDNL3TfsSe7sB2aKKZpikW1GNpd2GvqhItV3e6u7DBVqzrfuwd2nBPd2ODVVkbN9b9ppiSfriuF3uTs0TXdanlfoqOHud94xkDuoYNXsQxAz0fAc/YbavvtEf32YyuYYMDaAQfK48u0AKjzLIXvNk17PToHZ6eYy4s6Ap2KU65NYe3406ruF5sqcvaYg9NtlagTuH1Yd/FR3kjemjEQ5nmIXrk7NLbifjrmkNvYUOq0dNs2x13yUlfmB3dtOmagOa0Jz1JFWjsqN4WHQ9ORN/d2X+AVGJHpwt1g3aCYIzf8b0HjVBklMfsxQVjMzpUobpTbH/t/g2K1GGL3jFXgU04lDHhcuzsFDusA/sUDie4D6AqqhcZaar1+COe+YmqREOwHc8luB/BHuNVWe1w7IWd3An2A7wXnMXNCe6hzsVg5+yyyBLsygsd6m/cHdCeeGj6qEeTjRYp1zeyHsILebBbUCMEZzAyIWC4y1r0z7BOBDNzQN/Gn8qEoCZ162RoHr5OsM8HryjKsJfZiFZTBSF4Er/olxFUrAHzEsc012Uct9wEJYYo8YA1WtGU2tDUud1hUKzjAJ/hh6wRpXSXT2WXDYanIoJgtONotliZwUot8StOJJ6P+Cov9qUj6tX73Pz0ZO/43G5fxi/XZqVusgr10DPbfrX6uE0atGhSbdY1IfPoP7smebD7Gc4bAAAAAElFTkSuQmCC"/>
+</svg>

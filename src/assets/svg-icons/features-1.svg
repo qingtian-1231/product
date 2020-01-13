@@ -1,0 +1,42 @@
+<svg id="_1" data-name="1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="95" viewBox="0 0 78 95">
+  <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c142 79.160924, 2017/07/13-01:06:39        ">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description rdf:about=""/>
+   </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?></metadata>
+<defs>
+    <style>
+      .cls-1 {
+        stroke: #d4deff;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+        fill-rule: evenodd;
+        fill: url(#linear-gradient);
+        filter: url(#filter);
+      }
+
+      .cls-2 {
+        opacity: 0.1;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="459.625" y1="613.282" x2="394.375" y2="548.032" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#228e76"/>
+      <stop offset="1" stop-color="#57dfa7"/>
+    </linearGradient>
+    <filter id="filter" x="389" y="535" width="79" height="96" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dx="1" dy="1.732" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="2.646"/>
+      <feFlood result="flood" flood-color="#b3b3b3"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="translate(-389.5 -535.5)" style="fill: url(#linear-gradient); filter: url(#filter)">
+    <path id="形状_1" data-name="形状 1" class="cls-1" d="M394.378,539.326h65.244v82.661l-32.562-15.96-32.682,15.96V539.326Z" style="stroke: inherit; filter: none; fill: inherit"/>
+  </g>
+  <use transform="translate(-389.5 -535.5)" xlink:href="#形状_1" style="stroke: #d4deff; filter: none; fill: none"/>
+  <image id="图层_3" data-name="图层 3" class="cls-2" x="4.5" y="3.5" width="66" height="9" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAAAJCAQAAAAswjLMAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfkAQwUNyZvkktZAAAARklEQVQ4y8XRwQ2AQAwDwU1kHQ/6bxYuPh4U4a1gZBc3i0Ou4hHiwkFEY2He8BIWZvKIocOIEWYHCcB/RzoXTYURp+IE4APm0BUTVB1NaQAAAABJRU5ErkJggg=="/>
+  <image id="化学成分" x="14.5" y="16.5" width="45" height="46" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAuCAQAAAAWh1i/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfkAQwUNyZvkktZAAADSklEQVRYw62YS2wTVxSGfzsQ0yZVki4iqqpkA4ryatziHTtY0yVigdSkhKRZdNdKiZG6afNqWHVXVLUbXiGAxILuokiISEhQWokNQQpxjESkqkqxw2Pisf11MXfGM2kVezw+d3XPXH8+Pvf8595xDNVhCc1oVb/I3nMV4ccBbgDQs/e6esCLAFyhvbHoD1gB4CKJamvDgdu5CcBKtYjDotu4gmMWUzQ1Dt3KZQDu8AcA88QahT5NmSK/IgbYAOBCo9DngByHEWKAjIl8j0/Ea5ZJTFJZJUnSY51UVtLX+qERkpkHCpz35n0mLbPRE5KmCFh87nkGeQbAVFT0MBYAO5z1fJ/yFIDpaOgRdrDJAhajnjdl4DPEo6BhkzOsAjZjPriTlrndIgqHfkkXg2QBApFnd4mohRTN4dA5koikqY0R71kyIKL9XAfG60FXJFPZUNczzUF+BiBdH9oVe5kvfHAn8vsAXKOtXrQrmRJDnqeHh6Yz3qIlXF1Djn6fp4dVoOAT0W8m7laE9gW6xHEdUVH9yumOXgeeFdQlKa5eSU3G94++13fq0k86pEvapwmdkLSor/RKkmJUwJOa0HtmtiXUrJiv1STULPRaJc9blqVO0+C2FFOHpGv6Urlge4qTBiDP37j2F3m2vWHxf7aDRck7ewJHsfOjO/SNJiUta1IvNKy0EsroW91Vh4nA1jH9KGlOGS8hbmSdatO6pLxu6+3uproAwCP2m28cwgaeBG4aveTJ013ztkuINGUAfjdniAMvARn6fIrbZpuPw6AnAIyWMr7iOrvL46A/CYN2SryPWQDWGQiIpOJJkqfIqXDoBd5BiAsAbPgUN+rzJMkB42HQKd41kxjzAGQ56i0YM55BungZ6HY1bWNlNDEHwBopH9ypljNsRkGLuMn5qi/yUSxgA5tCFLQQ0wZeqYYRdozehqOhXfiar4qHsIAi6ahombT4JXOeQrWrWG1omWqpSOYjtgKHbQS0W+euZI7yBnyXhEjoioi6SbAM2HzWKLQroj95AMBlo9sGoEUTU9im1V+t5Q2mdrToM7e6hXDg6ugPWQJgic5w4Gro97kHwGKYHNeGTpkcHwgPDt5D/mtbei5bF2WF+3fAsX8BicV/QI6q87AAAAAASUVORK5CYII="/>
+</svg>

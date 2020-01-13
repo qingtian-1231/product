@@ -13,7 +13,7 @@
             :elevation="hover ? 18 : 2"
           >
             <v-card-title>
-              <icon-dispersions bg-color-class="styrene-acrylics"></icon-dispersions>
+              <icon-features1></icon-features1>
               <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
             </v-card-title>
 
@@ -43,7 +43,7 @@
             max-width="400"
           >
             <v-card-title>
-              <icon-additives bg-color-class="defoamers"></icon-additives>
+              <icon-features2></icon-features2>
               <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
             </v-card-title>
 
@@ -74,7 +74,7 @@
             max-width="400"
           >
             <v-card-title>
-              <icon-additives bg-color-class="wetting-agents"></icon-additives>
+              <icon-features3></icon-features3>
               <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
             </v-card-title>
 
@@ -105,7 +105,7 @@
           max-width="400"
         >
           <v-card-title>
-            <icon-dispersions bg-color-class="styrene-acrylics"></icon-dispersions>
+            <icon-features4></icon-features4>
             <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
           </v-card-title>
 
@@ -131,11 +131,13 @@
 
 <script>
   // Utilities
-  import IconDispersions from '../svg/Dispersions'
-  import IconAdditives from '../svg/Additives'
+  import IconFeatures1 from '../svg/features/Features-1'
+  import IconFeatures2 from '../svg/features/Features-2'
+  import IconFeatures3 from '../svg/features/Features-3'
+  import IconFeatures4 from '../svg/features/Features-4'
 
   export default {
-    components: { IconDispersions, IconAdditives },
+    components: { IconFeatures1, IconFeatures2, IconFeatures3, IconFeatures4 },
 
     data: function () {
       return {
@@ -149,7 +151,7 @@
 
 <style lang="scss" scoped>
   #features {
-    margin-top: -13%;
+    margin-top: -45%;
     max-width: 1070px;
     min-width: 1070px;
     padding: 4px;
@@ -158,6 +160,7 @@
       width: 100%;
       max-width: 100%;
       min-width: 100%;
+      margin-top: -70%;
     }
   }
 

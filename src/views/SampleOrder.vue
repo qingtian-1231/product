@@ -6,7 +6,7 @@
     <div class="header">
       <h1>
         <v-icon x-large class="material-icons-outlined">system_update_alt</v-icon>
-        Sample Orders
+        样品订单
       </h1>
     </div>
 
@@ -24,19 +24,19 @@
               :editable="editable"
             >
               <template v-if="n === 1">
-                Sample Orders
+                样品订单
               </template>
 
               <template v-else-if="n === 2">
-                Address
+                地址信息
               </template>
 
               <template v-else-if="n === 3">
-                Resume
+                核对
               </template>
 
               <template v-else-if="n === 4">
-                Confirmation
+                确认
               </template>
 
             </v-stepper-step>
@@ -55,43 +55,18 @@
             :step="n"
           >
             <template v-if="n === 1">
-              <order-list></order-list>
-              <div class="pagination">
-                <v-btn
-                  color="info"
-                  class="float-left"
-                >
-                  Cancel Orders
-                </v-btn>
-                <v-btn
-                  class="float-right"
-                  color="primary"
-                  @click="nextStep(n)"
-                >
-                  Continue
-                </v-btn>
-              </div>
+              <order-list
+                @nexstep="nextStep(n)"
+              >
+              </order-list>
             </template>
 
             <template v-else-if="n === 2">
-              <order-address></order-address>
-              <div class="pagination">
-                <v-btn
-                  color="info"
-                  class="float-left"
-                  @click="prevStep(n)"
-                >
-                  Edit Sample Orders
-                </v-btn>
-
-                <v-btn
-                  class="float-right"
-                  color="primary"
-                  @click="nextStep(n)"
-                >
-                  Continue
-                </v-btn>
-              </div>
+              <order-address
+                @prevstep="prevStep(n)"
+                @nexstep="nextStep(n)"
+              >
+              </order-address>
             </template>
 
             <template v-else-if="n === 3">
@@ -102,7 +77,7 @@
                   class="float-left"
                   @click="prevStep(n)"
                 >
-                  Edit Address
+                  编辑地址信息
                 </v-btn>
 
                 <v-btn
@@ -110,13 +85,13 @@
                   color="primary"
                   @click="nextStep(n)"
                 >
-                  Summit Order
+                  提交订单
                 </v-btn>
               </div>
             </template>
 
             <template v-else-if="n === 4">
-              Confirmation
+              确认
             </template>
           </v-stepper-content>
         </v-stepper-items>
@@ -154,10 +129,6 @@
     },
 
     methods: {
-      closeRequestDialog: function () {
-        this.$emit('fatherMethod')
-      },
-
       prevStep (n) {
         if (n > 1) {
           this.e1 = n - 1

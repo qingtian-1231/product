@@ -31,6 +31,8 @@
         关闭
       </v-btn>
     </v-snackbar>
+
+    <login-dialog></login-dialog>
   </v-app>
 </template>
 
@@ -40,6 +42,7 @@
   export default {
     name: 'App',
     components: {
+      LoginDialog: () => import('@/components/LoginDialog'),
       CoreCta: () => import('@/components/core/Cta'),
       CoreDrawer: () => import('@/components/core/Drawer'),
       CoreFooter: () => import('@/components/core/Footer'),
@@ -64,7 +67,6 @@
 
     watch: {
       '$route' (to, from) {
-          console.log('route change: ' + from.name)
           if (to.name === 'Products' || to.name === 'Formulations') {
             this.title = to.name
             this.showFilterbar = true

@@ -10,6 +10,7 @@ import SampleOrder from '../views/SampleOrder'
 import Register from '../views/Register'
 import NotFound from '../views/NotFound'
 import Login from '../views/Login'
+import Download from '../views/Download'
 
 Vue.use(Router)
 
@@ -19,7 +20,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: Home
     },
     {
@@ -61,6 +62,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/download',
+      name: 'Download',
+      component: Download
     },
     {
       path: '/notfound',

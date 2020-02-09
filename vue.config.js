@@ -1,4 +1,9 @@
 const webpack = require("webpack");
+const path = require('path');
+
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
 
 module.exports = {
 // The configure Web pack is the place in Vue CLI 3.0 to configure the parameters of the webpack plug-in. If you set it here, it will create or override the default configuration of the webpack.
@@ -24,6 +29,17 @@ module.exports = {
       disableHostCheck: true,
     }
   },
+
+  chainWebpack: config => {
+    config.entry.app = ['babel-polyfill', resolve('src/main.js')],
+      config.resolve.alias
+        .set('@', resolve('src'))
+        .set('./@assets', resolve('src/assets'))
+        .set('@components', resolve('src/components'))
+        .set('@store', resolve('src/store'))
+        .set('@utils', resolve('src/utils'));
+  },
+
   css: {
     requireModuleExtension: false
   }

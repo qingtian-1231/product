@@ -3,21 +3,21 @@
     <div class="additional">
       <h2>下载</h2>
       <ul>
-        <template v-for="(item, index) in productRelationFile.value">
+        <template v-for="(item, index) in formulationFiles">
           <li :key="index">
             <figure class="download document">
-              <p>Acronal® LR 8960</p>
+              <p>日常生活专用涂料。</p>
                <small>
-                <span>安全数据表<br></span>
+                <span>{{ item.field_file_type.value }}<br></span>
                  <span><br></span>
                  <span>
-                   请联系我们的专家以获取特定国家/地区的安全数据表。<br>
+                   {{ item.field_file_description.value }}<br>
                  </span>
               </small>
-              <a target="_blank" :href="item.url" class="btn btn-default">
+              <a target="_blank" :href="item.field_entity_file.value" class="btn btn-default">
                 <v-icon large class="material-icons-outlined">book</v-icon>
               </a>
-              <span>最新日期: {{ item.changed }}</span>
+              <span>最新日期: {{ item.field_entity_file.changed }}</span>
             </figure>
           </li>
         </template>
@@ -30,7 +30,7 @@
   export default {
     name: 'additional',
     props: {
-      productRelationFile: {
+      formulationFiles: {
         type: Object
       }
     },
@@ -41,6 +41,15 @@
     },
 
     mounted() {
+      let vm = this
+
+      vm.$store.dispatch('getProductFile', {
+        relation: vm.productRelationFile
+      }).then((result) => {
+        vm.productFile = result
+
+        console.log(vm.productFile, 'vm.productFile')
+      })
     }
   }
 </script>

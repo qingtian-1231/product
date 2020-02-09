@@ -46,59 +46,71 @@
             class="mx-auto px-6 cutome-card"
             outlined
           >
-            <v-card-title class="px-0 my-5">
-              <span class="headline">Login</span>
-              <v-spacer></v-spacer>
-              <v-btn dark icon @click.stop="closeLoginSheet" class="black--text">
-                <v-icon>keyboard_arrow_left</v-icon>
+            <template v-if="isLogin || loginSuccess">
+              <v-card-title class="px-0 my-5">
+                <span class="headline">{{ displayName }}, 欢迎你</span>
+                <v-spacer></v-spacer>
+                <v-btn dark icon @click.stop="closeLoginSheet" class="black--text">
+                  <v-icon>keyboard_arrow_left</v-icon>
+                </v-btn>
+              </v-card-title>
+              <v-divider class="py-5"></v-divider>
+
+              <v-btn block rounded color="primary" dark @click="userLogout()">
+                退出登录<v-icon right dark>keyboard_arrow_right</v-icon>
               </v-btn>
-            </v-card-title>
+            </template>
 
-            <v-divider class="py-5"></v-divider>
+            <template v-else>
+              <v-card-title class="px-0 my-5">
+                <span class="headline">登录</span>
+                <v-spacer></v-spacer>
+                <v-btn dark icon @click.stop="closeLoginSheet" class="black--text">
+                  <v-icon>keyboard_arrow_left</v-icon>
+                </v-btn>
+              </v-card-title>
 
-            <form>
-              <v-text-field
-                v-model="name"
-                :error-messages="nameErrors"
-                :counter="10"
-                label="Name"
-                outlined
-                required
-                @input="$v.name.$touch()"
-                @blur="$v.name.$touch()"
-              ></v-text-field>
-              <v-text-field
-                v-model="email"
-                :error-messages="emailErrors"
-                label="E-mail"
-                outlined
-                required
-                @input="$v.email.$touch()"
-                @blur="$v.email.$touch()"
-              ></v-text-field>
-              <v-select
-                v-model="select"
-                :items="items"
-                :error-messages="selectErrors"
-                label="Item"
-                outlined
-                required
-                @change="$v.select.$touch()"
-                @blur="$v.select.$touch()"
-              ></v-select>
-              <v-checkbox
-                v-model="checkbox"
-                :error-messages="checkboxErrors"
-                label="Do you agree?"
-                required
-                @change="$v.checkbox.$touch()"
-                @blur="$v.checkbox.$touch()"
-              ></v-checkbox>
+              <v-divider class="py-5"></v-divider>
+              <v-alert
+                :value="alert"
+                :type="alertClass"
+                transition="scale-transition"
+              >
+                {{alertMessage}}
+              </v-alert>
+              <v-form ref="loginForm" id="login-form" class="form" v-model="loginValid" lazy-validation>
+                <v-text-field
+                  v-model="userName"
+                  :rules="[rules.required, rules.max]"
+                  counter
+                  label="用户名"
+                  outlined
+                  required
+                ></v-text-field>
 
-              <v-btn block rounded color="secondary" dark :to="{ name: 'Login' }">
-                登录<v-icon right dark>keyboard_arrow_right</v-icon>
-              </v-btn>
-            </form>
+                <v-text-field
+                  v-model="userPass"
+                  label="密码"
+                  :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required, rules.min]"
+                  :type="passwordShow ? 'text' : 'password'"
+                  counter
+                  @click:append="passwordShow = !passwordShow"
+                  outlined
+                  required
+                ></v-text-field>
+
+                <v-checkbox
+                  v-model="rememberMe"
+                  label="记住用户?"
+                  required
+                ></v-checkbox>
+
+                <v-btn block rounded color="secondary" dark @click="userLogin()">
+                  登录<v-icon right dark>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </v-form>
+            </template>
           </v-card>
 
           <v-card
@@ -106,24 +118,29 @@
             outlined
           >
             <v-card-title class="px-0 my-5">
-              <span class="headline black--text"><v-icon large>lock_open</v-icon>Sign up. Make the most of
-Lab Assistant.</span>
+              <span class="headline black--text">
+                <v-icon large>lock_open</v-icon>
+                注册，充分利用BASF实验室
+              </span>
             </v-card-title>
 
             <v-divider class="py-5"></v-divider>
 
             <blockquote class="blockquote px-0 py-8">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores modi quidem veniam, expedita quis laboriosam, ullam facere adipisci, iusto, voluptate sapiente corrupti asperiores rem nemo numquam fuga ab at.
+              完全访问专有配方和完整的产品数据。
+              个性化您自己的帐户并存储喜欢的或最近访问的产品和配方。
+              您甚至可以将您的帐户链接到同事，以共享您的示例订单信息-这只是注册的一些优点。
             </blockquote>
-            <v-btn
-              block
-              rounded
-              color="secondary"
-              dark
-              :to="{ name: 'Register' }"
-            >
-              注册<v-icon right dark>keyboard_arrow_right</v-icon>
-            </v-btn>
+            <router-link :to="{name: 'Register'}">
+              <v-btn
+                block
+                rounded
+                color="secondary"
+                dark
+              >
+                注册<v-icon right dark>keyboard_arrow_right</v-icon>
+              </v-btn>
+            </router-link>
           </v-card>
         </v-col>
       </v-row>
@@ -173,23 +190,28 @@ Lab Assistant.</span>
 
     data () {
       return {
-        name: '',
-        email: '',
-        select: null,
-        items: [
-          'Item 1',
-          'Item 2',
-          'Item 3',
-          'Item 4',
-        ],
-        checkbox: false,
+        loginSuccess: false,
+        alertMessage: '',
+        alertClass: '',
+        alert: false,
+        loginValid: true,
+        passwordShow: false,
+        userName: '',
+        userPass: '',
+        rememberMe: false,
+        rules: {
+          required: v => !!v || '必须.',
+          min: v => v.length >= 8 || '至少8位字符',
+          max: v => v.length <= 20 || '不能超过20位字符',
+          emailMatch: v => (/.+@.+\..+/.test(v) || '请输入合法的email地址'),
+          confirmPass: v => this.password === v || '确认密码不正确'
+        },
         paddingTop: 144,
       }
     },
 
     watch: {
       '$route' (to, from) {
-        console.log('route change: ' + from.name)
         if (to.name === 'Products' || to.name === 'Formulations') {
           this.paddingTop = 200
         } else {
@@ -203,38 +225,13 @@ Lab Assistant.</span>
         menuLinks: state => state.core.menuItems,
         loginStatus: state => state.core.loginStatus,
         hiddenTopAppBar: state => state.core.hiddenTopAppBar,
-        requestDialog: state => state.core.requestDialog
+        requestDialog: state => state.core.requestDialog,
+        isLogin: state => state.user.isLogin,
+        currentUser: state => state.user.currentUser,
       }),
-
-      checkboxErrors () {
-        const errors = []
-        if (!this.$v.checkbox.$dirty) return errors
-        !this.$v.checkbox.checked && errors.push('You must agree to continue!')
-        return errors
-      },
-
-      selectErrors () {
-        const errors = []
-        if (!this.$v.select.$dirty) return errors
-        !this.$v.select.required && errors.push('Item is required')
-        return errors
-      },
-
-      nameErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        !this.$v.name.maxLength && errors.push('Name must be at most 10 characters long')
-        !this.$v.name.required && errors.push('Name is required.')
-        return errors
-      },
-
-      emailErrors () {
-        const errors = []
-        if (!this.$v.email.$dirty) return errors
-        !this.$v.email.email && errors.push('Must be valid e-mail')
-        !this.$v.email.required && errors.push('E-mail is required')
-        return errors
-      },
+      displayName: function () {
+        return (this.currentUser) ? this.currentUser.name : '未知名称'
+      }
     },
 
     methods: {
@@ -250,19 +247,7 @@ Lab Assistant.</span>
         this.$store.state.core.loginStatus = value
       },
 
-      submit () {
-        this.$v.$touch()
-      },
-
-      clear () {
-        this.$v.$reset()
-        this.name = ''
-        this.email = ''
-        this.select = null
-        this.checkbox = false
-      },
-
-      headerMenuClick: function (e, item) {
+      headerMenuClick (e, item) {
         e.stopPropagation()
 
         if (item.dialog) {
@@ -274,6 +259,54 @@ Lab Assistant.</span>
         }
 
         this.$vuetify.goTo(item.href)
+      },
+
+      userLogin () {
+        let vm = this
+        if (this.$refs.loginForm.validate()) {
+          let userInfo = {
+            name: vm.userName,
+            pass: vm.userPass
+          }
+          vm.$store.dispatch('loginByPassword', userInfo).then(result => {
+            if (result instanceof Object) {
+              if (result.hasOwnProperty('status') && result.status === 200) {
+                vm.loginSuccess = true
+                vm.displayName = result.data.current_user.name
+              } else if (result.hasOwnProperty('response') && result.response.status !== 200) {
+                if (result.response.data.message === 'The user has not been activated or is blocked.') {
+                  vm.setAlert('您的账号还没有被管理员激活，请注意查收邮件', 'error')
+                }
+
+                if (result.response.data.message === 'Sorry, unrecognized username or password.') {
+                  vm.setAlert('您的用户名或者密码错误', 'error')
+                }
+              }
+            }
+          })
+        }
+      },
+
+      userLogout () {
+        this.$store.dispatch('logout')
+        this.loginSuccess = false
+      },
+
+      setAlert (message, style, type) {
+        type === 'append'
+          ? (this.alertMessage += message)
+          : (this.alertMessage = message)
+        this.alertClass = style
+        this.alert = true
+        setTimeout(() => {
+          this.clearAlert()
+        }, 5000)
+      },
+
+      clearAlert () {
+        this.alertMessage = ''
+        this.alertClass = ''
+        this.alert = false
       },
     }
   }

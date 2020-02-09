@@ -66,5 +66,6 @@ function formatFunc (str) {
 
 export {
     convertUTCTimeToLocalTimeShort,
-    convertUTCTimeBeforeTime
+    convertUTCTimeBeforeTime,
+    convertUTCTimeToLocalTime
 }

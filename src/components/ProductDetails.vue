@@ -1,87 +1,30 @@
 <template>
   <div id="product-details">
     <div>
-      <router-link :to="{name: 'Product', params: {id: '12312321'}}">
+      <router-link :to="{name: 'Product', params: {id: product.uuid}}">
         <icon-additives bg-color-class="default"></icon-additives>
-        <span>AQACell® HIDE 6299</span>
+        <span>{{ product.title }}</span>
         <v-icon class="icon float-right">keyboard_arrow_right</v-icon>
       </router-link>
-      <small><b>Opacifier</b></small>
-      <small>•  Highly scattering organic pigment •   Spherical, low relative surface area leads to very low binder demand •   Pigment spacing effect which leads to increased TiO2 efficiency •   Improved economics of paints while maintaining equal hiding power •   Broad formulation latitude: low to high PVC paints •   Lower carbon footprint compared to TiO2 •   NH3-free •   Low odor </small>
+      <small v-if="productBasic.field_benefits">
+        {{ productBasic.field_benefits.value }}
+      </small>
     </div>
+
     <ul>
-      <li>
-        <div class="item-property">
+      <template v-for="(item, index) in productProp">
+        <li :key="index" v-if="item.value">
+          <div class="item-property">
             <span>
               <v-icon class="material-icons-outlined">cloud</v-icon>
             </span>
-          <span>
-              Elongation at break at 23 °C
-              <span>%</span><br>
-            </span>
-          <span><b>250</b></span>
-        </div>
-      </li>
-      <li>
-        <div class="item-property">
             <span>
-              <v-icon class="material-icons-outlined">cloud</v-icon>
+              {{ item.label }}
             </span>
-          <span>
-              Elongation at break at 23 °C
-              <span>%</span><br>
-            </span>
-          <span><b>250</b></span>
-        </div>
-      </li>
-      <li>
-        <div class="item-property">
-            <span>
-              <v-icon class="material-icons-outlined">cloud</v-icon>
-            </span>
-          <span>
-              Elongation at break at 23 °C
-              <span>%</span><br>
-            </span>
-          <span><b>250</b></span>
-        </div>
-      </li>
-      <li>
-        <div class="item-property">
-            <span>
-              <v-icon class="material-icons-outlined">cloud</v-icon>
-            </span>
-          <span>
-              Elongation at break at 23 °C
-              <span>%</span><br>
-            </span>
-          <span><b>250</b></span>
-        </div>
-      </li>
-      <li>
-        <div class="item-property">
-            <span>
-              <v-icon class="material-icons-outlined">cloud</v-icon>
-            </span>
-          <span>
-              Elongation at break at 23 °C
-              <span>%</span><br>
-            </span>
-          <span><b>250</b></span>
-        </div>
-      </li>
-      <li>
-        <div class="item-property">
-            <span>
-              <v-icon class="material-icons-outlined">cloud</v-icon>
-            </span>
-          <span>
-              Elongation at break at 23 °C
-              <span>%</span><br>
-            </span>
-          <span><b>250</b></span>
-        </div>
-      </li>
+            <span><b>{{ item.value }}</b></span>
+          </div>
+        </li>
+      </template>
     </ul>
     <div>
       <v-btn icon @click="closeRequestDialog">
@@ -100,16 +43,44 @@
 </template>
 <script>
   import IconAdditives from '../components/svg/Additives'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'product-details',
 
     components: { IconAdditives },
 
+    props: {
+      product: {
+        type: Object
+      },
+
+    },
+
+    computed: {
+      ...mapState({
+        productBasicInformation: state => state.product.productBasicInformation,
+        productProperties: state => state.product.productProperties,
+      }),
+    },
+
     data: function () {
       return {
-
+        productTitle: '',
+        productBasic: {},
+        productProp: {},
       }
+    },
+
+    mounted () {
+      let vm = this
+
+      vm.$store.dispatch('getProductDetails', {
+        id: vm.product.uuid
+      }).then(() => {
+        vm.productBasic = vm.productBasicInformation
+        vm.productProp = vm.productProperties
+      })
     },
 
     methods: {
@@ -200,7 +171,7 @@
       padding: 0 15px;
 
       &:first-child {
-        height: 170px;
+        max-height: 170px;
         overflow: hidden;
       }
 

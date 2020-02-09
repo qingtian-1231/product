@@ -5,7 +5,7 @@
   >
     <v-row class="back">
       <v-col class="col-xs-8" md="6">
-        <v-btn class="float-left">
+        <v-btn class="float-left" color="primary" @click="$router.back(-1)">
           <v-icon>apps</v-icon>
           返回上一页
         </v-btn>
@@ -19,14 +19,14 @@
         <div>
           <h1>
             <icon-colorants bg-color-class="default"></icon-colorants>
-            AQAGloss®
+            <template v-if="formulationBasic.name">
+              {{ formulationBasic.name.value }}
+            </template>
+
           </h1>
           <div>
             <v-btn icon>
               <v-icon large class="material-icons-outlined">share</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon large class="material-icons-outlined">print</v-icon>
             </v-btn>
             <v-btn icon>
               <v-icon large class="material-icons-outlined">star_border</v-icon>
@@ -71,19 +71,19 @@
           </v-tabs>
           <v-tabs-items v-model="tab">
             <v-tab-item>
-              <formulation-recipe></formulation-recipe>
+              <formulation-recipe :basic-info="formulationBasic" :formulation-info="formulationInfo"></formulation-recipe>
             </v-tab-item>
 
             <v-tab-item>
-              <basic-information></basic-information>
+              <basic-information :formulation-basic="formulationBasic"></basic-information>
             </v-tab-item>
 
             <v-tab-item>
-              <properties></properties>
+              <properties :formulation-properties="formulationProp"></properties>
             </v-tab-item>
 
             <v-tab-item>
-              <additional></additional>
+              <additional :formulation-files="formulationFiles"></additional>
             </v-tab-item>
           </v-tabs-items>
         </div>
@@ -96,10 +96,6 @@
           <v-btn icon tile large>
             <v-icon large class="material-icons-outlined">share</v-icon>
             <p>分享</p>
-          </v-btn>
-          <v-btn icon tile large>
-            <v-icon large class="material-icons-outlined">print</v-icon>
-            <p>打印</p>
           </v-btn>
           <v-btn icon tile large>
             <v-icon large class="material-icons-outlined">star_border</v-icon>
@@ -118,10 +114,11 @@
 
 <script>
   import IconColorants from '../components/svg/formulations/Colorants'
-  import BasicInformation from '../components/product_view/BasicInformation'
-  import Properties from '../components/product_view/Properties'
-  import Additional from '../components/product_view/Additional'
+  import BasicInformation from '../components/formulation_view/BasicInformation'
+  import Properties from '../components/formulation_view/Properties'
+  import Additional from '../components/formulation_view/Additional'
   import FormulationRecipe from '../components/formulation_view/FormulationRecipe'
+  import { mapState } from 'vuex'
 
   export default {
     components: { IconColorants, BasicInformation, Properties, Additional, FormulationRecipe },
@@ -131,8 +128,31 @@
         items: [
           '基本信息', '属性', '配方', '其他信息',
         ],
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        formulationBasic: {},
+        formulationProp: {},
       }
+    },
+
+    computed: {
+      ...mapState({
+        formulationInfo: state => state.formulation.formulationDetails,
+        formulationFiles: state => state.formulation.formulationFiles,
+        formulationBasicInformation: state => state.formulation.formulationBasicInformation,
+        formulationProperties: state => state.formulation.formulationProperties
+      }),
+    },
+
+    created () {
+      let vm = this
+      let formulationId = vm.$route.params.id
+      vm.$store.dispatch('getFormulationDetails', {
+        id: formulationId
+      }).then(result => {
+        vm.formulationBasic = vm.formulationBasicInformation
+        vm.formulationProp = vm.formulationProperties
+
+        console.log(vm.formulationProp, 'vm.formulationBasic')
+      })
     }
   }
 </script>

@@ -1,11 +1,10 @@
 <template>
   <v-card flat color="basil" id="properties">
     <div class="props">
-      <h2>技术数据</h2>
-      <p>确切的规格可以在规格数据表中找到</p>
+      <h2>配方的技术规格数据</h2>
       <ul>
-        <template v-for="(item, index) in productProperties">
-          <li :key="index" v-if="item.value.length">
+        <template v-for="(item, index) in formulationProperties">
+          <li :key="index">
             <div class="item-property">
             <span>
               <v-icon class="material-icons-outlined">cloud</v-icon>
@@ -26,7 +25,7 @@
   export default {
     name: 'properties',
     props: {
-      productProperties: {
+      formulationProperties: {
         type: Object
       }
     },

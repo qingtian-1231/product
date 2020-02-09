@@ -5,7 +5,7 @@
     class="bounceUp-enter-active"
   >
     <v-row dense>
-      <v-col cols="12" md="3" class="features-card">
+      <v-col cols="12" md="3" class="features-card" v-for="(featureProduct, index) in featureProducts" :key="index">
         <v-hover v-slot:default="{ hover }">
           <v-card
             class="mx-auto features-product"
@@ -13,116 +13,37 @@
             :elevation="hover ? 18 : 2"
           >
             <v-card-title>
-              <icon-features1 width="100" height="100"></icon-features1>
+              <template v-if="index === 0">
+                <icon-features1 width="100" height="100"></icon-features1>
+              </template>
+
+              <template v-else-if="index === 1">
+                <icon-features2 width="100" height="100"></icon-features2>
+              </template>
+
+              <template v-else-if="index === 2">
+                <icon-features3 width="100" height="100"></icon-features3>
+              </template>
+
+              <template v-else-if="index === 3">
+                <icon-features4 width="100" height="100"></icon-features4>
+              </template>
               <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
             </v-card-title>
 
             <v-card-actions class="title-name">
               <v-list-item class="grow">
                 <h1>
-                  <a href="/product/0000000">
-                    Acronal® 6292<v-icon>keyboard_arrow_right</v-icon>
-                  </a>
+                  <router-link :to="{name: 'Product', params: {id: featureProduct.uuid}}">
+                    {{ featureProduct.title }}<v-icon>keyboard_arrow_right</v-icon>
+                  </router-link>
                 </h1>
               </v-list-item>
             </v-card-actions>
 
-            <v-card-text class="subtitle-1 font-weight-bold">
-              "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
+            <v-card-text class="subtitle-1 font-weight-bold" v-html="featureProduct.body">
             </v-card-text>
           </v-card>
-        </v-hover>
-      </v-col>
-
-
-      <v-col cols="12" sm="3" class="features-card">
-        <v-hover v-slot:default="{ hover }">
-          <v-card
-            class="mx-auto features-product"
-            :elevation="hover ? 18 : 2"
-            max-width="400"
-          >
-            <v-card-title>
-              <icon-features2 width="100" height="100"></icon-features2>
-              <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
-            </v-card-title>
-
-            <v-card-actions class="title-name">
-              <v-list-item class="grow">
-                <h1>
-                  <a href="/product/0000000">
-                    Acronal® 6292<v-icon>keyboard_arrow_right</v-icon>
-                  </a>
-                </h1>
-              </v-list-item>
-            </v-card-actions>
-
-            <v-card-text class="subtitle-1 font-weight-bold">
-              "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
-            </v-card-text>
-
-          </v-card>
-        </v-hover>
-      </v-col>
-
-
-      <v-col cols="12" sm="3" class="features-card">
-        <v-hover v-slot:default="{ hover }">
-          <v-card
-            class="mx-auto features-product"
-            :elevation="hover ? 18 : 2"
-            max-width="400"
-          >
-            <v-card-title>
-              <icon-features3 width="100" height="100"></icon-features3>
-              <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
-            </v-card-title>
-
-            <v-card-actions class="title-name">
-              <v-list-item class="grow">
-                <h1>
-                  <a href="/product/0000000">
-                    Acronal® 6292<v-icon>keyboard_arrow_right</v-icon>
-                  </a>
-                </h1>
-              </v-list-item>
-            </v-card-actions>
-
-            <v-card-text class="subtitle-1 font-weight-bold">
-              "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
-            </v-card-text>
-
-          </v-card>
-        </v-hover>
-      </v-col>
-
-
-      <v-col cols="12" sm="3" class="features-card">
-        <v-hover v-slot:default="{ hover }">
-          <v-card
-          class="mx-auto features-product"
-          :elevation="hover ? 18 : 2"
-          max-width="400"
-        >
-          <v-card-title>
-            <icon-features4 width="100" height="100"></icon-features4>
-            <span class="title font-weight-light"><samll>Product <br> Highlight</samll></span>
-          </v-card-title>
-
-          <v-card-actions class="title-name">
-            <v-list-item class="grow">
-              <h1>
-                <a href="/product/0000000">
-                  Acronal® 6292<v-icon>keyboard_arrow_right</v-icon>
-                </a>
-              </h1>
-            </v-list-item>
-          </v-card-actions>
-
-          <v-card-text class="subtitle-1 font-weight-bold">
-            "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
-          </v-card-text>
-        </v-card>
         </v-hover>
       </v-col>
     </v-row>
@@ -135,6 +56,7 @@
   import IconFeatures2 from '../svg/features/Features-2'
   import IconFeatures3 from '../svg/features/Features-3'
   import IconFeatures4 from '../svg/features/Features-4'
+  import { mapState } from 'vuex'
 
   export default {
     components: { IconFeatures1, IconFeatures2, IconFeatures3, IconFeatures4 },
@@ -145,7 +67,22 @@
       }
     },
 
-    methods: {}
+    computed: {
+      // Getting Vuex State from store/modules/
+      ...mapState({
+        isLogin: state => state.user.isLogin,
+        featureProducts: state => state.home.featureProduct
+      })
+    },
+
+    methods: {},
+
+    mounted () {
+      let vm = this
+      vm.$store.dispatch('getFeatureProducts').then(() => {
+        console.log(22222)
+      })
+    }
   }
 </script>
 
@@ -174,6 +111,7 @@
     position: relative;
     transition: all .2s ease-in-out;
     white-space: normal;
+    min-height: 360px;
 
     .v-card__title {
 

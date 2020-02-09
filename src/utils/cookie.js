@@ -20,6 +20,7 @@ export function setCookie (cName, value, expireTime, path) {
     let now = new Date()
     let expireDate = new Date(now.getTime() + expireTime)
 
+  console.log(expireDate, 'expireDate')
     if (path) {
         document.cookie = cName + '=' + escape(value) + ((expireTime == null) ? '' : ';expires=' + expireDate.toUTCString()) + ';path=' + path
     } else {

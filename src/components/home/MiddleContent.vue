@@ -6,12 +6,13 @@
   >
     <v-row dense>
       <v-col cols="12">
-        <h1>Make use of Lab Assistant now and cut out the guesswork!</h1>
-        <p>Lab Assistant is a Web-based application that makes it easier than ever for you to find BASF products and
-          formulation ideas and use them to create your architectural coatings. It runs on your desktop PC, laptop,
-          tablet and smartphone.</p>
-        <p>Lab Assistant makes it easy, by taking care of the extra tasks for you. So you can focus on what you do best
-          – formulating the outstanding coatings your customers want.</p>
+        <h1>立即使用BASF助理程序！</h1>
+        <p>BASF助理是一个基于Web的应用程序，它使您比以往任何时候都更容易找到BASF产品和配方创意，并使用它们来创建建筑涂料。
+          它可以在台式机，笔记本电脑，平板电脑和智能手机上运行。</p>
+        <p>
+          BASF助理可以帮助您轻松完成额外的任务。
+          因此，您可以专注于自己的长处-配制客户想要的出色涂料。
+        </p>
         <icon-app></icon-app>
       </v-col>
 
@@ -19,26 +20,30 @@
         <div class="unlock">
           <h2>
             <v-icon>lock_open</v-icon>
-            Sign up. Make the most of<br>Lab
-            Assistant.
+            注册我们，充分使用<br>BASF助理
           </h2>
-          <p>Get full access to exclusive formulations and complete product data. Individualize your own account and
-            store favorite or recently visited products and formulations. You can even link your account to colleagues
-            to share your sample order information – just some of the advantages of signing up.
+          <p>
+            完全访问专有配方和完整的产品数据。
+            个性化您自己的帐户并存储喜欢的产品和配方。
+            您甚至可以将您的帐户链接到同事，以共享您的示例订单信息-这只是注册的一些优点。
           </p>
           <div class="row text-center mx-0">
             <v-col cols="12" md="6" sm="12">
-              <v-btn class="ma-2" block rounded color="success" :to="{ name: 'Login' }">
-                登录
-                <v-icon right>keyboard_arrow_right</v-icon>
-              </v-btn>
+              <router-link :to="{ name: 'Login' }">
+                <v-btn class="ma-2" block rounded color="success" >
+                  登录
+                  <v-icon right>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </router-link>
             </v-col>
 
             <v-col cols="12" md="6" sm="12" class="mx-0">
-              <v-btn class="ma-2" right block rounded color="info" :to="{ name: 'Register' }">
-                注册
-                <v-icon right>keyboard_arrow_right</v-icon>
-              </v-btn>
+              <router-link :to="{ name: 'Register' }">
+                <v-btn class="ma-2" right block rounded color="info" >
+                  注册
+                  <v-icon right>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </router-link>
             </v-col>
           </div>
         </div>

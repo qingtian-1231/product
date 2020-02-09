@@ -777,7 +777,7 @@ $settings['entity_update_backup'] = TRUE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array (
-  'database' => 'product',
+  'database' => 'product_b',
   'username' => 'root',
   'password' => '123456',
   'prefix' => 'pro',

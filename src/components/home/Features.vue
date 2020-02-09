@@ -89,9 +89,15 @@
 <style lang="scss" scoped>
   #features {
     margin-top: -45%;
-    max-width: 1070px;
-    min-width: 1070px;
+    max-width: 100%;
+    min-width: 100%;
     padding: 4px;
+
+    & > div {
+      max-width: 1070px;
+      min-width: 1070px;
+      margin: 0 auto;
+    }
 
     @media screen and (max-width: 640px) {
       width: 100%;

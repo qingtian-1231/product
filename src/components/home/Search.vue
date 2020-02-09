@@ -287,7 +287,7 @@
   #home-search {
     left: 0;
     margin-left: 0;
-    max-width: 460px;
+    max-width: 100%;
     padding: 0 8px;
     position: absolute;
     transition: all .4s ease-in-out;
@@ -297,6 +297,8 @@
 
     .search-content {
       display: flex;
+      width: 30%;
+      margin: 0 auto;
 
       .v-input__control {
         min-height: 48px;
@@ -396,9 +398,9 @@
     }
 
     @media screen and (min-width: 500px) {
-      left: 50%;
-      margin-left: -230px;
+      left: 0;
       padding: 0;
+      width: 100%;
     }
 
     @media screen and (max-width: 640px) {

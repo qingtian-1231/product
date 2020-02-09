@@ -11,57 +11,46 @@
           <span>
             <h2 class="light">
               <icon-colorants bg-color-class="default"></icon-colorants>
-              Aqueous colorant for PB15:3 pigments
+              <template v-if="basicInfo.name">
+                {{ basicInfo.name.value }}
+              </template>
             </h2>
           </span>
       </li>
       </ul>
       <div>
-        <span><small>Parts by weight</small></span>
-        <span><small>Ingredients</small></span>
+        <span><small>配方比例</small></span>
+        <span><small>配方组成</small></span>
       </div>
       <ul class="clearfix">
-        <li class="basf">
-          <span>
-            <input type="number" name="DISPEX_ULTRA_PA_4550" placeholder="18.3" value="">
-          </span>
-          <span>
-            <icon-additoves bg-color-class="default"></icon-additoves>
-            <a href="#/products/details/000000000030232730/basic-information" target="_blank"><b>Dispex® Ultra PA 4550</b></a>
-            <v-btn icon>
-              <v-icon class="material-icons-outlined">pageview</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon class="material-icons-outlined">shopping_basket</v-icon>
-            </v-btn>
-          </span>
-        </li>
+        <template v-for="(item, index) in formulationInfo">
+          <template v-if="item.hasOwnProperty('field_part_basf_product')">
+            <li class="basf" :key="index">
+              <span>
+                <input type="number" name="DISPEX_ULTRA_PA_4550" :placeholder="item.field_proportion.value" :value="item.field_proportion.value">
+              </span>
+              <span>
+                <icon-additoves bg-color-class="default"></icon-additoves>
+                <router-link :to="{name: 'Product', params: {id: item.field_part_basf_product.uuid}}" target="_blank">
+                  <b>{{ item.field_part_basf_product.value }}</b>
+                </router-link>
+                <v-btn icon>
+                  <v-icon class="material-icons-outlined">pageview</v-icon>
+                </v-btn>
+                <v-btn icon>
+                  <v-icon class="material-icons-outlined">shopping_basket</v-icon>
+                </v-btn>
+              </span>
+            </li>
+          </template>
 
-        <li class="basic">
-          <span><input type="number" name="WATER_DEMINERALIZED" placeholder="38.2" value=""></span>
-          <span>Water, demineralized</span>
-        </li>
-
-        <li class="basf">
-          <span>
-            <input type="number" name="DISPEX_ULTRA_PA_4550" placeholder="18.3" value="">
-          </span>
-          <span>
-            <icon-additoves bg-color-class="default"></icon-additoves>
-            <a href="#/products/details/000000000030232730/basic-information" target="_blank"><b>Dispex® Ultra PA 4550</b></a>
-            <v-btn icon>
-              <v-icon class="material-icons-outlined">pageview</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon class="material-icons-outlined">shopping_basket</v-icon>
-            </v-btn>
-          </span>
-        </li>
-
-        <li class="basic">
-          <span><input type="number" name="WATER_DEMINERALIZED" placeholder="38.2" value=""></span>
-          <span>Water, demineralized</span>
-        </li>
+          <template v-else>
+            <li class="basic" :key="index">
+              <span><input type="number" name="WATER_DEMINERALIZED" :placeholder="item.field_proportion.value" :value="item.field_proportion.value"></span>
+              <span>{{ item.field_part_normal_product.value }}</span>
+            </li>
+          </template>
+        </template>
       </ul>
     </div>
     <div class="to-basket clearfix"></div>
@@ -74,6 +63,16 @@
 
   export default {
     components: { IconColorants, IconAdditoves },
+
+    props: {
+      basicInfo: {
+        type: Object,
+      },
+      formulationInfo: {
+        type: Array,
+      }
+    },
+
     data () {
       return {
 

@@ -11,8 +11,8 @@
         >
 
           <v-list two-line>
-            <template v-for="(item, index) in items">
-              <v-hover :key="item.title" v-slot:default="{ hover }">
+            <template v-for="(formulation, index) in formulationList">
+              <v-hover :key="index" v-slot:default="{ hover }">
                 <v-list-item :class="hover ? 'elevation-12' : ''" @click="test">
                   <v-list-item-action>
                     <v-checkbox
@@ -20,7 +20,7 @@
                     ></v-checkbox>
                   </v-list-item-action>
 
-                  <router-link :to="{name: 'Formulation', params: {id: '12312321'}}">
+                  <router-link :to="{name: 'Formulation', params: {id: formulation.uuid}}">
                     <v-list-item-avatar>
                       <template v-if="index % 2">
                         <icon-features1 width="50" height="50"></icon-features1>
@@ -31,7 +31,7 @@
                     </v-list-item-avatar>
                   </router-link>
                   <v-list-item-content>
-                    <v-list-item-title v-text="item.title"></v-list-item-title>
+                    <v-list-item-title v-text="formulation.field_formulation_name"></v-list-item-title>
                   </v-list-item-content>
 
                   <v-list-item-action>
@@ -60,7 +60,7 @@
               </v-hover>
 
               <v-divider
-                v-if="index + 1 < items.length"
+                v-if="index + 1 < formulationList.length"
                 :key="index"
               ></v-divider>
             </template>
@@ -77,7 +77,7 @@
       max-width="344px"
     >
       <v-card>
-        <product-details @fatherMethod="closeRequestDialog()"></product-details>
+        <formulation-details @fatherMethod="closeRequestDialog()"></formulation-details>
       </v-card>
     </v-dialog>
   </v-container>
@@ -86,119 +86,29 @@
   // import IconDispersions from '../components/svg/Dispersions'
   import IconFeatures1 from '../components/svg/features/Features-1'
   import IconFeatures4 from '../components/svg/features/Features-4'
-  import ProductDetails from '../components/ProductDetails'
+  import formulationDetails from '../components/FormulationDetails'
   import { mapState } from 'vuex'
 
   export default {
-    components: { IconFeatures1, IconFeatures4, ProductDetails },
+    components: { IconFeatures1, IconFeatures4, formulationDetails },
 
     computed: {
       ...mapState({
-        requestFormulationDialog: state => state.core.requestFormulationDialog
+        requestFormulationDialog: state => state.core.requestFormulationDialog,
+        formulationList: state => state.formulation.formulationList
       }),
     },
 
     data: () => ({
-      selected: [2],
-      items: [
-        {
-          action: '15 min',
-          headline: 'Brunch this weekend?',
-          title: 'Ali Connors',
-          subtitle: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?",
-        },
-        {
-          action: '2 hr',
-          headline: 'Summer BBQ',
-          title: 'me, Scrott, Jennifer',
-          subtitle: "Wish I could come, but I'm out of town this weekend.",
-        },
-        {
-          action: '6 hr',
-          headline: 'Oui oui',
-          title: 'Sandra Adams',
-          subtitle: 'Do you have Paris recommendations? Have you ever been?',
-        },
-        {
-          action: '12 hr',
-          headline: 'Birthday gift',
-          title: 'Trevor Hansen',
-          subtitle: 'Have any ideas about what we should get Heidi for her birthday?',
-        },
-        {
-          action: '18hr',
-          headline: 'Recipe to try',
-          title: 'Britta Holt',
-          subtitle: 'We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
-        },
-        {
-          action: '15 min',
-          headline: 'Brunch this weekend?',
-          title: 'Ali Connors',
-          subtitle: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?",
-        },
-        {
-          action: '2 hr',
-          headline: 'Summer BBQ',
-          title: 'me, Scrott, Jennifer',
-          subtitle: "Wish I could come, but I'm out of town this weekend.",
-        },
-        {
-          action: '6 hr',
-          headline: 'Oui oui',
-          title: 'Sandra Adams',
-          subtitle: 'Do you have Paris recommendations? Have you ever been?',
-        },
-        {
-          action: '12 hr',
-          headline: 'Birthday gift',
-          title: 'Trevor Hansen',
-          subtitle: 'Have any ideas about what we should get Heidi for her birthday?',
-        },
-        {
-          action: '18hr',
-          headline: 'Recipe to try',
-          title: 'Britta Holt',
-          subtitle: 'We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
-        },
-        {
-          action: '6 hr',
-          headline: 'Oui oui',
-          title: 'Sandra Adams',
-          subtitle: 'Do you have Paris recommendations? Have you ever been?',
-        },
-        {
-          action: '12 hr',
-          headline: 'Birthday gift',
-          title: 'Trevor Hansen',
-          subtitle: 'Have any ideas about what we should get Heidi for her birthday?',
-        },
-        {
-          action: '18hr',
-          headline: 'Recipe to try',
-          title: 'Britta Holt',
-          subtitle: 'We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
-        },
-        {
-          action: '6 hr',
-          headline: 'Oui oui',
-          title: 'Sandra Adams',
-          subtitle: 'Do you have Paris recommendations? Have you ever been?',
-        },
-        {
-          action: '12 hr',
-          headline: 'Birthday gift',
-          title: 'Trevor Hansen',
-          subtitle: 'Have any ideas about what we should get Heidi for her birthday?',
-        },
-        {
-          action: '18hr',
-          headline: 'Recipe to try',
-          title: 'Britta Holt',
-          subtitle: 'We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
-        },
-      ],
+      selected: [2]
     }),
+
+    mounted () {
+      let vm = this
+      vm.$store.dispatch('getFormulationList').then(() => {
+        console.log('222')
+      })
+    },
 
     methods: {
       previewFormulation () {

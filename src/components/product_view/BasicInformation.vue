@@ -1,207 +1,74 @@
 <template>
   <v-card flat color="basil" id="basic-information">
     <div class="information">
-      <h2>AQAGloss® DS 6272 is an innovative water borne acrylic/alkyd hybrid. The binder allows to formulate high gloss decorative coatings that easily meet the requirements of the European VOC Directive 2010. Dispersion type: anionic.</h2>
-      <p><span class="grey-2">Product cluster</span>Dispersions</p>
-      <p><span class="grey-2">Product group</span>Hybrid technology</p>
-      <p><span class="grey-2">Industry</span>Architectural Coatings</p>
-      <p><span class="grey-2">Chemical type</span>Hybrid technology</p>
-      <p><span class="grey-2">Benefits</span>•  Water borne, environmentally advanced binder with alkyd-like features •   Superior gloss and good gloss retention •   Excellent exterior durability •   Very good flow and leveling •   Low UV and dark yellowing •   Excellent adhesion on wood and metal •   No siccativation needed
+      <template v-if="productBasic.description">
+        <h2 v-html="productBasic.description.value"></h2>
+      </template>
+
+
+      <p v-if="productBasic.product_cluster">
+        <span class="grey-2">
+        {{ productBasic.product_cluster.label }}
+        </span>
+        {{ productBasic.product_cluster.value }}
       </p>
+      <p v-if="productBasic.product_cluster">
+        <span class="grey-2">
+        {{ productBasic.product_group.label }}
+        </span>
+        {{ productBasic.product_group.value }}
+      </p>
+      <p v-if="productBasic.benefits">
+        <span class="grey-2">
+        {{ productBasic.benefits.label }}
+        </span>
+        {{ productBasic.benefits.value }}
+      </p >
     </div>
 
-    <div class="app">
-      <h2>Application</h2>
-      <p>Recommended</p>
+    <div class="app" v-if="recommended_application">
+      <h2>应用</h2>
+      <p>{{ recommended_application.label }}</p>
       <ul class="clearfix">
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
+        <template v-for="(item, index) in recommended_application.value">
+          <li :key="index">
+            <v-btn>
+              <v-icon>done</v-icon>
+              <small>{{ item.value }}</small>
+            </v-btn>
+          </li>
+        </template>
       </ul>
-      <p>Suitable</p>
+      <p>{{ suitable_application.label }}</p>
       <ul>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
-        <li>
-          <v-btn>
-            <v-icon>done</v-icon>
-            <small>Wood paints</small>
-          </v-btn>
-        </li>
+        <template v-for="(item, index) in suitable_application.value">
+          <li :key="index">
+            <v-btn>
+              <v-icon>done</v-icon>
+              <small>{{ item }}</small>
+            </v-btn>
+          </li>
+        </template>
       </ul>
     </div>
 
     <div class="countries">
-      <h2>Country Registration</h2>
-      <ul class="clearfix">
-        <li>
-          <div class="item-property">
+      <template v-if="country_registration_group">
+        <h2>{{ country_registration_group.label }}</h2>
+        <ul class="clearfix">
+          <template v-for="(field, index) in country_registration_group.value">
+            <li :key="index">
+              <div class="item-property">
             <span>
               <v-icon>outlined_flag</v-icon>
             </span>
-            <span>Australia [AICS,AU]<br></span>
-            <span><b>Listed or exempt</b></span>
-          </div>
-        </li>
-        <li>
-          <div class="item-property">
-            <span>
-              <v-icon>outlined_flag</v-icon>
-            </span>
-            <span>Australia [AICS,AU]<br></span>
-            <span>
-              <b>This product contains component(s) which are not registered by BASF Korea Ltd. This product contains component(s) which are subject to registration.
-Please contact your sales representative.
-</b>
-            </span>
-          </div>
-        </li>
-        <li>
-          <div class="item-property">
-            <span>
-              <v-icon>outlined_flag</v-icon>
-            </span>
-            <span>Australia [AICS,AU]<br></span>
-            <span><b>Listed or exempt</b></span>
-          </div>
-        </li>
-        <li>
-          <div class="item-property">
-            <span>
-              <v-icon>outlined_flag</v-icon>
-            </span>
-            <span>Australia [AICS,AU]<br></span>
-            <span><b>Listed or exempt</b></span>
-          </div>
-        </li>
-        <li>
-          <div class="item-property">
-            <span>
-              <v-icon>outlined_flag</v-icon>
-            </span>
-            <span>Australia [AICS,AU]<br></span>
-            <span>
-              <b>This product contains component(s) which are not registered by BASF Korea Ltd. This product contains component(s) which are subject to registration.
-Please contact your sales representative.
-</b>
-            </span>
-          </div>
-        </li>
-        <li>
-          <div class="item-property">
-            <span>
-              <v-icon>outlined_flag</v-icon>
-            </span>
-            <span>Australia [AICS,AU]<br></span>
-            <span><b>Listed or exempt</b></span>
-          </div>
-        </li>
-        <li>
-          <div class="item-property">
-            <span>
-              <v-icon>outlined_flag</v-icon>
-            </span>
-            <span>Australia [AICS,AU]<br></span>
-            <span>
-              <b>This product contains component(s) which are not registered by BASF Korea Ltd. This product contains component(s) which are subject to registration.
-Please contact your sales representative.
-</b>
-            </span>
-          </div>
-        </li>
-        <li>
-          <div class="item-property">
-            <span>
-              <v-icon>outlined_flag</v-icon>
-            </span>
-            <span>Australia [AICS,AU]<br></span>
-            <span><b>Listed or exempt</b></span>
-          </div>
-        </li>
-        <li>
-          <div class="item-property">
-            <span>
-              <v-icon>outlined_flag</v-icon>
-            </span>
-            <span>Australia [AICS,AU]<br></span>
-            <span><b>Listed or exempt</b></span>
-          </div>
-        </li>
-        <li>
-          <div class="item-property">
-            <span>
-              <v-icon>outlined_flag</v-icon>
-            </span>
-            <span>Australia [AICS,AU]<br></span>
-            <span>
-              <b>This product contains component(s) which are not registered by BASF Korea Ltd. This product contains component(s) which are subject to registration.
-Please contact your sales representative.
-</b>
-            </span>
-          </div>
-        </li>
-      </ul>
+                <span>{{ field.field_country_registration.value }}<br></span>
+                <span><b>{{ field.field_country_registration_descr.value }}</b></span>
+              </div>
+            </li>
+          </template>
+        </ul>
+      </template>
     </div>
   </v-card>
 </template>
@@ -209,10 +76,34 @@ Please contact your sales representative.
 <script>
   export default {
     name: 'basic-information',
+    props: {
+      productBasic: {
+        type: Object
+      }
+    },
     data () {
       return {
-
       }
+    },
+
+    computed: {
+      recommended_application: function () {
+        return (this.productBasic && this.productBasic.recommended_application) ? this.productBasic.recommended_application : []
+      },
+
+      suitable_application: function () {
+        return (this.productBasic && this.productBasic.suitable_application) ? this.productBasic.suitable_application : []
+      },
+
+      country_registration_group: function () {
+        return (this.productBasic && this.productBasic.country_registration_group) ? this.productBasic.country_registration_group : []
+      }
+    },
+
+    created () {
+    },
+
+    mounted() {
     }
   }
 </script>

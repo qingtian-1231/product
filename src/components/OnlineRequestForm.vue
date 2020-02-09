@@ -1,58 +1,114 @@
 <template>
   <div id="feedback">
-    <h2>
-      <v-icon>send</v-icon>
-      Send Feedback
-    </h2>
-    <p>
-      If you have any suggestions or questions regarding the usage of Lab
-      Assistant for Architectural Coatings, please do not hesitate to give us
-      your feedback.
-    </p>
-    <form id="feedback-form" class="form">
-      <div>
-        <v-textarea
-          outlined
-          name="input-7-4"
-          label="Type here"
-          value=""
-        ></v-textarea>
-        <v-text-field
-          label="Your email address"
-          outlined
-        ></v-text-field>
-        <div class="row text-center mx-0">
-          <v-col cols="12" md="6" sm="12">
-            <v-btn class="ma-2" block rounded color="success" @click="closeRequestDialog()">
-               Cancel
-              <v-icon right>close</v-icon>
-            </v-btn>
-          </v-col>
+    <template v-if="feedback_success">
+      <div class="success_message">
+        <h2>
+          <v-icon color="primary">check_circle_outline</v-icon>
+          感谢您的反馈！
+        </h2>
 
-          <v-col cols="12" md="6" sm="12" class="mx-0">
-            <v-btn class="ma-2" right block rounded color="info">
-               send
-              <v-icon right>keyboard_arrow_right</v-icon>
-            </v-btn>
-          </v-col>
-        </div>
+        <v-btn class="ma-2" rounded color="success" @click="closeRequestDialog()">
+          关闭
+        </v-btn>
       </div>
-    </form>
+    </template>
+
+    <template v-else>
+      <h2>
+        <v-icon>send</v-icon>
+        发送反馈
+      </h2>
+      <p>
+        如果您对使用建筑涂料实验室助手有任何建议或疑问，请随时向我们提供反馈。
+      </p>
+      <v-form id="feedback-form" class="form" ref="onlineRequestForm" v-model="onlineRequestValid" lazy-validation>
+        <div>
+          <v-textarea
+            outlined
+            required
+            name="input-7-4"
+            label="反馈内容"
+            v-model="feedback_content"
+            :rules="[rules.required]"
+          ></v-textarea>
+
+          <v-text-field
+            label="您的邮箱地址"
+            required
+            v-model="email_address"
+            :rules="[rules.required, rules.emailMatch]"
+            outlined
+          ></v-text-field>
+          <div class="row text-center mx-0">
+            <v-col cols="12" md="6" sm="12">
+              <v-btn class="ma-2" block rounded color="success" @click="closeRequestDialog()">
+                取消
+                <v-icon right>close</v-icon>
+              </v-btn>
+            </v-col>
+
+            <v-col cols="12" md="6" sm="12" class="mx-0">
+              <v-btn class="ma-2" right block rounded color="info" @click="sendFeedback()">
+                提交
+                <v-icon right>keyboard_arrow_right</v-icon>
+              </v-btn>
+            </v-col>
+          </div>
+        </div>
+      </v-form>
+    </template>
   </div>
 </template>
 <script>
+  import { request } from '../utils/request'
+
   export default {
     name: 'online-request-form',
 
     data: function () {
       return {
-
+        onlineRequestValid: true,
+        feedback_success: 0,
+        feedback_content: '',
+        email_address: '',
+        rules: {
+          required: v => !!v || '必须.',
+          emailMatch: v => (/.+@.+\..+/.test(v) || '请输入合法的email地址')
+        },
       }
     },
 
     methods: {
       closeRequestDialog: function () {
-        this.$emit('fatherMethod')
+        let vm = this
+        vm.$emit('fatherMethod')
+        vm.feedback_success = 0
+      },
+
+      sendFeedback () {
+        let vm = this
+        if (this.$refs.onlineRequestForm.validate()) {
+          request().post('/webform_rest/submit?_format=json',
+            {
+              webform_id: 'feedback',
+              email_address: vm.email_address,
+              feedback_content: vm.feedback_content
+            }
+          )
+            .then(res => {
+              if (res.status === '200' || res.statusText === 'OK') {
+                vm.feedback_success = 1
+              }
+
+              return Promise.resolve(res)
+            }, err => {
+              return Promise.resolve(err)
+            })
+            .catch(function (error) {
+              console.log(error)
+              return Promise.resolve(error)
+            })
+        }
       }
     }
   }
@@ -70,6 +126,16 @@
         left: 50%;
         position: absolute;
         top: 90px;
+      }
+    }
+
+    .success_message {
+
+      h2 {
+
+        i {
+          font-size: 2.5rem;
+        }
       }
     }
   }

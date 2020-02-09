@@ -4,27 +4,22 @@ import Vuex from 'vuex'
 
 import core from './modules/core'
 import user from './modules/user'
-
-// import post from './modules/post'
-// import tags from './modules/tags'
-// import authorPosts from './modules/authorPosts'
-// import columns from './modules/columns'
-// import column from './modules/column'
-// import comments from './modules/comments'
-// import user from './modules/user'
+import home from './modules/home'
+import product from './modules/product'
+import formulation from './modules/formulation'
+import download from './modules/download'
+import basket from './modules/basket'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     core,
-    user
-    // posts,
-    // post,
-    // tags,
-    // authorPosts,
-    // columns,
-    // column,
-    // comments
+    user,
+    home,
+    product,
+    formulation,
+    download,
+    basket
   }
 })

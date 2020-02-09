@@ -5,15 +5,12 @@
   >
     <v-row class="back">
       <v-col class="col-xs-8" md="6">
-        <v-btn class="float-left" color="primary">
+        <v-btn class="float-left" color="primary" @click="$router.back(-1)">
           <v-icon>apps</v-icon>
           返回上一页
         </v-btn>
       </v-col>
       <v-col class="col-xs-4">
-        <v-btn class="float-right">
-          建议
-        </v-btn>
       </v-col>
     </v-row>
 
@@ -22,7 +19,9 @@
         <div>
           <h1>
             <icon-additives bg-color-class="wetting-agents"></icon-additives>
-            AQAGloss®
+            <template v-if="productBasic.title">
+              {{ productBasic.title.value }}
+            </template>
           </h1>
           <div>
             <v-btn icon>
@@ -32,12 +31,9 @@
               <v-icon large class="material-icons-outlined">share</v-icon>
             </v-btn>
             <v-btn icon>
-              <v-icon large class="material-icons-outlined">print</v-icon>
-            </v-btn>
-            <v-btn icon>
               <v-icon large class="material-icons-outlined">star_border</v-icon>
             </v-btn>
-            <v-btn icon>
+            <v-btn icon @click="addBasket()">
               <v-icon large class="material-icons-outlined">shopping_basket</v-icon>
             </v-btn>
           </div>
@@ -70,23 +66,26 @@
             </v-tab>
 
             <v-tab>
-              其他信息
+              下载
               <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
           </v-tabs>
           <v-tabs-items v-model="tab">
             <v-tab-item>
-              <basic-information></basic-information>
+              <basic-information :product-basic="productBasic"></basic-information>
             </v-tab-item>
             <v-tab-item>
-              <properties></properties>
+              <properties :product-properties="productProperties"></properties>
             </v-tab-item>
             <v-tab-item>
-              <formulations></formulations>
+              <formulations
+                :product-relation-formulation="productRelationFormulation"
+                :title-field="productBasicInformation.title"
+              ></formulations>
             </v-tab-item>
             <v-tab-item>
-              <additional></additional>
+              <additional :product-relation-file="productRelationFile"></additional>
             </v-tab-item>
           </v-tabs-items>
         </div>
@@ -103,10 +102,6 @@
           <v-btn icon tile large>
             <v-icon large class="material-icons-outlined">share</v-icon>
             <p>分享</p>
-          </v-btn>
-          <v-btn icon tile large>
-            <v-icon large class="material-icons-outlined">print</v-icon>
-            <p>打印</p>
           </v-btn>
           <v-btn icon tile large>
             <v-icon large class="material-icons-outlined">star_border</v-icon>
@@ -129,16 +124,49 @@
   import Properties from '../components/product_view/Properties'
   import Formulations from '../components/product_view/Formulations'
   import Additional from '../components/product_view/Additional'
+  import { mapState } from 'vuex'
 
   export default {
     components: { IconAdditives, BasicInformation, Properties, Formulations, Additional },
+
+    computed: {
+      ...mapState({
+        requestProductDialog: state => state.core.requestProductDialog,
+        productDetails: state=> state.product.productDetails,
+        productBasicInformation: state => state.product.productBasicInformation,
+        productProperties: state => state.product.productProperties,
+        productRelationFormulation: state => state.product.productRelationFormulation,
+        productRelationFile: state => state.product.productRelationFile,
+      }),
+    },
+
     data () {
       return {
         tab: null,
         items: [
           '基本信息', '属性', '配方', '其他信息',
         ],
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        productBasic: {},
+      }
+    },
+
+    mounted () {
+      let vm = this
+      let productId = vm.$route.params.id
+
+      vm.$store.dispatch('getProductDetails', {
+        id: productId
+      }).then(() => {
+        vm.productBasic = vm.productBasicInformation
+      })
+    },
+
+    methods: {
+      addBasket () {
+        let vm = this
+        vm.$store.dispatch('addShoppingCart', {product: vm.productDetails}).then(() => {
+          console.log('添加成功')
+        })
       }
     }
   }

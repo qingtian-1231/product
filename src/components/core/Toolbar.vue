@@ -115,138 +115,7 @@
             </v-tabs>
           </v-col>
           <v-col class="px-0 search-layout text-right" cols="6" md="2">
-            <v-menu
-              v-model="shoppingCart"
-              :close-on-content-click="false"
-              bottom
-              left
-              origin="right top"
-              offset-y
-              transition="scale-transition"
-              class="mx-2"
-              absolute="true"
-            >
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  fab
-                  small
-                  color="secondary"
-                  v-on="on"
-                >
-                  <v-badge
-                    v-model="show"
-                    color="secondary"
-                    left
-                  >
-                    <template v-slot:badge>
-                      <span>6</span>
-                    </template>
-                    <v-icon>shopping_basket</v-icon>
-                  </v-badge>
-                </v-btn>
-              </template>
-
-              <v-card id="minibasket" class="basket mini open">
-                <div>
-                  <h2>
-                    <v-icon>shopping_basket</v-icon>
-                    Sample Basket
-                    <v-btn icon @click="shoppingCart = false">
-                      <v-icon>closed</v-icon>
-                    </v-btn>
-                  </h2>
-                  <ul>
-                    <li>
-                      <div class="item added product">
-                        <span>
-                          <router-link :to="{name: 'Product', params: {id: '12312321'}}">
-                            <icon-additives bg-color-class="default"></icon-additives>
-                            <b>AQACell® HIDE 6299</b>
-                          </router-link>
-                          <div class="select small closed">
-                            <v-select
-                              :items="productsItems"
-                              label="产品分量"
-                              height="32"
-                              outlined
-                              dense
-                              solo
-                            ></v-select>
-                          </div>
-                        </span>
-                        <span>
-                          <v-btn icon>
-                            <v-icon class="material-icons-outlined">delete</v-icon>
-                          </v-btn>
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="item added product">
-                        <span>
-                          <router-link :to="{name: 'Product', params: {id: '12312321'}}">
-                            <icon-additives bg-color-class="default"></icon-additives>
-                            <b>AQACell® HIDE 6299</b>
-                          </router-link>
-                          <div class="select small closed">
-                            <v-select
-                              :items="productsItems"
-                              label="产品分量"
-                              height="32"
-                              outlined
-                              dense
-                              solo
-                            ></v-select>
-                          </div>
-                        </span>
-                        <span>
-                          <v-btn icon>
-                            <v-icon class="material-icons-outlined">delete</v-icon>
-                          </v-btn>
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="item added product">
-                        <span>
-                          <router-link :to="{name: 'Product', params: {id: '12312321'}}">
-                            <icon-additives bg-color-class="default"></icon-additives>
-                            <b>AQACell® HIDE 6299</b>
-                          </router-link>
-                          <div class="select small closed">
-                            <v-select
-                              :items="productsItems"
-                              label="产品分量"
-                              height="32"
-                              outlined
-                              dense
-                              solo
-                            ></v-select>
-                          </div>
-                        </span>
-                        <span>
-                          <v-btn icon>
-                            <v-icon class="material-icons-outlined">delete</v-icon>
-                          </v-btn>
-                        </span>
-                      </div>
-                    </li>
-                  </ul>
-                  <v-btn block color="grey" class="white--text" @click="shoppingCart = false">
-                    清空购物车
-                    <v-icon class="material-icons-outlined">
-                      delete
-                    </v-icon>
-                  </v-btn>
-                  <v-btn block color="primary" @click="shoppingCart = false">
-                    下单
-                    <v-icon class="material-icons-outlined">
-                      check
-                    </v-icon>
-                  </v-btn>
-                </div>
-              </v-card>
-            </v-menu>
+            <basket></basket>
             <v-btn
               fab
               small
@@ -277,18 +146,15 @@
   // Utilities
   import { mapState } from 'vuex'
   import Logo from '../svg/Logo'
-  import IconAdditives from '../svg/Additives'
+  import Basket from '../Basket'
 
   export default {
-    components: { Logo, IconAdditives },
+    components: { Logo, Basket },
 
     data: function () {
       return {
         headerMenuClass: 'header-main-menu',
         searchGlobalClass: 'search d-none',
-        productsItems: ['1000ml', '5000ml'],
-        shoppingCart: false,
-        show: true
       }
     },
 
@@ -403,7 +269,7 @@
 
       .search-layout {
         padding-right: 50px !important;
-        
+
         @media screen and (max-width: 600px) {
          text-align: right;
         }

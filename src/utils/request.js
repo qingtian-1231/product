@@ -1,34 +1,52 @@
-import axios from 'axios'
-import { getCookie } from '../utils/cookie.js'
-import config from '../config'
+import axios from "axios";
+import { getCookie } from "../utils/cookie.js";
+import config from "../config";
 
-const isDev = process.env.NODE_ENV !== 'production'
-const clientId = 'ghost-frontend'
-const clientSecret = 'cdd1a03354b5'
-const sessionKey = 'ghost:session'
-const apiServer = isDev ? config.dev.apiServer : config.prod.apiServer
+const isDev = process.env.NODE_ENV !== "production";
+const sessionKey = "drupal:session";
+const apiServer = isDev ? config.dev.apiServer : config.prod.apiServer;
 
-function request (isAdmin) {
-    const session = getCookie(sessionKey)
-    const sessionValue = session ? JSON.parse(session) : ''
-    const accessToken = ((sessionValue || '').authenticated || '').access_token || ''
-    const authHeader = 'Bearer' + ' ' + accessToken
+function request(isAdmin) {
+  const session = getCookie(sessionKey);
+  const sessionValue = session ? JSON.parse(session) : "";
+  // const csrfToken = ((sessionValue || "").authenticated || "").csrf_token || "";
+  const csrfToken = getCookie('drupal:session:token');
+  const basicAuthToken = ((sessionValue || "").authenticated || "").basic_auth || "";
+  let api;
 
-    if (isAdmin) {
-        return axios.create({
-            baseURL: apiServer,
-            timeout: 10000
-        })
-    }
-    return axios.create({
-        baseURL: apiServer,
-        timeout: 10000,
-        headers: { 'Authorization': authHeader },
-        params: {
-            client_id: clientId,
-            client_secret: clientSecret
-        }
-    })
+  if (isAdmin) {
+    api = axios.create({
+      baseURL: apiServer,
+      timeout: 10000
+    });
+  } else {
+    api = axios.create({
+      baseURL: apiServer,
+      timeout: 10000,
+      headers: {
+        'Authorization': basicAuthToken,
+        'X-CSRF-Token': csrfToken,
+      },
+      params: {}
+    });
+  }
+
+
+  // http request 拦截器
+  api.interceptors.request.use(config => {
+    return config
+  }, error => {
+    return Promise.reject(error)
+  })
+
+// http response 拦截器
+  api.interceptors.response.use(response => {
+    return response
+  }, error => {
+    return Promise.reject(error)
+  })
+
+  return api;
 }
 
-export default request
+export { request, apiServer };

@@ -1,7 +1,10 @@
-import request from '../../utils/request.js'
+import { request } from '../../utils/request.js'
+import {setCookie} from "../../utils/cookie";
 
 const state = {
   path: 'api/menu_items/vue-app-menu',
+  fieldConfigPath: 'demo_rest_api/demo_resource',
+  CSRFTokenPath: 'rest/session/token',
   _format: 'hal_json',
   globalSnackbar: false,
   snackbarMessage: '',
@@ -11,6 +14,8 @@ const state = {
   requestDialog: false,
   requestProductDialog: false,
   requestFormulationDialog: false,
+  loginDialog: false,
+  fieldConfig: []
 }
 
 const mutations = {
@@ -22,7 +27,6 @@ const mutations = {
         case '':
           menuItem.options.icon = 'home'
           menuItem.relative = '/'
-          console.log(menuItem, 'menuItem');
           break
 
         case 'base:products':
@@ -53,6 +57,10 @@ const mutations = {
     })
   },
 
+  processFieldConfig(state, payload) {
+    state.fieldConfig = payload
+  },
+
   SWITCH_ENGLISH(state, payload) {
     state.path = payload.path
   },
@@ -65,6 +73,14 @@ const mutations = {
       state.globalSnackbar = false
       state.snackbarMessage = ''
     }, 3100)
+  },
+
+  open_login_dialog(state, payload) {
+    state.loginDialog = true
+  },
+
+  close_login_dialog(state, payload) {
+    state.loginDialog = false
   }
 }
 
@@ -76,7 +92,6 @@ const actions = {
       }
     })
       .then(function (response) {
-        console.log(response, 'response')
         commit('processMenuItems', response.data)
         return Promise.resolve(response)
       })
@@ -84,7 +99,46 @@ const actions = {
         console.log(error)
         return Promise.resolve(error)
       })
-  }
+  },
+
+  getFieldConfig({commit, state}) {
+    return request().get(state.fieldConfigPath, {
+      params: {
+        _format: state._format
+      }
+    })
+      .then(function (response) {
+        commit('processFieldConfig', response.data)
+        return Promise.resolve(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+        return Promise.resolve(error)
+      })
+  },
+
+  getCSRFToken ({commit, state}) {
+    return request()
+      .get(state.CSRFTokenPath, {
+        params: {
+          _format: state._format
+        }
+      })
+      .then(result => {
+        const expireTime = 7 * 24 * 3600 * 1000;
+
+        setCookie(
+          'drupal:session:token',
+          result.data,
+          expireTime,
+          "/"
+        );
+        return Promise.resolve(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
 }
 
 export default {

@@ -4,6 +4,8 @@ import './plugins/base'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
+import loading from './utils/loading.js' // 引入loading
 // For Nprogress 页面加载动画.
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -61,38 +63,46 @@ router.afterEach(() => {
   NProgress.done()
 })
 
+Vue.use(loading) // 全局使用loading加载动画
+
 Vue.use(SvgIcon, {
   tagName: 'svgicon'
 })
 
 store.dispatch('getApiMenu').then(() => {
-  new Vue({
-    store,
-    router,
-    vuetify: new Vuetify({
-      theme: {
-        themes: {
-          light: {
-            primary: '#028fd2',
-            secondary: '#239187',
-            accent: '#8c9eff',
-            error: '#b71c1c',
-          },
-          dark: {
-            primary: '#4caf50',
-          },
-        },
-      },
-      breakpoint: {
-        thresholds: {
-          xs: 340,
-          sm: 540,
-          md: 800,
-          lg: 1460,
-        },
-        scrollBarWidth: 24,
-      }
-    }),
-    render: h => h(App),
-  }).$mount('#app')
+  store.dispatch('getFieldConfig').then(() => {
+    store.dispatch('getCurrentUser').then(() => {
+      store.dispatch('getCSRFToken').then(() => {
+        new Vue({
+          store,
+          router,
+          vuetify: new Vuetify({
+            theme: {
+              themes: {
+                light: {
+                  primary: '#028fd2',
+                  secondary: '#239187',
+                  accent: '#8c9eff',
+                  error: '#b71c1c',
+                },
+                dark: {
+                  primary: '#4caf50',
+                },
+              },
+            },
+            breakpoint: {
+              thresholds: {
+                xs: 340,
+                sm: 540,
+                md: 800,
+                lg: 1460,
+              },
+              scrollBarWidth: 24,
+            }
+          }),
+          render: h => h(App),
+        }).$mount('#app')
+      })
+    })
+  })
 })

@@ -75,7 +75,11 @@
     "drupal/devel": "^2.1",
     "drupal/paragraphs": "^1.10",
     "drupal/weight": "^3.1",
-    "drupal/backup_migrate": "^4.1"
+    "drupal/backup_migrate": "^4.1",
+    "drupal/webform": "^5.8",
+    "drupal/webform_rest": "^2.0@beta",
+    "drupal/commerce_cart_api": "^1.4",
+    "drupal/cors": "^1.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

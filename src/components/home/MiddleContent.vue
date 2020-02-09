@@ -71,12 +71,17 @@
 
 <style lang="scss" scoped>
   #middle-content {
-    max-width: 1070px;
-    min-width: 1070px;
-    margin: 0 auto;
+    max-width: 100%;
+    min-width: 100%;
     float: none;
     position: relative;
     width: 100%;
+
+    & > div {
+      max-width: 1070px;
+      min-width: 1070px;
+      margin: 0 auto;
+    }
 
     @media screen and (max-width: 640px) {
       width: 100%;

@@ -10,7 +10,7 @@ module.exports = {
 // The meaning of webpack ProvidePlugin is to create a global variable that can be used within each module of webpack. The configuration meaning here is to create three variables'$','jQuery','window. jQuery'pointing to jQuery dependency and'Popper' pointing to popper. JS dependency.
   runtimeCompiler: true,
 
-  transpileDependencies: [/node_modules[/\\\\]vuetify[/\\\\]/],
+  transpileDependencies: [],
 
   configureWebpack: {
     plugins: [

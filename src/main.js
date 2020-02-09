@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import './plugins/base'

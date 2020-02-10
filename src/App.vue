@@ -68,8 +68,9 @@
     watch: {
       '$route' (to, from) {
           if (to.name === 'Products' || to.name === 'Formulations') {
-            this.title = to.name
-            this.showFilterbar = true
+            // 关闭产品和配方列表页的过滤组件
+            // this.title = to.name
+            // this.showFilterbar = true
           } else {
             this.showFilterbar = false
           }

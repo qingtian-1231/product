@@ -196,12 +196,13 @@
 
       openGlobalSearch () {
         this.headerMenuClass = 'header-main-menu d-none'
-        this.searchGlobalClass = 'search'
+        this.searchGlobalClass = 'search bounceDown-enter-active'
       },
 
       closeGlobalSearch () {
         this.headerMenuClass = 'header-main-menu'
-        this.searchGlobalClass = 'search  d-none'
+        this.searchGlobalClass = 'search bounceUp-leave-active'
+        // d-none
       },
 
       headerMenuClick: function (e, item) {

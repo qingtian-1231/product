@@ -76,6 +76,7 @@ const mutations = {
        */
       if (field === 'product_id') {
         state.productDetails.product_id = payload.product_id.value
+        state.productDetails.quantity = 1
       }
       if (field === 'uuid') {
         state.productDetails.uuid = payload.uuid.value

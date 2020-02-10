@@ -72,8 +72,6 @@ class OrderAddressFieldResource extends ResourceBase {
    */
   public function get($contry_code_default, $state_code_default, $city_code_default) {
     $return = [];
-//    $order = \Drupal\commerce_order\Entity\Order::load(6);
-//    var_dump($order->getBillingProfile()->toArray());exit;
     if ($contry_code_default === 'default' && $state_code_default === 'default' && $city_code_default === 'default') {
       $countries = \Drupal\Core\Locale\CountryManager::getStandardList();
       foreach ($countries as $contry_code => $contry) {

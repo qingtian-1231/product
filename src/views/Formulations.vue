@@ -4,6 +4,17 @@
     tag="section"
   >
     <v-col lg="12" md="12" sm="12">
+      <v-row class="back">
+        <v-col class="col-xs-8" md="6">
+          <v-btn class="float-left" color="primary" @click="$router.back(-1)">
+            <v-icon>apps</v-icon>
+            返回上一页
+          </v-btn>
+        </v-col>
+        <v-col class="col-xs-4">
+        </v-col>
+      </v-row>
+
       <v-row dense>
         <v-card
           class="mx-auto"

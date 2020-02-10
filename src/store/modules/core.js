@@ -119,11 +119,7 @@ const actions = {
 
   getCSRFToken ({commit, state}) {
     return request()
-      .get(state.CSRFTokenPath, {
-        params: {
-          _format: state._format
-        }
-      })
+      .get(state.CSRFTokenPath)
       .then(result => {
         const expireTime = 7 * 24 * 3600 * 1000;
 

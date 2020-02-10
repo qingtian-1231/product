@@ -9,8 +9,8 @@ const apiServer = isDev ? config.dev.apiServer : config.prod.apiServer;
 function request(isAdmin) {
   const session = getCookie(sessionKey);
   const sessionValue = session ? JSON.parse(session) : "";
-  // const csrfToken = ((sessionValue || "").authenticated || "").csrf_token || "";
-  const csrfToken = getCookie('drupal:session:token');
+  const csrfToken = ((sessionValue || "").authenticated || "").csrf_token || "";
+  // const csrfToken = getCookie('drupal:session:token');
   const basicAuthToken = ((sessionValue || "").authenticated || "").basic_auth || "";
   let api;
 
@@ -34,6 +34,11 @@ function request(isAdmin) {
 
   // http request 拦截器
   api.interceptors.request.use(config => {
+    if (config.url === 'rest/session/token') {
+      config.headers.Authorization = ''
+      config.headers['X-CSRF-Token'] = ''
+    }
+
     return config
   }, error => {
     return Promise.reject(error)

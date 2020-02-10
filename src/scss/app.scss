@@ -89,6 +89,35 @@ main {
     z-index: 10;
     box-shadow: 0 0 15px 0 transparent;
 
+    &.result{
+      border-radius: 0;
+      border-bottom: 1px solid #eee;
+      margin: 0;
+      padding: 0;
+
+      & > span {
+
+        &:first-child {
+          width: 90%
+        }
+
+        &:last-child {
+          width: auto;
+        }
+
+        & > a {
+          text-decoration: none;
+          width: auto;
+        }
+
+        & > small {
+          color: #aaa;
+          padding: 0 5px;
+          width: auto;
+        }
+      }
+    }
+
     & > span {
       font-size: 1em;
       float: left;

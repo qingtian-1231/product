@@ -5,7 +5,7 @@
     class="bounceUp-enter-active"
   >
     <v-row dense>
-      <v-col cols="12" md="3" class="features-card" v-for="(featureProduct, index) in featureProducts" :key="index">
+      <v-col cols="12" md="3" sm="6" class="features-card" v-for="(featureProduct, index) in featureProducts" :key="index">
         <v-hover v-slot:default="{ hover }">
           <v-card
             class="mx-auto features-product"
@@ -80,7 +80,7 @@
     mounted () {
       let vm = this
       vm.$store.dispatch('getFeatureProducts').then(() => {
-        console.log(22222)
+
       })
     }
   }
@@ -95,15 +95,22 @@
 
     & > div {
       max-width: 1070px;
-      min-width: 1070px;
       margin: 0 auto;
+    }
+
+    @media screen and (max-width: 1600px) {
+      margin-top: -20%;
+    }
+
+    @media screen and (max-width: 800px) {
+      margin-top: -130%;
     }
 
     @media screen and (max-width: 640px) {
       width: 100%;
       max-width: 100%;
       min-width: 100%;
-      margin-top: -70%;
+      margin-top: -80%;
     }
   }
 

@@ -9,7 +9,6 @@ const state = {
 const mutations = {
   processFeatureProducts(state, payload) {
     state.featureProduct = payload
-    console.log(state.featureProduct, 'state.featureProduct')
   }
 }
 

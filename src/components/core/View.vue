@@ -120,7 +120,7 @@
             <v-card-title class="px-0 my-5">
               <span class="headline black--text">
                 <v-icon large>lock_open</v-icon>
-                注册，充分利用BASF实验室
+                注册，充分利用BASF产品助理
               </span>
             </v-card-title>
 
@@ -213,7 +213,7 @@
     watch: {
       '$route' (to, from) {
         if (to.name === 'Products' || to.name === 'Formulations') {
-          this.paddingTop = 200
+          // this.paddingTop = 200
         } else {
           this.paddingTop = 144
         }

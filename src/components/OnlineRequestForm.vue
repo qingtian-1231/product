@@ -19,7 +19,7 @@
         发送反馈
       </h2>
       <p>
-        如果您对使用建筑涂料实验室助手有任何建议或疑问，请随时向我们提供反馈。
+        如果您对使用BASF产品助理有任何建议或疑问，请随时向我们提供反馈。
       </p>
       <v-form id="feedback-form" class="form" ref="onlineRequestForm" v-model="onlineRequestValid" lazy-validation>
         <div>

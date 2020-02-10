@@ -56,7 +56,7 @@
           >
             <template v-if="n === 1">
               <order-list
-                @nexstep="nextStep(n)"
+                @nextstep="nextStep(n)"
               >
               </order-list>
             </template>
@@ -64,34 +64,20 @@
             <template v-else-if="n === 2">
               <order-address
                 @prevstep="prevStep(n)"
-                @nexstep="nextStep(n)"
+                @nextstep="nextStep(n)"
               >
               </order-address>
             </template>
 
             <template v-else-if="n === 3">
-             <order-resume></order-resume>
-              <div class="pagination">
-                <v-btn
-                  color="info"
-                  class="float-left"
-                  @click="prevStep(n)"
-                >
-                  编辑地址信息
-                </v-btn>
-
-                <v-btn
-                  class="float-right"
-                  color="primary"
-                  @click="nextStep(n)"
-                >
-                  提交订单
-                </v-btn>
-              </div>
+             <order-resume
+               @prevstep="prevStep(n)"
+               @nextstep="nextStep(n)"
+             ></order-resume>
             </template>
 
             <template v-else-if="n === 4">
-              确认
+              <order-complete></order-complete>
             </template>
           </v-stepper-content>
         </v-stepper-items>
@@ -103,9 +89,10 @@
   import OrderList from '../components/sample_order/OrderList'
   import OrderAddress from '../components/sample_order/OrderAddress'
   import OrderResume from '../components/sample_order/OrderResume'
+  import OrderComplete from '../components/sample_order/OrderComplete'
 
   export default {
-    components: { OrderList, OrderAddress, OrderResume },
+    components: { OrderList, OrderAddress, OrderResume, OrderComplete },
     data: function () {
       return {
         e1: 1,

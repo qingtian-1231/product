@@ -149,6 +149,7 @@
         provinceList: state => state.basket.provinceList,
         cityList: state => state.basket.cityList,
         localityList: state => state.basket.localityList,
+        orderID: state => state.basket.orderID,
         isLogin: state => state.user.isLogin
       })
     },
@@ -178,17 +179,28 @@
 
     watch: {
       country_code: function (val, oldval) {
+        let vm = this
         if (val.code) {
-          this.$store.dispatch('getProvinces', val.code)
+          vm.$loading.show()
+          vm.$store.dispatch('getProvinces', val.code).then(result => {
+            if (result.status === 200) {
+              vm.$loading.hide()
+            }
+          })
         }
       },
 
       administrative_area: function (val, oldval) {
         let vm = this
         if (val.code) {
+          vm.$loading.show()
           this.$store.dispatch('getCities', {
             country_code: vm.country_code.code,
             province_code: val.code
+          }).then(result => {
+            if (result.status === 200) {
+              vm.$loading.hide()
+            }
           })
         }
       },
@@ -196,10 +208,15 @@
       locality: function (val, oldval) {
         let vm = this
         if (val.code) {
+          vm.$loading.show()
           this.$store.dispatch('getLocals', {
             country_code: vm.country_code.code,
             province_code: vm.administrative_area.code,
             city_code: val.code
+          }).then(result => {
+            if (result.status === 200) {
+              vm.$loading.hide()
+            }
           })
         }
       },
@@ -219,17 +236,22 @@
         let vm = this
         let address = {}
         if (vm.$refs.orderAddressForm.validate()) {
+          address.order_id = vm.orderID
           address.given_name = vm.given_name
           address.family_name = vm.family_name
           address.organization = vm.organization
-          address.country_code = vm.country_code
-          address.administrative_area = vm.administrative_area
-          address.locality = vm.locality
-          address.dependent_locality = vm.dependent_locality
+          address.country_code = vm.country_code ? vm.country_code.code : null
+          address.administrative_area = vm.administrative_area ? vm.administrative_area.code : null
+          address.locality = vm.locality ? vm.locality.code : null
+          address.dependent_locality = vm.dependent_locality ? vm.dependent_locality.code : null
           address.postal_code = vm.postal_code
           address.address_line1 = vm.address_line1
           address.address_line2 = vm.address_line2
-          vm.$store.dispatch('updateOrderAddress', address)
+          vm.$loading.show()
+          vm.$store.dispatch('updateOrderAddress', address).then(result => {
+            vm.$loading.hide()
+            vm.$emit('nextstep')
+          })
         }
       }
     }

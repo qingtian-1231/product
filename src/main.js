@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import { getCookie } from "./utils/cookie.js";
 import loading from './utils/loading.js' // 引入loading
 // For Nprogress 页面加载动画.
 import NProgress from 'nprogress'
@@ -55,6 +56,17 @@ router.beforeEach((to, from, next) => {
     meta = document.getElementsByTagName('meta')
     meta['description'].setAttribute('content', to.meta.description)
   }
+
+  if (to.meta.auth === 'user-login') {
+    const session = getCookie('drupal:session');
+    const sessionValue = session ? JSON.parse(session) : "";
+    const basicAuthToken = ((sessionValue || "").authenticated || "").basic_auth || "";
+    const currentUser = ((sessionValue || "").authenticated || "").current_user || "";
+    if (!currentUser || !basicAuthToken) {
+      next({replace:true, name:'Unauthorized'})
+    }
+  }
+
 
   next()
 })

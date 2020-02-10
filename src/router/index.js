@@ -11,6 +11,7 @@ import Register from '../views/Register'
 import NotFound from '../views/NotFound'
 import Login from '../views/Login'
 import Download from '../views/Download'
+import Unauthorized from '../views/Unauthorized'
 
 Vue.use(Router)
 
@@ -51,7 +52,11 @@ export default new Router({
     {
       path: '/sample-order',
       name: 'SampleOrder',
-      component: SampleOrder
+      component: SampleOrder,
+      meta: {
+        title: '样品订单',
+        auth: 'user-login'
+      },
     },
     {
       path: '/login',
@@ -67,6 +72,11 @@ export default new Router({
       path: '/download',
       name: 'Download',
       component: Download
+    },
+    {
+      path: '/unauthorized',
+      name: 'Unauthorized',
+      component: Unauthorized
     },
     {
       path: '/notfound',

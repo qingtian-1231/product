@@ -1,65 +1,155 @@
 <template>
-  <div>
-    <div class="order">
+  <div class="order-list">
+    <template v-if="shoppingCart.length">
       <h2>
-        样品订单
-        <!--      <v-btn icon>-->
-        <!--        <v-icon>edit</v-icon>-->
-        <!--      </v-btn>-->
+        产品列表
       </h2>
-      <ul>
-        <template v-for="(product, index) in shoppingCart">
-          <li :key="index">
-            <div class="item added product disabled">
-            <span>
-              <router-link :to="{name: 'Product', params: {id: product.uuid}}">
-                <icon-dispersions
-                  bg-color-class="styrene-acrylics"
-                ></icon-dispersions>
-                <b>{{ product.title }}</b>
-              </router-link>
-              <v-select
-                class="select small"
-                v-model="product.selectVariation"
-                :items="product.variationsItem"
-                label="产品分量"
-                height="18"
-                outlined
-                dense
-                solo
-              ></v-select>
-            </span>
-              <span>
-              <v-btn icon small @click="removeShoppingCart(product.uuid)">
-                <v-icon>delete</v-icon>
-              </v-btn>
-            </span>
-            </div>
-          </li>
-        </template>
-      </ul>
-    </div>
-    <div class="pagination">
-      <v-btn
-        color="info"
-        class="float-left"
-        @click="$router.back(-1)"
-      >
-        取消订单
-      </v-btn>
-      <v-btn
-        class="float-right"
-        color="primary"
-        @click="createOrder()"
-      >
-        继续
-      </v-btn>
-    </div>
+      <div class="order">
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+            <tr>
+              <th class="text-left">产品名称</th>
+              <th class="text-left">数量</th>
+              <th class="text-left">规格</th>
+              <th class="text-left">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+              v-for="product in shoppingCart"
+              :key="product.uuid"
+            >
+              <td>
+                <router-link
+                  :to="{ name: 'Product', params: { id: product.uuid } }"
+                >
+                  <icon-dispersions
+                    bg-color-class="styrene-acrylics"
+                  ></icon-dispersions>
+                  <b>{{ product.title }}</b>
+                </router-link>
+              </td>
+              <td>
+                <v-text-field
+                  v-model="product.quantity"
+                  type="number"
+                  height="18"
+                  outlined
+                  dense
+                  solo
+                  hide-details
+                ></v-text-field>
+              </td>
+              <td>
+                <v-select
+                  class="select small"
+                  v-model="product.selectVariation"
+                  :items="product.variationsItem"
+                  label="产品分量"
+                  height="18"
+                  outlined
+                  dense
+                  solo
+                  hide-details
+                ></v-select>
+              </td>
+              <td>
+                <v-btn icon small @click="removeShoppingCart(product.uuid)">
+                  <v-icon>delete</v-icon>
+                </v-btn>
+              </td>
+            </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+        <div class="pagination">
+          <v-btn color="info" class="float-left" @click="$router.back(-1)">
+            取消产品
+          </v-btn>
+          <v-btn class="float-right" color="primary" @click="addCart()">
+            添加购物车
+          </v-btn>
+        </div>
+      </div>
+    </template>
+
+    <template v-if="cart.length">
+      <h2>
+        样品购物车
+      </h2>
+      <template v-for="(cartOrder, index) in cart">
+        <div class="order" :key="index">
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+              <tr>
+                <th class="text-left">产品名称</th>
+                <th class="text-left">数量</th>
+                <th class="text-left">价格</th>
+                <th class="text-left">规格</th>
+                <th class="text-left">操作</th>
+              </tr>
+              </thead>
+              <tbody v-if="cartOrder.hasOwnProperty('order_items')">
+              <tr
+                v-for="order_item in cartOrder.order_items"
+                :key="order_item.uuid"
+              >
+                <td>
+                  <router-link
+                    :to="{ name: 'Product', params: { id: order_item.purchased_entity.product_id } }"
+                  >
+                    <icon-dispersions
+                      bg-color-class="styrene-acrylics"
+                    ></icon-dispersions>
+                    <b>{{ order_item.title }}</b>
+                  </router-link>
+                </td>
+                <td>
+                  <v-text-field
+                    v-model="order_item.quantity"
+                    @change="updateCart(cartOrder.order_id)"
+                    type="number"
+                    height="18"
+                    outlined
+                    dense
+                    solo
+                    hide-details
+                  ></v-text-field>
+                </td>
+                <td>
+                  <span>{{ order_item.total_price.formatted }}</span>
+                </td>
+                <td>
+                  <span>{{ order_item.purchased_entity.sku }}</span>
+                </td>
+                <td>
+                  <v-btn icon small @click="removeShoppingCart(product.uuid)">
+                    <v-icon>delete</v-icon>
+                  </v-btn>
+                </td>
+              </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+          <div class="pagination">
+            <v-btn color="info" class="float-left" @click="cancelOrder(cartOrder.order_id)">
+              取消当前订单
+            </v-btn>
+            <v-btn class="float-right" color="primary" @click="shippingOrder(cartOrder)">
+              结算当前订单
+            </v-btn>
+          </div>
+        </div>
+      </template>
+    </template>
   </div>
 </template>
 
 <script>
 import IconDispersions from "../../components/svg/Dispersions";
+import { debounce } from '../../utils/globalUtils'
 import { mapState } from "vuex";
 
 export default {
@@ -71,6 +161,7 @@ export default {
     ...mapState({
       shoppingCartCount: state => state.basket.shoppingCartCount,
       shoppingCart: state => state.basket.shoppingCart,
+      cart: state => state.basket.cart,
       isLogin: state => state.user.isLogin
     })
   },
@@ -79,40 +170,112 @@ export default {
     return {};
   },
 
+  mounted() {
+    let vm = this;
+    vm.loadCart();
+  },
+
   methods: {
-    removeShoppingCart (productId) {
-      this.$store.dispatch('removeShoppingCart', productId)
+    debounceUpdate: debounce(({ vm, order_id }) => {
+      let currentOrder = vm.getOrderFromCart(order_id)
+      let cartInfo = {
+        order_id: order_id
+      }
+      let quantity = {}
+
+      currentOrder.order_items.forEach(item => {
+        quantity[item.order_item_id] = {
+          quantity: item.quantity
+        }
+      })
+      cartInfo.quantity = quantity
+
+      vm.$store.dispatch('updateCart', cartInfo).then(result => {
+        console.log(result)
+        vm.loadCart()
+      })
+    }, 300),
+
+    loadCart () {
+      let vm = this
+      vm.$loading.show();
+      vm.$store.dispatch("getCart").then(result => {
+        console.log(vm.cart, "result");
+
+        if (result.status === 200) {
+          vm.$loading.hide();
+        }
+      });
     },
 
-    createOrder () {
+    updateCart (order_id) {
+      let vm = this
+
+      vm.debounceUpdate({ vm, order_id})
+    },
+
+    getOrderFromCart(order_id) {
+      let vm = this
+      let $return
+      vm.cart.forEach(order => {
+        if (order.order_id === order_id) {
+          $return = order
+        }
+      })
+
+      return $return
+    },
+
+    removeShoppingCart(productId) {
+      this.$store.dispatch("removeShoppingCart", productId);
+    },
+
+    addCart() {
       let vm = this
       let orders = []
       let order = {}
       orders = vm.shoppingCart.map(product => {
-        order.purchased_entity_type = 'commerce_product_variation'
+        order.purchased_entity_type = "commerce_product_variation"
         order.quantity = 1
-        order.purchased_entity_id = vm.getSelectVariationId(product)
-        return order
-      })
+        order.purchased_entity_id = vm.getSelectVariationId(product);
+        return order;
+      });
 
       vm.$loading.show()
-      vm.$store.dispatch('createOrder', orders).then(result => {
-        console.log(result)
+      vm.$store.dispatch('addCart', orders).then(result => {
         if (result && result.status === 200) {
           vm.$loading.hide()
-          vm.$emit('nexstep')
+          vm.loadCart()
+          vm.$store.commit('clearShoppingCart')
+        }
+      });
+    },
+
+    getSelectVariationId(product) {
+      let selectVariation = product.selectVariation;
+      let variations = product.variations;
+      for (let key in variations) {
+        if (
+          variations[key].attribute_product_amount.value === selectVariation
+        ) {
+          return variations[key].variation_id.value;
+        }
+      }
+    },
+
+    cancelOrder(order_id) {
+      let vm = this
+
+      vm.$store.dispatch('cancelOrder', order_id).then(result => {
+        if (result.status === 200) {
+          vm.loadCart()
         }
       })
     },
 
-    getSelectVariationId (product) {
-      let selectVariation = product.selectVariation
-      let variations = product.variations
-      for (let key in variations) {
-        if (variations[key].attribute_product_amount.value === selectVariation) {
-          return variations[key].variation_id.value
-        }
-      }
+    shippingOrder (cartOrder) {
+      this.$store.commit('processOrder', cartOrder)
+      this.$emit('nextstep')
     }
   }
 };
@@ -120,6 +283,11 @@ export default {
 
 <style scoped lang="scss">
 .order {
+  width: 100%;
+  display: inline-block;
+  border-bottom: 1px solid;
+  padding: 25px 0;
+
   h2 {
     border-bottom: 1px solid #333;
     position: relative;
@@ -135,64 +303,32 @@ export default {
     }
   }
 
-  ul > li {
-    list-style-type: none;
+  .pagination {
+    margin-top: 25px;
+  }
 
-    .item.added {
-      animation: 0.4s ease-out 0s 1 rotateX;
-      background-color: #fff;
-      border-bottom: 1px solid #eee;
-      display: inline-block;
-      float: left;
-      padding: 20px 0;
-      position: relative;
-      width: 100%;
+  table {
+    tbody {
+      text-align: left;
 
-      span {
-        font-size: 1em;
-        float: left;
-        height: auto;
-        overflow: visible;
-
-        & > a {
-          float: left;
-          padding: 0;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          width: 100%;
-          text-align: left;
-
-          & > .icon {
-            height: 32px;
-            margin-right: 20px;
-            width: 32px;
-            position: relative;
-            float: none;
-            line-height: normal;
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: 0;
-            margin-top: 0;
+      tr {
+        td {
+          &:first-child {
+            & > a {
+              & > .icon {
+                height: 32px;
+                margin-right: 20px;
+                width: 32px;
+                position: relative;
+                float: none;
+                line-height: normal;
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 0;
+                margin-top: 0;
+              }
+            }
           }
-        }
-
-        & > .select {
-          min-width: 75px;
-          margin: 0;
-          position: absolute;
-          right: 50px;
-        }
-
-        &:first-child {
-          width: 84%;
-        }
-
-        &:last-child {
-          float: right;
-          overflow: hidden;
-          text-align: right;
-          width: auto;
         }
       }
     }

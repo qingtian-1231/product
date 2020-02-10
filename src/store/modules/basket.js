@@ -2,21 +2,32 @@ import { request } from '../../utils/request'
 import { globalUtils } from '../../utils/globalUtils'
 
 const state = {
-  _format: 'hal_json',
+  _format: 'json',
   shoppingCartCount: 0,
   shoppingCartKey: 'shoppingAdd',
   shoppingCart: [],
+  cart:[],
+  orderID: null,
   orderInfo: [],
   countryList: [],
   provinceList: [],
   cityList: [],
   localityList: [],
+  order_total_price: '',
+  order_items: [],
+  order_address: [],
+  completeOrderStatus: false
 }
 
 const mutations = {
   processShoppingCart (state, payload) {
     state.shoppingCart = payload
     state.shoppingCartCount = payload.length
+  },
+
+  processCart (state, payload) {
+    state.cart = payload
+    state.cartCount = payload.length
   },
 
   /**
@@ -37,8 +48,9 @@ const mutations = {
     state.shoppingCartCount = shoppingCart.length
   },
 
-  processOrder (state, payload) {
-    state.orderInfo = payload
+  processOrder (state, orderInfo) {
+    state.orderInfo = orderInfo
+    state.orderID = orderInfo.order_id
   },
 
   processCountries (state, payload) {
@@ -55,6 +67,16 @@ const mutations = {
 
   processLocality (state, payload) {
     state.localityList = payload
+  },
+
+  processShippingOrder (state, payload) {
+    state.order_total_price = payload.order_total_price
+    state.order_items = payload.order_items
+    state.order_address = payload.order_address
+  },
+
+  processCompleteOrder (state, payload) {
+    state.completeOrderStatus = payload.success
   }
 }
 
@@ -101,15 +123,41 @@ const actions = {
     localStorage.setItem(shoppingCartKey, JSON.stringify(shoppingCart));
   },
 
-  createOrder ({commit, state}, orderInfo) {
+  getCart ({commit, state}, productId) {
+    return request()
+      .get('cart', {
+        params: {
+          _format: state._format
+        }
+      })
+      .then(result => {
+        commit('processCart', result.data)
+        return Promise.resolve(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
+
+  addCart ({commit, state}, orderInfo) {
     return request()
       .post('cart/add?_format=json', orderInfo)
       .then(result => {
-        commit('processOrder', result.data)
         return Promise.resolve(result);
       }).catch(error => {
         console.log(error);
         return Promise.resolve(error);
+      })
+  },
+
+  updateCart ({commit, state}, cartInfo) {
+    return request()
+      .patch(`cart/${cartInfo.order_id}/items?_format=json`, cartInfo.quantity)
+      .then(result => {
+        return Promise.resolve(result)
+      })
+      .catch(error => {
+        console.log(error)
       })
   },
 
@@ -136,7 +184,7 @@ const actions = {
     })
       .then(result => {
         commit('processProvince', result.data)
-        return Promise.resolve(result.data)
+        return Promise.resolve(result)
       })
       .catch(error => {
         console.log(error)
@@ -152,7 +200,7 @@ const actions = {
       .then(result => {
         console.log(result, 'result')
         commit('processCity', result.data)
-        return Promise.resolve(result.data)
+        return Promise.resolve(result)
       })
       .catch(error => {
         console.log(error)
@@ -166,9 +214,8 @@ const actions = {
       }
     })
       .then(result => {
-        console.log(result, 'result')
         commit('processLocality', result.data)
-        return Promise.resolve(result.data)
+        return Promise.resolve(result)
       })
       .catch(error => {
         console.log(error)
@@ -178,8 +225,39 @@ const actions = {
   updateOrderAddress ({commit, state}, address) {
     return request().post('/api/order_rest/submit?_format=hal_json', address)
       .then(result => {
-        console.log(result.data, 'result.data')
-        return Promise.resolve(result.data)
+        commit('processShippingOrder', result.data)
+        return Promise.resolve(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
+
+  completeOrder ({commit, state}, orderId) {
+    return request()
+      .get(`api/complete_order/${orderId}`, {
+        params: {
+          _format: state._format
+        }
+      })
+      .then(result => {
+        commit('processCompleteOrder', result.data)
+        return Promise.resolve(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
+
+  cancelOrder ({commit, state}, orderId) {
+    return request()
+      .get(`api/cancel_order/${orderId}`, {
+        params: {
+          _format: state._format
+        }
+      })
+      .then(result => {
+        return Promise.resolve(result)
       })
       .catch(error => {
         console.log(error)

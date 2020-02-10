@@ -9,7 +9,7 @@
         <div class="ml-auto mr-auto ml-md-0 d-flex align-center col col-auto footer-left">
           <span class="mr-3 overline">powered by:</span>
           <a aria-label="Link to Shopify" href="" target="_blank" rel="noopener noreferrer">
-            <icon-app></icon-app>
+            BASF
           </a>
         </div>
         <div class="ml-auto mr-auto mr-md-0 col col-auto footer-right">
@@ -24,10 +24,10 @@
 </template>
 
 <script>
-  import IconApp from '../svg/App'
+  // import IconApp from '../svg/App'
 
   export default {
-    components: { IconApp },
+    components: { },
 
     data: function () {
       return {

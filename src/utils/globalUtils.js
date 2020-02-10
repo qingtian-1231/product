@@ -1,7 +1,18 @@
 var globalUtils
 
-globalUtils = {
+const debounce = (func, wait) => {
+  let timeout = '';
+  return (v) => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      func(v);
+    }, wait);
+  }
+}
 
+globalUtils = {
   formatBasicAuth: function (userName, password) {
     var basicAuthCredential = userName + ":" + password;
     var bace64 =  btoa(basicAuthCredential);
@@ -16,7 +27,7 @@ globalUtils = {
       }
     })
     return noElement
-  }
+  },
 }
 
-export { globalUtils }
+export { globalUtils, debounce }

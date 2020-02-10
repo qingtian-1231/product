@@ -5,13 +5,11 @@ namespace Drupal\pro_core\Plugin\rest\resource;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
-use Drupal\node\Entity\Node;
-use Drupal\Core\Field\FieldItemList;
-use Drupal\field\Entity\FieldConfig;
-use Drupal\commerce_order\Entity\Order;
 use \Drupal\profile\Entity\Profile;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use CommerceGuys\Addressing\Country\CountryRepository;
+use CommerceGuys\Addressing\Subdivision\SubdivisionRepository;
 
 /**
  * Provides a formulation detail Resource
@@ -81,10 +79,11 @@ class UpdateOrderResource extends ResourceBase {
    * Throws HttpException in case of error.
    */
   public function post(array $address_data) {
-    var_dump($address_data);exit;
     $orderId = $address_data['order_id'];
     $order = \Drupal\commerce_order\Entity\Order::load($orderId);
     $profile = $order->getBillingProfile();
+    $languageCode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $return = [];
 
     if (empty($profile)) {
       $profile = Profile::create([
@@ -109,7 +108,73 @@ class UpdateOrderResource extends ResourceBase {
     $order->setBillingProfile($profile);
     $order->save();
 
-    return new ResourceResponse($order->toArray());
+    $return['order_total_price'] = $order->getTotalPrice()->toArray();
+    foreach ($order->getItems() as $order_item) {
+      $return['order_items'][] = $order_item->toArray();
+    }
+
+    $country = new CountryRepository();
+    $sub = new SubdivisionRepository();
+    $address_return = [];
+    foreach ($profile->address as $index => $address) {
+      $address_data = $address->toArray();
+      foreach ($address_data as $field => $value) {
+        switch ($field) {
+          case 'country_code':
+            $address_return[$index][$field] = $country->get($value, $languageCode)->getName();
+            break;
+
+          case 'administrative_area':
+            if ($value) {
+              $address_return[$index][$field] = $sub
+                ->get($value, [
+                  $address_data['country_code']
+                ])
+                ->getLocalName();
+            }
+            else {
+              $address_return[$index][$field] = $value;
+            }
+
+            break;
+
+          case 'locality':
+            if ($value) {
+              $address_return[$index][$field] = $sub
+                ->get($value, [
+                  $address_data['country_code'],
+                  $address_data['administrative_area']
+                ])
+                ->getLocalName();
+            }
+            else {
+              $address_return[$index][$field] = $value;
+            }
+            break;
+
+          case 'dependent_locality':
+            if ($value) {
+              $address_return[$index][$field] = $sub
+                ->get($value, [
+                  $address_data['country_code'],
+                  $address_data['administrative_area'],
+                  $address_data['locality']
+                ])
+                ->getLocalName();
+            }
+            else {
+              $address_return[$index][$field] = $value;
+            }
+            break;
+
+          default:
+            $address_return[$index][$field] = $value;
+        }
+      }
+    }
+    $return['order_address'] = $address_return;
+
+    return new ResourceResponse($return);
   }
 
   public function permissions() {

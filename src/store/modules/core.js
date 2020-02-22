@@ -1,9 +1,9 @@
 import { request } from '../../utils/request.js'
-import {setCookie} from "../../utils/cookie";
+import {getCookie, setCookie} from "../../utils/cookie";
 
 const state = {
   path: 'api/menu_items/vue-app-menu',
-  fieldConfigPath: 'demo_rest_api/demo_resource',
+  taxonomyListPath: 'demo_rest_api/demo_resource',
   CSRFTokenPath: 'rest/session/token',
   _format: 'hal_json',
   globalSnackbar: false,
@@ -15,7 +15,9 @@ const state = {
   requestProductDialog: false,
   requestFormulationDialog: false,
   loginDialog: false,
-  fieldConfig: []
+  taxonomyProductType: {},
+  taxonomyProductBrand: {},
+  taxonomyProductApplication: {},
 }
 
 const mutations = {
@@ -57,12 +59,32 @@ const mutations = {
     })
   },
 
-  processFieldConfig(state, payload) {
-    state.fieldConfig = payload
+  processTaxonomyList(state, payload) {
+    state.taxonomyProductType = payload.product_type
+    state.taxonomyProductBrand = payload.prduct_brand
+    state.taxonomyProductApplication = payload.applacation
+
+    state.menuItems = state.menuItems.map((menuItem) => {
+      if (menuItem.uri.toLowerCase() === 'base:industry') {
+        menuItem.below = state.taxonomyProductApplication
+        return menuItem
+      } else {
+
+        return menuItem
+      }
+    })
   },
 
-  SWITCH_ENGLISH(state, payload) {
+  switch_Language(state, payload) {
     state.path = payload.path
+
+    const expireTime = 30 * 24 * 3600 * 1000;
+    setCookie(
+      'drupal:session:language',
+      payload.language,
+      expireTime,
+      "/"
+    );
   },
 
   SET_SNACKBAR(state, payload) {
@@ -86,7 +108,13 @@ const mutations = {
 
 const actions = {
   getApiMenu({commit, state}) {
-    return request().get(state.path, {
+    let requestPath = state.path
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + state.path
+    }
+    return request().get(requestPath, {
       params: {
         _format: state._format
       }
@@ -101,14 +129,21 @@ const actions = {
       })
   },
 
-  getFieldConfig({commit, state}) {
-    return request().get(state.fieldConfigPath, {
+  getTaxonomyList({commit, state}) {
+    let requestPath = state.taxonomyListPath
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + state.taxonomyListPath
+    }
+
+    return request().get(requestPath, {
       params: {
         _format: state._format
       }
     })
       .then(function (response) {
-        commit('processFieldConfig', response.data)
+        commit('processTaxonomyList', response.data)
         return Promise.resolve(response)
       })
       .catch(function (error) {

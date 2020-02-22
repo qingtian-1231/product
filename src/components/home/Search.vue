@@ -3,6 +3,7 @@
     <div class="search-content">
       <v-text-field
         @keyup="search()"
+        :autofocus="searchFocus"
         @click:clear="clearSearchResult()"
         v-model="searchKeyWord"
         background-color="white"
@@ -55,6 +56,7 @@
         offset-overflow
         transition="scale-transition"
         class="mx-2"
+        max-width="400"
       >
         <template v-slot:activator="{ on }">
           <v-btn fab large color="primary" v-on="on">
@@ -66,112 +68,26 @@
           <div>
             <h2>
               <v-icon>menu</v-icon>
-              产品过滤
+              品牌过滤
               <v-btn icon @click="filterProduct = false">
                 <v-icon>chevron_right</v-icon>
               </v-btn>
             </h2>
             <ul>
-              <li>
-                <div class="item added product">
+              <template v-for="(productType, index) in taxonomyProductBrand">
+                <li :key="index">
+                  <router-link :to="{path: '/products', query: {product_brand: productType.tid}}">
+                    <div class="item added product">
                   <span>
                     <v-icon>radio_button_checked</v-icon>
                   </span>
-                  <span>
-                    Construction
+                      <span>
+                    {{ productType.name }}
                   </span>
-                </div>
-              </li>
-              <li>
-                <div class="item added product">
-                  <span>
-                    <v-icon>radio_button_checked</v-icon>
-                  </span>
-                  <span>
-                    Auxilliary
-                  </span>
-                </div>
-              </li>
-              <li>
-                <div class="item added product">
-                  <span>
-                    <v-icon>radio_button_checked</v-icon>
-                  </span>
-                  <span>
-                    Printing
-                  </span>
-                </div>
-              </li>
-              <li>
-                <div class="item added product">
-                  <span>
-                    <v-icon>radio_button_checked</v-icon>
-                  </span>
-                  <span>
-                    Ink
-                  </span>
-                </div>
-              </li>
-              <li>
-                <div class="item added product">
-                  <span>
-                    <v-icon>radio_button_checked</v-icon>
-                  </span>
-                  <span>
-                    Packaging
-                  </span>
-                </div>
-              </li>
-              <li>
-                <div class="item added product">
-                  <span>
-                    <v-icon>radio_button_checked</v-icon>
-                  </span>
-                  <span>
-                    Adhesives
-                  </span>
-                </div>
-              </li>
-              <li>
-                <div class="item added product">
-                  <span>
-                    <v-icon>radio_button_checked</v-icon>
-                  </span>
-                  <span>
-                    Furniture
-                  </span>
-                </div>
-              </li>
-              <li>
-                <div class="item added product">
-                  <span>
-                    <v-icon>radio_button_checked</v-icon>
-                  </span>
-                  <span>
-                    Automobile
-                  </span>
-                </div>
-              </li>
-              <li>
-                <div class="item added product">
-                  <span>
-                    <v-icon>radio_button_checked</v-icon>
-                  </span>
-                  <span>
-                    Battery
-                  </span>
-                </div>
-              </li>
-              <li>
-                <div class="item added product">
-                  <span>
-                    <v-icon>radio_button_checked</v-icon>
-                  </span>
-                  <span>
-                    Composites
-                  </span>
-                </div>
-              </li>
+                    </div>
+                  </router-link>
+                </li>
+              </template>
             </ul>
           </div>
         </v-card>
@@ -207,7 +123,9 @@ export default {
 
   computed: {
     ...mapState({
-      searchResult: state => state.search.searchResult
+      searchResult: state => state.search.searchResult,
+      searchFocus: state => state.search.searchFocus,
+      taxonomyProductBrand: state => state.core.taxonomyProductBrand
     })
   },
 
@@ -215,22 +133,12 @@ export default {
     return {
       searchLoading: false,
       filterProduct: false,
-      states: [
-        "涂料",
-        "建筑",
-        "纺织及纤维",
-        "助剂",
-        "印刷",
-        "油墨",
-        "包装",
-        "胶黏剂",
-        "家具",
-        "汽车",
-        "电池",
-        "符合材料"
-      ],
       searchKeyWord: ""
     };
+  },
+
+  mounted () {
+    this.clearSearchResult()
   },
 
   methods: {
@@ -274,6 +182,10 @@ export default {
     display: flex;
     width: 30%;
     margin: 0 auto;
+
+    @media screen and (max-width: 600px) {
+      width: 80%;
+    }
 
     .search-result {
       position: absolute;
@@ -429,6 +341,11 @@ export default {
   & > div {
     & > ul {
       display: inline-block;
+      
+      li {
+        width: 50%;
+        float: left;
+      }
     }
   }
 

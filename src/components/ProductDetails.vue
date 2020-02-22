@@ -6,17 +6,16 @@
         <span>{{ product.title }}</span>
         <v-icon class="icon float-right">keyboard_arrow_right</v-icon>
       </router-link>
-      <small v-if="productBasic.field_benefits">
-        {{ productBasic.field_benefits.value }}
+      <small v-if="previewProductBasic.benefits">
+        {{ previewProductBasic.benefits.value }}
       </small>
     </div>
-
     <ul>
-      <template v-for="(item, index) in productProp">
-        <li :key="index" v-if="item.value">
+      <template v-for="(item, index) in previewProductProp">
+        <li :key="index" v-if="item.value.length">
           <div class="item-property">
             <span>
-              <v-icon class="material-icons-outlined">cloud</v-icon>
+              <v-icon class="material-icons-outlined">colorize</v-icon>
             </span>
             <span>
               {{ item.label }}
@@ -28,22 +27,33 @@
     </ul>
     <div>
       <v-btn icon @click="closeRequestDialog">
-        <v-icon class="material-icons-outlined">close</v-icon>
+        <v-icon large>close</v-icon>
+      </v-btn>
+
+      <v-btn
+        icon
+        @click="favoritesProductStar('product',product.isFeature ? 'delete' : 'add',product.uuid)"
+      >
+        <v-icon
+          v-if="!product.isFeature"
+          color="grey lighten-1"
+          large
+        >
+          star_border
+        </v-icon>
+        <v-icon v-else color="yellow" large>
+          star
+        </v-icon>
       </v-btn>
 
       <v-btn icon>
-        <v-icon class="material-icons-outlined">start</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon class="material-icons-outlined">shopping_basket</v-icon>
+        <v-icon class="material-icons-outlined" large>shopping_basket</v-icon>
       </v-btn>
     </div>
   </div>
 </template>
 <script>
   import IconAdditives from '../components/svg/Additives'
-  import { mapState } from 'vuex'
 
   export default {
     name: 'product-details',
@@ -55,13 +65,14 @@
         type: Object
       },
 
-    },
+      previewProductBasic: {
+        type: Object
+      },
 
-    computed: {
-      ...mapState({
-        productBasicInformation: state => state.product.productBasicInformation,
-        productProperties: state => state.product.productProperties,
-      }),
+      previewProductProp: {
+        type: Object
+      }
+
     },
 
     data: function () {
@@ -70,17 +81,6 @@
         productBasic: {},
         productProp: {},
       }
-    },
-
-    mounted () {
-      let vm = this
-
-      vm.$store.dispatch('getProductDetails', {
-        id: vm.product.uuid
-      }).then(() => {
-        vm.productBasic = vm.productBasicInformation
-        vm.productProp = vm.productProperties
-      })
     },
 
     methods: {

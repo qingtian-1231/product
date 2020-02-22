@@ -16,10 +16,12 @@ const mutations = {
 }
 
 const actions = {
-  getDownloadList({commit, state}) {
-    return request().get(state.path)
+  getDownloadList({commit, state}, options) {
+    return request().get(state.path, {
+      params: options
+    })
       .then(function (response) {
-        commit('processDownloadList', response.data)
+        commit('processDownloadList', response.data.results)
         return Promise.resolve(response)
       })
       .catch(function (error) {

@@ -198,7 +198,6 @@ const actions = {
       }
     })
       .then(result => {
-        console.log(result, 'result')
         commit('processCity', result.data)
         return Promise.resolve(result)
       })
@@ -223,7 +222,8 @@ const actions = {
   },
 
   updateOrderAddress ({commit, state}, address) {
-    return request().post('/api/order_rest/submit?_format=hal_json', address)
+    return request()
+      .post('/api/order_rest/submit?_format=hal_json', address)
       .then(result => {
         commit('processShippingOrder', result.data)
         return Promise.resolve(result)

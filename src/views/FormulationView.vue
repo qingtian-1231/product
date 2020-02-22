@@ -26,7 +26,7 @@
           </h1>
           <div>
             <v-btn icon>
-              <v-icon large class="material-icons-outlined">share</v-icon>
+              <v-icon large class="material-icons-outlined">cloud_download</v-icon>
             </v-btn>
             <v-btn icon>
               <v-icon large class="material-icons-outlined">star_border</v-icon>
@@ -94,8 +94,8 @@
       <v-col class="col-xs-12" md="12">
         <div>
           <v-btn icon tile large>
-            <v-icon large class="material-icons-outlined">share</v-icon>
-            <p>分享</p>
+            <v-icon large class="material-icons-outlined">cloud_download</v-icon>
+            <p>下载</p>
           </v-btn>
           <v-btn icon tile large>
             <v-icon large class="material-icons-outlined">star_border</v-icon>
@@ -150,8 +150,7 @@
       }).then(result => {
         vm.formulationBasic = vm.formulationBasicInformation
         vm.formulationProp = vm.formulationProperties
-
-        console.log(vm.formulationProp, 'vm.formulationBasic')
+        // console.log(vm.formulationProp, 'vm.formulationBasic')
       })
     }
   }

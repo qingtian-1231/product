@@ -5,8 +5,8 @@
   >
     <div class="header">
       <div class="excerpt">
-        <h1>BASF助手</h1>
-        <h2>用于建筑涂料</h2>
+        <h1>BASF产品助理</h1>
+        <h2>用于配方产品</h2>
       </div>
       <v-alert
         :value="alert"
@@ -25,7 +25,7 @@
             欢迎您{{ displayName }}, 登录本站！
           </h2>
           <p>
-            您已经登录成功，现在请您使用完成的BASF助手的功能吧
+            您已经登录成功，现在请您使用完成的BASF产品助理的功能吧
           </p>
           <router-link :to="{name: 'Home'}">
             <v-btn class="ma-2" rounded color="success">
@@ -80,7 +80,7 @@
           <div class="unlock">
             <h2>
               <v-icon>lock_open</v-icon>
-              注册， 充分使用<br>BASF助手.
+              注册， 充分使用<br>BASF产品助理.
             </h2>
             <p>
               完全访问专有配方和完整的产品数据。
@@ -143,6 +143,7 @@
                 vm.loginSuccess = true
                 vm.displayName = result.data.current_user.name
                 vm.$loading.hide()
+                window.location.reload()
               } else if (result.hasOwnProperty('response') && result.response.status !== 200) {
                 if (result.response.data.message === 'The user has not been activated or is blocked.') {
                   vm.setAlert('您的账号还没有被管理员激活，请注意查收邮件', 'error')

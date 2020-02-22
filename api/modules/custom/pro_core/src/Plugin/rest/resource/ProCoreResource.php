@@ -6,13 +6,14 @@ use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Provides a Demo Resource
  *
  * @RestResource(
  *   id = "demo_resource",
- *   label = @Translation("Demo Resource"),
+ *   label = @Translation("产品和配方的关联分类列表"),
  *   uri_paths = {
  *     "canonical" = "/demo_rest_api/demo_resource"
  *   }
@@ -25,30 +26,47 @@ class ProCoreResource extends ResourceBase {
    * @return \Drupal\rest\ResourceResponse
    */
   public function get() {
-    $entityManager = \Drupal::service('entity.manager');
-    $field_definition = [];
-    $formulation_fields = array_filter(
-      $entityManager->getFieldDefinitions('node', 'formulation'),
-      function ($field_definition) {
-        return $field_definition instanceof FieldConfig;
+    $vocabularies = ['product_type', 'prduct_brand', 'applacation'];
+    $manager = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    // Load the taxonomy tree with special parameters.
+    $result = [];
+    foreach ($vocabularies as $vocabulary) {
+      $terms = $manager->loadTree($vocabulary);
+      $tree = [];
+      foreach ($terms as $tree_object) {
+        $this->buildTree($tree, (array) $tree_object, $vocabulary);
       }
-    );
-    foreach ($formulation_fields as $field => $field_config) {
-      $field_definition['formulation'][$field] = $field_config->getLabel();
+
+      $result[$vocabulary] = $tree;
     }
 
-    $product_fields = array_filter(
-      $entityManager->getFieldDefinitions('commerce_product', 'default'),
-      function ($field_definition) {
-        return $field_definition instanceof FieldConfig;
-      }
-    );
-    foreach ($product_fields as $field => $field_config) {
-      $field_definition['product'][$field] = $field_config->getLabel();
+    return new ResourceResponse($result);
+  }
+
+  protected function buildTree(&$tree, $object, $vocabulary) {
+    $manager = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+    if ($object['depth'] != 0) {
+      return;
+    }
+    $tree[$object['tid']] = $object;
+    $tree[$object['tid']]['children'] = [];
+    $object_children = &$tree[$object['tid']]['children'];
+
+    $children = $manager->loadChildren($object['tid']);
+    if (!$children) {
+      return;
     }
 
-    $response = $field_definition;
-    return new ResourceResponse($response);
+    $child_tree_objects = $manager->loadTree($vocabulary, $object['tid']);
+
+    foreach ($children as $child) {
+      foreach ($child_tree_objects as $child_tree_object) {
+        if ($child_tree_object->tid == $child->id()) {
+          $this->buildTree($object_children, (array) $child_tree_object, $vocabulary);
+        }
+      }
+    }
   }
 
   public function permissions() {

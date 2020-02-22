@@ -21,7 +21,14 @@
         <v-row :class="`mx-0 ${headerMenuClass}`">
           <v-col class="px-0 login-layout" cols="6" md="2">
             <v-btn @click.stop="openLoginSheet" class="mx-2" fab dark small color="secondary">
-              <v-icon class="d-none d-md-block" dark>perm_identity</v-icon>
+              <template v-if="isLogin">
+                <v-icon class="d-none d-md-block" dark>account_box</v-icon>
+              </template>
+
+              <template v-else>
+                <v-icon class="d-none d-md-block" dark>person</v-icon>
+              </template>
+
               <template v-if="!loginStatus">
                 <v-icon class="d-md-none" dark>menu</v-icon>
               </template>
@@ -42,77 +49,17 @@
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item>
+                <v-list-item  :class="language === 'zh-hans' ? 'current' : ''">
                   <v-list-item-title><a @click="switchChinese">中文</a></v-list-item-title>
                 </v-list-item>
-                <v-list-item>
+                <v-list-item :class="language === 'en' ? 'current' : ''">
                   <v-list-item-title><a @click="switchEnglish">English</a></v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>
           </v-col>
           <v-col class="py-0 menu-layout hidden-sm-and-down" cols="12" sm="8">
-            <v-tabs
-              v-model="model"
-              centered
-              slider-color="secondary"
-              slider-size="4"
-              background-color="white"
-              color="grey"
-            >
-              <template v-for="(link, i) in menuLinks">
-                <template v-if="link.dialog">
-                  <v-tab
-                    :key="i"
-                    @click="headerMenuClick($event, link)"
-                  >
-                    <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
-                    {{ link.title }}
-                  </v-tab>
-                </template>
-
-                <template v-else-if="link.below">
-                  <v-tab
-                    :key="i"
-                    class="below-menu"
-                  >
-                    <v-menu offset-y>
-                      <template v-slot:activator="{ on }">
-                        <v-btn
-                          color="primary"
-                          dark
-                          icon
-                          v-on="on"
-                        >
-                          <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
-                          {{ link.title }}
-                        </v-btn>
-                      </template>
-                      <v-list>
-                        <v-list-item
-                          v-for="(item, index) in link.below"
-                          :key="index"
-                          @click="test"
-                        >
-                          <v-list-item-title>{{ item.title }}</v-list-item-title>
-                        </v-list-item>
-                      </v-list>
-                    </v-menu>
-                  </v-tab>
-                </template>
-
-                <template v-else>
-                  <v-tab
-                    :key="i"
-                    :to="link.relative"
-                    @click="headerMenuClick($event, link)"
-                  >
-                    <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
-                    {{ link.title }}
-                  </v-tab>
-                </template>
-              </template>
-            </v-tabs>
+            <menu-links></menu-links>
           </v-col>
           <v-col class="px-0 search-layout text-right" cols="6" md="2">
             <basket></basket>
@@ -129,9 +76,53 @@
           </v-col>
         </v-row>
         <v-row :class="`mx-0 ${searchGlobalClass}`">
-          <v-icon>search</v-icon>
+          <template v-if="globalSearchLoading">
+            <v-progress-circular
+              :size="72"
+              color="primary"
+              indeterminate
+            ></v-progress-circular>
+          </template>
+
+          <template v-else>
+            <v-icon>search</v-icon>
+          </template>
+
           <div class="search-input">
-            <input type="text" placeholder="Search" name="searchInput" id="smartSearch" value="">
+            <input
+              type="text"
+              placeholder="Search"
+              name="searchInput"
+              id="smartSearch"
+              v-model="globalSearchKeyWord"
+              @keyup="globalSearch()"
+            >
+            <ul class="search-result">
+              <template v-for="(result, index) in globalSearchResult">
+                <li :key="index">
+                  <div class="item listed product result">
+              <span>
+                <template v-if="result.type === 'product'">
+                  <router-link :to="{name: 'Product', params: {id: result.uuid}}">
+                  {{ result.title }}
+                </router-link>
+                </template>
+
+                <template v-else>
+                  <router-link :to="{name: 'Formulation', params: {id: result.uuid}}">
+                  {{ result.title }}
+                </router-link>
+                </template>
+
+                <small>
+                  - {{ result.type }}
+                </small>
+              </span>
+                    <span></span>
+                  </div>
+                </li>
+              </template>
+            </ul>
           </div>
           <v-btn icon @click="closeGlobalSearch">
             <v-icon>closed</v-icon>
@@ -147,12 +138,17 @@
   import { mapState } from 'vuex'
   import Logo from '../svg/Logo'
   import Basket from '../Basket'
+  import MenuLinks from '../base/Menu'
+  import { debounce } from '../../utils/globalUtils'
+  import { getCookie } from "../../utils/cookie";
 
   export default {
-    components: { Logo, Basket },
+    components: { Logo, Basket, MenuLinks },
 
     data: function () {
       return {
+        globalSearchLoading: false,
+        globalSearchKeyWord: '',
         headerMenuClass: 'header-main-menu',
         searchGlobalClass: 'search d-none',
       }
@@ -161,42 +157,53 @@
     computed: {
       ...mapState({
         menuLinks: state => state.core.menuItems,
-        loginStatus: state => state.core.loginStatus
+        isLogin: state => state.user.isLogin,
+        loginStatus: state => state.core.loginStatus,
+        globalSearchResult: state => state.search.searchResult
       }),
+      language: function () {
+        return getCookie('drupal:session:language') || 'zh-hans'
+      }
+    },
+
+    mounted () {
+      this.clearSearchResult()
     },
 
     methods: {
       switchEnglish () {
         let vm = this
-        vm.$store.commit('SWITCH_ENGLISH', {
-          path: 'en/api/menu_items/vue-app-menu'
-        })
-
-        vm.$store.dispatch('getApiMenu').then(() => {
-          vm.$store.commit('SET_SNACKBAR', {
-            globalSnackbar: true,
-            snackbarMessage: 'Your languages has been changed！'
-          })
-        })
+        vm.$store.commit('switch_Language', {language: 'en'})
+        window.location.reload()
+        // vm.$store.dispatch('getApiMenu').then(() => {
+        //   vm.$store.commit('SET_SNACKBAR', {
+        //     globalSnackbar: true,
+        //     snackbarMessage: 'Your languages has been changed！'
+        //   })
+        // })
       },
 
       switchChinese () {
         let vm = this
-        vm.$store.commit('SWITCH_ENGLISH', {
-          path: 'api/menu_items/vue-app-menu'
-        })
+        vm.$store.commit('switch_Language', {language: 'zh-hans'})
+        window.location.reload()
 
-        vm.$store.dispatch('getApiMenu').then(() => {
-          vm.$store.commit('SET_SNACKBAR', {
-            globalSnackbar: true,
-            snackbarMessage: '您的语言切换成功！'
-          })
-        })
+        // vm.$store.dispatch('getApiMenu').then(() => {
+        //   vm.$store.commit('SET_SNACKBAR', {
+        //     globalSnackbar: true,
+        //     snackbarMessage: '您的语言切换成功！'
+        //   })
+        // })
       },
 
       openGlobalSearch () {
-        this.headerMenuClass = 'header-main-menu d-none'
-        this.searchGlobalClass = 'search bounceDown-enter-active'
+        if (this.$router.history.current.name === 'Home') {
+          this.$store.commit('changeSearchFocus')
+        }
+        else {
+          this.headerMenuClass = 'header-main-menu d-none'
+          this.searchGlobalClass = 'search bounceDown-enter-active'
+        }
       },
 
       closeGlobalSearch () {
@@ -205,22 +212,28 @@
         // d-none
       },
 
-      headerMenuClick: function (e, item) {
-        e.stopPropagation()
-
-        if (item.dialog) {
-          this.$store.state.core.requestDialog = true
-        }
-
-        if (item.to || !item.href) {
-          return
-        }
-
-        this.$vuetify.goTo(item.href)
-      },
-
       openLoginSheet () {
         this.$store.state.core.loginStatus = !this.$store.state.core.loginStatus
+      },
+
+      debounceGlobalSearch: debounce(({ vm }) => {
+        if (vm.globalSearchKeyWord) {
+          vm.globalSearchLoading = true
+          vm.$store.dispatch('productSearch', vm.globalSearchKeyWord).then(result => {
+            vm.globalSearchLoading = false
+          });
+        } else {
+          vm.clearSearchResult()
+        }
+      }, 300),
+
+      globalSearch() {
+        let vm = this
+        vm.debounceGlobalSearch({ vm })
+      },
+
+      clearSearchResult() {
+        this.$store.commit('clearSearchResult')
       }
     }
   }
@@ -379,6 +392,10 @@
         }
       }
 
+      & > .v-progress-circular {
+        position: absolute;
+      }
+
       & > .v-btn {
         background: #fff;
         border-radius: 0;
@@ -390,9 +407,41 @@
         width: 72px !important;
         color: #333 !important;
       }
+
+      .search-result {
+        position: absolute;
+        background: #fff;
+        border-radius: 0;
+        box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.25);
+        height: auto;
+        max-height: 200px;
+        margin: 0;
+        overflow-y: auto;
+        padding: 0;
+        right: 0;
+        text-align: center;
+        top: 72px;
+        width: 100%;
+        transition: all 0.3s;
+        border-top: 1px solid #ddd;
+
+        li {
+          text-align: left;
+          padding: 0 10%;
+        }
+      }
     }
   }
 
+  .current {
+    background-color: #028fd2;
+    color: #fff;
+    
+    a {
+      color: #fff;
+    }
+  }
+  
   #minibasket {
     padding: 10px 26px;
 

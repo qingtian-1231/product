@@ -1,11 +1,14 @@
 import { request, apiServer} from '../../utils/request'
-import { convertUTCTimeBeforeTime, convertUTCTimeToLocalTimeShort} from '../../utils/convert-time-formate'
+import { globalUtils } from '../../utils/globalUtils'
+import {getCookie} from "../../utils/cookie";
+// import { convertUTCTimeBeforeTime, convertUTCTimeToLocalTimeShort} from '../../utils/convert-time-formate'
 
 const state = {
   path: 'api/products/list',
   _format: 'hal_json',
   productList: [],
-  productDetails: {},
+  productDetails: {}, // 购物车使用的字段
+  productInfo: {}, // 指定位置或特殊样式的字段
   productBasicInformation: {},
   productProperties: {},
   productRelationFormulation: {},
@@ -14,20 +17,44 @@ const state = {
 
 const mutations = {
   processProductList(state, payload) {
-    state.productList = payload
+    state.productList = payload.result.map(item => {
+      let hasFavorite = globalUtils.findElementInArray(payload.favorite, item.uuid, 'value')
+
+      if (hasFavorite) {
+        item.isFeature = true
+      } else {
+        item.isFeature = false
+      }
+      return item
+    })
   },
 
   processProductDetails(state, payload) {
-    console.log(payload, 'payload')
     for (let field in payload) {
       if (field === 'body') {
-        state.productBasicInformation.description = payload.body
+        state.productInfo.description = payload.body
         continue
       }
 
       if (field === 'title') {
         state.productDetails.title = payload.title.value
-        state.productBasicInformation.title = payload.title
+        state.productInfo.title = payload.title
+        continue
+      }
+
+      if (field === 'field_cas_number') {
+        state.productBasicInformation.field_cas_number = payload.field_cas_number
+        continue
+      }
+
+      if (field === 'field_product_name') {
+        state.productBasicInformation.field_product_name = payload.field_product_name
+        continue
+      }
+
+      if (field === 'field_product_type') {
+        state.productBasicInformation.field_product_type = payload.field_product_type
+        state.productBasicInformation.field_product_type.value = state.productBasicInformation.field_product_type.value[0]
         continue
       }
 
@@ -36,28 +63,29 @@ const mutations = {
         continue
       }
 
-      if (field === 'field_product_cluster') {
-        state.productBasicInformation.product_cluster = payload.field_product_cluster
+      if (field === 'field_product_brand') {
+        state.productBasicInformation.brand = payload.field_product_brand.value.length > 0 ? payload.field_product_brand.value[0].name : {}
+        state.productBasicInformation.brand.label = '产品品牌'
         continue
       }
 
-      if (field === 'field_product_group') {
-        state.productBasicInformation.product_group = payload.field_product_group
+      if (field === 'field_buy_link') {
+        state.productInfo.field_buy_link = payload.field_buy_link
         continue
       }
 
       if (field === 'field_recommended_application') {
-        state.productBasicInformation.recommended_application = payload.field_recommended_application
+        state.productInfo.recommended_application = payload.field_recommended_application
         continue
       }
 
       if (field === 'field_country_registration_group') {
-        state.productBasicInformation.country_registration_group = payload.field_country_registration_group
+        state.productInfo.country_registration_group = payload.field_country_registration_group
         continue
       }
 
       if (field === 'field_suitable_application') {
-        state.productBasicInformation.suitable_application = payload.field_suitable_application
+        state.productInfo.suitable_application = payload.field_suitable_application
         continue
       }
 
@@ -94,22 +122,31 @@ const mutations = {
         state.productProperties[field] = payload[field]
       }
     }
-  },
-
-  processProductRelationCountry(state, payload) {
-    state.productRelationCountry = payload
-  },
-
-  processProductRelationApplication(state, payload) {
-    state.productRelationApplication = payload
   }
 }
 
 const actions = {
-  getProductList({commit, state}) {
-    return request().get(state.path)
+  getProductList({dispatch, commit, state, rootState}, options) {
+    let requestPath = state.path
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + state.path
+    }
+
+    return request().get(requestPath, {
+      params: options
+    })
       .then(function (response) {
-        commit('processProductList', response.data)
+        let payload = {
+          favorite: '',
+          result: ''
+        }
+
+        payload.favorite = rootState.user.favoriteProductList
+        payload.result = response.data.results
+        commit('processProductList', payload)
+
         return Promise.resolve(response)
       })
       .catch(function (error) {
@@ -119,9 +156,13 @@ const actions = {
   },
 
   getProductDetails({dispatch, commit, state, rootState}, payload) {
-    let apiUrl = 'api/product_detail_resource/' + payload.id
+    let requestPath = 'api/product_detail_resource/' + payload.id
+    let currentLanguage = getCookie('drupal:session:language')
 
-    return request().get(apiUrl, {
+    if (currentLanguage === 'en') {
+      requestPath = 'en/api/product_detail_resource/' + payload.id
+    }
+    return request().get(requestPath, {
       params: {
         _format: state._format
       }
@@ -136,124 +177,16 @@ const actions = {
       })
   },
 
-  getProductRelationCountry({commit}, payload) {
-    let returnValue = []
-    let fieldConfig = payload.fieldConfig.product
-    return request().get(payload.relation.links.related.href).then(response => {
-      returnValue = response.data.data.map(field => {
-        let country = {}
-        let countryDescription = {}
-        if (field.attributes.hasOwnProperty('field_country_registration')) {
-          country = {
-            label: fieldConfig.hasOwnProperty('field_country_registration') ? fieldConfig.field_country_registration : '未命名',
-            value: field.attributes.field_country_registration,
-          }
-        }
-
-        if (field.attributes.hasOwnProperty('field_country_registration_descr')) {
-          countryDescription = {
-            label: fieldConfig.hasOwnProperty('field_country_registration_descr') ? fieldConfig.field_country_registration_descr : '未命名',
-            value: field.attributes.field_country_registration_descr,
-          }
-        }
-
-        return {
-          'country': country,
-          'description': countryDescription,
-        }
+  processFavoriteForUser({ commit, state }, favoriteInfo) {
+    return request()
+      .post('api/user_favorite/submit?_format=json', favoriteInfo)
+      .then(result => {
+        return Promise.resolve(result);
       })
-
-      commit('processProductRelationCountry', returnValue)
-      return Promise.resolve(returnValue)
-    }).catch(error => {
-      console.log(error)
-    })
-  },
-
-  getProductRelationApplication({commit}, payload) {
-    let returnValue = []
-    let fieldConfig = payload.fieldConfig.product
-    return request().get(payload.relation.links.related.href).then(response => {
-      returnValue = response.data.data.map(field => {
-        let application = {}
-        if (field.attributes.hasOwnProperty('name')) {
-          application = {
-            label: fieldConfig.hasOwnProperty('name') ? fieldConfig.name : '未命名',
-            value: field.attributes.name,
-          }
-        }
-
-        return {
-          'application': application,
-        }
+      .catch(error => {
+        console.log(error)
+        return Promise.resolve(error);
       })
-      commit('processProductRelationApplication', returnValue)
-      return Promise.resolve(returnValue)
-    }).catch(error => {
-      console.log(error)
-    })
-  },
-
-  getProductFormulation({commit, state, rootState}, payload) {
-    let returnValue = []
-    let fieldConfig = rootState.core.fieldConfig.product
-    if (payload.relation.data.length <= 0) {
-      return []
-    }
-
-    return request().get(payload.relation.links.related.href).then(response => {
-
-      returnValue = response.data.data.map(field => {
-        let formulation = {}
-        if (field.attributes.hasOwnProperty('field_formulation_name')) {
-          formulation = {
-            label: fieldConfig.hasOwnProperty('field_formulation_name') ? fieldConfig.field_formulation_name : '未命名',
-            value: field.attributes.field_formulation_name,
-            id: field.id,
-          }
-        }
-
-        return {
-          'formulation': formulation,
-        }
-      })
-
-      console.log(returnValue, 'returnValue')
-      return Promise.resolve(returnValue)
-    }).catch(error => {
-      console.log(error)
-    })
-  },
-
-  getProductFile({commit, state, rootState}, payload) {
-    let returnValue = []
-    let fieldConfig = rootState.core.fieldConfig.product
-    if (payload.relation.data.length <= 0) {
-      return []
-    }
-
-    return request().get(payload.relation.links.related.href).then(response => {
-
-      returnValue = response.data.data.map(field => {
-        let file = {}
-
-        console.log(field, 'field')
-        if (field.attributes.hasOwnProperty('uri')) {
-          file = {
-            label: fieldConfig.hasOwnProperty('uri') ? fieldConfig.uri : '未命名',
-            value: apiServer + field.attributes.uri.url,
-            date: convertUTCTimeToLocalTimeShort(field.attributes.changed)
-          }
-        }
-
-        return {
-          'file': file,
-        }
-      })
-      return Promise.resolve(returnValue)
-    }).catch(error => {
-      console.log(error)
-    })
   }
 }
 

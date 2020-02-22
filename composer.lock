@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bedac83160a0b5b6340379ce3eecdbaf",
+    "content-hash": "b02b6029424e7ae2460bd5c010a0de07",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -8836,7 +8836,6 @@
                 "stdlib",
                 "zf"
             ],
-            "abandoned": "laminas/laminas-stdlib",
             "time": "2018-08-28T21:34:05+00:00"
         }
     ],

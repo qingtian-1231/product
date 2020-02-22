@@ -10,6 +10,8 @@
 
     <core-view></core-view>
 
+    <footer-bar></footer-bar>
+
     <core-footer></core-footer>
 
     <core-cta></core-cta>
@@ -38,6 +40,8 @@
 
 <script>
   import { mapState } from 'vuex'
+  import { globalUtils } from './utils/globalUtils'
+  import path from '../public/css/googleapi_material_icons.css'
 
   export default {
     name: 'App',
@@ -45,6 +49,7 @@
       LoginDialog: () => import('@/components/LoginDialog'),
       CoreCta: () => import('@/components/core/Cta'),
       CoreDrawer: () => import('@/components/core/Drawer'),
+      FooterBar: () => import('@/components/core/FooterBar'),
       CoreFooter: () => import('@/components/core/Footer'),
       CoreToolbar: () => import('@/components/core/Toolbar'),
       CoreFilterbar: () => import('@/components/core/Filterbar'),
@@ -75,6 +80,13 @@
             this.showFilterbar = false
           }
         }
+    },
+
+    created () {
+      // IE 浏览器不加载material 样式文件
+      if (!(window.navigator.userAgent.indexOf('MSIE') >= 1)) {
+        globalUtils.loadCss('/css/googleapi_material_icons.css')
+      }
     },
 
     methods: {

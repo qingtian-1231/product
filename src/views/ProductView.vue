@@ -19,17 +19,17 @@
         <div>
           <h1>
             <icon-additives bg-color-class="wetting-agents"></icon-additives>
-            <template v-if="productBasic.title">
-              {{ productBasic.title.value }}
+            <template v-if="productInfo.title">
+              {{ productInfo.title.value }}
             </template>
           </h1>
           <div>
             <v-btn icon>
               <v-icon large class="material-icons-outlined">cloud_download</v-icon>
             </v-btn>
-            <v-btn icon>
-              <v-icon large class="material-icons-outlined">share</v-icon>
-            </v-btn>
+<!--            <v-btn icon>-->
+<!--              <v-icon large class="material-icons-outlined">share</v-icon>-->
+<!--            </v-btn>-->
             <v-btn icon>
               <v-icon large class="material-icons-outlined">star_border</v-icon>
             </v-btn>
@@ -73,15 +73,15 @@
           </v-tabs>
           <v-tabs-items v-model="tab">
             <v-tab-item>
-              <basic-information :product-basic="productBasic"></basic-information>
+              <basic-information :product-basic="productBasic" :product-info="productInfo"></basic-information>
             </v-tab-item>
             <v-tab-item>
               <properties :product-properties="productProperties"></properties>
             </v-tab-item>
             <v-tab-item>
               <formulations
-                :product-relation-formulation="productRelationFormulation"
-                :title-field="productBasicInformation.title"
+                :product-relation-formulation="productFormulation"
+                :title-field="productInfo.title"
               ></formulations>
             </v-tab-item>
             <v-tab-item>
@@ -99,10 +99,10 @@
             <v-icon large class="material-icons-outlined">cloud_download</v-icon>
             <p>下载</p>
           </v-btn>
-          <v-btn icon tile large>
-            <v-icon large class="material-icons-outlined">share</v-icon>
-            <p>分享</p>
-          </v-btn>
+<!--          <v-btn icon tile large>-->
+<!--            <v-icon large class="material-icons-outlined">share</v-icon>-->
+<!--            <p>分享</p>-->
+<!--          </v-btn>-->
           <v-btn icon tile large>
             <v-icon large class="material-icons-outlined">star_border</v-icon>
             <p>最爱</p>
@@ -133,6 +133,7 @@
       ...mapState({
         requestProductDialog: state => state.core.requestProductDialog,
         productDetails: state=> state.product.productDetails,
+        productInformation: state => state.product.productInfo,
         productBasicInformation: state => state.product.productBasicInformation,
         productProperties: state => state.product.productProperties,
         productRelationFormulation: state => state.product.productRelationFormulation,
@@ -147,6 +148,8 @@
           '基本信息', '属性', '配方', '其他信息',
         ],
         productBasic: {},
+        productInfo: {},
+        productFormulation: []
       }
     },
 
@@ -158,6 +161,9 @@
         id: productId
       }).then(() => {
         vm.productBasic = vm.productBasicInformation
+        vm.productInfo = vm.productInformation
+        vm.productFormulation = vm.productRelationFormulation.value
+        // console.log(vm.productProperties, 'productProperties')
       })
     },
 

@@ -1,29 +1,25 @@
 <template>
   <v-card flat color="basil" id="basic-information">
     <div class="information">
-      <template v-if="productBasic.description">
-        <h2 v-html="productBasic.description.value"></h2>
+      <template v-if="productInfo.description">
+        <h2 v-html="productInfo.description.value"></h2>
       </template>
 
 
-      <p v-if="productBasic.product_cluster">
+      <p v-if="buy_link.value">
         <span class="grey-2">
-        {{ productBasic.product_cluster.label }}
+          {{ buy_link.label }}
         </span>
-        {{ productBasic.product_cluster.value }}
+        <a target="_blank" :href="buy_link.value.uri">{{ buy_link.value.title }}</a>
       </p>
-      <p v-if="productBasic.product_cluster">
+      <template v-for="(item, index) in productBasic">
+        <p :key="index">
         <span class="grey-2">
-        {{ productBasic.product_group.label }}
+          {{ item.label }}
         </span>
-        {{ productBasic.product_group.value }}
-      </p>
-      <p v-if="productBasic.benefits">
-        <span class="grey-2">
-        {{ productBasic.benefits.label }}
-        </span>
-        {{ productBasic.benefits.value }}
-      </p >
+          {{ item.value }}
+        </p>
+      </template>
     </div>
 
     <div class="app" v-if="recommended_application">
@@ -79,7 +75,11 @@
     props: {
       productBasic: {
         type: Object
-      }
+      },
+
+      productInfo: {
+        type: Object
+      },
     },
     data () {
       return {
@@ -87,16 +87,19 @@
     },
 
     computed: {
+      buy_link: function () {
+        return (this.productInfo && this.productInfo.field_buy_link) ? this.productInfo.field_buy_link : {}
+      },
       recommended_application: function () {
-        return (this.productBasic && this.productBasic.recommended_application) ? this.productBasic.recommended_application : []
+        return (this.productInfo && this.productInfo.recommended_application) ? this.productInfo.recommended_application : []
       },
 
       suitable_application: function () {
-        return (this.productBasic && this.productBasic.suitable_application) ? this.productBasic.suitable_application : []
+        return (this.productInfo && this.productInfo.suitable_application) ? this.productInfo.suitable_application : []
       },
 
       country_registration_group: function () {
-        return (this.productBasic && this.productBasic.country_registration_group) ? this.productBasic.country_registration_group : []
+        return (this.productInfo && this.productInfo.country_registration_group) ? this.productInfo.country_registration_group : []
       }
     },
 
@@ -104,6 +107,7 @@
     },
 
     mounted() {
+      console.log(this.productInfo, 'this.productInfo')
     }
   }
 </script>

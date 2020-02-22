@@ -4,7 +4,7 @@
       <h2>配方的技术规格数据</h2>
       <ul>
         <template v-for="(item, index) in formulationProperties">
-          <li :key="index">
+          <li :key="index" v-if="item.value">
             <div class="item-property">
             <span>
               <v-icon class="material-icons-outlined">cloud</v-icon>

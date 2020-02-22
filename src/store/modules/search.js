@@ -4,7 +4,8 @@ import { convertUTCTimeBeforeTime, convertUTCTimeToLocalTimeShort} from '../../u
 const state = {
   productPath: 'api/products/list',
   formulationPath: 'api/formulations/list',
-  searchResult: []
+  searchResult: [],
+  searchFocus: false
 }
 
 const mutations = {
@@ -14,6 +15,10 @@ const mutations = {
 
   clearSearchResult(state, payload) {
     state.searchResult = []
+  },
+
+  changeSearchFocus (state, payload) {
+    state.searchFocus = true
   }
 }
 
@@ -21,17 +26,19 @@ const actions = {
   productSearch ({dispatch, commit, state}, keyWord) {
     let parameter = {
       params: {
-        title: keyWord
+        title: keyWord,
+        field_other_names: keyWord,
+        body: keyWord,
+        field_benefits: keyWord,
       }
     }
     let productsArr = []
     let formulationsArr = []
 
-    console.log(keyWord, 'keyWord')
     return request().get(state.productPath, parameter)
       .then(function (products) {
 
-        productsArr = products.data.map(item => {
+        productsArr = products.data.results.map(item => {
           return {
             title: item.title,
             uuid: item.uuid,
@@ -40,7 +47,7 @@ const actions = {
         })
 
         dispatch('formulationSearch', keyWord).then(formulations => {
-          formulationsArr = formulations.data.map(item => {
+          formulationsArr = formulations.data.results.map(item => {
             return {
               title: item.title,
               uuid: item.uuid,
@@ -48,7 +55,6 @@ const actions = {
             }
           })
 
-          console.log(productsArr, formulationsArr, formulationsArr.concat(productsArr), 'formulationsArrformulationsArr')
           commit('processSearchResult', formulationsArr.concat(productsArr))
           return Promise.resolve(formulationsArr.concat(productsArr))
         })

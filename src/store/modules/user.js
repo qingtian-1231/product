@@ -3,16 +3,23 @@ import { globalUtils } from '../../utils/globalUtils'
 import { getCookie, setCookie, delCookie } from "../../utils/cookie.js";
 
 const state = {
+  _format: 'hal_json',
   id: "",
   isLogin: false,
   isAdmin: false,
   token: "",
   // 缓存用户信息，当进入用户页面时先查看cachedUsers中是否有用户的信息
   cachedUsers: [],
-  currentUser: {}
+  currentUser: {},
+  favoriteProductList: [],
+  favoriteFormulationList: [],
 };
 
 const mutations = {
+  processUserFields(state, payload) {
+    state.favoriteProductList = payload.field_product_list
+    state.favoriteFormulationList = payload.field_formulation_list
+  },
 
   GET_USER_LIST(state, payload) {
     state.userList = payload.users;
@@ -90,7 +97,7 @@ const actions = {
       });
   },
 
-  getCurrentUser({ commit, state }) {
+  getCurrentUser({dispatch, commit, state }) {
     const sessionKey = "drupal:session";
     const session = getCookie(sessionKey);
     const sessionValue = session ? JSON.parse(session) : "";
@@ -101,6 +108,12 @@ const actions = {
       commit('GET_CURRENT_USER', {
         user: current_user
       });
+
+      dispatch('getCurrentUserFields').then((result) => {
+        if (result.status === 200) {
+          commit('processUserFields', result.data)
+        }
+      })
 
       return Promise.resolve(current_user);
     } else {
@@ -189,7 +202,31 @@ const actions = {
     }
   },
 
-  loginByPassword({ commit, state }, userInfo) {
+  getCurrentUserFields ({ commit, state }) {
+    const sessionKey = "drupal:session";
+    const session = getCookie(sessionKey);
+    const sessionValue = session ? JSON.parse(session) : "";
+    const current_user =
+      ((sessionValue || "").authenticated || "").current_user || "";
+
+    if (current_user) {
+      return request()
+        .get('user/' + current_user.uid, {
+          params: {
+            _format: state._format
+          }
+        })
+        .then((response) => {
+          return Promise.resolve(response)
+        })
+        .catch(error => {
+          console.log(error)
+          return Promise.resolve(error)
+        })
+    }
+  },
+
+  loginByPassword({ dispatch, commit, state }, userInfo) {
     return request()
       .post('/user/login?_format=json', userInfo)
       .then(
@@ -213,6 +250,13 @@ const actions = {
 
           state.isLogin = true;
           state.currentUser = res.data.current_user
+
+          dispatch('getCurrentUserFields').then((result) => {
+            if (result.status === 200) {
+              commit('processUserFields', result.data)
+            }
+          })
+
           return Promise.resolve(res);
         },
         err => {

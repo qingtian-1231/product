@@ -16,10 +16,10 @@
       <div id="login-dialog">
         <h2>
           <v-icon>lock_open</v-icon>
-          发送反馈
+          注册,充分利用BASF产品助手。
         </h2>
         <p>
-          如果您对使用建筑涂料实验室助手有任何建议或疑问，请随时向我们提供反馈。
+          完全访问专有配方和完整的产品数据。 个性化您自己的帐户并存储喜欢的或最近访问的产品和配方。 您甚至可以将您的帐户链接到同事，以共享您的示例订单信息-这只是注册的一些优点。
         </p>
         <div class="row text-center mx-0">
           <v-col cols="12" md="6" sm="12">
@@ -67,6 +67,7 @@
   #login-dialog {
     text-align: center;
     padding: 60px 4%;
+    background: #fff;
 
     h2 {
       padding: 2%;

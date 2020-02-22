@@ -1,9 +1,12 @@
 import { request, apiServer} from '../../utils/request'
 import { convertUTCTimeToLocalTime } from '../../utils/convert-time-formate'
+import { globalUtils } from "../../utils/globalUtils";
+import {getCookie} from "../../utils/cookie";
 
 const state = {
   path: 'api/formulations/list',
   _format: 'hal_json',
+  formulationFieldsDefinition: {},
   formulationList: [],
   formulationDetails: [],
   formulationFiles: [],
@@ -13,7 +16,16 @@ const state = {
 
 const mutations = {
   processFormulationList(state, payload) {
-    state.formulationList = payload
+    state.formulationList = payload.result.map(item => {
+      let hasFavorite = globalUtils.findElementInArray(payload.favorite, item.uuid, 'value')
+
+      if (hasFavorite) {
+        item.isFeature = true
+      } else {
+        item.isFeature = false
+      }
+      return item
+    })
   },
 
   processFormulationDetails(state, payload) {
@@ -51,8 +63,8 @@ const mutations = {
 
             return item
           })
-          continue
         }
+        continue
       }
 
       if (field === 'field_formula_composition') {
@@ -61,15 +73,34 @@ const mutations = {
       }
       state.formulationProperties[field] = payload[field]
     }
+  },
+
+  processFormulationFieldsDefinition(state, payload) {
+    state.formulationFieldsDefinition = payload
   }
 }
 
 const actions = {
-  getFormulationList({commit, state}) {
-    return request().get(state.path)
+  getFormulationList({commit, state, rootState}, options) {
+    let requestPath = state.path
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + state.path
+    }
+
+    return request().get(requestPath, {
+      params: options
+    })
       .then(function (response) {
-        console.log(response.data, 'response.data')
-        commit('processFormulationList', response.data)
+        let payload = {
+          favorite: '',
+          result: ''
+        }
+
+        payload.favorite = rootState.user.favoriteFormulationList
+        payload.result = response.data.results
+        commit('processFormulationList', payload)
         return Promise.resolve(response)
       })
       .catch(function (error) {
@@ -79,8 +110,14 @@ const actions = {
   },
 
   getFormulationDetails({dispatch, commit, state}, payload) {
-    let apiUrl = 'api/formulation_detail_resource/' + payload.id
-    return request().get(apiUrl, {
+    let requestPath = 'api/formulation_detail_resource/' + payload.id
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/api/formulation_detail_resource/' + payload.id
+    }
+
+    return request().get(requestPath, {
       params: {
         _format: state._format
       }
@@ -88,6 +125,28 @@ const actions = {
       .then(function (response) {
         commit('processFormulationDetails', response.data)
         return Promise.resolve(response.data)
+      })
+      .catch(function (error) {
+        console.log(error)
+        return Promise.resolve(error)
+      })
+  },
+
+  getFormulationFieldsDefinition({commit, state}) {
+    let requestPath = 'api/formulation_fields_definition'
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/api/formulation_fields_definition'
+    }
+    return request().get(requestPath, {
+      params: {
+        _format: state._format
+      }
+    })
+      .then(function (response) {
+        commit('processFormulationFieldsDefinition', response.data)
+        return Promise.resolve(response)
       })
       .catch(function (error) {
         console.log(error)

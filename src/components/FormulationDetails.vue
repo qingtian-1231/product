@@ -1,18 +1,18 @@
 <template>
-  <div id="product-details">
+  <div id="formulation-details">
     <div>
-      <router-link :to="{name: 'Product', params: {id: product.uuid}}">
+      <router-link :to="{name: 'Formulation', params: {id: formulation.uuid}}">
         <icon-additives bg-color-class="default"></icon-additives>
-        <span>{{ product.title }}</span>
+        <span>{{ formulation.title }}</span>
         <v-icon class="icon float-right">keyboard_arrow_right</v-icon>
       </router-link>
       <small>
-        {{ productBasicInformation.field_benefits.value }}
+        {{ previewFormulationBasic.benefits.value }}
       </small>
     </div>
     <ul>
-      <template v-for="(item, index) in productProperties">
-        <li :key="index">
+      <template v-for="(item, index) in previewFormulationProp">
+        <li :key="index" v-if="item.value">
           <div class="item-property">
             <span>
               <v-icon class="material-icons-outlined">cloud</v-icon>
@@ -27,22 +27,34 @@
     </ul>
     <div>
       <v-btn icon @click="closeRequestDialog">
-        <v-icon class="material-icons-outlined">close</v-icon>
+        <v-icon large>close</v-icon>
       </v-btn>
 
-      <v-btn icon>
-        <v-icon class="material-icons-outlined">start</v-icon>
-      </v-btn>
+      <v-btn
+        icon
+        @click="favoritesFormulationStar('formulation', formulation.isFeature ? 'delete' : 'add', formulation.uuid)"
+      >
+        <v-icon
+          v-if="!formulation.isFeature"
+          large
+          color="grey lighten-1"
+        >
+          star_border
+        </v-icon>
 
-      <v-btn icon>
-        <v-icon class="material-icons-outlined">shopping_basket</v-icon>
+        <v-icon
+          v-else
+          large
+          color="yellow"
+        >
+          star
+        </v-icon>
       </v-btn>
     </div>
   </div>
 </template>
 <script>
   import IconAdditives from '../components/svg/Additives'
-  import { mapState } from 'vuex'
 
   export default {
     name: 'formulation-details',
@@ -50,33 +62,23 @@
     components: { IconAdditives },
 
     props: {
-      product: {
+      formulation: {
         type: Object
       },
 
-    },
+      previewFormulationBasic: {
+        type: Object
+      },
 
-    computed: {
-      ...mapState({
-        productBasicInformation: state => state.product.productBasicInformation,
-        productProperties: state => state.product.productProperties,
-      }),
+      previewFormulationProp: {
+        type: Object
+      }
     },
 
     data: function () {
       return {
         productTitle: '',
       }
-    },
-
-    mounted () {
-      let vm = this
-
-      vm.$store.dispatch('getProductDetails', {
-        id: vm.product.uuid
-      }).then(() => {
-        console.log('productProperties')
-      })
     },
 
     methods: {
@@ -88,7 +90,7 @@
 </script>
 
 <style lang="scss" scoped>
-  #product-details {
+  #formulation-details {
     padding: 20px;
 
     .v-btn {

@@ -6,7 +6,7 @@
     <v-col lg="12" md="12" sm="12">
       <v-row dense>
         <v-card
-          class="mx-auto"
+          class="mx-auto download-list"
           width="100%"
         >
 
@@ -37,30 +37,70 @@
               ></v-divider>
             </template>
           </v-list>
+          <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler" ref="infiniteLoading" :distance="distance">
+            <span slot="no-more">没有更多下载文件了</span>
+            <span slot="no-results">没有下载文件</span>
+          </infinite-loading>
         </v-card>
       </v-row>
     </v-col>
   </v-container>
 </template>
 <script>
+  import InfiniteLoading from 'vue-infinite-loading/src/components/InfiniteLoading.vue'
   import { mapState } from 'vuex'
+  import config from '../config'
+
+  const isDev = process.env.NODE_ENV !== 'production'
+  // 每页显示的文章条数
+  const pageCount = isDev ? config.dev.pageCount : config.prod.pageCount
 
   export default {
+    components: { InfiniteLoading },
+
     computed: {
-      ...mapState({
-        downloadList: state => state.download.downloadList
-      }),
+      ...mapState({}),
     },
 
     data: () => ({
+      distance: -Infinity,
+      infiniteId: +new Date(),
+      downloadList: [],
     }),
 
     mounted () {
       let vm = this
-      vm.$store.dispatch('getDownloadList')
+      vm.distance = 1
+      vm.changeFilter()
     },
 
     methods: {
+      changeFilter () {
+        this.downloadList = []
+        this.infiniteId += 1
+      },
+
+      infiniteHandler ($state) {
+        let vm = this
+        let options = {}
+
+        options.items_per_page = pageCount
+        options.page = vm.downloadList.length / pageCount
+        vm.$store.dispatch('getDownloadList', options).then(() => {
+          let downloads = vm.$store.state.download.downloadList
+
+          if (downloads.length) {
+            vm.downloadList = vm.downloadList.concat(downloads)
+
+            $state.loaded()
+            if (downloads.length < pageCount) {
+              $state.complete()
+            }
+          } else {
+            $state.complete()
+          }
+        })
+      },
     }
   }
 </script>
@@ -68,16 +108,26 @@
   #download {
     max-width: 1318px;
 
-    .v-list {
+    .download-list {
 
-      .v-avatar {
+      .v-list {
+        padding: 0;
+        border-bottom: 1px solid #ddd;
 
-        i {
-          height: 40px;
-          width: 40px;
-          margin-top: 0;
+        .v-avatar {
+
+          i {
+            height: 40px;
+            width: 40px;
+            margin-top: 0;
+          }
         }
       }
+    }
+
+    .infinite-loading-container {
+      height: 72px;
+      line-height: 72px;
     }
   }
 </style>

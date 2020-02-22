@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 var globalUtils
 
 const debounce = (func, wait) => {
@@ -27,6 +29,25 @@ globalUtils = {
       }
     })
     return noElement
+  },
+
+  findElementInArray: function (arr, value, key) {
+    return arr.find(function (item) {
+      return item[key] === value
+    })
+  },
+
+  /**
+   * append a CSS file dynamically just once
+   */
+  loadCss: function loadCss (url) {
+    if ($(`link[src="${url}"]`).length === 0) {
+      let css = document.createElement('link')
+      css.rel = 'stylesheet'
+      css.href = url
+      css.type = 'text/css'
+      document.head.appendChild(css)
+    }
   },
 }
 

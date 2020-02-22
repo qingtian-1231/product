@@ -26,8 +26,8 @@
         <h2>
           <v-icon>shopping_basket</v-icon>
           样品购物车
-          <v-btn icon small @click="showShoppingCart = false">
-            <v-icon>closed</v-icon>
+          <v-btn icon @click="showShoppingCart = false">
+            <v-icon class="material-icons-outlined">closed</v-icon>
           </v-btn>
         </h2>
         <ul>
@@ -112,6 +112,14 @@ export default {
       shoppingCart: state => state.basket.shoppingCart,
       isLogin: state => state.user.isLogin
     })
+  },
+
+  watch: {
+    shoppingCartCount: function (val, old) {
+      if (val) {
+        this.showShoppingCart = true
+      }
+    }
   },
 
   created() {

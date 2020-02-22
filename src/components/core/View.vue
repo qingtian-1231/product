@@ -100,11 +100,11 @@
                   required
                 ></v-text-field>
 
-                <v-checkbox
-                  v-model="rememberMe"
-                  label="记住用户?"
-                  required
-                ></v-checkbox>
+<!--                <v-checkbox-->
+<!--                  v-model="rememberMe"-->
+<!--                  label="记住用户?"-->
+<!--                  required-->
+<!--                ></v-checkbox>-->
 
                 <v-btn block rounded color="secondary" dark @click="userLogin()">
                   登录<v-icon right dark>keyboard_arrow_right</v-icon>
@@ -273,6 +273,7 @@
               if (result.hasOwnProperty('status') && result.status === 200) {
                 vm.loginSuccess = true
                 vm.displayName = result.data.current_user.name
+                window.location.reload()
               } else if (result.hasOwnProperty('response') && result.response.status !== 200) {
                 if (result.response.data.message === 'The user has not been activated or is blocked.') {
                   vm.setAlert('您的账号还没有被管理员激活，请注意查收邮件', 'error')
@@ -290,6 +291,7 @@
       userLogout () {
         this.$store.dispatch('logout')
         this.loginSuccess = false
+        window.location.reload()
       },
 
       setAlert (message, style, type) {

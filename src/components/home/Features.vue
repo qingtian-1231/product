@@ -110,7 +110,7 @@
       width: 100%;
       max-width: 100%;
       min-width: 100%;
-      margin-top: -80%;
+      margin-top: -110%;
     }
   }
 

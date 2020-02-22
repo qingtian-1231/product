@@ -30,11 +30,28 @@ class ProductResource extends ResourceBase {
   public function get($id = NULL) {
     $entity_manager = \Drupal::entityManager();
     $entity = $entity_manager->loadEntityByUuid('commerce_product', $id);
-
     $product = [];
+    $filter_fields = [
+      'type',
+      'stores',
+      'uid',
+      'path',
+      'created',
+      'changed',
+      'content_translation_source',
+      'content_translation_outdated',
+      'field_is_public',
+      'field_is_feature'
+    ];
 
     if ($entity) {
       foreach ($entity->getFields() as $field => $field_item_list) {
+        // 过滤掉不返回给客户端的字段数据
+
+        if (in_array($field, $filter_fields)) {
+          continue;
+        }
+
         if ($field_item_list instanceof FieldItemList) {
           $field_definition = $field_item_list->getFieldDefinition();
 
@@ -76,35 +93,43 @@ class ProductResource extends ResourceBase {
               ];
             }
             elseif ($field_definition->getType() === 'entity_reference') {
-              if ($field === 'field_suitable_application') {
-                $value = [];
-                foreach ($field_item_list as $term_filed) {
-                  $filed_value = $term_filed->getValue();
-                  $term = Term::load($filed_value['target_id']);
-                  $value[] = $term->getName();
-                }
+              switch ($field) {
+                case 'field_suitable_application':
+                  $value = $this->processTerm($field_item_list);
 
-                $product[$field] = [
-                  'label' => $field_definition->getLabel(),
-                  'value' => $value,
-                ];
-              }
-              else {
-                $entity_reference_value = [];
-                foreach ($field_item_list as $para) {
-                  $entity_reference_value[] = $this->getFields($para->entity->getFields());
-                }
-                $product[$field] = [
-                  'label' => $field_definition->getLabel(),
-                  'value' => $entity_reference_value,
-                ];
+                  $product[$field] = [
+                    'label' => $field_definition->getLabel(),
+                    'value' => $value,
+                  ];
+                  break;
+
+                case 'field_product_type':
+                  $value = $this->processTerm($field_item_list);
+
+                  $product[$field] = [
+                    'label' => $field_definition->getLabel(),
+                    'value' => $value,
+                  ];
+                  break;
+
+                default:
+                  $entity_reference_value = [];
+                  foreach ($field_item_list as $para) {
+                    $entity_reference_value[] = $this->getFields($para->entity->getFields());
+                  }
+                  $product[$field] = [
+                    'label' => $field_definition->getLabel(),
+                    'value' => $entity_reference_value,
+                  ];
+                  break;
               }
             }
             elseif ($field_definition->getType() === 'file') {
               $value = [];
+              $host = \Drupal::request()->getSchemeAndHttpHost();
               foreach ($field_item_list as $field_item) {
                 $value[] = [
-                  'url' => $field_item->entity->url(),
+                  'url' => $host . '/file-download/download/public/' . $field_item->entity->fid->value,
                   'changed' => date('c', $field_item->entity->changed->value),
                 ];
               }
@@ -112,6 +137,14 @@ class ProductResource extends ResourceBase {
               $product[$field] = [
                 'label' => $field_definition->getLabel(),
                 'value' => $value,
+              ];
+            }
+            elseif ($field_definition->getType() === 'link') {
+              $valuesArr = $field_item_list->getValue();
+              $value = count($field_item_list) === 1 ? array_pop($valuesArr) : $valuesArr;
+              $product[$field] = [
+                'label' => $field_definition->getLabel(),
+                'value' => !empty($value) ? $value: '',
               ];
             }
             else {
@@ -192,6 +225,17 @@ class ProductResource extends ResourceBase {
       }
     }
     return $return;
+  }
+
+  protected function processTerm($field_item_list) {
+    $value = [];
+    foreach ($field_item_list as $term_filed) {
+      $filed_value = $term_filed->getValue();
+      $term = Term::load($filed_value['target_id']);
+      $value[] = $term->getName();
+    }
+
+    return $value;
   }
 
   public function permissions() {

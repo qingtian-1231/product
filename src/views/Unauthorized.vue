@@ -11,7 +11,7 @@
               很抱歉， 您无权访问此页面，请去
               <router-link :to="{ name: 'Login' }">登录</router-link>
               页面登录后使用，或者前往<router-link :to="{ name: 'Register' }">注册</router-link>
-              页面，充分使用BASF助手吧！
+              页面，充分使用BASF产品助理吧！
             </p>
           </v-flex>
         </v-layout>

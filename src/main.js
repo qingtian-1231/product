@@ -60,9 +60,8 @@ router.beforeEach((to, from, next) => {
   if (to.meta.auth === 'user-login') {
     const session = getCookie('drupal:session');
     const sessionValue = session ? JSON.parse(session) : "";
-    const basicAuthToken = ((sessionValue || "").authenticated || "").basic_auth || "";
-    const currentUser = ((sessionValue || "").authenticated || "").current_user || "";
-    if (!currentUser || !basicAuthToken) {
+    const currentUser = ((sessionValue || false).authenticated || false).current_user || false;
+    if (!currentUser) {
       next({replace:true, name:'Unauthorized'})
     }
   }
@@ -82,7 +81,7 @@ Vue.use(SvgIcon, {
 })
 
 store.dispatch('getApiMenu').then(() => {
-  store.dispatch('getFieldConfig').then(() => {
+  store.dispatch('getTaxonomyList').then(() => {
     store.dispatch('getCurrentUser').then(() => {
       store.dispatch('getCSRFToken').then(() => {
         new Vue({

@@ -76,7 +76,7 @@
 
     <template v-if="cart.length">
       <h2>
-        样品购物车
+        未完成订单
       </h2>
       <template v-for="(cartOrder, index) in cart">
         <div class="order" :key="index">
@@ -191,7 +191,6 @@ export default {
       cartInfo.quantity = quantity
 
       vm.$store.dispatch('updateCart', cartInfo).then(result => {
-        console.log(result)
         vm.loadCart()
       })
     }, 300),
@@ -200,8 +199,6 @@ export default {
       let vm = this
       vm.$loading.show();
       vm.$store.dispatch("getCart").then(result => {
-        console.log(vm.cart, "result");
-
         if (result.status === 200) {
           vm.$loading.hide();
         }

@@ -6,7 +6,7 @@
         <template v-for="(item, index) in formulationFiles">
           <li :key="index">
             <figure class="download document">
-              <p>日常生活专用涂料。</p>
+              <p>日常生活专用配方。</p>
                <small>
                 <span>{{ item.field_file_type.value }}<br></span>
                  <span><br></span>
@@ -40,17 +40,7 @@
       }
     },
 
-    mounted() {
-      let vm = this
-
-      vm.$store.dispatch('getProductFile', {
-        relation: vm.productRelationFile
-      }).then((result) => {
-        vm.productFile = result
-
-        console.log(vm.productFile, 'vm.productFile')
-      })
-    }
+    mounted() {}
   }
 </script>
 

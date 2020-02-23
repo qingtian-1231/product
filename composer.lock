@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b02b6029424e7ae2460bd5c010a0de07",
+    "content-hash": "592b3a8974290125ced7ee08826321c5",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1818,6 +1818,69 @@
             }
         },
         {
+            "name": "drupal/auditfiles",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/auditfiles.git",
+                "reference": "8.x-2.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/auditfiles-8.x-2.2.zip",
+                "reference": "8.x-2.2",
+                "shasum": "4a0971d19e9d603ae813c29af605fadb6ac91dfa"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.2",
+                    "datestamp": "1533797580",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Stuart Greenfield",
+                    "homepage": "https://www.drupal.org/user/54866"
+                },
+                {
+                    "name": "andyceo",
+                    "homepage": "https://www.drupal.org/user/152512"
+                },
+                {
+                    "name": "keshav.k",
+                    "homepage": "https://www.drupal.org/user/3254066"
+                },
+                {
+                    "name": "mikeryan",
+                    "homepage": "https://www.drupal.org/user/4420"
+                },
+                {
+                    "name": "oadaeh",
+                    "homepage": "https://www.drupal.org/user/4649"
+                }
+            ],
+            "description": "Allows for comparing and correcting files and file references in the \"files\" directory, in the database, and in content.",
+            "homepage": "https://www.drupal.org/project/auditfiles",
+            "support": {
+                "source": "https://git.drupalcode.org/project/auditfiles"
+            }
+        },
+        {
             "name": "drupal/backup_migrate",
             "version": "4.1.0",
             "source": {
@@ -3372,6 +3435,61 @@
             }
         },
         {
+            "name": "drupal/file_checker",
+            "version": "1.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/file_checker.git",
+                "reference": "8.x-1.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/file_checker-8.x-1.0-alpha2.zip",
+                "reference": "8.x-1.0-alpha2",
+                "shasum": "9f208ee5c3e453ef87b665f1336213417479d254"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha2",
+                    "datestamp": "1529878120",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "gnindl",
+                    "homepage": "https://www.drupal.org/user/421442"
+                },
+                {
+                    "name": "jonathanshaw",
+                    "homepage": "https://www.drupal.org/user/3237629"
+                },
+                {
+                    "name": "mdeltito",
+                    "homepage": "https://www.drupal.org/user/332968"
+                }
+            ],
+            "description": "Verifies that files managed by Drupal actually exist at the location where Drupal believes they are.",
+            "homepage": "https://www.drupal.org/project/file_checker",
+            "support": {
+                "source": "https://git.drupalcode.org/project/file_checker"
+            }
+        },
+        {
             "name": "drupal/file_download",
             "version": "1.3.0",
             "source": {
@@ -3545,6 +3663,57 @@
             "homepage": "https://www.drupal.org/project/fontawesome_menu_icons",
             "support": {
                 "source": "https://git.drupalcode.org/project/fontawesome_menu_icons"
+            }
+        },
+        {
+            "name": "drupal/imce",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/imce.git",
+                "reference": "8.x-1.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/imce-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "55827d5c18c398269cea782a6bb8d9788a97576c"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.7",
+                    "datestamp": "1540559280",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "thalles",
+                    "homepage": "https://www.drupal.org/user/3589086"
+                },
+                {
+                    "name": "ufku",
+                    "homepage": "https://www.drupal.org/user/9910"
+                }
+            ],
+            "description": "Provides a file manager supporting personal folders.",
+            "homepage": "https://drupal.org/project/imce",
+            "support": {
+                "source": "https://git.drupalcode.org/project/imce"
             }
         },
         {
@@ -15320,6 +15489,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/webform_rest": 10,
+        "drupal/file_checker": 15,
         "roave/security-advisories": 20,
         "behat/mink": 20,
         "behat/mink-selenium2-driver": 20,

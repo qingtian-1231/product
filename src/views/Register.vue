@@ -33,9 +33,9 @@
           <v-row>
             <v-col cols="12" sm="6">
               <v-text-field
-                label="显示名称"
+                label="用户名"
                 outlined
-                :rules="[rules.required, rules.max]"
+                :rules="[rules.required, rules.max, rules.chineseVarchar, rules.FullwidthChar]"
                 v-model="userName"
               ></v-text-field>
             </v-col>
@@ -132,7 +132,17 @@
           min: v => v.length >= 8 || '至少8位字符',
           max: v => v.length <= 20 || '不能超过20位字符',
           emailMatch: v => (/.+@.+\..+/.test(v) || '请输入合法的email地址'),
-          confirmPass: v => this.password === v || '确认密码不正确'
+          confirmPass: v => this.password === v || '确认密码不正确',
+          chineseVarchar: v => {
+            let reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/
+
+            return !reg.test(v) || '用户名仅能包含英文字符下划线或者数字'
+          },
+          FullwidthChar: v => {
+            let reg = /[\uFF00-\uFFEF]/
+
+            return !reg.test(v) || '您输入了非法的全角字符'
+          }
         },
       }
     },

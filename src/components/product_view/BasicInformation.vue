@@ -120,6 +120,7 @@
     margin: 0 0 25px;
     padding: 0;
     width: 100%;
+    font-size: 1.25rem;
   }
 
   .information {

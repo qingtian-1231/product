@@ -192,6 +192,7 @@
       margin: 0;
       padding-left: 70px;
       padding-top: 8px;
+      font-size: 2.2rem;
 
       .icon {
         margin: -7px 10px 0 -70px;
@@ -270,6 +271,10 @@
           text-align: center;
           margin-bottom: 45px;
           overflow: hidden;
+
+          .v-tab {
+            font-size: 1.25rem;
+          }
         }
       }
     }

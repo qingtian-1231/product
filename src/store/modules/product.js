@@ -18,7 +18,12 @@ const state = {
 const mutations = {
   processProductList(state, payload) {
     state.productList = payload.result.map(item => {
-      let hasFavorite = globalUtils.findElementInArray(payload.favorite, item.uuid, 'value')
+      let favorite = []
+
+      if (payload.favorite) {
+        favorite = payload.favorite
+      }
+      let hasFavorite = globalUtils.findElementInArray(favorite, item.uuid, 'value')
 
       if (hasFavorite) {
         item.isFeature = true

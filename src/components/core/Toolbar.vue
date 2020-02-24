@@ -277,6 +277,8 @@
             max-width: 100%;
             border-radius: 0;
             margin: 0 16px;
+            color: #333!important;
+            font-weight: bold;
           }
         }
       }
@@ -317,6 +319,10 @@
         .v-tab.v-tab {
           color: #333 !important;
           opacity: 1 !important;
+          
+          a {
+            color: #333;
+          }
 
           .v-icon {
             color: #333 !important;
@@ -439,6 +445,18 @@
     
     a {
       color: #fff;
+    }
+  }
+  
+  .v-menu__content {
+
+    .v-list {
+      padding: 0;
+
+      a {
+        color: #333;
+        text-decoration: none;
+      }
     }
   }
   

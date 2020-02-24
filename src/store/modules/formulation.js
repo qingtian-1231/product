@@ -16,8 +16,14 @@ const state = {
 
 const mutations = {
   processFormulationList(state, payload) {
+    let favorite = []
+
+    if (payload.favorite) {
+      favorite = payload.favorite
+    }
+
     state.formulationList = payload.result.map(item => {
-      let hasFavorite = globalUtils.findElementInArray(payload.favorite, item.uuid, 'value')
+      let hasFavorite = globalUtils.findElementInArray(favorite, item.uuid, 'value')
 
       if (hasFavorite) {
         item.isFeature = true

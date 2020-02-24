@@ -35,7 +35,7 @@
               <v-text-field
                 label="用户名"
                 outlined
-                :rules="[rules.required, rules.max, rules.chineseVarchar, rules.FullwidthChar]"
+                :rules="[rules.required, rules.max, rules.chineseVarchar, rules.FullwidthChar, rules.invilideChar]"
                 v-model="userName"
               ></v-text-field>
             </v-col>
@@ -142,6 +142,11 @@
             let reg = /[\uFF00-\uFFEF]/
 
             return !reg.test(v) || '您输入了非法的全角字符'
+          },
+          invilideChar: v => {
+            let reg = /[`~!@#$%^&*()+=<>?:|"{},\\./;'[\]]/
+
+            return !reg.test(v) || '您输入了非法字符'
           }
         },
       }

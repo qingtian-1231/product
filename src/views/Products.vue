@@ -254,7 +254,6 @@
 import ProductDetails from "../components/ProductDetails";
 import IconFeatures2 from "../components/svg/features/Features-2";
 import IconFeatures3 from "../components/svg/features/Features-3";
-import InfiniteLoading from "vue-infinite-loading/src/components/InfiniteLoading.vue";
 import { mapState } from "vuex";
 import config from "../config";
 
@@ -263,7 +262,7 @@ const isDev = process.env.NODE_ENV !== "production";
 const pageCount = isDev ? config.dev.pageCount : config.prod.pageCount;
 
 export default {
-  components: { ProductDetails, IconFeatures2, IconFeatures3, InfiniteLoading },
+  components: { ProductDetails, IconFeatures2, IconFeatures3},
 
   computed: {
     ...mapState({

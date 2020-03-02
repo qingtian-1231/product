@@ -15,9 +15,10 @@ const state = {
   requestProductDialog: false,
   requestFormulationDialog: false,
   loginDialog: false,
-  taxonomyProductType: {},
-  taxonomyProductBrand: {},
-  taxonomyProductApplication: {},
+  taxonomyProductType: [],
+  taxonomyProductBrand: [],
+  taxonomyProductApplication: [],
+  formulationApplicationList: []
 }
 
 const mutations = {
@@ -35,7 +36,7 @@ const mutations = {
           menuItem.options.icon = 'crop_portrait'
           break
 
-        case 'base:formulations':
+        case 'base:formulations-filter':
           menuItem.options.icon = 'colorize'
           break
 
@@ -68,11 +69,24 @@ const mutations = {
       if (menuItem.uri.toLowerCase() === 'base:industry') {
         menuItem.below = state.taxonomyProductApplication
         return menuItem
+      } else if (menuItem.uri.toLowerCase() === 'base:products'){
+        menuItem.below = state.taxonomyProductType
+        return menuItem
       } else {
 
         return menuItem
       }
     })
+
+    // 将第二层行业转成配方过滤 手风琴列表
+    for (let i in state.taxonomyProductApplication) {
+      if (state.taxonomyProductApplication[i]['children'].length) {
+        let secondLevel = state.taxonomyProductApplication[i]['children']
+        for (let j in secondLevel ) {
+          state.formulationApplicationList.push(secondLevel[j])
+        }
+      }
+    }
   },
 
   switch_Language(state, payload) {

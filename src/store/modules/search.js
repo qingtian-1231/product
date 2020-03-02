@@ -26,16 +26,13 @@ const actions = {
   productSearch ({dispatch, commit, state}, keyWord) {
     let parameter = {
       params: {
-        title: keyWord,
-        field_other_names: keyWord,
-        body: keyWord,
-        field_benefits: keyWord,
+        combine: keyWord
       }
     }
     let productsArr = []
     let formulationsArr = []
 
-    return request().get(state.productPath, parameter)
+    return request().get(state.productPath + '/all/all/all/', parameter)
       .then(function (products) {
 
         productsArr = products.data.results.map(item => {
@@ -68,10 +65,10 @@ const actions = {
   formulationSearch ({commit, state}, keyWord) {
     let parameter = {
       params: {
-        title: keyWord
+        combine: keyWord
       }
     }
-    return request().get(state.formulationPath, parameter)
+    return request().get(state.formulationPath + '/all/', parameter)
       .then(function (response) {
         return Promise.resolve(response)
       })

@@ -1,125 +1,73 @@
 <template>
-  <v-tabs
-    v-model="model"
-    centered
-    slider-color="secondary"
-    slider-size="4"
-    background-color="white"
-    color="grey"
+  <ul
+    class="main-menu"
   >
     <template v-for="(link, i) in menuLinks">
       <template v-if="link.dialog">
-        <v-tab
+        <li
           :key="i"
-          @click="headerMenuClick($event, link)"
         >
-          <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
-          {{ link.title }}
-        </v-tab>
+          <v-btn
+            color="primary"
+            dark
+            icon
+            v-on="on"
+            @click="headerMenuClick($event, link)"
+          >
+            <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+            {{ link.title }}
+          </v-btn>
+        </li>
       </template>
 
       <template v-else-if="link.below">
-        <v-tab
+        <li
           :key="i"
           class="below-menu"
         >
-          <v-menu offset-y>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                color="primary"
-                dark
-                icon
-                v-on="on"
-              >
-                <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
-                {{ link.title }}
-              </v-btn>
-            </template>
-            <v-list
-              v-for="(item, index) in link.below"
-              :key="index"
-            >
-                <template v-if="item.children">
-                  <v-menu
-                    open-on-hover
-                    offset-x
-                  >
-                    <template v-slot:activator="{ on }">
-                      <v-list-item v-on="on">
-                        <router-link :to="{path: '/products', query: {industry: item.tid}}">
-                          <v-list-item-title>{{ item.name }}</v-list-item-title>
-                        </router-link>
-                      </v-list-item>
-                    </template>
-
-                    <v-list
-                      v-for="(child, index) in item.children"
-                      :key="index"
-                    >
-                      <template v-if="child.children">
-                        <v-menu
-                          open-on-hover
-                          offset-x
-                        >
-                          <template v-slot:activator="{ on }">
-                            <v-list-item v-on="on">
-                              <router-link :to="{path: '/products', query: {industry: child.tid}}">
-                                <v-list-item-title>{{ child.name }}</v-list-item-title>
-                              </router-link>
-                            </v-list-item>
-                          </template>
-
-                          <v-list
-                            v-for="(levelchild, index) in child.children"
-                            :key="index"
-                          >
-                            <v-list-item>
-                              <router-link :to="{path: '/products', query: {industry: child.tid}}">
-                                <v-list-item-title>{{ levelchild.name }}</v-list-item-title>
-                              </router-link>
-                            </v-list-item>
-                          </v-list>
-                        </v-menu>
-                      </template>
-
-                      <v-list-item v-else>
-                        <router-link :to="{path: '/products', query: {industry: child.tid}}">
-                          <v-list-item-title>{{ child.name }}</v-list-item-title>
-                        </router-link>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
-                </template>
-
-                <v-list-item v-else>
-                  <router-link  :to="{path: '/products', query: {industry: item.tid}}">
-                    <v-list-item-title>{{ item.name }}</v-list-item-title>
-                  </router-link>
-                </v-list-item>
-            </v-list>
-          </v-menu>
-        </v-tab>
+          <v-btn
+            color="primary"
+            dark
+            icon
+            v-on="on"
+          >
+            <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+            {{ link.title }}
+          </v-btn>
+          <div class="sub-menu">
+            <sub-menu :below="link.below"></sub-menu>
+          </div>
+        </li>
       </template>
 
       <template v-else>
-        <v-tab
+        <li
           :key="i"
-          :to="link.relative"
-          @click="headerMenuClick($event, link)"
         >
-          <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
-          {{ link.title }}
-        </v-tab>
+          <v-btn
+            @click="headerMenuClick($event, link)"
+            color="primary"
+            dark
+            icon
+            v-on="on"
+          >
+            <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
+            {{ link.title }}
+          </v-btn>
+        </li>
       </template>
     </template>
-  </v-tabs>
+  </ul>
 </template>
 
 <script>
   import { mapState } from 'vuex'
+  import SubMenu from './SubMenu'
 
   export default {
     name: 'menu-links',
+
+    components: { SubMenu },
 
     computed: {
       ...mapState({
@@ -130,24 +78,92 @@
       }),
     },
 
+    mounted () {},
+
     methods: {
       headerMenuClick: function (e, item) {
         e.stopPropagation()
 
         if (item.dialog) {
           this.$store.state.core.requestDialog = true
-        }
-
-        if (item.to || !item.href) {
           return
         }
 
-        this.$vuetify.goTo(item.href)
+        if (item.to || !item.relative) {
+          return
+        }
+
+        this.$router.push({ path: item.relative})
       },
     }
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.main-menu {
+  height: 100%;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  list-style: none;
 
+  li {
+    color: #333;
+    height: 100%;
+
+    &.below-menu {
+      position: relative;
+
+      &:hover {
+
+        .sub-menu {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      .sub-menu {
+        position: absolute;
+        left: 16px;
+        top: 72px;
+        opacity: 0;
+        visibility: hidden;
+        background-color: #fff;
+        -webkit-transition: all 225ms ease;
+        -o-transition: all 225ms ease;
+        transition: all 225ms ease;
+
+        @media screen and (min-width: 1024px) {
+          min-height: 350px;
+        }
+      }
+    }
+
+    & > .v-btn {
+      height: 100% !important;
+      width: 100% !important;
+      min-width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      margin: 0 16px;
+      color: #333!important;
+      font-weight: bold;
+    }
+    
+    .v-icon {
+      color: #333;
+    }
+  }
+}
 </style>

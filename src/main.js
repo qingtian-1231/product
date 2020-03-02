@@ -13,6 +13,10 @@ import 'nprogress/nprogress.css'
 import SvgIcon from 'vue-svgicon'
 import './icons'   //引入svg-icon
 
+// 复制到粘贴板插件
+import VueClipboard from 'vue-clipboard2'
+VueClipboard.config.autoSetContainer = true
+Vue.use(VueClipboard)
 const isDev = process.env.NODE_ENV !== 'production'
 
 if (isDev) {

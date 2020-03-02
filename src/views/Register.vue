@@ -11,6 +11,15 @@
     </div>
 
     <div class="content">
+      <div class="QR-code">
+        <v-img
+          :src="require('@/assets/global/qr_code.jpg')"
+          :lazy-src="require('@/assets/global/qr_code.jpg')"
+          contain
+        >
+        </v-img>
+        <div class="title mb-1">关注公众号</div>
+      </div>
       <template v-if="registerSuccess">
         <div class="success_message">
           <h2>
@@ -206,6 +215,11 @@
     text-align: center;
     padding: 60px 4%;
 
+    .QR-code {
+      width: 20%;
+      margin: 0 auto;
+    }
+
     .header {
       text-align: left;
       padding-bottom: 40px;
@@ -221,7 +235,6 @@
     }
 
     .content {
-      padding-top: 3.5rem;
 
       .success_message {
 

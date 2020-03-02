@@ -10,6 +10,7 @@ import formulation from './modules/formulation'
 import download from './modules/download'
 import basket from './modules/basket'
 import search from './modules/search'
+import industry from './modules/industry'
 import order from './modules/order'
 
 Vue.use(Vuex)
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     download,
     basket,
     search,
-    order
+    order,
+    industry
   }
 })

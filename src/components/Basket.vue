@@ -1,40 +1,30 @@
 <template>
-  <v-menu
-    v-model="showShoppingCart"
-    :close-on-content-click="false"
-    bottom
-    left
-    origin="right top"
-    offset-y
-    transition="scale-transition"
-    class="mx-2"
-    absolute="true"
-  >
-    <template v-slot:activator="{ on }">
-      <v-btn fab small color="secondary" v-on="on">
-        <v-badge v-model="show" color="secondary" left>
-          <template v-slot:badge>
-            <span>{{ shoppingCartCount }}</span>
-          </template>
-          <v-icon>shopping_basket</v-icon>
-        </v-badge>
-      </v-btn>
-    </template>
-
-    <v-card id="minibasket" class="basket mini open">
+  <div class="menu-minibasket">
+    <v-btn fab small color="secondary" @click="openMiniBasket()">
+      <v-badge v-model="showBadge" color="secondary" left>
+        <template v-slot:badge>
+          <span>{{ shoppingCartCount }}</span>
+        </template>
+        <v-icon>shopping_basket</v-icon>
+      </v-badge>
+    </v-btn>
+    <v-card
+      id="minibasket"
+      light
+      :class="miniBasketClass"
+    >
       <div>
         <h2>
           <v-icon>shopping_basket</v-icon>
           样品购物车
-          <v-btn icon @click="showShoppingCart = false">
-            <v-icon class="material-icons-outlined">closed</v-icon>
+          <v-btn icon @click="closeMiniBasket()">
+            <v-icon class="material-icons-outlined">close</v-icon>
           </v-btn>
         </h2>
-        <ul>
-          <template v-for="(product, index) in shoppingCart">
-            <li :key="index">
-              <div class="item added product">
-                <span>
+        <ul v-for="(product, index) in shoppingCart" :key="index">
+          <li>
+            <div class="item added product">
+              <span>
                   <router-link :to="{ name: 'Product', params: product.uuid }">
                     <icon-additives bg-color-class="default"></icon-additives>
                     <b>{{ product.title }}</b>
@@ -45,20 +35,20 @@
                       :items="product.variationsItem"
                       label="产品分量"
                       height="18"
+                      hide-details
                       outlined
                       dense
                       solo
                     ></v-select>
                   </div>
                 </span>
-                <span>
-                  <v-btn icon>
+              <span>
+                  <v-btn icon @click="removeShoppingCart(product.uuid)">
                     <v-icon class="material-icons-outlined">delete</v-icon>
                   </v-btn>
                 </span>
-              </div>
-            </li>
-          </template>
+            </div>
+          </li>
         </ul>
         <v-btn
           block
@@ -67,27 +57,27 @@
           @click="clearShoppingCart()"
         >
           清空购物车
-          <v-icon class="material-icons-outlined">
+          <v-icon right class="material-icons-outlined">
             delete
           </v-icon>
         </v-btn>
         <v-btn block color="primary" @click="sampleOrder()">
           查看样品订单
           <template v-if="isLogin">
-            <v-icon class="material-icons-outlined">
+            <v-icon right class="material-icons-outlined">
               check
             </v-icon>
           </template>
 
           <template v-else>
-            <v-icon class="material-icons-outlined">
+            <v-icon right class="material-icons-outlined">
               clock
             </v-icon>
           </template>
         </v-btn>
       </div>
     </v-card>
-  </v-menu>
+  </div>
 </template>
 
 <script>
@@ -101,8 +91,9 @@ export default {
 
   data() {
     return {
+      miniBasketClass: 'hiddenBasket',
       showShoppingCart: false,
-      show: true
+      showBadge: true
     };
   },
 
@@ -117,7 +108,7 @@ export default {
   watch: {
     shoppingCartCount: function (val, old) {
       if (val) {
-        this.showShoppingCart = true
+        this.openMiniBasket()
       }
     }
   },
@@ -127,6 +118,14 @@ export default {
   },
 
   methods: {
+    closeMiniBasket () {
+      this.miniBasketClass = 'bounce-leave-active'
+    },
+
+    openMiniBasket () {
+      this.miniBasketClass = 'bounce-enter-active'
+    },
+
     clearShoppingCart () {
       this.$store.commit('clearShoppingCart')
     },
@@ -139,8 +138,27 @@ export default {
         this.$router.push({ path: '/sample-order'})
       }
     },
+
+    removeShoppingCart(productId) {
+      this.$store.dispatch("removeShoppingCart", productId);
+    },
   }
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+  .menu-minibasket {
+    display: inline;
+    position: relative;
+
+    #minibasket {
+      position: absolute;
+      right: 0;
+      min-width: 400px;
+
+      &.hiddenBasket {
+        visibility: hidden;
+      }
+    }
+  }
+</style>

@@ -35,36 +35,39 @@ const mutations = {
   },
 
   processFormulationDetails(state, payload) {
-    for (let field in payload) {
+    let result = payload.result
+    let favorite = []
+
+    for (let field in result) {
       if (field === 'body') {
-        state.formulationBasicInformation.description = payload.body
+        state.formulationBasicInformation.description = result.body
         continue
       }
       if (field === 'field_formulationbenefits') {
-        state.formulationBasicInformation.benefits = payload.field_formulationbenefits
+        state.formulationBasicInformation.benefits = result.field_formulationbenefits
         continue
       }
       if (field === 'field_formulation_name') {
-        state.formulationBasicInformation.name = payload.field_formulation_name
+        state.formulationBasicInformation.name = result.field_formulation_name
         continue
       }
       if (field === 'field_industry_of_formula') {
-        state.formulationBasicInformation.industry = payload.field_industry_of_formula
+        state.formulationBasicInformation.industry = result.field_industry_of_formula
         continue
       }
       if (field === 'field_formulation_number') {
-        state.formulationBasicInformation.formulation_number = payload.field_formulation_number
+        state.formulationBasicInformation.formulation_number = result.field_formulation_number
         continue
       }
 
       if (field === 'field_formulation_cluster') {
-        state.formulationBasicInformation.formulation_cluster = payload.field_formulation_cluster
+        state.formulationBasicInformation.formulation_cluster = result.field_formulation_cluster
         continue
       }
 
       if (field === 'field_formulation_file') {
-        if (payload.field_formulation_file.value.length > 0) {
-          state.formulationFiles = payload.field_formulation_file.value.map(item => {
+        if (result.field_formulation_file.value.length > 0) {
+          state.formulationFiles = result.field_formulation_file.value.map(item => {
             item.field_entity_file.changed = convertUTCTimeToLocalTime(item.field_entity_file.changed);
 
             return item
@@ -73,11 +76,28 @@ const mutations = {
         continue
       }
 
-      if (field === 'field_formula_composition') {
-        state.formulationDetails = payload.field_formula_composition.value
+      if (field === 'uuid') {
+        state.formulationBasicInformation.uuid = result.uuid.value
         continue
       }
-      state.formulationProperties[field] = payload[field]
+
+      if (field === 'field_formula_composition') {
+        state.formulationDetails = result.field_formula_composition.value
+        continue
+      }
+      state.formulationProperties[field] = result[field]
+    }
+
+    if (payload.favorite) {
+      favorite = payload.favorite
+    }
+
+    let hasFavorite = globalUtils.findElementInArray(favorite, state.formulationBasicInformation.uuid, 'value')
+
+    if (hasFavorite) {
+      state.formulationBasicInformation.isFeature = true
+    } else {
+      state.formulationBasicInformation.isFeature = false
     }
   },
 
@@ -87,7 +107,7 @@ const mutations = {
 }
 
 const actions = {
-  getFormulationList({commit, state, rootState}, options) {
+  getFormulationList({commit, state, rootState}, payload) {
     let requestPath = state.path
     let currentLanguage = getCookie('drupal:session:language')
 
@@ -95,8 +115,8 @@ const actions = {
       requestPath = 'en/' + state.path
     }
 
-    return request().get(requestPath, {
-      params: options
+    return request().get(`${requestPath}/${payload.filter.formulation_application_ids}`, {
+      params: payload.options
     })
       .then(function (response) {
         let payload = {
@@ -115,7 +135,7 @@ const actions = {
       })
   },
 
-  getFormulationDetails({dispatch, commit, state}, payload) {
+  getFormulationDetails({dispatch, commit, state, rootState}, payload) {
     let requestPath = 'api/formulation_detail_resource/' + payload.id
     let currentLanguage = getCookie('drupal:session:language')
 
@@ -129,7 +149,14 @@ const actions = {
       }
     })
       .then(function (response) {
-        commit('processFormulationDetails', response.data)
+        let payload = {
+          favorite: '',
+          result: ''
+        }
+
+        payload.favorite = rootState.user.favoriteFormulationList
+        payload.result = response.data
+        commit('processFormulationDetails', payload)
         return Promise.resolve(response.data)
       })
       .catch(function (error) {

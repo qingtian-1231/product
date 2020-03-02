@@ -86,7 +86,39 @@
     methods: {
       closeRequestDialog: function () {
         this.$emit('fatherMethod')
-      }
+      },
+
+      favoritesProductStar(type, action, productId) {
+        let vm = this;
+        let favoriteInfo = {};
+
+        if (!vm.isLogin) {
+          vm.$store.commit("open_login_dialog");
+        } else {
+          favoriteInfo.type = type;
+          favoriteInfo.action = action;
+          favoriteInfo.id = productId;
+          vm.$loading.show();
+          vm.$store
+            .dispatch("processFavoriteForUser", favoriteInfo)
+            .then(result => {
+              if (result.status === 200) {
+                vm.productList = vm.productList.map(product => {
+                  if (product.uuid === productId) {
+                    if (action === "add") {
+                      product.isFeature = true;
+                    } else if (action === "delete") {
+                      product.isFeature = false;
+                    }
+                  }
+                  return product;
+                });
+              }
+
+              vm.$loading.hide();
+            });
+        }
+      },
     }
   }
 </script>

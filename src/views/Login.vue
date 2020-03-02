@@ -36,7 +36,16 @@
       </template>
 
       <template v-else>
-        <v-col cols="6">
+        <v-col cols="3">
+          <div class="title mb-1">关注公众号</div>
+          <v-img
+            :src="require('@/assets/global/qr_code.jpg')"
+            :lazy-src="require('@/assets/global/qr_code.jpg')"
+            contain
+          >
+          </v-img>
+        </v-col>
+        <v-col cols="5">
           <v-form ref="loginForm" id="login-form" class="form" v-model="loginValid" lazy-validation>
             <v-col cols="12">
               <v-text-field
@@ -76,7 +85,7 @@
             </div>
           </v-form>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="4">
           <div class="unlock">
             <h2>
               <v-icon>lock_open</v-icon>
@@ -185,6 +194,11 @@
     background-color: #fff;
     text-align: center;
     padding: 60px 4%;
+
+    .QR-code {
+      width: 20%;
+      margin: 0 auto;
+    }
 
     .header {
       padding-bottom: 40px;

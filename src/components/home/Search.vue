@@ -145,6 +145,7 @@ export default {
     debounceSearch: debounce(({ vm }) => {
       if (vm.searchKeyWord) {
         vm.searchLoading = true
+        console.log(vm.searchKeyWord, 'vm.searchKeyWord')
         vm.$store.dispatch('productSearch', vm.searchKeyWord).then(result => {
           vm.searchLoading = false
         });

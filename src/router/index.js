@@ -11,6 +11,7 @@ import Register from '../views/Register'
 import NotFound from '../views/NotFound'
 import Login from '../views/Login'
 import Download from '../views/Download'
+import FormulationsFilter from '../views/FormulationsFilter'
 import Unauthorized from '../views/Unauthorized'
 
 Vue.use(Router)
@@ -72,6 +73,11 @@ export default new Router({
       path: '/download',
       name: 'Download',
       component: Download
+    },
+    {
+      path: '/formulations-filter',
+      name: 'FormulationsFilter',
+      component: FormulationsFilter
     },
     {
       path: '/unauthorized',

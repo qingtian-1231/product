@@ -2,13 +2,29 @@
   <v-container id="products" tag="section">
     <v-col lg="12" md="12" sm="12">
       <v-row class="back">
-        <v-col class="col-xs-6" md="6">
+        <v-col class="col-xs-3" md="3">
           <v-btn class="float-left" color="primary" @click="$router.back(-1)">
             <v-icon>apps</v-icon>
             返回上一页
           </v-btn>
         </v-col>
-        <v-col class="col-xs-6">
+
+        <v-col class="col-xs-5" md="5">
+          <template v-if="!Array.isArray(currentTerm)">
+            <v-chip
+              class="float-left"
+              close
+              color="teal"
+              text-color="white"
+              @click:close="removeFilter()"
+            >
+              <v-icon>mdi-label</v-icon>
+              {{ currentTerm.name }}
+            </v-chip>
+          </template>
+        </v-col>
+
+        <v-col class="col-xs-4">
           <v-btn
             icon
             class="float-right"
@@ -87,13 +103,7 @@
                       <v-list-item-action>
                         <v-btn
                           icon
-                          @click="
-                            favoritesProductStar(
-                              'product',
-                              product.isFeature ? 'delete' : 'add',
-                              product.uuid
-                            )
-                          "
+                          @click="favoritesProductStar('product',product.isFeature ? 'delete' : 'add', product.uuid)"
                         >
                           <v-icon
                             v-if="!product.isFeature"
@@ -258,9 +268,11 @@ export default {
   computed: {
     ...mapState({
       requestProductDialog: state => state.core.requestProductDialog,
-      previewProductBasicInformation: state =>
-        state.product.productBasicInformation,
+      previewProductBasicInformation: state => state.product.productBasicInformation,
       previewProductProperties: state => state.product.productProperties,
+      taxonomyProductApplication: state => state.core.taxonomyProductApplication,
+      taxonomyProductType: state => state.core.taxonomyProductType,
+      taxonomyProductBrand: state => state.core.taxonomyProductBrand,
       isLogin: state => state.user.isLogin
     })
   },
@@ -274,7 +286,8 @@ export default {
     selectedProduct: {},
     productQuery: {},
     previewProductBasic: {},
-    previewProductProp: {}
+    previewProductProp: {},
+    currentTerm: [],
   }),
 
   mounted() {
@@ -323,20 +336,37 @@ export default {
     infiniteHandler($state) {
       let vm = this;
       let options = {};
+      let filter = {
+        'product_application_ids': 'all',
+        'product_type_ids': 'all',
+        'product_brand_ids': 'all',
+      }
 
       options.items_per_page = pageCount
       options.page = Math.ceil(vm.productList.length / pageCount)
 
       if (vm.productQuery.hasOwnProperty("industry")) {
-        options.product_application_id = vm.productQuery.industry;
+        let subIds = []
+        subIds = vm.getChildrenIds(vm.taxonomyProductApplication, vm.productQuery.industry)
+        filter.product_application_ids = vm.productQuery.industry + '+' + subIds.join('+')
+      }
+
+      if (vm.productQuery.hasOwnProperty("product_type")) {
+        let subIds = []
+        subIds = vm.getChildrenIds(vm.taxonomyProductType, vm.productQuery.product_type)
+
+        console.log(subIds, 'subIds')
+        filter.product_type_ids = vm.productQuery.product_type + '+' + subIds.join('+')
       }
 
       if (vm.productQuery.hasOwnProperty("product_brand")) {
-        options.product_brand_id = vm.productQuery.product_brand;
+        let subIds = []
+        subIds = vm.getChildrenIds(vm.taxonomyProductBrand, vm.productQuery.product_brand);
+        filter.product_brand_ids = vm.productQuery.product_brand + '+' + subIds.join('+')
       }
 
       vm.$loading.show()
-      vm.$store.dispatch("getProductList", options).then(() => {
+      vm.$store.dispatch("getProductList", {filter: filter, options: options}).then(() => {
         let products = vm.$store.state.product.productList;
         products = products.map((product) => {
           vm.$store.dispatch('getProductDetails', {
@@ -429,6 +459,31 @@ export default {
 
     closeRequestDialog() {
       this.$store.state.core.requestProductDialog = false;
+    },
+
+    getChildrenIds(terms, target_id) {
+      let vm = this
+      let childrens = []
+
+      for (let id in terms) {
+        if (terms[id]['tid'] == target_id) {
+          childrens = terms[id]['children_ids']
+          vm.currentTerm = terms[id]
+        }
+      }
+
+      if (childrens.length <= 0) {
+        for (let id in terms) {
+          childrens = vm.getChildrenIds(terms[id]['children'], target_id)
+        }
+      }
+
+      return childrens
+    },
+
+    removeFilter() {
+      this.currentTerm = []
+      this.$router.push({ path: `/products` });
     }
   }
 };

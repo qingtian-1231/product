@@ -239,7 +239,6 @@
   import IconFeatures1 from '../components/svg/features/Features-1'
   import IconFeatures4 from '../components/svg/features/Features-4'
   import formulationDetails from '../components/FormulationDetails'
-  import InfiniteLoading from 'vue-infinite-loading/src/components/InfiniteLoading.vue'
   import { mapState } from 'vuex'
   import config from '../config'
 
@@ -248,7 +247,7 @@
   const pageCount = isDev ? config.dev.pageCount : config.prod.pageCount
 
   export default {
-    components: { IconFeatures1, IconFeatures4, formulationDetails, InfiniteLoading },
+    components: { IconFeatures1, IconFeatures4, formulationDetails},
 
     computed: {
       ...mapState({

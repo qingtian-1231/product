@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import InfiniteLoading from 'vue-infinite-loading'
 import './plugins/base'
 import App from './App.vue'
 import router from './router'
@@ -16,7 +17,7 @@ import './icons'   //引入svg-icon
 // 复制到粘贴板插件
 import VueClipboard from 'vue-clipboard2'
 VueClipboard.config.autoSetContainer = true
-Vue.use(VueClipboard)
+
 const isDev = process.env.NODE_ENV !== 'production'
 
 if (isDev) {
@@ -79,11 +80,11 @@ router.afterEach(() => {
 })
 
 Vue.use(loading) // 全局使用loading加载动画
-
 Vue.use(SvgIcon, {
   tagName: 'svgicon'
 })
-
+Vue.use(VueClipboard)
+Vue.use(InfiniteLoading);
 store.dispatch('getApiMenu').then(() => {
   store.dispatch('getTaxonomyList').then(() => {
     store.dispatch('getCurrentUser').then(() => {

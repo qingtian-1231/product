@@ -26,6 +26,7 @@ module.exports = {
       'vue': 'Vue',
       'vuetify': 'Vuetify',
       'vue-lazyload': 'VueLazyload',
+      'vue-infinite-loading': 'VueInfiniteLoading',
       'lodash': '_'
     },
     devServer: {

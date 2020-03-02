@@ -47,7 +47,6 @@
   </v-container>
 </template>
 <script>
-  import InfiniteLoading from 'vue-infinite-loading/src/components/InfiniteLoading.vue'
   import { mapState } from 'vuex'
   import config from '../config'
 
@@ -56,7 +55,7 @@
   const pageCount = isDev ? config.dev.pageCount : config.prod.pageCount
 
   export default {
-    components: { InfiniteLoading },
+    components: {},
 
     computed: {
       ...mapState({}),

@@ -84,7 +84,36 @@
     methods: {
       closeRequestDialog: function () {
         this.$emit('fatherMethod')
-      }
+      },
+
+      favoritesFormulationStar (type, action, formulationId) {
+        let vm = this
+        let favoriteInfo = {}
+        if (!vm.isLogin) {
+          vm.$store.commit('open_login_dialog')
+        } else {
+          favoriteInfo.type = type
+          favoriteInfo.action = action
+          favoriteInfo.id = formulationId
+          vm.$loading.show()
+          vm.$store.dispatch('processFavoriteForUser', favoriteInfo).then(result => {
+            if (result.status === 200) {
+              vm.formulationList = vm.formulationList.map(formulation => {
+                if (formulation.uuid === formulationId) {
+                  if (action === 'add') {
+                    formulation.isFeature = true
+                  } else if (action === 'delete') {
+                    formulation.isFeature = false
+                  }
+                }
+                return formulation
+              })
+            }
+
+            vm.$loading.hide()
+          })
+        }
+      },
     }
   }
 </script>

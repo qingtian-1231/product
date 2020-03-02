@@ -5,13 +5,30 @@
   >
     <v-col lg="12" md="12" sm="12">
       <v-row class="back">
-        <v-col class="col-xs-6" md="6">
+        <v-col class="col-xs-2" md="2">
           <v-btn class="float-left" color="primary" @click="$router.back(-1)">
             <v-icon>apps</v-icon>
             返回上一页
           </v-btn>
         </v-col>
-        <v-col class="col-xs-6">
+
+        <v-col class="col-xs-8" md="8">
+          <template v-for="(item, index) in currentTerm">
+            <v-chip
+              :key="index"
+              class="float-left"
+              close
+              color="teal"
+              text-color="white"
+              @click:close="removeFilter(item.field)"
+            >
+              <v-icon>mdi-label</v-icon>
+              {{ item.name }}
+            </v-chip>
+          </template>
+        </v-col>
+
+        <v-col class="col-xs-2">
           <v-btn icon class="float-right" color="primary" @click="showFormulationCard()">
             <v-icon>apps</v-icon>
           </v-btn>
@@ -20,79 +37,6 @@
             <v-icon>view_headline</v-icon>
           </v-btn>
         </v-col>
-      </v-row>
-
-      <v-row
-        dense
-        class="filter-block"
-      >
-        <v-card
-          class="mx-auto formulation-list fade-enter-active"
-          width="100%"
-        >
-          <v-alert
-            :value="alert"
-            :type="alertClass"
-            transition="scale-transition"
-          >
-            {{alertMessage}}
-          </v-alert>
-          <v-list two-line>
-            <v-list-item>
-              <v-list-item-action>
-                <v-btn
-                  @click="addFormulationFilter"
-                >
-                  添加过滤条件
-                </v-btn>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-select
-                  v-model="formulationField"
-                  :hint="`${formulationField.field}, ${formulationField.label}`"
-                  :items="formulationFieldsDefinition"
-                  persistent-hint
-                  item-text="label"
-                  item-value="field"
-                  return-object
-                  filled
-                  label="搜索条件"
-                  dense
-                  hide-details
-                  solo
-                ></v-select>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-btn
-                  color="primary"
-                  @click="formulationFilterSearch"
-                >
-                  搜索
-                </v-btn>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-          <template v-for="(item, index) in formulationFilterList">
-            <v-list two-line :key="index">
-              <v-list-item>
-                <v-col cols="2">
-                  <v-subheader>{{ item.label }}</v-subheader>
-                </v-col>
-                <v-col cols="8">
-                  <v-text-field
-                    v-model="item.value"
-                    filled
-                    dense
-                    hide-details
-                    solo
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="2">
-                </v-col>
-              </v-list-item>
-            </v-list>
-          </template>
-        </v-card>
       </v-row>
 
       <v-row dense>
@@ -312,6 +256,7 @@
         formulationFieldsDefinition: state => state.formulation.formulationFieldsDefinition,
         previewFormulationBasicInformation: state => state.formulation.formulationBasicInformation,
         previewFormulationProperties: state => state.formulation.formulationProperties,
+        taxonomyFormulationApplication: state => state.core.taxonomyProductApplication,
         isLogin: state => state.user.isLogin
       }),
     },
@@ -320,7 +265,6 @@
       showList: true,
       showCard: false,
       formulationField: {},
-      formulationFilterList: [],
       distance: -Infinity,
       infiniteId: +new Date(),
       formulationList: [],
@@ -328,14 +272,25 @@
       alertClass: '',
       alert: false,
       queryOptions: {},
-      selectedFormulation: {}
+      selectedFormulation: {},
+      formulationQuery: {},
+      currentTerm: [],
     }),
 
     mounted () {
       let vm = this
+      vm.formulationQuery = this.$router.history.current.query;
       vm.distance = 1
       vm.$store.dispatch('getFormulationFieldsDefinition')
       vm.changeFilter()
+    },
+
+    watch: {
+      $route(to, from) {
+        let vm = this;
+        vm.formulationQuery = to.query;
+        vm.changeFilter();
+      }
     },
 
     methods: {
@@ -361,45 +316,6 @@
         }
       },
 
-      formulationFilterSearch () {
-        let vm = this
-        let filterList = []
-        if (vm.formulationFilterList.length <= 0) {
-          vm.setAlert('搜索条件不能为空', 'warning')
-          return false
-        }
-
-        filterList = vm.formulationFilterList.filter((item) => {
-          return item.hasOwnProperty('value')
-        })
-
-        filterList.forEach((filterField) => {
-          vm.queryOptions[filterField.field] = filterField.value
-        })
-
-        vm.changeFilter()
-      },
-
-      addFormulationFilter () {
-        let vm = this
-
-        if (!vm.formulationField.hasOwnProperty('label')) {
-          vm.setAlert('请您选择搜索条件添加', 'warning')
-          return false
-        }
-
-        let ret = vm.formulationFilterList.find((v) => {
-          return v.label === vm.formulationField.label
-        })
-
-        if (ret === undefined) {
-          vm.formulationFilterList.push(vm.formulationField)
-        } else {
-          vm.setAlert('禁止添加重复条件', 'warning')
-          return false
-        }
-      },
-
       changeFilter () {
         this.formulationList = []
         this.infiniteId += 1
@@ -408,13 +324,75 @@
       infiniteHandler ($state) {
         let vm = this
         let options = {}
+        let filter = {
+          'formulation_application_ids': 'all'
+        }
 
         options.items_per_page = pageCount
         options.page = Math.ceil(vm.formulationList.length / pageCount)
         options = { ...options, ...vm.queryOptions }
 
+        if (vm.formulationQuery.hasOwnProperty("industry")) {
+          let subIds = []
+          subIds = vm.getChildrenIds(vm.taxonomyFormulationApplication, vm.formulationQuery.industry)
+          filter.formulation_application_ids = vm.formulationQuery.industry + '+' + subIds.join('+')
+        }
+
+        // 固定工业配方条件过滤
+        if (vm.formulationQuery.hasOwnProperty("field_luster_60")) {
+          let filterTerm = {
+            field: 'field_luster_60',
+            name: '光泽 60'
+          }
+          let hasFilter = vm.currentTerm.findIndex(item => item.field === 'field_luster_60')
+          options.field_luster_60 = vm.formulationQuery.field_luster_60
+
+          if (hasFilter === -1) {
+            vm.currentTerm.push(filterTerm)
+          }
+        }
+
+        if (vm.formulationQuery.hasOwnProperty("field_sheet")) {
+          let filterTerm = {
+            field: 'field_sheet',
+            name: '板材'
+          }
+          let hasFilter = vm.currentTerm.findIndex(item => item.field === 'field_sheet')
+          options.field_sheet = vm.formulationQuery.field_sheet
+
+          if (hasFilter === -1) {
+            vm.currentTerm.push(filterTerm)
+          }
+        }
+
+        if (vm.formulationQuery.hasOwnProperty("field_thickness")) {
+          let filterTerm = {
+            field: 'field_thickness',
+            name: '厚度'
+          }
+          let hasFilter = vm.currentTerm.findIndex(item => item.field === 'field_thickness')
+          options.field_thickness = vm.formulationQuery.field_thickness
+
+          if (hasFilter === -1) {
+            vm.currentTerm.push(filterTerm)
+          }
+        }
+
+        if (vm.formulationQuery.hasOwnProperty("field_sst")) {
+          let filterTerm = {
+            field: 'field_sst',
+            name: 'SST'
+          }
+          let hasFilter = vm.currentTerm.findIndex(item => item.field === 'field_sst')
+          options.field_sst = vm.formulationQuery.field_sst
+
+          if (hasFilter === -1) {
+            vm.currentTerm.push(filterTerm)
+          }
+        }
+
         vm.$loading.show()
-        vm.$store.dispatch('getFormulationList', options).then(() => {
+        vm.$store.dispatch('getFormulationList', {filter: filter, options: options}).then(() => {
           let formulations = vm.$store.state.formulation.formulationList
           formulations = formulations.map((formulation) => {
             vm.$store.dispatch('getFormulationDetails', {
@@ -509,6 +487,40 @@
         this.alertClass = ''
         this.alert = false
       },
+
+      getChildrenIds(terms, target_id) {
+        let vm = this
+        let childrens = []
+        let hasFilter = vm.currentTerm.findIndex(item => item.field === 'industry')
+
+        for (let id in terms) {
+          if (terms[id]['tid'] === target_id) {
+            childrens = terms[id]['children_ids']
+            if (hasFilter === -1) {
+              terms[id].field = 'industry'
+              vm.currentTerm.push(terms[id])
+            }
+          }
+        }
+
+        if (childrens.length <= 0) {
+          for (let id in terms) {
+            childrens = vm.getChildrenIds(terms[id]['children'], target_id)
+          }
+        }
+
+        return childrens
+      },
+
+      removeFilter(field) {
+        let vm = this
+        let query = this.$router.history.current.query
+        let newQuery = JSON.parse(JSON.stringify(query));
+
+        delete newQuery[field]
+        vm.currentTerm.splice(vm.currentTerm.findIndex(item => item.field === field), 1)
+        vm.$router.push({ path: 'formulations', query: newQuery});
+      }
     }
   }
 </script>

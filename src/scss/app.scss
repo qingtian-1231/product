@@ -202,6 +202,7 @@ main {
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 100%;
+        text-align: center;
 
         & > .icon {
           height: 32px;
@@ -245,7 +246,7 @@ main {
         & > .v-btn {
           border-radius: 0;
           margin: 0;
-          top: -5px;
+          top: -10px;
         }
       }
     }
@@ -288,6 +289,18 @@ main {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.align-left {
+  float: left;
+}
+
+.align-right {
+  float: right;
+}
+
+.v-expansion-panel-content__wrap {
+  padding: 0;
 }
 
 #product-view {

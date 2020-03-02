@@ -25,14 +25,32 @@
 
           </h1>
           <div>
-            <v-btn icon>
-              <v-icon large class="material-icons-outlined">cloud_download</v-icon>
+            <v-btn
+              icon
+              @click="openShareDialog"
+            >
+              <v-icon large class="material-icons-outlined">share</v-icon>
             </v-btn>
-            <v-btn icon>
-              <v-icon large class="material-icons-outlined">star_border</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon large class="material-icons-outlined">shopping_basket</v-icon>
+
+            <v-btn
+              icon
+              @click="favoritesFormulationStar('formulation', formulationBasic.isFeature ? 'delete' : 'add', formulationBasic.uuid)"
+            >
+              <v-icon
+                v-if="!formulationBasic.isFeature"
+                class="material-icons-outlined"
+                large
+              >
+                star_border
+              </v-icon>
+
+              <v-icon
+                v-else
+                color="yellow"
+                large
+              >
+                star
+              </v-icon>
             </v-btn>
           </div>
         </div>
@@ -93,22 +111,91 @@
     <v-row class="footer">
       <v-col class="col-xs-12" md="12">
         <div>
-          <v-btn icon tile large>
-            <v-icon large class="material-icons-outlined">cloud_download</v-icon>
-            <p>下载</p>
-          </v-btn>
-          <v-btn icon tile large>
-            <v-icon large class="material-icons-outlined">star_border</v-icon>
+          <v-btn
+            icon
+            tile
+            large
+            @click="favoritesFormulationStar('formulation', formulationBasic.isFeature ? 'delete' : 'add', formulationBasic.uuid)"
+          >
+            <v-icon
+              v-if="!formulationBasic.isFeature"
+              large
+              class="material-icons-outlined"
+            >
+              star_border
+            </v-icon>
+
+            <v-icon
+              v-else
+              color="yellow"
+              large
+            >
+              star
+            </v-icon>
+
             <p>最爱</p>
           </v-btn>
-          <v-btn icon tile large>
-            <v-icon large class="material-icons-outlined">shopping_basket</v-icon>
-            <p>购物车</p>
+          <v-btn icon tile large @click="openShareDialog()">
+            <v-icon large class="material-icons-outlined">share</v-icon>
+            <p>分享</p>
           </v-btn>
         </div>
       </v-col>
     </v-row>
 
+    <v-dialog
+      v-model="shareDialog"
+      transition="dialog-bottom-transition"
+      scrollable
+      persistent
+      max-width="940px"
+    >
+      <v-card>
+        <v-toolbar>
+          <v-btn icon dark>
+            <v-icon color="black" class="material-icons-outlined">share</v-icon>
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn icon dark @click="closeShareDialog()">
+            <v-icon color="black">close</v-icon>
+          </v-btn>
+        </v-toolbar>
+        <div id="share-dialog">
+          <h2>
+            {{ formulationTitle }}
+          </h2>
+          <p>
+            分享这个页面
+          </p>
+          <p>
+            {{ currentLocation }}
+          </p>
+          <div class="row text-center mx-0">
+            <v-col cols="12" md="6" sm="12">
+              <v-btn
+                class="ma-2"
+                block
+                rounded
+                color="success"
+                v-clipboard:copy="currentLocation"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onError"
+              >
+                复制链接
+              </v-btn>
+            </v-col>
+
+            <!--            <a style="display: none" href="mailto:example@qq.com?cc=example2@qq.com&subject=有未结算的单据&body=您有未付清的账单">发送邮件</a>-->
+
+            <v-col cols="12" md="6" sm="12" class="mx-0">
+              <v-btn class="ma-2" right block rounded color="info" @click="sendEmail()">
+                发送邮件
+              </v-btn>
+            </v-col>
+          </div>
+        </div>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -124,6 +211,7 @@
     components: { IconColorants, BasicInformation, Properties, Additional, FormulationRecipe },
     data () {
       return {
+        shareDialog: false,
         tab: null,
         items: [
           '基本信息', '属性', '配方', '其他信息',
@@ -138,20 +226,83 @@
         formulationInfo: state => state.formulation.formulationDetails,
         formulationFiles: state => state.formulation.formulationFiles,
         formulationBasicInformation: state => state.formulation.formulationBasicInformation,
-        formulationProperties: state => state.formulation.formulationProperties
+        formulationProperties: state => state.formulation.formulationProperties,
+        isLogin: state => state.user.isLogin
       }),
+
+      formulationTitle: function () {
+        return (this.formulationBasic && this.formulationBasic.name) ? this.formulationBasic.name.value : ''
+      }
     },
 
-    created () {
+    mounted () {
       let vm = this
       let formulationId = vm.$route.params.id
+      vm.currentLocation = window.location.href
       vm.$store.dispatch('getFormulationDetails', {
         id: formulationId
       }).then(result => {
         vm.formulationBasic = vm.formulationBasicInformation
         vm.formulationProp = vm.formulationProperties
-        // console.log(vm.formulationProp, 'vm.formulationBasic')
       })
+    },
+
+    methods: {
+      favoritesFormulationStar (type, action, formulationId) {
+        let vm = this
+        let favoriteInfo = {}
+        if (!vm.isLogin) {
+          vm.$store.commit('open_login_dialog')
+        } else {
+          favoriteInfo.type = type
+          favoriteInfo.action = action
+          favoriteInfo.id = formulationId
+          vm.$loading.show()
+          vm.$store.dispatch('processFavoriteForUser', favoriteInfo).then(result => {
+            if (result.status === 200) {
+              if (action === 'add') {
+                vm.formulationBasic.isFeature = true
+              } else if (action === 'delete') {
+                vm.formulationBasic.isFeature = false
+              }
+            }
+
+            console.log(vm.formulationBasic, 'vm.formulationBasic')
+            vm.$loading.hide()
+          })
+        }
+      },
+
+      openShareDialog() {
+        this.shareDialog = true
+      },
+
+      closeShareDialog() {
+        this.shareDialog = false
+      },
+
+      sendEmail() {
+        let vm = this
+        window.location.href = `mailto:?subject=配方${vm.formulationTitle}来自BASF产品助手&body=请查看配方详细信息${vm.formulationTitle}。
+我在BASF产品助手中找到了它：
+${vm.currentLocation}`
+      },
+
+      onCopy(e) {
+        this.$store.commit('SET_SNACKBAR', {
+          globalSnackbar: true,
+          snackbarMessage: '您已经将链接复制到粘贴板'
+        })
+
+        this.closeShareDialog()
+      },
+
+      onError(e) {
+        this.$store.commit('SET_SNACKBAR', {
+          globalSnackbar: true,
+          snackbarMessage: '复制失败'
+        })
+      }
     }
   }
 </script>
@@ -309,6 +460,24 @@
           text-align: center;
           width: auto;
         }
+      }
+    }
+  }
+
+  #share-dialog {
+    text-align: center;
+    padding: 0 4%;
+    background: #fff;
+
+    h2 {
+      padding: 0 0 2% 0;
+
+      i {
+        margin: -10px 0 0 -20px;
+        left: 50%;
+        position: absolute;
+        top: 90px;
+        font-size: 2.5rem;
       }
     }
   }

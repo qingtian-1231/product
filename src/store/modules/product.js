@@ -35,72 +35,74 @@ const mutations = {
   },
 
   processProductDetails(state, payload) {
-    for (let field in payload) {
+    let result = payload.result
+    let favorite = []
+    for (let field in result) {
       if (field === 'body') {
-        state.productInfo.description = payload.body
+        state.productInfo.description = result.body
         continue
       }
 
       if (field === 'title') {
-        state.productDetails.title = payload.title.value
-        state.productInfo.title = payload.title
+        state.productDetails.title = result.title.value
+        state.productInfo.title = result.title
         continue
       }
 
       if (field === 'field_cas_number') {
-        state.productBasicInformation.field_cas_number = payload.field_cas_number
+        state.productBasicInformation.field_cas_number = result.field_cas_number
         continue
       }
 
       if (field === 'field_product_name') {
-        state.productBasicInformation.field_product_name = payload.field_product_name
+        state.productBasicInformation.field_product_name = result.field_product_name
         continue
       }
 
       if (field === 'field_product_type') {
-        state.productBasicInformation.field_product_type = payload.field_product_type
+        state.productBasicInformation.field_product_type = result.field_product_type
         state.productBasicInformation.field_product_type.value = state.productBasicInformation.field_product_type.value[0]
         continue
       }
 
       if (field === 'field_benefits') {
-        state.productBasicInformation.benefits = payload.field_benefits
+        state.productBasicInformation.benefits = result.field_benefits
         continue
       }
 
       if (field === 'field_product_brand') {
-        state.productBasicInformation.brand = payload.field_product_brand.value.length > 0 ? payload.field_product_brand.value[0].name : {}
+        state.productBasicInformation.brand = result.field_product_brand.value.length > 0 ? result.field_product_brand.value[0].name : {}
         state.productBasicInformation.brand.label = '产品品牌'
         continue
       }
 
       if (field === 'field_buy_link') {
-        state.productInfo.field_buy_link = payload.field_buy_link
+        state.productInfo.field_buy_link = result.field_buy_link
         continue
       }
 
       if (field === 'field_recommended_application') {
-        state.productInfo.recommended_application = payload.field_recommended_application
+        state.productInfo.recommended_application = result.field_recommended_application
         continue
       }
 
       if (field === 'field_country_registration_group') {
-        state.productInfo.country_registration_group = payload.field_country_registration_group
+        state.productInfo.country_registration_group = result.field_country_registration_group
         continue
       }
 
       if (field === 'field_suitable_application') {
-        state.productInfo.suitable_application = payload.field_suitable_application
+        state.productInfo.suitable_application = result.field_suitable_application
         continue
       }
 
       if (field === 'field_formulation') {
-        state.productRelationFormulation = payload.field_formulation
+        state.productRelationFormulation = result.field_formulation
         continue
       }
 
       if (field === 'field_product_file') {
-        state.productRelationFile = payload.field_product_file
+        state.productRelationFile = result.field_product_file
         continue
       }
       /**
@@ -108,15 +110,16 @@ const mutations = {
        *
        */
       if (field === 'product_id') {
-        state.productDetails.product_id = payload.product_id.value
+        state.productDetails.product_id = result.product_id.value
         state.productDetails.quantity = 1
       }
       if (field === 'uuid') {
-        state.productDetails.uuid = payload.uuid.value
+        state.productDetails.uuid = result.uuid.value
+        state.productBasicInformation.uuid = result.uuid.value
       }
 
       if (field === 'variations') {
-        state.productDetails.variations = payload.variations.value
+        state.productDetails.variations = result.variations.value
       }
 
       /**
@@ -124,14 +127,25 @@ const mutations = {
        *
        */
       if (field.indexOf('field_') !== -1) {
-        state.productProperties[field] = payload[field]
+        state.productProperties[field] = result[field]
       }
+    }
+
+    if (payload.favorite) {
+      favorite = payload.favorite
+    }
+    let hasFavorite = globalUtils.findElementInArray(favorite, state.productDetails.uuid, 'value')
+
+    if (hasFavorite) {
+      state.productBasicInformation.isFeature = true
+    } else {
+      state.productBasicInformation.isFeature = false
     }
   }
 }
 
 const actions = {
-  getProductList({dispatch, commit, state, rootState}, options) {
+  getProductList({dispatch, commit, state, rootState}, payload) {
     let requestPath = state.path
     let currentLanguage = getCookie('drupal:session:language')
 
@@ -139,8 +153,8 @@ const actions = {
       requestPath = 'en/' + state.path
     }
 
-    return request().get(requestPath, {
-      params: options
+    return request().get(`${requestPath}/${payload.filter.product_type_ids}/${payload.filter.product_application_ids}/${payload.filter.product_brand_ids}`, {
+      params: payload.options
     })
       .then(function (response) {
         let payload = {
@@ -173,7 +187,14 @@ const actions = {
       }
     })
       .then(function (response) {
-        commit('processProductDetails', response.data)
+        let payload = {
+          favorite: '',
+          result: ''
+        }
+
+        payload.favorite = rootState.user.favoriteProductList
+        payload.result = response.data
+        commit('processProductDetails', payload)
         return Promise.resolve(response.data)
       })
       .catch(function (error) {

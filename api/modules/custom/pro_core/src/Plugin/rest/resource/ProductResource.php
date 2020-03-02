@@ -187,6 +187,12 @@ class ProductResource extends ResourceBase {
                 'value' => $field_item_list[0]->entity->name->value
               ];
             }
+            elseif($field === 'field_formulation_industry') {
+              $return[$field] = [
+                'label' => $field_definition->getLabel(),
+                'value' => $field_item_list->getValue(),
+              ];
+            }
             else {
               $return[$field] = [
                 'label' => $field_definition->getLabel(),

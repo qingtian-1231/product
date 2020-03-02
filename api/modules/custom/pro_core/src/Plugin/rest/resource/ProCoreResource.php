@@ -37,6 +37,19 @@ class ProCoreResource extends ResourceBase {
         $this->buildTree($tree, (array) $tree_object, $vocabulary);
       }
 
+      // 排序
+      $new_tree = [];
+      foreach ($tree as $term) {
+        $new_children = $this->arraySort($term['children'], 'weight');
+        $term['children'] = $new_children;
+        $new_tree[] = $term;
+      }
+
+      $tree = $new_tree;
+      /**
+       * TODO
+       * 每个对象获得所有层级的子tid
+       */
       $result[$vocabulary] = $tree;
     }
 
@@ -51,7 +64,9 @@ class ProCoreResource extends ResourceBase {
     }
     $tree[$object['tid']] = $object;
     $tree[$object['tid']]['children'] = [];
+    $tree[$object['tid']]['children_ids'] = [];
     $object_children = &$tree[$object['tid']]['children'];
+    $children_ids = &$tree[$object['tid']]['children_ids'];
 
     $children = $manager->loadChildren($object['tid']);
     if (!$children) {
@@ -63,10 +78,24 @@ class ProCoreResource extends ResourceBase {
     foreach ($children as $child) {
       foreach ($child_tree_objects as $child_tree_object) {
         if ($child_tree_object->tid == $child->id()) {
+          $children_ids[]= $child_tree_object->tid;
           $this->buildTree($object_children, (array) $child_tree_object, $vocabulary);
         }
       }
     }
+  }
+
+  protected function arraySort($array, $keys, $sort='asc') {
+    $newArr = $valArr = array();
+    foreach ($array as $key => $value) {
+      $valArr[$key] = $value[$keys];
+    }
+    ($sort == 'asc') ?  asort($valArr) : arsort($valArr);
+    reset($valArr);
+    foreach($valArr as $key => $value) {
+      $newArr[] = $array[$key];
+    }
+    return $newArr;
   }
 
   public function permissions() {

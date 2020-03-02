@@ -2,6 +2,7 @@
 
 namespace Drupal\pro_core\Plugin\rest\resource;
 
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
 use Drupal\node\Entity\Node;
@@ -29,12 +30,64 @@ class FormulationResource extends ResourceBase {
     $entity_manager = \Drupal::entityManager();
     $entity = $entity_manager->loadEntityByUuid('node', $id);
     $formulation = [];
+    $filter_fields = [
+      'type',
+      'stores',
+      'uid',
+      'path',
+      'created',
+      'changed',
+      'content_translation_source',
+      'content_translation_outdated',
+      'field_is_public',
+      'field_is_feature',
+      'langcode',
+      'vid',
+      'revision_timestamp',
+      'revision_uid',
+      'revision_log',
+      'default_langcode',
+      'revision_default',
+      'revision_translation_affected',
+      'nid'
+    ];
 
     if ($entity) {
       foreach ($entity->getFields() as $field => $field_item_list) {
-        if ($field_item_list instanceof FieldItemList) {
+        // 过滤掉不返回给客户端的字段数据
 
+        if (in_array($field, $filter_fields)) {
+          continue;
+        }
+
+        if ($field_item_list instanceof FieldItemList) {
           $field_definition = $field_item_list->getFieldDefinition();
+
+          if ($field_definition instanceof BaseFieldDefinition) {
+            if ($field_definition->getType() === 'entity_reference') {
+              $entity_reference_value = [];
+              foreach ($field_item_list as $para) {
+                if (method_exists($para->entity, 'getFields')) {
+                  $entity_reference_value[] = $this->getFields($para->entity->getFields());
+                }
+                else {
+                  $entity_reference_value[] = $para->getValue();
+                }
+              }
+
+              $formulation[$field] = [
+                'label' => is_string($field_definition->getLabel()) ? $field_definition->getLabel() : (string) $field_definition->getLabel(),
+                'value' => $entity_reference_value,
+              ];
+            }
+            else {
+              $formulation[$field] = [
+                'label' => is_string($field_definition->getLabel()) ? $field_definition->getLabel() : (string) $field_definition->getLabel(),
+                'value' => $field_item_list->value,
+              ];
+            }
+          }
+
           if ($field_definition instanceof FieldConfig) {
             if ($field_definition->getType() === 'entity_reference_revisions') {
               $entity_reference_value = [];
@@ -80,7 +133,7 @@ class FormulationResource extends ResourceBase {
           elseif ($field_definition->getType() === 'file') {
             $return[$field] = [
               'label' => $field_definition->getLabel(),
-              'value' => $field_item_list[0]->entity->url(),
+              'value' => count($field_item_list) > 0 ? $field_item_list[0]->entity->url() : null,
               'changed' => date('c', $field_item_list[0]->entity->changed->value),
             ];
           }

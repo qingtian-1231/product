@@ -790,3 +790,4 @@ $config_directories['sync'] = 'sites/default/files/config_8bIetQ2uwWAYigRj2vC7oU
 $config['system.logging']['error_level'] = 'verbose';
 $settings['http_client_config']['timeout'] = 120;
 $settings['file_private_path'] = 'sites/private';
+$config['file.settings']['make_unused_managed_files_temporary'] = TRUE;

@@ -84,7 +84,7 @@
 
     created () {
       // IE 浏览器不加载material 样式文件
-      if (!(window.navigator.userAgent.indexOf('MSIE') >= 1)) {
+      if (!this.isIE()) {
         globalUtils.loadCss('/css/googleapi_material_icons.css')
       }
 
@@ -92,6 +92,13 @@
     },
 
     methods: {
+      isIE () {
+        if (window.ActiveXObject || "ActiveXObject" in window || window.navigator.userAgent.indexOf("MSIE") >= 1){
+          return true
+        }else{
+          return false
+        }
+      },
       setSnackbar () {
         this.$store.commit('SET_SNACKBAR', {
           globalSnackbar: false,

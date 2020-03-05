@@ -10,7 +10,13 @@
           </span>
           <span>
             <h2 class="light">
-              <icon-colorants bg-color-class="default"></icon-colorants>
+              <icon
+                width="40"
+                height="40"
+                icon-name="14"
+                bg-color-class="Hydropalat"
+              >
+              </icon>
               <template v-if="basicInfo.name">
                 {{ basicInfo.name.value }}
               </template>
@@ -30,7 +36,13 @@
                 <input type="number" name="DISPEX_ULTRA_PA_4550" :placeholder="item.field_proportion.value" :value="item.field_proportion.value">
               </span>
               <span>
-                <icon-additoves bg-color-class="default"></icon-additoves>
+                <icon
+                  width="24"
+                  height="24"
+                  :icon-name="item.field_part_basf_product.termId"
+                  :bg-color-class="item.field_part_basf_product.brandName"
+                >
+                </icon>
                 <router-link :to="{name: 'Product', params: {id: item.field_part_basf_product.uuid}}" target="_blank">
                   <b>{{ item.field_part_basf_product.value }}</b>
                 </router-link>
@@ -58,11 +70,11 @@
 </template>
 
 <script>
+  import Icon from "../../components/svg/features/Icon";
   import IconColorants from '../../components/svg/formulations/Colorants'
-  import IconAdditoves from '../../components/svg/Additives'
 
   export default {
-    components: { IconColorants, IconAdditoves },
+    components: { Icon },
 
     props: {
       basicInfo: {
@@ -166,14 +178,14 @@
           margin-left: 2%;
         }
 
-        .icon {
+        .icon-container {
           height: 24px;
           margin-top: 4px;
           margin-right: 4px;
           width: 24px;
         }
 
-        & > .icon {
+        & > .icon-container {
           height: 24px;
           margin-top: 4px;
           margin-right: 4px;
@@ -198,7 +210,8 @@
           padding-left: 50px;
           margin: 0;
 
-          .icon {
+          .icon-container {
+            box-shadow: none !important;
             border-radius: 10px;
             float: left;
             height: 40px;

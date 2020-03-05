@@ -26,7 +26,13 @@
         </v-alert>
         <div>
           <h1>
-            <icon-additives bg-color-class="wetting-agents"></icon-additives>
+            <icon
+              width="64"
+              height="64"
+              :icon-name="productTypeId"
+              :bg-color-class="productBrandValue"
+            >
+            </icon>
             <template v-if="productInfo.title">
               {{ productInfo.title.value }}
             </template>
@@ -224,9 +230,10 @@
   import Formulations from '../components/product_view/Formulations'
   import Additional from '../components/product_view/Additional'
   import { mapState } from 'vuex'
+  import Icon from "../components/svg/features/Icon";
 
   export default {
-    components: { IconAdditives, BasicInformation, Properties, Formulations, Additional },
+    components: { Icon, BasicInformation, Properties, Formulations, Additional },
 
     computed: {
       ...mapState({
@@ -241,6 +248,14 @@
 
       productTitle: function () {
         return (this.productInfo && this.productInfo.title) ? this.productInfo.title.value : ''
+      },
+
+      productTypeId: function () {
+        return (this.productBasic.field_product_type && this.productBasic.parentTid) ? this.productBasic.parentTid : ''
+      },
+
+      productBrandValue: function () {
+        return (this.productBasic.brand) ? this.productBasic.brand.value : ''
       }
     },
 
@@ -272,7 +287,7 @@
         vm.productBasic = vm.productBasicInformation
         vm.productInfo = vm.productInformation
         vm.productFormulation = vm.productRelationFormulation.value
-        // console.log(vm.productBasic,vm.productInfo, 'productProperties')
+        // console.log(vm.productBasic.parentTid, vm.productBasic, 'productProperties')
       })
     },
 
@@ -304,7 +319,6 @@ ${vm.currentLocation}`
         let vm = this;
         let favoriteInfo = {};
 
-        console.log(type, action, productId, 'type, action, productId')
         if (!vm.isLogin) {
           vm.$store.commit("open_login_dialog");
         } else {
@@ -384,6 +398,16 @@ ${vm.currentLocation}`
       padding-left: 70px;
       padding-top: 8px;
       font-size: 2.2rem;
+
+      .icon-container {
+        margin: -7px 10px 0 -70px;
+        max-height: 64px;
+        max-width: 64px;
+        height: 64px;
+        width: 64px;
+        position: relative;
+        float: left;
+      }
 
       .icon {
         margin: -7px 10px 0 -70px;

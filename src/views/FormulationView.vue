@@ -1,6 +1,6 @@
 <template>
   <v-container
-    id="product-view"
+    id="formulation-view"
     tag="section"
   >
     <v-row class="back">
@@ -18,7 +18,13 @@
       <v-col class="col-xs-12" md="12">
         <div>
           <h1>
-            <icon-colorants bg-color-class="default"></icon-colorants>
+            <icon
+              width="64"
+              height="64"
+              icon-name="14"
+              bg-color-class="Hydropalat"
+            >
+            </icon>
             <template v-if="formulationBasic.name">
               {{ formulationBasic.name.value }}
             </template>
@@ -200,7 +206,8 @@
 </template>
 
 <script>
-  import IconColorants from '../components/svg/formulations/Colorants'
+  // import IconColorants from '../components/svg/formulations/Colorants'
+  import Icon from "../components/svg/features/Icon";
   import BasicInformation from '../components/formulation_view/BasicInformation'
   import Properties from '../components/formulation_view/Properties'
   import Additional from '../components/formulation_view/Additional'
@@ -208,7 +215,7 @@
   import { mapState } from 'vuex'
 
   export default {
-    components: { IconColorants, BasicInformation, Properties, Additional, FormulationRecipe },
+    components: { Icon, BasicInformation, Properties, Additional, FormulationRecipe },
     data () {
       return {
         shareDialog: false,
@@ -267,7 +274,7 @@
               }
             }
 
-            console.log(vm.formulationBasic, 'vm.formulationBasic')
+            // console.log(vm.formulationBasic, 'vm.formulationBasic')
             vm.$loading.hide()
           })
         }
@@ -308,7 +315,7 @@ ${vm.currentLocation}`
 </script>
 
 <style lang="scss" scoped>
-  #product-view {
+  #formulation-view {
     .v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) {
       border-bottom: 1px solid #ddd;
     }
@@ -321,6 +328,17 @@ ${vm.currentLocation}`
         margin: 0;
         padding-left: 70px;
         padding-top: 8px;
+        font-size: 2.2rem;
+
+        .icon-container {
+          margin: -7px 10px 0 -70px;
+          max-height: 64px;
+          max-width: 64px;
+          height: 64px;
+          width: 64px;
+          position: relative;
+          float: left;
+        }
 
         .icon {
           margin: -7px 10px 0 -70px;
@@ -399,6 +417,10 @@ ${vm.currentLocation}`
             text-align: center;
             margin-bottom: 45px;
             overflow: hidden;
+
+            .v-tab {
+              font-size: 1.25rem;
+            }
           }
         }
       }

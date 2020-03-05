@@ -89,6 +89,11 @@
           return
         }
 
+        if (item.uri === 'base:sample-order' && !this.isLogin) {
+          this.$store.commit('open_login_dialog')
+          return
+        }
+
         if (item.to || !item.relative) {
           return
         }

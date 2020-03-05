@@ -87,8 +87,6 @@
       if (!this.isIE()) {
         globalUtils.loadCss('/css/googleapi_material_icons.css')
       }
-
-      console.log(window.clab_tracker, 'test')
     },
 
     methods: {

@@ -57,12 +57,13 @@
 <!--                    </v-list-item-action>-->
 
                     <v-list-item-avatar @click="goFormulationDetail(formulation.uuid, !!parseInt(formulation.field_is_public))">
-                      <template v-if="index % 2">
-                        <icon-features1 width="50" height="50"></icon-features1>
-                      </template>
-                      <template v-else>
-                        <icon-features4 width="50" height="50"></icon-features4>
-                      </template>
+                      <icon
+                        width="50"
+                        height="50"
+                        icon-name="14"
+                        bg-color-class="Hydropalat"
+                      >
+                      </icon>
                     </v-list-item-avatar>
 
                     <v-list-item-content @click="goFormulationDetail(formulation.uuid, !!parseInt(formulation.field_is_public))">
@@ -236,8 +237,9 @@
 </template>
 <script>
   // import IconDispersions from '../components/svg/Dispersions'
-  import IconFeatures1 from '../components/svg/features/Features-1'
-  import IconFeatures4 from '../components/svg/features/Features-4'
+  // import IconFeatures1 from '../components/svg/features/Features-1'
+  // import IconFeatures4 from '../components/svg/features/Features-4'
+  import Icon from "../components/svg/features/Icon";
   import formulationDetails from '../components/FormulationDetails'
   import { mapState } from 'vuex'
   import config from '../config'
@@ -247,7 +249,7 @@
   const pageCount = isDev ? config.dev.pageCount : config.prod.pageCount
 
   export default {
-    components: { IconFeatures1, IconFeatures4, formulationDetails},
+    components: { Icon, formulationDetails},
 
     computed: {
       ...mapState({

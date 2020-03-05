@@ -66,12 +66,13 @@
                     <v-list-item-avatar
                       @click="goProductDetail(product.uuid,!!parseInt(product.field_is_public))"
                     >
-                      <template v-if="index % 2">
-                        <icon-features2 width="50" height="50"></icon-features2>
-                      </template>
-                      <template v-else>
-                        <icon-features3 width="50" height="50"></icon-features3>
-                      </template>
+                      <icon
+                        width="50"
+                        height="50"
+                        :icon-name="product.parentTid"
+                        :bg-color-class="product.field_product_brand"
+                      >
+                      </icon>
                     </v-list-item-avatar>
 
                     <v-list-item-content
@@ -252,8 +253,7 @@
 <script>
 // import IconDispersions from '../components/svg/Dispersions'
 import ProductDetails from "../components/ProductDetails";
-import IconFeatures2 from "../components/svg/features/Features-2";
-import IconFeatures3 from "../components/svg/features/Features-3";
+import Icon from "../components/svg/features/Icon";
 import { mapState } from "vuex";
 import config from "../config";
 
@@ -262,7 +262,7 @@ const isDev = process.env.NODE_ENV !== "production";
 const pageCount = isDev ? config.dev.pageCount : config.prod.pageCount;
 
 export default {
-  components: { ProductDetails, IconFeatures2, IconFeatures3},
+  components: { Icon, ProductDetails },
 
   computed: {
     ...mapState({
@@ -353,8 +353,6 @@ export default {
       if (vm.productQuery.hasOwnProperty("product_type")) {
         let subIds = []
         subIds = vm.getChildrenIds(vm.taxonomyProductType, vm.productQuery.product_type)
-
-        console.log(subIds, 'subIds')
         filter.product_type_ids = vm.productQuery.product_type + '+' + subIds.join('+')
       }
 

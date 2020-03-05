@@ -36,7 +36,11 @@
                 <v-icon class="d-md-none" dark>close</v-icon>
               </template>
             </v-btn>
-            <v-menu offset-y>
+            <v-menu
+              min-width="90"
+              max-width="140"
+              offset-y
+            >
               <template v-slot:activator="{ on }">
                 <v-btn
                   small
@@ -444,7 +448,7 @@
     color: #fff;
     
     a {
-      color: #fff;
+      color: #fff !important;
     }
   }
   

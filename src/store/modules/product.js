@@ -20,6 +20,7 @@ const mutations = {
     state.productList = payload.result.map(item => {
       let favorite = []
 
+      item.parentTid = globalUtils.findParentTid(payload.productType, item.field_product_type)
       if (payload.favorite) {
         favorite = payload.favorite
       }
@@ -37,6 +38,7 @@ const mutations = {
   processProductDetails(state, payload) {
     let result = payload.result
     let favorite = []
+
     for (let field in result) {
       if (field === 'body') {
         state.productInfo.description = result.body
@@ -60,8 +62,13 @@ const mutations = {
       }
 
       if (field === 'field_product_type') {
-        state.productBasicInformation.field_product_type = result.field_product_type
-        state.productBasicInformation.field_product_type.value = state.productBasicInformation.field_product_type.value[0]
+        let tid = result.field_product_type.value.length > 0 ? result.field_product_type.value[0].tid.value : null
+        state.productBasicInformation.field_product_type = result.field_product_type.value.length > 0 ? result.field_product_type.value[0].name : {}
+        state.productBasicInformation.field_product_type.label = '产品分类'
+        state.productBasicInformation.field_product_type.parentTid = globalUtils.findParentTid(payload.productType, tid)
+
+        // console.log(result.field_product_type.value[0].tid.value, 'result.field_product_type.value[0].name')
+        // state.productBasicInformation.field_product_type.value = state.productBasicInformation.field_product_type.value[0].name
         continue
       }
 
@@ -162,6 +169,7 @@ const actions = {
           result: ''
         }
 
+        payload.productType = rootState.core.taxonomyProductType
         payload.favorite = rootState.user.favoriteProductList
         payload.result = response.data.results
         commit('processProductList', payload)
@@ -192,6 +200,7 @@ const actions = {
           result: ''
         }
 
+        payload.productType = rootState.core.taxonomyProductType
         payload.favorite = rootState.user.favoriteProductList
         payload.result = response.data
         commit('processProductDetails', payload)

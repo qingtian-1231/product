@@ -62,16 +62,6 @@ router.beforeEach((to, from, next) => {
     meta['description'].setAttribute('content', to.meta.description)
   }
 
-  if (to.meta.auth === 'user-login') {
-    const session = getCookie('drupal:session');
-    const sessionValue = session ? JSON.parse(session) : "";
-    const currentUser = ((sessionValue || false).authenticated || false).current_user || false;
-    if (!currentUser) {
-      next({replace:true, name:'Unauthorized'})
-    }
-  }
-
-
   next()
 })
 

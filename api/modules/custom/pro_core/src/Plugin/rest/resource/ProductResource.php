@@ -103,14 +103,14 @@ class ProductResource extends ResourceBase {
                   ];
                   break;
 
-                case 'field_product_type':
-                  $value = $this->processTerm($field_item_list);
-
-                  $product[$field] = [
-                    'label' => $field_definition->getLabel(),
-                    'value' => $value,
-                  ];
-                  break;
+//                case 'field_product_type':
+//                  $value = $this->processTerm($field_item_list);
+//
+//                  $product[$field] = [
+//                    'label' => $field_definition->getLabel(),
+//                    'value' => $value,
+//                  ];
+//                  break;
 
                 default:
                   $entity_reference_value = [];

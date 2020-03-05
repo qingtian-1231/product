@@ -8,6 +8,7 @@ use Drupal\rest\ResourceResponse;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Field\FieldItemList;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Provides a formulation detail Resource
@@ -124,10 +125,18 @@ class FormulationResource extends ResourceBase {
         $field_definition = $field_item_list->getFieldDefinition();
         if ($field_definition instanceof FieldConfig) {
           if ($field_definition->getType() === 'entity_reference') {
+            $type_Id = array_pop($field_item_list[0]->entity->field_product_type->getValue());
+            $brand_id = array_pop($field_item_list[0]->entity->field_product_brand->getValue());
+            $productType = Term::load($type_Id['target_id']);
+
+            $brand = Term::load($brand_id['target_id']);
+
             $return[$field] = [
               'label' => $field_definition->getLabel(),
               'value' => $field_item_list[0]->entity->field_product_name->value,
               'uuid' => $field_item_list[0]->entity->uuid->value,
+              'termId' => $type_Id['target_id'],
+              'brandName' => $brand->getName(),
             ];
           }
           elseif ($field_definition->getType() === 'file') {

@@ -37,6 +37,20 @@ globalUtils = {
     })
   },
 
+  findParentTid: function (arr, value) {
+    let tid = ''
+    arr.forEach(item => {
+      if (item.tid == value) {
+        tid = item.tid
+      }
+
+      if (item.children_ids.indexOf(value) !== -1) {
+        tid = item.tid
+      }
+    })
+    return tid
+  },
+
   /**
    * append a CSS file dynamically just once
    */

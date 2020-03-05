@@ -125,7 +125,7 @@
         if (formulations.length) {
           vm.formulationList = vm.formulationList.concat(formulations)
 
-          console.log(vm.formulationList, 'vm.formulationList')
+          // console.log(vm.formulationList, 'vm.formulationList')
           vm.$loading.hide()
         } else {
           vm.$loading.hide()

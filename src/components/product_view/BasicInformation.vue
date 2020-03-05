@@ -5,6 +5,33 @@
         <h2 v-html="productInfo.description.value"></h2>
       </template>
 
+      <p>
+        <span class="grey-2">
+          {{ brand.label }}
+        </span>
+        {{ brand.value }}
+      </p>
+
+      <p>
+        <span class="grey-2">
+          {{ field_product_type.label }}
+        </span>
+        {{ field_product_type.value }}
+      </p>
+
+      <p>
+        <span class="grey-2">
+          {{ field_cas_number.label }}
+        </span>
+        {{ field_cas_number.value }}
+      </p>
+
+      <p>
+        <span class="grey-2">
+          {{ field_product_name.label }}
+        </span>
+        {{ field_product_name.value }}
+      </p>
 
       <p v-if="buy_link.value">
         <span class="grey-2">
@@ -12,14 +39,14 @@
         </span>
         <a target="_blank" :href="buy_link.value.uri">{{ buy_link.value.title }}</a>
       </p>
-      <template v-for="(item, index) in productBasic">
-        <p :key="index">
+
+      <p>
         <span class="grey-2">
-          {{ item.label }}
+          {{ benefits.label }}
         </span>
-          {{ item.value }}
-        </p>
-      </template>
+        {{ benefits.value }}
+      </p>
+
     </div>
 
     <div class="app" v-if="recommended_application">
@@ -72,6 +99,7 @@
 <script>
   export default {
     name: 'basic-information',
+
     props: {
       productBasic: {
         type: Object
@@ -81,12 +109,33 @@
         type: Object
       },
     },
+
     data () {
       return {
       }
     },
 
     computed: {
+      benefits: function () {
+        return (this.productBasic && this.productBasic.benefits) ? this.productBasic.benefits : {}
+      },
+
+      field_cas_number: function () {
+        return (this.productBasic && this.productBasic.field_cas_number) ? this.productBasic.field_cas_number : {}
+      },
+
+      field_product_name: function () {
+        return (this.productBasic && this.productBasic.field_product_name) ? this.productBasic.field_product_name : {}
+      },
+
+      field_product_type: function () {
+        return (this.productBasic && this.productBasic.field_product_type) ? this.productBasic.field_product_type : {}
+      },
+
+      brand: function () {
+        return (this.productBasic && this.productBasic.brand) ? this.productBasic.brand : {}
+      },
+
       buy_link: function () {
         return (this.productInfo && this.productInfo.field_buy_link) ? this.productInfo.field_buy_link : {}
       },
@@ -104,10 +153,6 @@
     },
 
     created () {
-    },
-
-    mounted() {
-      console.log(this.productInfo, 'this.productInfo')
     }
   }
 </script>

@@ -12,7 +12,7 @@
         light
         outlined
         filled
-        label="search"
+        label="搜索"
         append-icon="search"
         clear-icon="mdi-close-circle"
         clearable
@@ -68,7 +68,7 @@
           <div>
             <h2>
               <v-icon>menu</v-icon>
-              品牌过滤
+              品牌
               <v-btn icon @click="filterProduct = false">
                 <v-icon>chevron_right</v-icon>
               </v-btn>
@@ -145,7 +145,6 @@ export default {
     debounceSearch: debounce(({ vm }) => {
       if (vm.searchKeyWord) {
         vm.searchLoading = true
-        console.log(vm.searchKeyWord, 'vm.searchKeyWord')
         vm.$store.dispatch('productSearch', vm.searchKeyWord).then(result => {
           vm.searchLoading = false
         });

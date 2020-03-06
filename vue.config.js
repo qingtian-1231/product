@@ -27,6 +27,7 @@ module.exports = {
       'vuetify': 'Vuetify',
       'vue-lazyload': 'VueLazyload',
       'vue-infinite-loading': 'VueInfiniteLoading',
+      'vue-i18n': 'VueI18n',
       'lodash': '_'
     },
     devServer: {

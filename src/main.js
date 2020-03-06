@@ -6,6 +6,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import VueI18n from 'vue-i18n'
+import { messages } from './lang'
 import { getCookie } from "./utils/cookie.js";
 import loading from './utils/loading.js' // 引入loading
 // For Nprogress 页面加载动画.
@@ -19,6 +21,11 @@ import VueClipboard from 'vue-clipboard2'
 VueClipboard.config.autoSetContainer = true
 
 const isDev = process.env.NODE_ENV !== 'production'
+let language = getCookie('drupal:session:language')
+
+if (!language) {
+  language = 'zh-hans'
+}
 
 if (isDev) {
   Vue.config.debug = true
@@ -75,11 +82,20 @@ Vue.use(SvgIcon, {
 })
 Vue.use(VueClipboard)
 Vue.use(InfiniteLoading);
+Vue.use(VueI18n)
+
+// Create VueI18n instance with options
+const i18n = new VueI18n({
+  locale: language, // set locale
+  messages, // set locale messages
+})
+
 store.dispatch('getApiMenu').then(() => {
   store.dispatch('getTaxonomyList').then(() => {
     store.dispatch('getCurrentUser').then(() => {
       store.dispatch('getCSRFToken').then(() => {
         new Vue({
+          i18n,
           store,
           router,
           vuetify: new Vuetify({

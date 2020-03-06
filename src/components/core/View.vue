@@ -252,13 +252,19 @@
 
         if (item.dialog) {
           this.$store.state.core.requestDialog = true
-        }
-
-        if (item.to || !item.href) {
           return
         }
 
-        this.$vuetify.goTo(item.href)
+        if (item.uri === 'base:sample-order' && !this.isLogin) {
+          this.$store.commit('open_login_dialog')
+          return
+        }
+
+        if (item.to || !item.relative) {
+          return
+        }
+
+        this.$router.push({ path: item.relative})
       },
 
       userLogin () {

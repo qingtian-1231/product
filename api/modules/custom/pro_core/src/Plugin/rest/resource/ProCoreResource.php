@@ -59,6 +59,12 @@ class ProCoreResource extends ResourceBase {
   protected function buildTree(&$tree, $object, $vocabulary) {
     $manager = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
 
+    $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $term = \Drupal\taxonomy\Entity\Term::load($object['tid']);
+    if ($term->hasTranslation($language)) {
+      $object['name'] = $term->getTranslation($language)->getName();
+    }
+    
     if ($object['depth'] != 0) {
       return;
     }

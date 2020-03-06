@@ -11,12 +11,13 @@
         <v-hover :key="index" v-slot:default="{ hover }">
           <v-list-item :class="{'elevation-12': hover, 'locked': (!parseInt(formulation.field_is_public) && !isLogin)}">
             <v-list-item-avatar @click="goFormulationDetail(formulation.uuid, !!parseInt(formulation.field_is_public))">
-              <template v-if="index % 2">
-                <icon-features1 width="50" height="50"></icon-features1>
-              </template>
-              <template v-else>
-                <icon-features4 width="50" height="50"></icon-features4>
-              </template>
+              <icon
+                width="50"
+                height="50"
+                icon-name="14"
+                bg-color-class="Hydropalat"
+              >
+              </icon>
             </v-list-item-avatar>
 
             <v-list-item-content @click="goFormulationDetail(formulation.uuid, !!parseInt(formulation.field_is_public))">
@@ -72,15 +73,14 @@
 </template>
 
 <script>
-  import IconFeatures1 from '../../components/svg/features/Features-1'
-  import IconFeatures4 from '../../components/svg/features/Features-4'
+  import Icon from "../../components/svg/features/Icon";
   import { mapState } from 'vuex'
 
   const pageCount = 5
   export default {
     name: 'formulations-without-filter',
 
-    components: { IconFeatures1, IconFeatures4},
+    components: { Icon },
 
     props: {
       industry: {

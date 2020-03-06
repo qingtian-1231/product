@@ -12,7 +12,7 @@
         light
         outlined
         filled
-        label="搜索"
+        :label="$t('home.search.search')"
         append-icon="search"
         clear-icon="mdi-close-circle"
         clearable
@@ -68,7 +68,7 @@
           <div>
             <h2>
               <v-icon>menu</v-icon>
-              品牌
+              {{ $t('home.search.brand') }}
               <v-btn icon @click="filterProduct = false">
                 <v-icon>chevron_right</v-icon>
               </v-btn>
@@ -107,7 +107,7 @@
     >
       {{ text }}
       <v-btn flat @click="snackbar = false">
-        关闭
+        {{ $t('global.close') }}
       </v-btn>
     </v-snackbar>
   </v-container>

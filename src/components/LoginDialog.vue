@@ -16,16 +16,16 @@
       <div id="login-dialog">
         <h2>
           <v-icon>lock_open</v-icon>
-          注册,充分利用BASF产品助手。
+          {{ $t('loginDialog.title') }}
         </h2>
         <p>
-          完全访问专有配方和完整的产品数据。 个性化您自己的帐户并存储喜欢的或最近访问的产品和配方。 您甚至可以将您的帐户链接到同事，以共享您的示例订单信息-这只是注册的一些优点。
+          {{ $t('loginDialog.description') }}
         </p>
         <div class="row text-center mx-0">
           <v-col cols="12" md="6" sm="12">
             <router-link :to="{ name: 'Login' }">
               <v-btn class="ma-2" block rounded color="success" @click="closeLoginDialog()">
-                登录
+                {{ $t('global.login') }}
               </v-btn>
             </router-link>
           </v-col>
@@ -33,7 +33,7 @@
           <v-col cols="12" md="6" sm="12" class="mx-0">
             <router-link :to="{ name: 'Register' }">
               <v-btn class="ma-2" right block rounded color="info" @click="closeLoginDialog()">
-                注册
+                {{ $t('global.register') }}
               </v-btn>
             </router-link>
           </v-col>

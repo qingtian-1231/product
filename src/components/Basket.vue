@@ -16,7 +16,7 @@
       <div>
         <h2>
           <v-icon>shopping_basket</v-icon>
-          样品购物车
+          {{ $t('basket.title') }}
           <v-btn icon @click="closeMiniBasket()">
             <v-icon class="material-icons-outlined">close</v-icon>
           </v-btn>
@@ -33,7 +33,7 @@
                     <v-select
                       v-model="product.selectVariation"
                       :items="product.variationsItem"
-                      label="产品分量"
+                      :label="$t('basket.productWeight')"
                       height="18"
                       hide-details
                       outlined
@@ -56,13 +56,13 @@
           class="white--text"
           @click="clearShoppingCart()"
         >
-          清空购物车
+          {{ $t('basket.clearBasket') }}
           <v-icon right class="material-icons-outlined">
             delete
           </v-icon>
         </v-btn>
         <v-btn block color="primary" @click="sampleOrder()">
-          查看样品订单
+          {{ $t('basket.seeOrder') }}
           <template v-if="isLogin">
             <v-icon right class="material-icons-outlined">
               check

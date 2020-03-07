@@ -5,7 +5,7 @@
         <v-col class="col-xs-6" md="6">
           <v-btn class="float-left" color="primary" @click="$router.back(-1)">
             <v-icon>apps</v-icon>
-            返回上一页
+            {{ $t('global.goBack') }}
           </v-btn>
         </v-col>
         <v-col class="col-xs-6">

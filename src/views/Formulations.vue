@@ -5,14 +5,14 @@
   >
     <v-col lg="12" md="12" sm="12">
       <v-row class="back">
-        <v-col class="col-xs-2" md="2">
+        <v-col class="col-xs-3" md="3">
           <v-btn class="float-left" color="primary" @click="$router.back(-1)">
             <v-icon>apps</v-icon>
-            返回上一页
+            {{ $t('global.goBack') }}
           </v-btn>
         </v-col>
 
-        <v-col class="col-xs-8" md="8">
+        <v-col class="col-xs-7" md="7">
           <template v-for="(item, index) in currentTerm">
             <v-chip
               :key="index"

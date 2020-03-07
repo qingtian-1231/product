@@ -5,7 +5,31 @@ const messages = {
       login: '登录',
       register: '注册',
       cancel: '取消',
-      submit: '提交'
+      submit: '提交',
+      goBack: '返回上一页'
+    },
+    basket: {
+      title: '样品购物车',
+      clearBasket: '清空购物车',
+      seeOrder: '查看样品订单',
+      productWeight: '产品分量'
+    },
+    productView: {
+      basicInfo: '基本信息',
+      property: '属性',
+      formulation: '配方',
+      download: '下载',
+      share: '分享',
+      favorite: '最爱',
+      basket: '购物车'
+    },
+    formulationView: {
+      basicInfo: '基本信息',
+      property: '属性',
+      otherInformation: '其他信息',
+      formula: '配方公式',
+      share: '分享',
+      favorite: '最爱',
     },
     onlineRequestForm: {
       title: '发送反馈',
@@ -30,7 +54,31 @@ const messages = {
       login: 'login',
       register: 'register',
       cancel: 'cancel',
-      submit: 'submit'
+      submit: 'submit',
+      goBack: 'go back to the last page'
+    },
+    basket: {
+      title: 'Sample shopping cart',
+      clearBasket: 'Empty shopping cart',
+      seeOrder: 'View Sample Order',
+      productWeight: 'Product Weight'
+    },
+    productView: {
+      basicInfo: 'Basic Information',
+      property: 'property',
+      formulation: 'formulation',
+      download: 'download',
+      share: 'share',
+      favorite: 'favorite',
+      basket: 'basket'
+    },
+    formulationView: {
+      basicInfo: 'Basic Information',
+      property: 'property',
+      otherInformation: 'Other Information',
+      formula: 'formula',
+      share: 'share',
+      favorite: 'favorite',
     },
     onlineRequestForm: {
       title: 'send feedback',

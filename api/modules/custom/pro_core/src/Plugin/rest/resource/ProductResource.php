@@ -148,10 +148,18 @@ class ProductResource extends ResourceBase {
               ];
             }
             else {
-              $product[$field] = [
-                'label' => $field_definition->getLabel(),
-                'value' => count($field_item_list) === 1 ? $field_item_list->value : $field_item_list->getValue(),
-              ];
+              if ($field === 'field_recommended_application') {
+                $product[$field] = [
+                  'label' => $field_definition->getLabel(),
+                  'value' => $field_item_list->getValue(),
+                ];
+              }
+              else {
+                $product[$field] = [
+                  'label' => $field_definition->getLabel(),
+                  'value' => count($field_item_list) === 1 ? $field_item_list->value : $field_item_list->getValue(),
+                ];
+              }
             }
           }
         }
@@ -161,6 +169,13 @@ class ProductResource extends ResourceBase {
         'error' => '不能获取到正确配方信息',
       ];
     }
+    $product = array_map(function ($item) {
+      if (isset($item['value']) && empty($item['value'])) {
+        $item['value'] = '';
+      }
+      return $item;
+    }, $product);
+
     return new ResourceResponse($product);
   }
 

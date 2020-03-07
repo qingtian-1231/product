@@ -245,6 +245,14 @@ class ProductResource extends ResourceBase {
         }
       }
     }
+
+    $return = array_map(function ($item) {
+      if (isset($item['value']) && empty($item['value'])) {
+        $item['value'] = '';
+      }
+      return $item;
+    }, $return);
+
     return $return;
   }
 

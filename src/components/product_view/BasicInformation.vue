@@ -19,7 +19,7 @@
         {{ field_product_type.value }}
       </p>
 
-      <p>
+      <p v-if="field_cas_number.value">
         <span class="grey-2">
           {{ field_cas_number.label }}
         </span>

@@ -7,7 +7,7 @@
       <v-col class="col-xs-8" md="6">
         <v-btn class="float-left" color="primary" @click="$router.back(-1)">
           <v-icon>apps</v-icon>
-          返回上一页
+          {{ $t('global.goBack') }}
         </v-btn>
       </v-col>
       <v-col class="col-xs-4">
@@ -69,26 +69,26 @@
           <v-tabs
             v-model="tab"
             background-color="transparent"
-            color="basil"
+            color="primary"
             grow
           >
             <v-tab>
-              配方公式
+              {{ $t('formulationView.formula') }}
               <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab @click="showIcon">
-              基本信息
+              {{ $t('formulationView.basicInfo') }}
               <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab>
-              属性
+              {{ $t('formulationView.property') }}
               <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab>
-              其他信息
+              {{ $t('formulationView.otherInformation') }}
               <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
@@ -139,11 +139,11 @@
               star
             </v-icon>
 
-            <p>最爱</p>
+            <p>{{ $t('formulationView.share') }}</p>
           </v-btn>
           <v-btn icon tile large @click="openShareDialog()">
             <v-icon large class="material-icons-outlined">share</v-icon>
-            <p>分享</p>
+            <p>{{ $t('formulationView.favorite') }}</p>
           </v-btn>
         </div>
       </v-col>
@@ -219,10 +219,7 @@
     data () {
       return {
         shareDialog: false,
-        tab: null,
-        items: [
-          '基本信息', '属性', '配方', '其他信息',
-        ],
+        tab: 0,
         formulationBasic: {},
         formulationProp: {},
       }
@@ -419,7 +416,14 @@ ${vm.currentLocation}`
             overflow: hidden;
 
             .v-tab {
-              font-size: 1.25rem;
+              font-size: 1.1rem;
+
+              &.v-tab--active {
+
+                &:before {
+                  opacity: 0.12;
+                }
+              }
             }
           }
         }

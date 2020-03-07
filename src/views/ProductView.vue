@@ -7,7 +7,7 @@
       <v-col class="col-xs-8" md="6">
         <v-btn class="float-left" color="primary" @click="$router.back(-1)">
           <v-icon>apps</v-icon>
-          返回上一页
+          {{ $t('global.goBack') }}
         </v-btn>
       </v-col>
       <v-col class="col-xs-4">
@@ -80,29 +80,28 @@
           <v-tabs
             v-model="tab"
             background-color="transparent"
-            color="basil"
+            color="primary"
             grow
           >
             <v-tab @click="showIcon">
-              基本信息
+              {{ $t('productView.basicInfo') }}
               <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab>
-              属性
+              {{ $t('productView.property') }}
               <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab>
-              配方
+              {{ $t('productView.formulation') }}
               <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab>
-              下载
+              {{ $t('productView.download') }}
               <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
-
           </v-tabs>
           <v-tabs-items v-model="tab">
             <v-tab-item>
@@ -134,7 +133,7 @@
 <!--          </v-btn>-->
           <v-btn icon tile large @click="openShareDialog()">
             <v-icon large class="material-icons-outlined">share</v-icon>
-            <p>分享</p>
+            <p>{{ $t('productView.share') }}</p>
           </v-btn>
           <v-btn
             icon
@@ -157,11 +156,11 @@
             >
               star
             </v-icon>
-            <p>最爱</p>
+            <p>{{ $t('productView.favorite') }}</p>
           </v-btn>
           <v-btn icon tile large>
             <v-icon large class="material-icons-outlined">shopping_basket</v-icon>
-            <p>购物车</p>
+            <p>{{ $t('productView.basket') }}</p>
           </v-btn>
         </div>
       </v-col>
@@ -262,10 +261,7 @@
     data () {
       return {
         shareDialog: false,
-        tab: null,
-        items: [
-          '基本信息', '属性', '配方', '其他信息',
-        ],
+        tab: 0,
         productBasic: {},
         productInfo: {},
         productFormulation: [],
@@ -488,7 +484,14 @@ ${vm.currentLocation}`
           overflow: hidden;
 
           .v-tab {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
+
+            &.v-tab--active {
+
+              &:before {
+                opacity: 0.12;
+              }
+            }
           }
         }
       }

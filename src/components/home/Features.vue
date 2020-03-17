@@ -9,7 +9,7 @@
         <v-hover v-slot:default="{ hover }">
           <v-card
             class="mx-auto features-product"
-            max-width="400"
+            max-width="500"
             :elevation="hover ? 18 : 2"
           >
             <v-card-title>
@@ -124,7 +124,7 @@
     position: relative;
     transition: all .2s ease-in-out;
     white-space: normal;
-    min-height: 395px;
+    min-height: 425px;
 
     p {
       margin-bottom: 0;

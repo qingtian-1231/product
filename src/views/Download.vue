@@ -22,7 +22,7 @@
                   </v-list-item-content>
 
                   <v-list-item-action>
-                    <a :href="download.field_global_file" download target="_blank">
+                    <a @click="trackClickEvent()" :href="download.field_global_file" download target="_blank">
                       <v-btn icon>
                         <v-icon class="material-icons-outlined">archive</v-icon>
                       </v-btn>
@@ -74,6 +74,13 @@
     },
 
     methods: {
+      trackClickEvent() {
+        if (window.clab_tracker && window.clab_tracker.hasOwnProperty('push')) {
+          window.clab_tracker.push({});
+          window.clab_tracker.track("click_link_in_page", {});
+        }
+      },
+
       changeFilter () {
         this.downloadList = []
         this.infiniteId += 1

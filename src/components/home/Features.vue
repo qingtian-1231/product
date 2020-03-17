@@ -41,7 +41,7 @@
               </v-list-item>
             </v-card-actions>
 
-            <v-card-text class="subtitle-1 font-weight-bold" v-html="featureProduct.body">
+            <v-card-text class="subtitle-1" v-html="featureProduct.body">
             </v-card-text>
           </v-card>
         </v-hover>
@@ -124,7 +124,11 @@
     position: relative;
     transition: all .2s ease-in-out;
     white-space: normal;
-    min-height: 360px;
+    min-height: 395px;
+
+    p {
+      margin-bottom: 0;
+    }
 
     .v-card__title {
 

@@ -171,7 +171,7 @@ export default {
   margin-left: 0;
   max-width: 100%;
   padding: 0 8px;
-  position: absolute;
+  //position: absolute;
   transition: all 0.4s ease-in-out;
   top: 10%;
   width: 100%;

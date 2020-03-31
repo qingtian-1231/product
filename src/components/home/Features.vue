@@ -88,7 +88,7 @@
 
 <style lang="scss" scoped>
   #features {
-    margin-top: -45%;
+    //margin-top: -45%;
     max-width: 100%;
     min-width: 100%;
     padding: 4px;

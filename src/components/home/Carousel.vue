@@ -1,7 +1,8 @@
 <template>
   <div class="carousel">
     <v-carousel
-      interval
+      cycle
+      interval="6000"
       progress
       progress-color="primary"
       height="720"
@@ -15,6 +16,7 @@
         v-for="(item,i) in items"
         :key="i"
         :src="item.src"
+        :value="item.color"
       >
         <div class="slide-caption">
           <h2><b>Their stories. Your products.</b><br>Our sun care expertise.</h2>
@@ -26,47 +28,57 @@
 </template>
 
 <script>
+  let slider1 = require('@/assets/home/carsousel/home_slide1_large.jpg')
+  let slider2 = require('@/assets/home/carsousel/home_slide2_large.jpg')
+  let slider3 = require('@/assets/home/carsousel/home_slide3_large.jpg')
+  let slider4 = require('@/assets/home/carsousel/home_slide4_large.jpg')
+  let slider5 = require('@/assets/home/carsousel/home_slide5_large.jpg')
+  let slider6 = require('@/assets/home/carsousel/home_slide6_large.jpg')
+
   export default {
     name: 'carousel',
+
     data () {
       return {
-        colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
-        ],
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
-        ],
         items: [
           {
-            src: 'https://www.carecreations.basf.com/images/default-source/homepage/home_slide6_large.jpg',
+            src: slider1,
+            color: 'orange1',
           },
           {
-            src: 'https://www.carecreations.basf.com/images/default-source/homepage/home_slide1_large.jpg',
+            src: slider2,
+            color: 'orange2',
           },
           {
-            src: 'https://www.carecreations.basf.com/images/default-source/homepage/home_slide2_large.jpg',
+            src: slider3,
+            color: 'green_dark1',
           },
           {
-            src: 'https://www.carecreations.basf.com/images/default-source/homepage/home_slide3_large.jpg',
+            src: slider4,
+            color: 'green_dark2',
           },
           {
-            src: 'https://www.carecreations.basf.com/images/default-source/homepage/home_slide4_large.jpg',
+            src: slider5,
+            color: 'red1',
           },
           {
-            src: 'https://www.carecreations.basf.com/images/default-source/homepage/home_slide5_large.jpg',
+            src: slider6,
+            color: 'red2',
           },
         ],
-        currentCarousel: 0,
+        currentCarousel: 'orange1',
       }
     },
+
+    watch: {
+      currentCarousel (val, old) {
+        console.log(val, old, 'val, old')
+      }
+    },
+
+    created () {
+      console.log(this.items, this.currentCarousel, 'items')
+    }
   }
 </script>
 

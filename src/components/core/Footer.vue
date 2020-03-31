@@ -7,16 +7,22 @@
     <v-container mx-auto px-0>
       <v-row class="align-center">
         <div class="ml-auto mr-auto ml-md-0 d-flex align-center col col-auto footer-left">
-          <span class="mr-3 overline">powered by:</span>
+          <span class="mr-3 overline">Copyright @ BASF</span>
           <a aria-label="Link to Shopify" href="" target="_blank" rel="noopener noreferrer">
-            BASF
+            巴斯夫1688官方旗舰店
           </a>
         </div>
         <div class="ml-auto mr-auto mr-md-0 col col-auto footer-right">
-          © Copyright 2020 Vuetify LLC
-          <span class="hidden-sm-and-down">|</span>
-          <br class="hidden-md-and-up"> Made With ❤ by
-          <a href="" target="_blank" rel="noopener noreferrer">CPQ</a>
+          <v-img
+            class="wechat-image"
+            :src="require('@/assets/global/wechat.png')"
+            :lazy-src="require('@/assets/global/wechat.png')"
+            contain
+          >
+          </v-img>
+          <div class="footer-welcome">
+            欢迎关注“巴斯夫分散体与树脂”官方微信公众号
+          </div>
         </div>
       </v-row>
     </v-container>
@@ -44,10 +50,20 @@
     .footer-left {
 
       a {
-        width: 30px;
-        height: 30px;
-        max-width: 30px;
-        max-height: 30px;
+
+      }
+    }
+
+    .footer-right {
+      display: flex;
+
+      .wechat-image {
+        width: 40px;
+        float: left;
+      }
+
+      .footer-welcome {
+        line-height: 40px;
       }
     }
   }

@@ -99,18 +99,18 @@
     }
 
     @media screen and (max-width: 1600px) {
-      margin-top: -20%;
+      //margin-top: -20%;
     }
 
     @media screen and (max-width: 800px) {
-      margin-top: -130%;
+      //margin-top: -130%;
     }
 
     @media screen and (max-width: 640px) {
       width: 100%;
       max-width: 100%;
       min-width: 100%;
-      margin-top: -110%;
+     //margin-top: -110%;
     }
   }
 

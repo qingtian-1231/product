@@ -1,5 +1,5 @@
 <template>
-  <v-app v-scroll="onScroll">
+  <v-app v-scroll="onScroll" :class="appColor">
     <core-toolbar></core-toolbar>
 
     <template v-if="showFilterbar">
@@ -66,7 +66,8 @@
     computed: {
       ...mapState({
         globalSnackbar: state => state.core.globalSnackbar,
-        snackbarMessage: state => state.core.snackbarMessage
+        snackbarMessage: state => state.core.snackbarMessage,
+        appColor: state => state.core.appColor,
       }),
     },
 

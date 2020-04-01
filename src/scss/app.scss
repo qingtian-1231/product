@@ -13,6 +13,32 @@ body {
     font-family: Helvetica Neue LT W01_41488878,Helvetica,Arial,sans-serif;
     font-weight: 400;
   }
+
+  header, footer, .slide-caption .button {
+    background-color: #2196f3 !important;
+    transition: background-color .3s ease-in-out,color .3s ease-in-out;
+  }
+
+  .green_dark2, .green_dark1 {
+
+    header, footer, .slide-caption .button {
+      background-color: #00793d !important;
+    }
+  }
+
+  .red1, .red2 {
+
+    header, footer, .slide-caption .button {
+      background-color: #c10b25 !important;
+    }
+  }
+
+  .orange1, .orange2 {
+
+    header, footer, .slide-caption .button {
+      background-color: #f49800 !important;
+    }
+  }
 }
 
 main {

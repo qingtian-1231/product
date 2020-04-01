@@ -8,7 +8,6 @@
       height="720"
       delimiter-icon="mdi-minus"
       show-arrows-on-hover
-      hide-delimiter-background
       touch
       v-model="currentCarousel"
     >
@@ -72,7 +71,7 @@
 
     watch: {
       currentCarousel (val, old) {
-        console.log(val, old, 'val, old')
+        this.$store.commit('change_app_color', {colorClass: val})
       }
     },
 

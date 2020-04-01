@@ -6,7 +6,6 @@
     hide-on-scroll
     height="72"
     extension-height="72"
-    color="primary"
   >
     <v-container class="fill-height app-tool-bar">
       <v-row>

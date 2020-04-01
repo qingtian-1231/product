@@ -18,7 +18,8 @@ const state = {
   taxonomyProductType: [],
   taxonomyProductBrand: [],
   taxonomyProductApplication: [],
-  formulationApplicationList: []
+  formulationApplicationList: [],
+  appColor: 'primary'
 }
 
 const mutations = {
@@ -117,6 +118,10 @@ const mutations = {
 
   close_login_dialog(state, payload) {
     state.loginDialog = false
+  },
+
+  change_app_color(state, payload) {
+    state.appColor = payload.colorClass
   }
 }
 

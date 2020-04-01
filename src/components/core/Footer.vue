@@ -58,12 +58,13 @@
       display: flex;
 
       .wechat-image {
-        width: 40px;
+        width: 70px;
         float: left;
+        margin-right: 20px;
       }
 
       .footer-welcome {
-        line-height: 40px;
+        line-height: 70px;
       }
     }
   }

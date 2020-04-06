@@ -9,6 +9,22 @@ body {
     background: #eee;
   }
 
+  .container--fluid {
+    background-color: #fff;
+    display: inline-block;
+    height: auto;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    max-width: 1360px;
+    width: 100%;
+  }
+
   h1, h2 {
     font-family: Helvetica Neue LT W01_41488878,Helvetica,Arial,sans-serif;
     font-weight: 400;
@@ -19,10 +35,18 @@ body {
     transition: background-color .3s ease-in-out,color .3s ease-in-out;
   }
 
+  .search-container {
+    border-bottom: 20px solid #2196f3 !important;
+  }
+
   .green_dark2, .green_dark1 {
 
     header, footer, .slide-caption .button {
       background-color: #00793d !important;
+    }
+
+    .search-container {
+      border-bottom: 20px solid #00793d !important;
     }
   }
 
@@ -31,12 +55,74 @@ body {
     header, footer, .slide-caption .button {
       background-color: #c10b25 !important;
     }
+
+    .search-container {
+      border-bottom: 20px solid #c10b25 !important;
+    }
   }
 
   .orange1, .orange2 {
 
     header, footer, .slide-caption .button {
       background-color: #f49800 !important;
+    }
+
+    .search-container {
+      border-bottom: 20px solid #f49800 !important;
+    }
+  }
+
+  .v-application p {
+    font-size: 14px !important;
+  }
+
+  .v-application span.label {
+    font-size: 16px !important;
+  }
+
+
+  .teaser-container {
+    background-color: #fff;
+    display: inline-block;
+    float: left;
+    height: auto;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    width: 100%;
+    border-bottom: 20px solid;
+
+    .caption {
+      background-color: #fff;
+      display: inline-block;
+      float: left;
+      height: auto;
+      margin-bottom: 30px;
+      overflow: hidden;
+      position: relative;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      min-height: 150px;
+      padding: 20px 20px 10px;
+
+      @media screen and (min-width: 1204px) {
+        margin: 0;
+        height: 100%;
+        left: 50%;
+        padding-top: 24px;
+        position: absolute;
+        width: 50%;
+      }
+    }
+
+    & .orange {
+      border-color: #f49800;
+    }
+
+    @media screen and (min-width: 1204px) {
+      margin-bottom: 40px;
     }
   }
 }
@@ -69,6 +155,17 @@ main {
             padding: 15px 10%;
           }
         }
+      }
+    }
+  }
+
+  .container--fluid {
+
+    & > .row {
+      margin: 0;
+
+      & > .col {
+        padding: 0;
       }
     }
   }

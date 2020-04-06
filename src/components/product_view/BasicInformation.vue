@@ -6,42 +6,42 @@
       </template>
 
       <p>
-        <span class="grey-2">
+        <span class="grey-2 label">
           {{ brand.label }}
         </span>
         {{ brand.value }}
       </p>
 
       <p>
-        <span class="grey-2">
+        <span class="grey-2 label">
           {{ field_product_type.label }}
         </span>
         {{ field_product_type.value }}
       </p>
 
       <p v-if="field_cas_number.value">
-        <span class="grey-2">
+        <span class="grey-2 label">
           {{ field_cas_number.label }}
         </span>
         {{ field_cas_number.value }}
       </p>
 
       <p>
-        <span class="grey-2">
+        <span class="grey-2 label">
           {{ field_product_name.label }}
         </span>
         {{ field_product_name.value }}
       </p>
 
       <p v-if="buy_link.value">
-        <span class="grey-2">
+        <span class="grey-2 label">
           {{ buy_link.label }}
         </span>
         <a target="_blank" :href="buy_link.value.uri">{{ buy_link.value.title }}</a>
       </p>
 
       <p>
-        <span class="grey-2">
+        <span class="grey-2 label">
           {{ benefits.label }}
         </span>
         {{ benefits.value }}

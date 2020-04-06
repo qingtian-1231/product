@@ -1,27 +1,28 @@
 <template>
   <v-container
+    fluid
     id="middle-content"
     tag="section"
     class="bounceUp-enter-active"
   >
     <v-row dense>
       <v-col cols="12">
-        <h1>立即使用BASF产品助理！</h1>
-        <p>BASF助理是一个基于Web的应用程序，它使您比以往任何时候都更容易找到BASF产品和配方创。
-          它可以在台式机，笔记本电脑，平板电脑和智能手机上运行。</p>
+        <h1>关于巴斯夫</h1>
         <p>
-          BASF助理可以帮助您轻松完成额外的任务。
-          因此，您可以专注于自己的长处-配制客户想要的出色产品。
+          在巴斯夫，我们创造化学新作用——追求可持续发展的未来。我们将经济上的成功、社会责任和环境保护相结合。
+          巴斯夫在全球拥有约122,000名员工，为几乎所有国家、所有行业的客户成功作出贡献。
+          我们的产品分属六大业务领域：化学品、材料、工业解决方案、表面处理技术、营养与护理、农业解决方案。
+          2018年巴斯夫全球销售额约630亿欧元。
+          巴斯夫的股票在法兰克福（BAS）证券交易所上市，并以美国存托凭证（BASFY）的形式在美国证券市场交易。
+          欲了解更多信息，请访问：<a target="_blank" href="https://www.basf.com">www.basf.com</a>。
         </p>
-<!--        <icon-app></icon-app>-->
       </v-col>
 
       <v-col cols="12">
         <div class="unlock">
-          <h2>
-            <v-icon>lock_open</v-icon>
+          <h1>
             注册我们，充分使用<br>BASF产品助理
-          </h2>
+          </h1>
           <p>
             完全访问专有配方和完整的产品数据。
             个性化您自己的帐户并存储喜欢的产品和配方。
@@ -71,15 +72,11 @@
 
 <style lang="scss" scoped>
   #middle-content {
-    max-width: 100%;
-    min-width: 100%;
     float: none;
     position: relative;
-    width: 100%;
     text-align: center;
 
     & > div {
-      max-width: 1070px;
       margin: 0 auto;
     }
 
@@ -92,7 +89,7 @@
     .col {
       border-radius: 8px;
       background: linear-gradient(0deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .8));
-      margin-top: 25px;
+      margin-top: 30px;
 
       h1 {
         padding: 60px 100px 30px;

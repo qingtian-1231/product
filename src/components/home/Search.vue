@@ -59,7 +59,7 @@
         max-width="400"
       >
         <template v-slot:activator="{ on }">
-          <v-btn fab large color="primary" v-on="on">
+          <v-btn fab large v-on="on">
             <icon-modulator bg-color-class="default"></icon-modulator>
           </v-btn>
         </template>
@@ -180,12 +180,7 @@ export default {
   .search-content {
     position: relative;
     display: flex;
-    width: 30%;
     margin: 0 auto;
-
-    @media screen and (max-width: 600px) {
-      width: 80%;
-    }
 
     .search-result {
       position: absolute;
@@ -238,7 +233,19 @@ export default {
     .v-size--large {
       top: -8px;
       left: 20px;
+      background-color: #2196f3;
 
+      .green_dark2, .green_dark1 & {
+        background-color: #00793d;
+      }
+
+      .red1, .red2 & {
+        background-color: #c10b25;
+      }
+
+      .orange1, .orange2 & {
+        background-color: #f49800;
+      }
       &:after {
         content: " ";
         display: block;
@@ -310,21 +317,14 @@ export default {
     padding: 0;
     width: 100%;
     top: 5%;
-
-    .search-content {
-      width: 60%;
-    }
   }
 
   @media screen and (min-width: 996px) {
     left: 0;
-    padding: 0;
     width: 100%;
-    top: 10%;
-
-    .search-content {
-      width: 30%;
-    }
+    top: 120px;
+    position: absolute;
+    padding: 30px;
   }
 
   @media screen and (max-width: 640px) {

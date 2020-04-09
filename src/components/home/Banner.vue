@@ -121,8 +121,7 @@
     overflow: hidden;
     position: relative;
     text-align: left;
-    padding: 24px 30px 240px !important;
+    padding: 24px 30px 24px !important;
     background-color: #fff;
-    width: 98.555555%;
   }
 </style>

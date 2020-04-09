@@ -10,10 +10,7 @@ body {
   }
 
   .container--fluid {
-    background-color: #fff;
-    display: inline-block;
     height: auto;
-    margin-bottom: 30px;
     overflow: hidden;
     position: relative;
     text-align: left;
@@ -23,6 +20,7 @@ body {
     margin: 0 auto;
     max-width: 1360px;
     width: 100%;
+    padding: 0;
   }
 
   h1, h2 {
@@ -40,6 +38,7 @@ body {
   }
 
   .green_dark2, .green_dark1 {
+    border-color: #00793d !important;
 
     header, footer, .slide-caption .button {
       background-color: #00793d !important;
@@ -48,9 +47,26 @@ body {
     .search-container {
       border-bottom: 20px solid #00793d !important;
     }
+
+    .caption {
+
+      & > a {
+
+        &:first-child {
+          color: #00793d;
+          text-decoration: none;
+        }
+
+        &:last-child {
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    }
   }
 
   .red1, .red2 {
+    border-color: #c10b25 !important;
 
     header, footer, .slide-caption .button {
       background-color: #c10b25 !important;
@@ -59,9 +75,26 @@ body {
     .search-container {
       border-bottom: 20px solid #c10b25 !important;
     }
+
+    .caption {
+
+      & > a {
+
+        &:first-child {
+          color: #c10b25;
+          text-decoration: none;
+        }
+
+        &:last-child {
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    }
   }
 
   .orange1, .orange2 {
+    border-color: #f49800 !important;
 
     header, footer, .slide-caption .button {
       background-color: #f49800 !important;
@@ -69,6 +102,22 @@ body {
 
     .search-container {
       border-bottom: 20px solid #f49800 !important;
+    }
+    
+    .caption {
+      
+      & > a {
+
+        &:first-child {
+          color: #f49800;
+          text-decoration: none;
+        }
+
+        &:last-child {
+          color: #000;
+          text-decoration: none;
+        }
+      }
     }
   }
 
@@ -92,13 +141,13 @@ body {
     text-align: left;
     width: 100%;
     border-bottom: 20px solid;
+    border-color: #2196f3;
 
     .caption {
       background-color: #fff;
       display: inline-block;
       float: left;
       height: auto;
-      margin-bottom: 30px;
       overflow: hidden;
       position: relative;
       text-align: left;
@@ -106,6 +155,19 @@ body {
       margin: 0;
       min-height: 150px;
       padding: 20px 20px 10px;
+
+      & > a {
+
+        &:first-child {
+          color: #2196f3;
+          text-decoration: none;
+        }
+
+        &:last-child {
+          color: #000;
+          text-decoration: none;
+        }
+      }
 
       @media screen and (min-width: 1204px) {
         margin: 0;
@@ -121,8 +183,9 @@ body {
       border-color: #f49800;
     }
 
-    @media screen and (min-width: 1204px) {
-      margin-bottom: 40px;
+    @media screen and (min-width: 1280px) {
+      margin-bottom: 0;
+      height: 320px;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { request } from '../../utils/request'
+import { request, apiServer } from '../../utils/request'
 
 const state = {
   path: 'api/products/features',
@@ -8,7 +8,19 @@ const state = {
 
 const mutations = {
   processFeatureProducts(state, payload) {
-    state.featureProduct = payload
+    let product_default_image = require('@/assets/home/default.png')
+
+    state.featureProduct = payload.map(function (item) {
+      if (item.field_media_image) {
+        item.field_media_image = apiServer + item.field_media_image
+      } else {
+        item.field_media_image = product_default_image
+      }
+
+      return item
+    })
+
+    console.log(state.featureProduct, 'state.featureProduct')
   }
 }
 

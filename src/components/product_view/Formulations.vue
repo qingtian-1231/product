@@ -1,7 +1,7 @@
 <template>
   <v-card flat color="basil" id="formulations">
     <div class="formula">
-      <h2>含{{ titleField.value }}的配方</h2>
+      <h4>含{{ titleField.value }}的配方</h4>
       <template v-for="(item, index) in productRelationFormulation">
         <div class="item listed formulation referenced locked" :key="index">
           <span>

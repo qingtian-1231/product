@@ -24,7 +24,9 @@ const messages = {
       download: '下载',
       share: '分享',
       favorite: '最爱',
-      basket: '购物车'
+      basket: '购物车',
+      techData: '技术数据',
+      techDataDescription: '确切的规格可以在规格数据表中找到',
     },
     formulationView: {
       basicInfo: '基本信息',
@@ -90,7 +92,9 @@ const messages = {
       download: 'download',
       share: 'share',
       favorite: 'favorite',
-      basket: 'basket'
+      basket: 'basket',
+      techData: 'Technical data',
+      techDataDescription: 'The exact specifications can be found in the specification data sheet',
     },
     formulationView: {
       basicInfo: 'Basic Information',

@@ -1,4 +1,5 @@
 import { request, apiServer } from '../../utils/request'
+import { getCookie } from "../../utils/cookie";
 
 const state = {
   featureProductPath: 'api/products/features',
@@ -52,14 +53,19 @@ const mutations = {
 
       return item
     })
-
-    console.log(state.carousels, 'state.carousel')
   }
 }
 
 const actions = {
   getFeatureProducts({commit, state}) {
-    return request().get(state.featureProductPath)
+    let requestPath = state.featureProductPath
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + state.featureProductPath
+    }
+
+    return request().get(requestPath)
       .then(function (response) {
         commit('processFeatureProducts', response.data)
         return Promise.resolve(response)
@@ -71,7 +77,14 @@ const actions = {
   },
 
   getCarousel({commit, state}) {
-    return request().get(state.carouselPath)
+    let requestPath = state.carouselPath
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + state.carouselPath
+    }
+
+    return request().get(requestPath)
       .then(function (response) {
         commit('processCarousel', response.data)
         return Promise.resolve(response)

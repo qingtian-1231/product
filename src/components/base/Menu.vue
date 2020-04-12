@@ -163,7 +163,6 @@
       border-radius: 0;
       margin: 0 16px;
       color: #333!important;
-      font-weight: bold;
       font-size: .8em;
     }
     

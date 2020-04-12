@@ -1,7 +1,7 @@
 <template>
   <v-card flat color="basil" id="additional">
     <div class="additional">
-      <h2>下载</h2>
+      <h4>{{ $t('productView.download') }}</h4>
       <ul>
         <template v-for="(item, index) in formulationFiles">
           <li :key="index">

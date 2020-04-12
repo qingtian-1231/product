@@ -1,8 +1,8 @@
 <template>
   <v-card flat color="basil" id="properties">
     <div class="props">
-      <h2>技术数据</h2>
-      <p>确切的规格可以在规格数据表中找到</p>
+      <h4>{{ $t('productView.techData') }}</h4>
+      <p>{{ $t('productView.techDataDescription') }}</p>
       <ul>
         <template v-for="(item, index) in productProperties">
           <li :key="index" v-if="item.value.length">

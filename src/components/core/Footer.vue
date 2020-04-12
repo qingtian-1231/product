@@ -67,6 +67,7 @@
         width: 70px;
         float: left;
         margin-right: 20px;
+        display: inline-block;
       }
 
       .footer-welcome {

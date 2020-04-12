@@ -16,6 +16,8 @@
         <div class="ml-auto mr-auto mr-md-0 col col-auto footer-right">
           <v-img
             class="wechat-image"
+            width="80"
+            height="80"
             :src="require('@/assets/global/wechat.jpg')"
             :lazy-src="require('@/assets/global/wechat.jpg')"
             contain
@@ -65,6 +67,7 @@
 
       .wechat-image {
         width: 70px;
+        height: 70px;
         float: left;
         margin-right: 20px;
         display: inline-block;

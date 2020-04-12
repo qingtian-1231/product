@@ -19,8 +19,6 @@
             width="80"
             height="80"
             :src="require('@/assets/global/wechat.jpg')"
-            :lazy-src="require('@/assets/global/wechat.jpg')"
-            contain
           >
           </v-img>
           <div class="footer-welcome">
@@ -71,10 +69,14 @@
         float: left;
         margin-right: 20px;
         display: inline-block;
+        
+        .v-responsive__content {
+          display: none !important;
+        }
       }
 
       .footer-welcome {
-        line-height: 70px;
+        line-height: 80px;
       }
     }
   }

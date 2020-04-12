@@ -28,6 +28,35 @@ body {
     font-weight: 400;
   }
 
+  .carousel {
+
+    .slide-caption {
+
+      .button {
+        background-repeat: no-repeat;
+        -webkit-background-size: 70px 7967px;
+        background-size: 70px 7967px;
+        background-position: right -1271px;
+        color: #fff;
+        height: 50px;
+        width: 224px;
+        padding-top: 16px;
+        text-align: center;
+        text-transform: none;
+        vertical-align: middle;
+        text-indent: -16px;
+        background-color: #f49800;
+        cursor: pointer;
+        display: block;
+        font-size: 1em;
+        text-decoration: none;
+
+        & .origin {
+          background-color: #f49800;
+        }
+      }
+    }
+  }
   header, footer, .slide-caption .button {
     background-color: #2196f3 !important;
     transition: background-color .3s ease-in-out,color .3s ease-in-out;

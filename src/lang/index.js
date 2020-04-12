@@ -3,6 +3,9 @@ const messages = {
     global: {
       close: '关闭',
       login: '登录',
+      logout: '退出登录',
+      userName: '用户名',
+      passWord: '密码',
       register: '注册',
       cancel: '取消',
       submit: '提交',
@@ -32,9 +35,9 @@ const messages = {
       favorite: '最爱',
     },
     onlineRequestForm: {
-      title: '发送反馈',
-      description: '如果您对使用BASF产品助理有任何建议或疑问，请随时向我们提供反馈。',
-      feedbackContent: '反馈内容',
+      title: '联系我们',
+      description: '如果您对使用巴斯夫产品中心有任何建议或疑问，请随时与我们联系。',
+      feedbackContent: '内容',
       yourEmail: '您的邮箱地址'
     },
     loginDialog: {
@@ -43,15 +46,32 @@ const messages = {
     },
     home: {
       search: {
+        searchDescription1: '欢迎访问巴斯夫分散体与树脂产品中心！在这里，您可以轻松查找您所需的巴斯夫产品信息，',
+        searchDescription2: '用户更可浏览详细的应用配方或同我们的技术专家深入交流。在线样品定购和1688官方旗舰店下单等便捷功能可随时满足您的采购需求',
         search: '搜索',
         brand: '品牌'
+      },
+      ad: '巴斯夫分散体与树脂部致力于在世界各地开发、生产和销售各种优质树脂、添加剂和聚合物分散体。这些材料应用于多种行业，包括涂料、化学建材、印刷和包装、粘合剂以及造纸等。凭借全面的产品组合和广泛的行业知识，分散体与树脂部为客户提供可持续的创新解决方案，帮助他们完善产品配方',
+      middleContent: {
+        aboutBASF: '关于巴斯夫',
+        aboutBASFDescription: '在巴斯夫，我们创造化学新作用——追求可持续发展的未来。我们将经济上的成功、社会责任和环境保护相结合。巴斯夫在全球拥有约122,000名员工，为几乎所有国家、所有行业的客户成功作出贡献。我们的产品分属六大业务领域：化学品、材料、工业解决方案、表面处理技术、营养与护理、农业解决方案。2018年巴斯夫全球销售额约630亿欧元。巴斯夫的股票在法兰克福（BAS）证券交易所上市，并以美国存托凭证（BASFY）的形式在美国证券市场交易。欲了解更多信息，请访问：',
+        registerTitle: '注册！巴斯夫产品中心全方位服务直通车',
+        registerDescription: '注册用户可查看完整的产品数据和配方信息，个性化账户管理，收藏喜爱的产品，在线订购样品，轻松下载产品手册和技术说明书等。',
+      },
+      footer: {
+        link_188: '巴斯夫1688官方旗舰店',
+        copyright: '巴斯夫版权所有',
+        weChat: '欢迎关注“巴斯夫分散体与树脂”官方微信公众号',
       }
     }
   },
-  en: {
+  'en': {
     global: {
       close: 'close',
       login: 'login',
+      logout: 'logout',
+      userName: 'User Name',
+      passWord: 'pass word',
       register: 'register',
       cancel: 'cancel',
       submit: 'submit',
@@ -81,10 +101,10 @@ const messages = {
       favorite: 'favorite',
     },
     onlineRequestForm: {
-      title: 'send feedback',
-      description: 'If you have any suggestions or questions about using the BASF Product Assistant, please feel free to provide us with feedback.',
-      feedbackContent: 'Feedback content',
-      yourEmail: 'Your email address'
+      title: 'Contact Us',
+      description: 'If you have any suggestions or questions regarding the usage of BASF Product Center, please do not hesitate to give us your feedback.',
+      feedbackContent: 'Content',
+      yourEmail: 'Your E-mail box'
     },
     loginDialog: {
       title: 'Register and take full advantage of BASF Product Assistant.',
@@ -92,8 +112,23 @@ const messages = {
     },
     home: {
       search: {
+        searchDescription1: 'Wellcome to visit BASF Product Center for Dispersions and Resins!\n' +
+          'You can easily find BASF product information here. For customers in',
+        searchDescription2: ',  there are detailed application formulations for reference, who can also have a in-depth communication with BASF technical experts. Online request for samples or purchasing at 1688 flagship shop makes your orders more convenient and efficient than ever. ',
         search: 'search',
         brand: 'Brand'
+      },
+      ad: 'The Dispersions & Resins division of BASF develops, produces and markets a range of high-quality resins, additives and polymer dispersions worldwide. These raw materials are used in formulations for a number of industries, including coatings, construction, printing and packaging, adhesives and paper. With its comprehensive product portfolio and its extensive knowledge of the industry, the Dispersions & Resins division offers its customers innovative and sustainable solutions and helps them advance their formulations.',
+      middleContent: {
+        aboutBASF: 'About BASF',
+        aboutBASFDescription: 'At BASF, we create chemistry for a sustainable future. We combine economic success with environmental protection and social responsibility. The approximately 122,000 employees in the BASF Group work on contributing to the success of our customers in nearly all sectors and almost every country in the world. Our portfolio is organized into six segments: Chemicals, Materials, Industrial Solutions, Surface Technologies, Nutrition & Care and Agricultural Solutions. BASF generated sales of around €63 billion in 2018. BASF shares are traded on the stock exchange in Frankfurt (BAS) and as American Depositary Receipts (BASFY) in the U.S. Further information at ',
+        registerTitle: 'Sign up! Make the most of BASF Product Center',
+        registerDescription: 'Get full access to exclusive formulations and complete product data. Individualize your own account and store favorite or order samples online. You can also easily download all product brochures and technical datasheets.',
+      },
+      footer: {
+        link_188: 'BASF 1688 Flagship Shop',
+        copyright: 'Copyright @ BASF',
+        weChat: 'QR code welcome to follow Wechat Official Account ‘BASF Dispersions & Resins’',
       }
     }
   }

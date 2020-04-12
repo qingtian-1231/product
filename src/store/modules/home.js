@@ -1,9 +1,11 @@
 import { request, apiServer } from '../../utils/request'
 
 const state = {
-  path: 'api/products/features',
+  featureProductPath: 'api/products/features',
+  carouselPath: 'api/front/carousel',
   _format: 'hal_json',
-  featureProduct: []
+  featureProduct: [],
+  carousels: [],
 }
 
 const mutations = {
@@ -19,14 +21,45 @@ const mutations = {
 
       return item
     })
+  },
 
-    console.log(state.featureProduct, 'state.featureProduct')
+  processCarousel(state, payload) {
+    state.carousels = payload.map(function (item, index) {
+      if (index === 0) {
+        item.color = 'orange1'
+      }
+      if (index === 1) {
+        item.color = 'orange2'
+      }
+      if (index === 2) {
+        item.color = 'green_dark1'
+      }
+      if (index === 3) {
+        item.color = 'green_dark2'
+      }
+      if (index === 4) {
+        item.color = 'red1'
+      }
+      if (index === 5) {
+        item.color = 'red2'
+      }
+      if (index === 6) {
+        item.color = 'green_dark1'
+      }
+      if (item.field_media_image) {
+        item.field_media_image = apiServer + item.field_media_image
+      }
+
+      return item
+    })
+
+    console.log(state.carousels, 'state.carousel')
   }
 }
 
 const actions = {
   getFeatureProducts({commit, state}) {
-    return request().get(state.path)
+    return request().get(state.featureProductPath)
       .then(function (response) {
         commit('processFeatureProducts', response.data)
         return Promise.resolve(response)
@@ -35,7 +68,19 @@ const actions = {
         console.log(error)
         return Promise.resolve(error)
       })
-  }
+  },
+
+  getCarousel({commit, state}) {
+    return request().get(state.carouselPath)
+      .then(function (response) {
+        commit('processCarousel', response.data)
+        return Promise.resolve(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+        return Promise.resolve(error)
+      })
+  },
 }
 
 export default {

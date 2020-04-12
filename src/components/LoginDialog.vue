@@ -16,10 +16,10 @@
       <div id="login-dialog">
         <h2>
           <v-icon>lock_open</v-icon>
-          {{ $t('loginDialog.title') }}
+          {{ $t('home.middleContent.registerTitle') }}
         </h2>
         <p>
-          {{ $t('loginDialog.description') }}
+          {{ $t('home.middleContent.registerDescription') }}
         </p>
         <div class="row text-center mx-0">
           <v-col cols="12" md="6" sm="12">

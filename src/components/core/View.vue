@@ -57,13 +57,13 @@
               <v-divider class="py-5"></v-divider>
 
               <v-btn block rounded color="primary" dark @click="userLogout()">
-                退出登录<v-icon right dark>keyboard_arrow_right</v-icon>
+                {{ $t('global.logout') }}<v-icon right dark>keyboard_arrow_right</v-icon>
               </v-btn>
             </template>
 
             <template v-else>
               <v-card-title class="px-0 my-5">
-                <span class="headline">登录</span>
+                <span class="headline">{{ $t('global.login') }}</span>
                 <v-spacer></v-spacer>
                 <v-btn dark icon @click.stop="closeLoginSheet" class="black--text">
                   <v-icon>keyboard_arrow_left</v-icon>
@@ -83,14 +83,14 @@
                   v-model="userName"
                   :rules="[rules.required, rules.max]"
                   counter
-                  label="用户名"
+                  :label="$t('global.userName')"
                   outlined
                   required
                 ></v-text-field>
 
                 <v-text-field
                   v-model="userPass"
-                  label="密码"
+                  :label="$t('global.passWord')"
                   :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
                   :rules="[rules.required, rules.min]"
                   :type="passwordShow ? 'text' : 'password'"
@@ -107,7 +107,7 @@
 <!--                ></v-checkbox>-->
 
                 <v-btn block rounded color="secondary" dark @click="userLogin()">
-                  登录<v-icon right dark>keyboard_arrow_right</v-icon>
+                  {{ $t('global.login') }}<v-icon right dark>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-form>
             </template>
@@ -120,16 +120,14 @@
             <v-card-title class="px-0 my-5">
               <span class="headline black--text">
                 <v-icon large>lock_open</v-icon>
-                注册，充分利用BASF产品助理
+                {{ $t('home.middleContent.registerTitle') }}
               </span>
             </v-card-title>
 
             <v-divider class="py-5"></v-divider>
 
             <blockquote class="blockquote px-0 py-8">
-              完全访问专有配方和完整的产品数据。
-              个性化您自己的帐户并存储喜欢的或最近访问的产品和配方。
-              您甚至可以将您的帐户链接到同事，以共享您的示例订单信息-这只是注册的一些优点。
+              {{ $t('home.middleContent.registerDescription') }}
             </blockquote>
             <router-link :to="{name: 'Register'}">
               <v-btn
@@ -138,7 +136,7 @@
                 color="secondary"
                 dark
               >
-                注册<v-icon right dark>keyboard_arrow_right</v-icon>
+                {{ $t('global.register') }}<v-icon right dark>keyboard_arrow_right</v-icon>
               </v-btn>
             </router-link>
           </v-card>

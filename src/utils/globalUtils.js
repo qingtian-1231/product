@@ -38,17 +38,18 @@ globalUtils = {
   },
 
   findParentTid: function (arr, value) {
-    let tid = ''
+    let return_item = {}
     arr.forEach(item => {
       if (item.tid == value) {
-        tid = item.tid
+        return_item = item
       }
 
       if (item.children_ids.indexOf(value) !== -1) {
-        tid = item.tid
+        return_item = item
       }
     })
-    return tid
+
+    return return_item
   },
 
   /**

@@ -38,14 +38,32 @@ globalUtils = {
   },
 
   findParentTid: function (arr, value) {
-    let return_item = {}
+    let return_item
+    let self = this
     arr.forEach(item => {
-      if (item.tid == value) {
+      if (item.children_ids.indexOf(value) !== -1) {
         return_item = item
       }
 
-      if (item.children_ids.indexOf(value) !== -1) {
+      if (item.children.length > 0 && !return_item) {
+        return_item = self.findParentTid(item.children, value)
+      }
+    })
+
+    return return_item
+  },
+
+  findProductParentItem: function (arr, parentId) {
+    let return_item
+    let self = this
+
+    arr.forEach(item => {
+      if (item.tid === parentId) {
         return_item = item
+      }
+
+      if (!return_item) {
+        return_item = self.findProductParentItem(item.children, parentId)
       }
     })
 

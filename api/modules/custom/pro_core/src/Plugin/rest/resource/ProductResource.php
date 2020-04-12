@@ -41,7 +41,10 @@ class ProductResource extends ResourceBase {
       'content_translation_source',
       'content_translation_outdated',
       'field_is_public',
-      'field_is_feature'
+      'field_is_feature',
+      'field_front_image',
+      'field_front_product_color',
+      'field_front_product_description',
     ];
 
     if ($entity) {

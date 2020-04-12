@@ -42,6 +42,13 @@ class ProCoreResource extends ResourceBase {
       foreach ($tree as $term) {
         $new_children = $this->arraySort($term['children'], 'weight');
         $term['children'] = $new_children;
+
+        foreach ($term['children'] as &$second_child) {
+          if (count($second_child['children']) > 0) {
+            $second_child['children'] = $this->arraySort($second_child['children'], 'weight');
+          }
+        }
+
         $new_tree[] = $term;
       }
 
@@ -64,7 +71,7 @@ class ProCoreResource extends ResourceBase {
     if ($term->hasTranslation($language)) {
       $object['name'] = $term->getTranslation($language)->getName();
     }
-    
+
     if ($object['depth'] != 0) {
       return;
     }

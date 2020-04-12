@@ -7,32 +7,25 @@
   >
     <v-row dense>
       <v-col cols="12">
-        <h1>关于巴斯夫</h1>
+        <h1>{{ $t('home.middleContent.aboutBASF') }}</h1>
         <p>
-          在巴斯夫，我们创造化学新作用——追求可持续发展的未来。我们将经济上的成功、社会责任和环境保护相结合。
-          巴斯夫在全球拥有约122,000名员工，为几乎所有国家、所有行业的客户成功作出贡献。
-          我们的产品分属六大业务领域：化学品、材料、工业解决方案、表面处理技术、营养与护理、农业解决方案。
-          2018年巴斯夫全球销售额约630亿欧元。
-          巴斯夫的股票在法兰克福（BAS）证券交易所上市，并以美国存托凭证（BASFY）的形式在美国证券市场交易。
-          欲了解更多信息，请访问：<a target="_blank" href="https://www.basf.com">www.basf.com</a>。
+         {{ $t('home.middleContent.aboutBASFDescription') }}<a target="_blank" href="https://www.basf.com">www.basf.com</a>。
         </p>
       </v-col>
 
       <v-col cols="12">
         <div class="unlock">
           <h1>
-            注册我们，充分使用<br>BASF产品助理
+            {{ $t('home.middleContent.registerTitle') }}
           </h1>
           <p>
-            完全访问专有配方和完整的产品数据。
-            个性化您自己的帐户并存储喜欢的产品和配方。
-            您甚至可以将您的帐户链接到同事，以共享您的示例订单信息-这只是注册的一些优点。
+            {{ $t('home.middleContent.registerDescription') }}
           </p>
           <div class="row text-center mx-0">
             <v-col cols="12" md="6" sm="12">
               <router-link :to="{ name: 'Login' }">
                 <v-btn class="ma-2" block rounded color="success" >
-                  登录
+                  {{ $t('global.login') }}
                   <v-icon right>keyboard_arrow_right</v-icon>
                 </v-btn>
               </router-link>
@@ -41,7 +34,7 @@
             <v-col cols="12" md="6" sm="12" class="mx-0">
               <router-link :to="{ name: 'Register' }">
                 <v-btn class="ma-2" right block rounded color="info" >
-                  注册
+                  {{ $t('global.register') }}
                   <v-icon right>keyboard_arrow_right</v-icon>
                 </v-btn>
               </router-link>

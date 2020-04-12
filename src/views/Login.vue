@@ -89,12 +89,10 @@
           <div class="unlock">
             <h2>
               <v-icon>lock_open</v-icon>
-              注册， 充分使用<br>BASF产品助理.
+              {{ $t('home.middleContent.registerTitle') }}
             </h2>
             <p>
-              完全访问专有配方和完整的产品数据。
-              个性化您自己的帐户并存储喜欢的或最近访问的产品和配方。
-              您甚至可以将您的帐户链接到同事，以共享您的示例订单信息-这只是注册的一些优点。
+              {{ $t('home.middleContent.registerDescription') }}
             </p>
           </div>
         </v-col>

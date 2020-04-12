@@ -12,14 +12,14 @@
       v-model="currentCarousel"
     >
       <v-carousel-item
-        v-for="(item,i) in items"
+        v-for="(carousel, i) in carousels"
         :key="i"
-        :src="item.src"
-        :value="item.color"
+        :src="carousel.field_media_image"
+        :value="carousel.color"
       >
         <div class="slide-caption">
-          <h2><b>Their stories. Your products.</b><br>Our sun care expertise.</h2>
-          <a href="/landingpage-sun/english" class="button">All about sun</a>
+          <p v-html="carousel.field_front_carousel_description"></p>
+          <span v-html="carousel.field_front_carousel_link"></span>
         </div>
       </v-carousel-item>
     </v-carousel>
@@ -33,6 +33,7 @@
   let slider4 = require('@/assets/home/carsousel/home_slide4_large.jpg')
   let slider5 = require('@/assets/home/carsousel/home_slide5_large.jpg')
   let slider6 = require('@/assets/home/carsousel/home_slide6_large.jpg')
+  import { mapState } from 'vuex'
 
   export default {
     name: 'carousel',
@@ -69,14 +70,25 @@
       }
     },
 
+    computed: {
+      // Getting Vuex State from store/modules/
+      ...mapState({
+        isLogin: state => state.user.isLogin,
+        carousels: state => state.home.carousels
+      })
+    },
+
     watch: {
       currentCarousel (val, old) {
         this.$store.commit('change_app_color', {colorClass: val})
       }
     },
 
-    created () {
-      console.log(this.items, this.currentCarousel, 'items')
+    created () {},
+
+    mounted () {
+      let vm = this
+      vm.$store.dispatch('getCarousel')
     }
   }
 </script>

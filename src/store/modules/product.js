@@ -19,8 +19,9 @@ const mutations = {
   processProductList(state, payload) {
     state.productList = payload.result.map(item => {
       let favorite = []
+      let parentProductType = globalUtils.findParentTid(payload.productType, item.field_product_type)
 
-      item.parentTid = globalUtils.findParentTid(payload.productType, item.field_product_type)
+      item.parentTid = parentProductType.tid
       if (payload.favorite) {
         favorite = payload.favorite
       }
@@ -63,9 +64,11 @@ const mutations = {
 
       if (field === 'field_product_type') {
         let tid = result.field_product_type.value.length > 0 ? result.field_product_type.value[0].tid.value : null
+        let parentProductType = globalUtils.findParentTid(payload.productType, tid)
         state.productBasicInformation.field_product_type = result.field_product_type.value.length > 0 ? result.field_product_type.value[0].name : {}
+        state.productBasicInformation.field_product_type.value = parentProductType.name + ' > ' + state.productBasicInformation.field_product_type.value
         state.productBasicInformation.field_product_type.label = '产品分类'
-        state.productBasicInformation.field_product_type.parentTid = globalUtils.findParentTid(payload.productType, tid)
+        state.productBasicInformation.field_product_type.parentTid = parentProductType.tid
 
         // console.log(result.field_product_type.value[0].tid.value, 'result.field_product_type.value[0].name')
         // state.productBasicInformation.field_product_type.value = state.productBasicInformation.field_product_type.value[0].name

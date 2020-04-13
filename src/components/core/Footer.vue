@@ -11,7 +11,7 @@
             {{ $t('home.footer.link_188') }}
           </a>
 
-          <span class="mr-3 overline">{{ $t('hoom.footer.copyright') }}</span>
+          <span class="mr-3 overline">{{ $t('home.footer.copyright') }}</span>
         </div>
         <div class="ml-auto mr-auto mr-md-0 col col-auto footer-right">
           <v-img
@@ -69,7 +69,7 @@
         float: left;
         margin-right: 20px;
         display: inline-block;
-        
+
         .v-responsive__content {
           display: none !important;
         }

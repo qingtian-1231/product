@@ -68,6 +68,10 @@ body {
     }
   }
 
+  .v-btn__content {
+    text-transform: capitalize;
+  }
+
   header, footer, .slide-caption .button {
     background-color: #2196f3 !important;
     transition: background-color .3s ease-in-out,color .3s ease-in-out;

@@ -44,6 +44,19 @@ const messages = {
       formula: '配方公式',
       share: '分享',
       favorite: '最爱',
+      formulationRecipe: {
+        formulaRatio: '配方比例',
+        formula_Composition: '配方组成',
+        formula_title: '配方公式计算',
+      },
+      Properties: {
+        title: '配方的技术规格数据'
+      }
+    },
+    industry: {
+      checkFormulation: '查看当前行业配方',
+      checkProduct: '查看当前行业产品',
+      noDescription: '暂无行业介绍',
     },
     onlineRequestForm: {
       title: '联系我们',
@@ -127,6 +140,19 @@ const messages = {
       formula: 'formula',
       share: 'share',
       favorite: 'favorite',
+      formulationRecipe: {
+        formulaRatio: 'Formula ratio',
+        formula_Composition: 'Formula composition',
+        formula_title: 'Formula calculation',
+      },
+      Properties: {
+        title: 'Technical data of formula'
+      }
+    },
+    industry: {
+      noDescription: 'No industry introduction',
+      checkFormulation: 'View current industry recipes',
+      checkProduct: 'View current industry products',
     },
     onlineRequestForm: {
       title: 'Contact Us',

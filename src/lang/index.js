@@ -18,7 +18,7 @@ const messages = {
       thanksRegister: '感谢您注册本站',
       registerSuccess: '您已经注册成功，请等待管理员确认激活您的账户，你注册的邮箱将会收到注册成功的邮件通知。',
       backToHome: '回到首页',
-      loginSuccess: '您已经登录成功，现在请您使用完成的BASF产品助理的功能吧',
+      loginSuccess: '您已经登录成功，现在请您使用完成的BASF产品中心的功能吧',
     },
     basket: {
       title: '样品购物车',
@@ -56,8 +56,8 @@ const messages = {
       description: '完全访问专有配方和完整的产品数据。 个性化您自己的帐户并存储喜欢的或最近访问的产品和配方。 您甚至可以将您的帐户链接到同事，以共享您的示例订单信息-这只是注册的一些优点。',
     },
     login: {
-      loginTitle: '产品助理',
-      loginTitle2: '用于配方产品',
+      loginTitle: '产品中心',
+      loginTitle2: '',
       welcome: '欢迎您',
       loginSite: '登陆本站',
     },
@@ -101,7 +101,7 @@ const messages = {
       thanksRegister: 'Thank you for registering this site',
       registerSuccess: 'You have successfully registered, please wait for the administrator to confirm activation of your account, your registered mailbox will receive an email notification of successful registration.',
       backToHome: 'Back to home page.',
-      loginSuccess: 'You have logged in successfully, now please use the function of the completed BASF product assistant',
+      loginSuccess: 'You have logged in successfully, now please use the function of the completed BASF Product Center',
     },
     basket: {
       title: 'Sample shopping cart',
@@ -139,8 +139,8 @@ const messages = {
       description: 'Full access to proprietary formulations and complete product data. Personalize your own account and store your favorite or recently visited products and recipes. You can even link your account to colleagues to share your sample order information-these are just some of the advantages of signing up.',
     },
     login: {
-      loginTitle: 'Product Assistant',
-      loginTitle2: 'For formula products',
+      loginTitle: 'Product Center',
+      loginTitle2: '',
       welcome: 'Welcome',
       loginSite: 'Login to this site',
     },

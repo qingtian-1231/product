@@ -22,7 +22,7 @@
         <div class="success_message">
           <h2>
             <v-icon color="primary">check_circle_outline</v-icon>
-            欢迎您{{ displayName }}, 登录本站！
+            {{ $t('login.welcome') }} {{ displayName }}, {{ $t('login.loginSite') }}
           </h2>
           <p>
             {{ $t('global.loginSuccess') }}

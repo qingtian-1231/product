@@ -6,7 +6,7 @@
     <div class="header">
       <h1>
         <v-icon x-large class="material-icons-outlined">person_add</v-icon>
-        $t('global.register')
+        {{ $t('global.register') }}
       </h1>
     </div>
 
@@ -101,14 +101,14 @@
           <div class="bottom row text-center mx-0">
             <v-col cols="12" md="6" sm="12">
               <v-btn class="ma-2" block rounded color="success" @click="$router.back(-1)">
-                $t('global.cancel')
+                {{ $t('global.cancel') }}
                 <v-icon right>close</v-icon>
               </v-btn>
             </v-col>
 
             <v-col cols="12" md="6" sm="12" class="mx-0">
               <v-btn class="ma-2" right block rounded color="info" @click="registerUser()">
-                $t('global.register')
+                {{ $t('global.register') }}
                 <v-icon right>keyboard_arrow_right</v-icon>
               </v-btn>
             </v-col>

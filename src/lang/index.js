@@ -6,10 +6,19 @@ const messages = {
       logout: '退出登录',
       userName: '用户名',
       passWord: '密码',
+      repeatPass: '重复密码',
+      email: '邮箱地址',
+      companyName: '公司名称',
+      position: '职位',
       register: '注册',
       cancel: '取消',
       submit: '提交',
-      goBack: '返回上一页'
+      goBack: '返回上一页',
+      followWechat: '关注公众号',
+      thanksRegister: '感谢您注册本站',
+      registerSuccess: '您已经注册成功，请等待管理员确认激活您的账户，你注册的邮箱将会收到注册成功的邮件通知。',
+      backToHome: '回到首页',
+      loginSuccess: '您已经登录成功，现在请您使用完成的BASF产品助理的功能吧',
     },
     basket: {
       title: '样品购物车',
@@ -46,6 +55,12 @@ const messages = {
       title: '注册,充分利用BASF产品助手。',
       description: '完全访问专有配方和完整的产品数据。 个性化您自己的帐户并存储喜欢的或最近访问的产品和配方。 您甚至可以将您的帐户链接到同事，以共享您的示例订单信息-这只是注册的一些优点。',
     },
+    login: {
+      loginTitle: '产品助理',
+      loginTitle2: '用于配方产品',
+      welcome: '欢迎您',
+      loginSite: '登陆本站',
+    },
     home: {
       search: {
         searchDescription1: '欢迎访问巴斯夫分散体与树脂产品中心！在这里，您可以轻松查找您所需的巴斯夫产品信息，',
@@ -61,7 +76,7 @@ const messages = {
         registerDescription: '注册用户可查看完整的产品数据和配方信息，个性化账户管理，收藏喜爱的产品，在线订购样品，轻松下载产品手册和技术说明书等。',
       },
       footer: {
-        link_188: '巴斯夫1688官方旗舰店',
+        link_buy_site: '巴斯夫1688官方旗舰店',
         copyright: '巴斯夫版权所有',
         weChat: '欢迎关注“巴斯夫分散体与树脂”官方微信公众号',
       }
@@ -74,10 +89,19 @@ const messages = {
       logout: 'logout',
       userName: 'User Name',
       passWord: 'pass word',
+      repeatPass: 'Repeat Password',
+      email: 'email address',
+      companyName: 'Company Name',
+      position: 'Position',
       register: 'register',
       cancel: 'cancel',
       submit: 'submit',
-      goBack: 'go back to the last page'
+      goBack: 'go back to the last page',
+      followWechat: 'Follow the public account',
+      thanksRegister: 'Thank you for registering this site',
+      registerSuccess: 'You have successfully registered, please wait for the administrator to confirm activation of your account, your registered mailbox will receive an email notification of successful registration.',
+      backToHome: 'Back to home page.',
+      loginSuccess: 'You have logged in successfully, now please use the function of the completed BASF product assistant',
     },
     basket: {
       title: 'Sample shopping cart',
@@ -113,6 +137,12 @@ const messages = {
     loginDialog: {
       title: 'Register and take full advantage of BASF Product Assistant.',
       description: 'Full access to proprietary formulations and complete product data. Personalize your own account and store your favorite or recently visited products and recipes. You can even link your account to colleagues to share your sample order information-these are just some of the advantages of signing up.',
+    },
+    login: {
+      loginTitle: 'Product Assistant',
+      loginTitle2: 'For formula products',
+      welcome: 'Welcome',
+      loginSite: 'Login to this site',
     },
     home: {
       search: {

@@ -73,7 +73,7 @@ const mutations = {
         if (topParentProductType) {
           state.productBasicInformation.field_product_type.value = topParentProductType.name + ' > ' + state.productBasicInformation.field_product_type.value
         }
-        state.productBasicInformation.field_product_type.label = '产品分类'
+        state.productBasicInformation.field_product_type.label = result.field_product_type.label
         state.productBasicInformation.field_product_type.parentTid = parentProductType.tid
 
         // console.log(result.field_product_type.value[0].tid.value, 'result.field_product_type.value[0].name')
@@ -88,7 +88,7 @@ const mutations = {
 
       if (field === 'field_product_brand') {
         state.productBasicInformation.brand = result.field_product_brand.value.length > 0 ? result.field_product_brand.value[0].name : {}
-        state.productBasicInformation.brand.label = '产品品牌'
+        state.productBasicInformation.brand.label = result.field_product_brand.label
         continue
       }
 

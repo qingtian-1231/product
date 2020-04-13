@@ -3,6 +3,7 @@
 namespace Drupal\pro_core\Plugin\rest\resource;
 
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
 use Drupal\node\Entity\Node;
@@ -29,6 +30,7 @@ class FormulationResource extends ResourceBase {
    */
   public function get($id = NULL) {
     $entity_manager = \Drupal::entityManager();
+    $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
     $entity = $entity_manager->loadEntityByUuid('node', $id);
     $formulation = [];
     $filter_fields = [
@@ -52,6 +54,10 @@ class FormulationResource extends ResourceBase {
       'revision_translation_affected',
       'nid'
     ];
+
+    if ($entity->hasTranslation($language)) {
+      $entity = $entity->getTranslation($language);
+    }
 
     if ($entity) {
       foreach ($entity->getFields() as $field => $field_item_list) {
@@ -77,13 +83,13 @@ class FormulationResource extends ResourceBase {
               }
 
               $formulation[$field] = [
-                'label' => is_string($field_definition->getLabel()) ? $field_definition->getLabel() : (string) $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $entity_reference_value,
               ];
             }
             else {
               $formulation[$field] = [
-                'label' => is_string($field_definition->getLabel()) ? $field_definition->getLabel() : (string) $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $field_item_list->value,
               ];
             }
@@ -97,13 +103,13 @@ class FormulationResource extends ResourceBase {
               }
 
               $formulation[$field] = [
-                'label' => $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $entity_reference_value,
               ];
             }
             else {
               $formulation[$field] = [
-                'label' => $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $entity->get($field)->value,
               ];
             }
@@ -132,7 +138,7 @@ class FormulationResource extends ResourceBase {
             $brand = Term::load($brand_id['target_id']);
 
             $return[$field] = [
-              'label' => $field_definition->getLabel(),
+              'label' => $this->getTranslateLabel($field_definition->getLabel()),
               'value' => $field_item_list[0]->entity->field_product_name->value,
               'uuid' => $field_item_list[0]->entity->uuid->value,
               'termId' => $type_Id['target_id'],
@@ -141,14 +147,14 @@ class FormulationResource extends ResourceBase {
           }
           elseif ($field_definition->getType() === 'file') {
             $return[$field] = [
-              'label' => $field_definition->getLabel(),
+              'label' => $this->getTranslateLabel($field_definition->getLabel()),
               'value' => count($field_item_list) > 0 ? $field_item_list[0]->entity->url() : null,
               'changed' => date('c', $field_item_list[0]->entity->changed->value),
             ];
           }
           else {
             $return[$field] = [
-              'label' => $field_definition->getLabel(),
+              'label' => $this->getTranslateLabel($field_definition->getLabel()),
               'value' => $field_item_list[0]->value,
             ];
           }
@@ -157,6 +163,20 @@ class FormulationResource extends ResourceBase {
     }
 
     return $return;
+  }
+
+  protected function getTranslateLabel($label) {
+    $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $translatedLabel = '没有翻译';
+    if ($label instanceof TranslatableMarkup) {
+      $translatedLabel = $label->render();
+    } elseif (is_string($label)) {
+      $translatableMarkup = t($label, [], ['langcode' => $language]);
+      //optionally, render to string
+      $translatedLabel = $translatableMarkup->render();
+    }
+
+    return $translatedLabel;
   }
 
   public function permissions() {

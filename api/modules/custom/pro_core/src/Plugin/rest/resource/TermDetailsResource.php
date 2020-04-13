@@ -27,6 +27,7 @@ class TermDetailsResource extends ResourceBase {
    */
   public function get($term_type, $term_id) {
     $vocabularies = ['product_type', 'prduct_brand', 'applacation'];
+    $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
 
     if (!in_array($term_type, $vocabularies)) {
       return new ResourceResponse(['error' => '当前类别不存在'], 500);
@@ -36,6 +37,10 @@ class TermDetailsResource extends ResourceBase {
     $term = Term::load($term_id);
 
     $result = [];
+
+    if ($term->hasTranslation($language)) {
+        $term = $term->getTranslation($language);
+    }
     foreach ($term as $name => $field) {
       if ($term->{$name}->value) {
         if ($name === 'field_application_description') {

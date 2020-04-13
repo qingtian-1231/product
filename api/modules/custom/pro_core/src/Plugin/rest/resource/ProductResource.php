@@ -29,6 +29,7 @@ class ProductResource extends ResourceBase {
    */
   public function get($id = NULL) {
     $entity_manager = \Drupal::entityManager();
+    $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
     $entity = $entity_manager->loadEntityByUuid('commerce_product', $id);
     $product = [];
     $filter_fields = [
@@ -47,6 +48,10 @@ class ProductResource extends ResourceBase {
       'field_front_product_description',
     ];
 
+    if ($entity->hasTranslation($language)) {
+      $entity = $entity->getTranslation($language);
+    }
+
     if ($entity) {
       foreach ($entity->getFields() as $field => $field_item_list) {
         // 过滤掉不返回给客户端的字段数据
@@ -63,6 +68,10 @@ class ProductResource extends ResourceBase {
               $entity_reference_value = [];
               foreach ($field_item_list as $para) {
                 if (method_exists($para->entity, 'getFields')) {
+                  if ($para->entity->hasTranslation($language)) {
+                    $para->entity = $para->entity->getTranslation($language);
+                  }
+
                   $entity_reference_value[] = $this->getFields($para->entity->getFields());
                 }
                 else {
@@ -83,10 +92,17 @@ class ProductResource extends ResourceBase {
             }
           }
 
+//          if ($field === 'field_product_brand') {
+//            var_dump($field_definition->getType());exit;
+//          }
           if ($field_definition instanceof FieldConfig) {
             if ($field_definition->getType() === 'entity_reference_revisions') {
               $entity_reference_value = [];
               foreach ($field_item_list as $para) {
+                if ($para->entity->hasTranslation($language)) {
+                  $para->entity = $para->entity->getTranslation($language);
+                }
+
                 $entity_reference_value[] = $this->getFields($para->entity->getFields());
               }
 
@@ -118,6 +134,10 @@ class ProductResource extends ResourceBase {
                 default:
                   $entity_reference_value = [];
                   foreach ($field_item_list as $para) {
+                    if ($para->entity->hasTranslation($language)) {
+                      $para->entity = $para->entity->getTranslation($language);
+                    }
+
                     $entity_reference_value[] = $this->getFields($para->entity->getFields());
                   }
                   $product[$field] = [

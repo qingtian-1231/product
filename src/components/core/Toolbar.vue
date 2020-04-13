@@ -281,6 +281,7 @@
             border-radius: 0;
             margin: 0 16px;
             color: #333!important;
+            text-transform: capitalize;
           }
         }
       }
@@ -321,7 +322,7 @@
         .v-tab.v-tab {
           color: #333 !important;
           opacity: 1 !important;
-          
+
           a {
             color: #333;
           }
@@ -444,12 +445,12 @@
   .current {
     background-color: #028fd2;
     color: #fff;
-    
+
     a {
       color: #fff !important;
     }
   }
-  
+
   .v-menu__content {
 
     .v-list {
@@ -461,7 +462,7 @@
       }
     }
   }
-  
+
   #minibasket {
     padding: 10px 26px;
 

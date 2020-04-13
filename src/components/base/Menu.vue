@@ -164,8 +164,9 @@
       margin: 0 16px;
       color: #333!important;
       font-size: .8em;
+      text-transform: capitalize;
     }
-    
+
     .v-icon {
       color: #333;
     }

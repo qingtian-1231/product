@@ -5,8 +5,8 @@
   >
     <div class="header">
       <div class="excerpt">
-        <h1>BASF产品助理</h1>
-        <h2>用于配方产品</h2>
+        <h1>BASF {{ $t('login.loginTitle') }}</h1>
+        <h2>{{ $t('login.loginTitle2') }}</h2>
       </div>
       <v-alert
         :value="alert"
@@ -25,11 +25,11 @@
             欢迎您{{ displayName }}, 登录本站！
           </h2>
           <p>
-            您已经登录成功，现在请您使用完成的BASF产品助理的功能吧
+            {{ $t('global.loginSuccess') }}
           </p>
           <router-link :to="{name: 'Home'}">
             <v-btn class="ma-2" rounded color="success">
-              回到首页
+              {{ $t('global.backToHome') }}
             </v-btn>
           </router-link>
         </div>
@@ -37,7 +37,7 @@
 
       <template v-else>
         <v-col cols="3">
-          <div class="title mb-1">关注公众号</div>
+          <div class="title mb-1">{{ $t('global.followWechat') }}</div>
           <v-img
             :src="require('@/assets/global/qr_code.jpg')"
             :lazy-src="require('@/assets/global/qr_code.jpg')"
@@ -49,7 +49,7 @@
           <v-form ref="loginForm" id="login-form" class="form" v-model="loginValid" lazy-validation>
             <v-col cols="12">
               <v-text-field
-                label="用户名"
+                :label="$t('global.userName')"
                 v-model="userName"
                 :rules="[rules.required, rules.max]"
                 counter
@@ -58,7 +58,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
-                label="密码"
+                :label="$t('global.passWord')"
                 v-model="userPass"
                 :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
                 :rules="[rules.required, rules.min]"
@@ -71,14 +71,14 @@
             <div class="bottom row text-center mx-0">
               <v-col cols="12" md="6" sm="12">
                 <v-btn class="ma-2" block rounded color="success" @click="$router.back(-1)">
-                  取消
+                  $t('global.cancel')
                   <v-icon right>close</v-icon>
                 </v-btn>
               </v-col>
 
               <v-col cols="12" md="6" sm="12" class="mx-0">
                 <v-btn class="ma-2" right block rounded color="info" @click="userLogin()">
-                  登录
+                  $t('global.login')
                   <v-icon right>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-col>

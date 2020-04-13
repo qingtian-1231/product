@@ -6,7 +6,7 @@
     <div class="header">
       <h1>
         <v-icon x-large class="material-icons-outlined">person_add</v-icon>
-        注册
+        $t('global.register')
       </h1>
     </div>
 
@@ -18,20 +18,20 @@
           contain
         >
         </v-img>
-        <div class="title mb-1">关注公众号</div>
+        <div class="title mb-1">{{ $t('global.followWechat') }}</div>
       </div>
       <template v-if="registerSuccess">
         <div class="success_message">
           <h2>
             <v-icon color="primary">check_circle_outline</v-icon>
-            感谢您注册本站！
+            {{ $t('global.thanksRegister') }}！
           </h2>
           <p>
-            您已经注册成功，请等待管理员确认激活您的账户，你注册的邮箱将会收到注册成功的邮件通知。
+            {{ $t('global.registerSuccess') }}
           </p>
           <router-link :to="{name: 'Home'}">
             <v-btn class="ma-2" rounded color="success">
-              回到首页
+              {{ $t('global.backToHome') }}
             </v-btn>
           </router-link>
         </div>
@@ -42,7 +42,7 @@
           <v-row>
             <v-col cols="12" sm="6">
               <v-text-field
-                label="用户名"
+                :label="$t('global.userName')"
                 outlined
                 :rules="[rules.required, rules.max, rules.chineseVarchar, rules.FullwidthChar, rules.invilideChar]"
                 v-model="userName"
@@ -50,7 +50,7 @@
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
-                label="邮箱地址"
+                :label="$t('global.email')"
                 outlined
                 :rules="[rules.required, rules.emailMatch]"
                 v-model="userMail"
@@ -58,7 +58,7 @@
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
-                label="公司名称"
+                :label="$t('global.companyName')"
                 outlined
                 :rules="[rules.required]"
                 v-model="companyName"
@@ -66,7 +66,7 @@
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
-                label="您的职位"
+                :label="$t('global.position')"
                 outlined
                 :rules="[rules.required]"
                 v-model="companyPosition"
@@ -74,7 +74,7 @@
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
-                label="密码"
+                :label="$t('global.passWord')"
                 outlined
                 v-model="password"
                 :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
@@ -86,7 +86,7 @@
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
-                label="重复密码"
+                :label="$t('global.repeatPass')"
                 outlined
                 v-model="rePassword"
                 :append-icon="rePasswordShow ? 'mdi-eye' : 'mdi-eye-off'"
@@ -101,14 +101,14 @@
           <div class="bottom row text-center mx-0">
             <v-col cols="12" md="6" sm="12">
               <v-btn class="ma-2" block rounded color="success" @click="$router.back(-1)">
-                取消
+                $t('global.cancel')
                 <v-icon right>close</v-icon>
               </v-btn>
             </v-col>
 
             <v-col cols="12" md="6" sm="12" class="mx-0">
               <v-btn class="ma-2" right block rounded color="info" @click="registerUser()">
-                注册
+                $t('global.register')
                 <v-icon right>keyboard_arrow_right</v-icon>
               </v-btn>
             </v-col>

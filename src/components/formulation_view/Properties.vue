@@ -1,7 +1,7 @@
 <template>
   <v-card flat color="basil" id="properties">
     <div class="props">
-      <h2>配方的技术规格数据</h2>
+      <h2>{{ $t('formulationView.Properties.title') }}</h2>
       <ul>
         <template v-for="(item, index) in formulationProperties">
           <li :key="index" v-if="item.value">

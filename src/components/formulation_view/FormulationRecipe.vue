@@ -1,6 +1,6 @@
 <template>
   <v-card flat color="basil" id="formulation-recipe">
-    <h2 class="light clearfix"><b>配方公式计算</b></h2>
+    <h2 class="light clearfix"><b>{{ $t('formulationView.formulationRecipe.formula_title') }}</b></h2>
     <div id="recipe">
       <ul>
         <li>
@@ -25,8 +25,8 @@
       </li>
       </ul>
       <div>
-        <span><small>配方比例</small></span>
-        <span><small>配方组成</small></span>
+        <span class="label">{{ $t('formulationView.formulationRecipe.formulaRatio') }}</span>
+        <span class="label">{{ $t('formulationView.formulationRecipe.formula_Composition') }}</span>
       </div>
       <ul class="clearfix">
         <template v-for="(item, index) in formulationInfo">

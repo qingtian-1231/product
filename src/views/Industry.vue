@@ -19,7 +19,7 @@
           </template>
 
           <template v-else>
-            <h1>暂无行业介绍</h1>
+            <h1>{{ $t('industry.noDescription') }}</h1>
           </template>
 
         </div>
@@ -28,13 +28,13 @@
       <v-row class="footer">
         <v-col class="col-xs-6" md="6">
           <v-btn class="float-left" color="primary" @click="goClick('formulations', termTid)">
-            查看当前行业配方
+            {{ $t('industry.checkFormulation') }}
             <v-icon>play_arrow</v-icon>
           </v-btn>
         </v-col>
         <v-col class="col-xs-6">
           <v-btn class="float-right" color="primary" @click="goClick('products', termTid)">
-            查看当前行业产品
+            {{ $t('industry.checkProduct') }}
             <v-icon>play_arrow</v-icon>
           </v-btn>
         </v-col>

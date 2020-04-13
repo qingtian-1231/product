@@ -8,6 +8,7 @@ use Drupal\node\Entity\Node;
 use Drupal\Core\Field\FieldItemList;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\taxonomy\Entity\Term;
 
 /**
@@ -80,13 +81,13 @@ class ProductResource extends ResourceBase {
               }
 
               $product[$field] = [
-                'label' => is_string($field_definition->getLabel()) ? $field_definition->getLabel() : (string) $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $entity_reference_value,
               ];
             }
             else {
               $product[$field] = [
-                'label' => is_string($field_definition->getLabel()) ? $field_definition->getLabel() : (string) $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $field_item_list->value,
               ];
             }
@@ -107,7 +108,7 @@ class ProductResource extends ResourceBase {
               }
 
               $product[$field] = [
-                'label' => $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $entity_reference_value,
               ];
             }
@@ -117,7 +118,7 @@ class ProductResource extends ResourceBase {
                   $value = $this->processTerm($field_item_list);
 
                   $product[$field] = [
-                    'label' => $field_definition->getLabel(),
+                    'label' => $this->getTranslateLabel($field_definition->getLabel()),
                     'value' => $value,
                   ];
                   break;
@@ -141,7 +142,7 @@ class ProductResource extends ResourceBase {
                     $entity_reference_value[] = $this->getFields($para->entity->getFields());
                   }
                   $product[$field] = [
-                    'label' => $field_definition->getLabel(),
+                    'label' => $this->getTranslateLabel($field_definition->getLabel()),
                     'value' => $entity_reference_value,
                   ];
                   break;
@@ -158,7 +159,7 @@ class ProductResource extends ResourceBase {
               }
 
               $product[$field] = [
-                'label' => $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $value,
               ];
             }
@@ -166,20 +167,20 @@ class ProductResource extends ResourceBase {
               $valuesArr = $field_item_list->getValue();
               $value = count($field_item_list) === 1 ? array_pop($valuesArr) : $valuesArr;
               $product[$field] = [
-                'label' => $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => !empty($value) ? $value: '',
               ];
             }
             else {
               if ($field === 'field_recommended_application') {
                 $product[$field] = [
-                  'label' => $field_definition->getLabel(),
+                  'label' => $this->getTranslateLabel($field_definition->getLabel()),
                   'value' => $field_item_list->getValue(),
                 ];
               }
               else {
                 $product[$field] = [
-                  'label' => $field_definition->getLabel(),
+                  'label' => $this->getTranslateLabel($field_definition->getLabel()),
                   'value' => count($field_item_list) === 1 ? $field_item_list->value : $field_item_list->getValue(),
                 ];
               }
@@ -211,7 +212,7 @@ class ProductResource extends ResourceBase {
 
         if ($field_definition instanceof BaseFieldDefinition) {
           $return[$field] = [
-            'label' => is_string($field_definition->getLabel()) ? $field_definition->getLabel() : (string) $field_definition->getLabel(),
+            'label' => $this->getTranslateLabel($field_definition->getLabel()),
             'value' => $field_item_list->value,
           ];
         }
@@ -221,19 +222,19 @@ class ProductResource extends ResourceBase {
 
             if ($field === 'attribute_product_amount') {
               $return[$field] = [
-                'label' => $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $field_item_list[0]->entity->name->value
               ];
             }
             elseif($field === 'field_formulation_industry') {
               $return[$field] = [
-                'label' => $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $field_item_list->getValue(),
               ];
             }
             else {
               $return[$field] = [
-                'label' => $field_definition->getLabel(),
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => $field_item_list[0]->entity->attribute->getValue(),
                 'uuid' => $field_item_list[0]->entity->uuid->value,
               ];
@@ -242,26 +243,26 @@ class ProductResource extends ResourceBase {
           elseif ($field_definition->getType() === 'address_country') {
             $country = $countries[$field_item_list->value];
             $return[$field] = [
-              'label' => $field_definition->getLabel(),
+              'label' => $this->getTranslateLabel($field_definition->getLabel()),
               'value' => $country->render() . '[' . $field_item_list->value . ']'
             ];
           }
           elseif ($field_definition->getType() === 'entity_reference_revisions') {
             $return[$field] = [
-              'label' => $field_definition->getLabel(),
+              'label' => $this->getTranslateLabel($field_definition->getLabel()),
               'value' => isset($field_item_list[0]) ? $field_item_list[0]->value : $field_item_list->getValue(),
             ];
           }
           elseif ($field_definition->getType() === 'file') {
             $return[$field] = [
-              'label' => $field_definition->getLabel(),
+              'label' => $this->getTranslateLabel($field_definition->getLabel()),
               'value' => $field_item_list[0]->entity->url(),
               'changed' => date('c', $field_item_list[0]->entity->changed->value),
             ];
           }
           else {
             $return[$field] = [
-              'label' => $field_definition->getLabel(),
+              'label' => $this->getTranslateLabel($field_definition->getLabel()),
               'value' => isset($field_item_list[0]) ? $field_item_list[0]->value : $field_item_list->getValue(),
             ];
           }
@@ -288,6 +289,20 @@ class ProductResource extends ResourceBase {
     }
 
     return $value;
+  }
+
+  protected function getTranslateLabel($label) {
+    $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $translatedLabel = '没有翻译';
+    if ($label instanceof TranslatableMarkup) {
+      $translatedLabel = $label->render();
+    } elseif (is_string($label)) {
+      $translatableMarkup = t($label, [], ['langcode' => $language]);
+      //optionally, render to string
+      $translatedLabel = $translatableMarkup->render();
+    }
+
+    return $translatedLabel;
   }
 
   public function permissions() {

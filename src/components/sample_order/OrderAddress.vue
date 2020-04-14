@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="12" sm="6">
           <v-text-field
-            label="姓"
+            :label="$t('sampleOrder.orderAddress.firstName')"
             outlined
             :rules="[rules.required, rules.max]"
             v-model="family_name"
@@ -12,7 +12,7 @@
         </v-col>
         <v-col cols="12" sm="6">
           <v-text-field
-            label="名"
+            :label="$t('sampleOrder.orderAddress.lastName')"
             outlined
             :rules="[rules.required, rules.max]"
             v-model="given_name"
@@ -28,7 +28,7 @@
             item-value="code"
             return-object
             :rules="[rules.required]"
-            label="国家"
+            :label="$t('sampleOrder.orderAddress.country')"
             outlined
             solo
           ></v-select>
@@ -44,7 +44,7 @@
             item-value="code"
             return-object
             :rules="[rules.required]"
-            label="省/州"
+            :label="$t('sampleOrder.orderAddress.state')"
             outlined
             solo
           ></v-select>
@@ -60,7 +60,7 @@
             item-value="code"
             return-object
             :rules="[rules.required]"
-            label="城市"
+            :label="$t('sampleOrder.orderAddress.city')"
             outlined
             solo
           ></v-select>
@@ -76,7 +76,7 @@
             item-value="code"
             return-object
             :rules="[rules.required]"
-            label="区域"
+            :label="$t('sampleOrder.orderAddress.district')"
             outlined
             solo
           ></v-select>
@@ -84,7 +84,7 @@
 
         <v-col cols="12" sm="6">
           <v-text-field
-            label="邮编"
+            :label="$t('sampleOrder.orderAddress.postCode')"
             outlined
             :rules="[rules.required]"
             v-model="postal_code"
@@ -93,7 +93,7 @@
 
         <v-col cols="12" sm="6">
           <v-text-field
-            label="街道地址"
+            :label="$t('sampleOrder.orderAddress.streetAddress')"
             outlined
             :rules="[rules.required]"
             v-model="address_line1"
@@ -101,14 +101,14 @@
         </v-col>
         <v-col cols="12" sm="6">
           <v-text-field
-            label="街道地址2"
+            :label="$t('sampleOrder.orderAddress.streetAddress2')"
             outlined
             v-model="address_line2"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
           <v-text-field
-            label="公司"
+            :label="$t('sampleOrder.orderAddress.company')"
             outlined
             :rules="[rules.required]"
             v-model="organization"
@@ -123,7 +123,7 @@
         class="float-left"
         @click="backPrevStep()"
       >
-        编辑样品订单
+        {{ $t('sampleOrder.orderAddress.editOrder') }}
       </v-btn>
 
       <v-btn
@@ -131,7 +131,7 @@
         color="primary"
         @click="updateOrderAddress()"
       >
-        继续
+        {{ $t('sampleOrder.orderAddress.goOn') }}
       </v-btn>
     </div>
   </div>

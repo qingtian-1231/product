@@ -4,19 +4,19 @@
       <div class="success_message">
         <h2>
           <v-icon color="primary">check_circle_outline</v-icon>
-          恭喜您下单成功！
+          {{ $t('sampleOrder.orderComplete.congratulations') }}！
         </h2>
         <p>
-          请注意查收我们发出的邮件，你注册的邮箱将会收到订单信息的邮件通知。
+          {{ $t('sampleOrder.orderComplete.message') }}。
         </p>
         <router-link :to="{ name: 'Home' }">
           <v-btn class="ma-2" rounded color="success">
-            回到首页
+            {{ $t('sampleOrder.orderComplete.goHome') }}
           </v-btn>
         </router-link>
         <router-link :to="{ name: 'Products' }">
           <v-btn class="ma-2" rounded color="success">
-            浏览产品
+            {{ $t('sampleOrder.orderComplete.seeProduct') }}
           </v-btn>
         </router-link>
       </div>

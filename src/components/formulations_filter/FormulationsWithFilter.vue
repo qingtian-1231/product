@@ -21,7 +21,7 @@
               item-text="name"
               item-value="code"
               return-object
-              label="选择"
+              :label="$t('formulationFilter.select')"
               filled
               dense
               hide-details
@@ -34,7 +34,7 @@
       </v-list>
     </template>
     <v-btn block rounded color="success" @click="findFormulations()">
-      查找配方
+      {{ $t('formulationFilter.selectFormulation') }}
       <v-icon right>keyboard_arrow_right</v-icon>
     </v-btn>
   </v-card>

@@ -6,7 +6,7 @@
     <div class="header">
       <h1>
         <v-icon x-large class="material-icons-outlined">system_update_alt</v-icon>
-        样品订单
+        {{ $t('sampleOrder.title') }}
       </h1>
     </div>
 
@@ -24,19 +24,19 @@
               :editable="editable"
             >
               <template v-if="n === 1">
-                样品订单
+                {{ $t('sampleOrder.title') }}
               </template>
 
               <template v-else-if="n === 2">
-                地址信息
+                {{ $t('sampleOrder.address') }}
               </template>
 
               <template v-else-if="n === 3">
-                核对
+                {{ $t('sampleOrder.check') }}
               </template>
 
               <template v-else-if="n === 4">
-                确认
+                {{ $t('sampleOrder.confirm') }}
               </template>
 
             </v-stepper-step>

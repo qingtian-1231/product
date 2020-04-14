@@ -2,17 +2,17 @@
   <div class="order-list">
     <template v-if="shoppingCart.length">
       <h2>
-        产品列表
+        {{ $t('sampleOrder.orderList.productList') }}
       </h2>
       <div class="order">
         <v-simple-table>
           <template v-slot:default>
             <thead>
             <tr>
-              <th class="text-left">产品名称</th>
-              <th class="text-left">数量</th>
-              <th class="text-left">规格</th>
-              <th class="text-left">操作</th>
+              <th class="text-left">{{ $t('sampleOrder.orderList.productName') }}</th>
+              <th class="text-left">{{ $t('sampleOrder.orderList.amount') }}</th>
+              <th class="text-left">{{ $t('sampleOrder.orderList.variation') }}</th>
+              <th class="text-left">{{ $t('sampleOrder.orderList.action') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -46,7 +46,7 @@
                   class="select small"
                   v-model="product.selectVariation"
                   :items="product.variationsItem"
-                  label="产品分量"
+                  :label="$t('sampleOrder.orderList.productWeight')"
                   height="18"
                   outlined
                   dense
@@ -65,10 +65,10 @@
         </v-simple-table>
         <div class="pagination">
           <v-btn color="info" class="float-left" @click="$router.back(-1)">
-            取消产品
+            {{ $t('sampleOrder.orderList.cancel') }}
           </v-btn>
           <v-btn class="float-right" color="primary" @click="addCart()">
-            添加购物车
+            {{ $t('sampleOrder.orderList.addCart') }}
           </v-btn>
         </div>
       </div>
@@ -76,7 +76,7 @@
 
     <template v-if="cart.length">
       <h2>
-        未完成订单
+        {{ $t('sampleOrder.orderList.unSuccessProduct') }}
       </h2>
       <template v-for="(cartOrder, index) in cart">
         <div class="order" :key="index">
@@ -84,11 +84,11 @@
             <template v-slot:default>
               <thead>
               <tr>
-                <th class="text-left">产品名称</th>
-                <th class="text-left">数量</th>
-                <th class="text-left">价格</th>
-                <th class="text-left">规格</th>
-                <th class="text-left">操作</th>
+                <th class="text-left">{{ $t('sampleOrder.orderList.productName') }}</th>
+                <th class="text-left">{{ $t('sampleOrder.orderList.amount') }}</th>
+                <th class="text-left">{{ $t('sampleOrder.orderList.price') }}</th>
+                <th class="text-left">{{ $t('sampleOrder.orderList.variation') }}</th>
+                <th class="text-left">{{ $t('sampleOrder.orderList.action') }}</th>
               </tr>
               </thead>
               <tbody v-if="cartOrder.hasOwnProperty('order_items')">
@@ -135,10 +135,10 @@
           </v-simple-table>
           <div class="pagination">
             <v-btn color="info" class="float-left" @click="cancelOrder(cartOrder.order_id)">
-              取消当前订单
+              {{ $t('sampleOrder.orderList.cancelOrder') }}
             </v-btn>
             <v-btn class="float-right" color="primary" @click="shippingOrder(cartOrder)">
-              结算当前订单
+              {{ $t('sampleOrder.orderList.completeOrder') }}
             </v-btn>
           </div>
         </div>

@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Admin Toolbar module.
+ */
+
+/**
+ * 导入产品数据和配方数据
+ *
+ * @see https://www.jianshu.com/p/04470e38ca53
+ * @see https://www.ostraining.com/blog/drupal/content-import-module/
+ * @see https://www.flocondetoile.fr/blog/export-content-csv-drupal-8
+ * @see https://atendesigngroup.com/blog/entity-import-user-interface-drupal-8-migrations
+ * @see https://www.drupal.org/project/commerce/issues/2811529
+ *
+ */
+function pro_core_update_8001() {
+  global $base_url;
+  $file = $base_url . '/sites/default/files/product.csv';
+  var_dump($file);
+  $handle = fopen($file, "r");
+  while (($data = fgetcsv($handle)) !== false) {
+// 下面这行代码可以解决中文字符乱码问题
+// $data[0] = iconv('gbk', 'utf-8', $data[0]);
+
+// 跳过第一行标题
+//    var_dump($data);
+    if ($data[0] == 'name') {
+      continue;
+    }
+
+//    // data 为每行的数据，这里转换为一维数组
+//    print_r($data);// Array ( [0] => tom [1] => 12 )
+
+  }
+
+  fclose($handle);
+}

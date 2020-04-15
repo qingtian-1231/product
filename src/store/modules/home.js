@@ -48,7 +48,7 @@ const mutations = {
         item.color = 'orange1'
       }
       if (index === 7) {
-        item.color = 'orange1'
+        item.color = 'orange2'
       }
       if (item.field_media_image) {
         item.field_media_image = apiServer + item.field_media_image

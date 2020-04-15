@@ -89,6 +89,10 @@
 
       h1 {
         padding: 60px 100px 30px;
+
+        a {
+          text-transform: capitalize;
+        }
       }
 
       p {

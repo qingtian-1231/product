@@ -94,8 +94,8 @@
       background-size: 70px 7967px;
       background-position: right -1271px;
       color: #fff;
-      height: 50px;
-      width: 224px;
+      height: 60px;
+      width: 280px;
       padding-top: 16px;
       text-align: center;
       text-transform: none;
@@ -104,7 +104,8 @@
       background-color: #f49800;
       cursor: pointer;
       display: block;
-      font-size: 1em;
+      font-size: 25px;
+      line-height: 25px;
 
       & .origin {
         background-color: #f49800;

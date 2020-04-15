@@ -38,9 +38,8 @@ body {
         background-size: 70px 7967px;
         background-position: right -1271px;
         color: #fff;
-        height: 60px;
-        width: 280px;
-        padding-top: 16px;
+        height: 50px;
+        width: 224px;
         text-align: center;
         text-transform: none;
         vertical-align: middle;
@@ -48,8 +47,8 @@ body {
         background-color: #f49800;
         cursor: pointer;
         display: block;
-        font-size: 22px;
-        line-height: 22px;
+        font-size: 1em;
+        line-height: 50px;
         text-decoration: none;
 
         & .origin {
@@ -164,6 +163,10 @@ body {
         }
       }
     }
+  }
+
+  .v-application {
+    font-family: Arial,sans-serif !important;
   }
 
   .v-application p {

@@ -85,7 +85,7 @@ const messages = {
       middleContent: {
         aboutBASF: '关于巴斯夫',
         aboutBASFDescription: '在巴斯夫，我们创造化学新作用——追求可持续发展的未来。我们将经济上的成功、社会责任和环境保护相结合。巴斯夫在全球拥有约122,000名员工，为几乎所有国家、所有行业的客户成功作出贡献。我们的产品分属六大业务领域：化学品、材料、工业解决方案、表面处理技术、营养与护理、农业解决方案。2018年巴斯夫全球销售额约630亿欧元。巴斯夫的股票在法兰克福（BAS）证券交易所上市，并以美国存托凭证（BASFY）的形式在美国证券市场交易。欲了解更多信息，请访问：',
-        registerTitle: '注册！巴斯夫产品中心全方位服务直通车',
+        registerTitle: '巴斯夫产品中心全方位服务直通车',
         registerDescription: '注册用户可查看完整的产品数据和配方信息，个性化账户管理，收藏喜爱的产品，在线订购样品，轻松下载产品手册和技术说明书等。',
       },
       footer: {
@@ -240,11 +240,11 @@ const messages = {
       middleContent: {
         aboutBASF: 'About BASF',
         aboutBASFDescription: 'At BASF, we create chemistry for a sustainable future. We combine economic success with environmental protection and social responsibility. The approximately 122,000 employees in the BASF Group work on contributing to the success of our customers in nearly all sectors and almost every country in the world. Our portfolio is organized into six segments: Chemicals, Materials, Industrial Solutions, Surface Technologies, Nutrition & Care and Agricultural Solutions. BASF generated sales of around €63 billion in 2018. BASF shares are traded on the stock exchange in Frankfurt (BAS) and as American Depositary Receipts (BASFY) in the U.S. Further information at ',
-        registerTitle: 'Sign up! Make the most of BASF Product Center',
+        registerTitle: 'Make the most of BASF Product Center',
         registerDescription: 'Get full access to exclusive formulations and complete product data. Individualize your own account and store favorite or order samples online. You can also easily download all product brochures and technical datasheets.',
       },
       footer: {
-        link_188: 'BASF 1688 Flagship Shop',
+        link_buy_site: 'BASF 1688 Flagship Shop',
         copyright: 'Copyright @ BASF',
         weChat: 'QR code welcome to follow Wechat Official Account ‘BASF Dispersions & Resins’',
       }

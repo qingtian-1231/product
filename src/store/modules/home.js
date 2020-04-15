@@ -27,16 +27,16 @@ const mutations = {
   processCarousel(state, payload) {
     state.carousels = payload.map(function (item, index) {
       if (index === 0) {
-        item.color = 'orange1'
-      }
-      if (index === 1) {
-        item.color = 'orange2'
-      }
-      if (index === 2) {
         item.color = 'green_dark1'
       }
-      if (index === 3) {
+      if (index === 1) {
         item.color = 'green_dark2'
+      }
+      if (index === 2) {
+        item.color = 'blue1'
+      }
+      if (index === 3) {
+        item.color = 'blue2'
       }
       if (index === 4) {
         item.color = 'red1'
@@ -45,7 +45,10 @@ const mutations = {
         item.color = 'red2'
       }
       if (index === 6) {
-        item.color = 'green_dark1'
+        item.color = 'orange1'
+      }
+      if (index === 7) {
+        item.color = 'orange1'
       }
       if (item.field_media_image) {
         item.field_media_image = apiServer + item.field_media_image

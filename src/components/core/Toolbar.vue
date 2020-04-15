@@ -165,32 +165,6 @@
     },
 
     methods: {
-      switchEnglish () {
-        let vm = this
-        vm.$store.commit('switch_Language', {language: 'en'})
-        window.location.reload()
-        // vm.$store.dispatch('getApiMenu').then(() => {
-        //   vm.$store.commit('SET_SNACKBAR', {
-        //     globalSnackbar: true,
-        //     snackbarMessage: 'Your languages has been changed！'
-        //   })
-        // })
-      },
-
-      switchChinese () {
-        let vm = this
-        vm.$store.commit('switch_Language', {language: 'zh-hans'})
-        window.location.reload()
-
-        // vm.$store.dispatch('getApiMenu').then(() => {
-        //   vm.$store.commit('SET_SNACKBAR', {
-        //     globalSnackbar: true,
-        //     snackbarMessage: '您的语言切换成功！'
-        //   })
-        // })
-      },
-
-
       switchLanguage (language) {
         let vm = this
         let switchLanguage = {}
@@ -201,7 +175,7 @@
         else if (language === 'en') {
           switchLanguage = {language: 'zh-hans'}
         }
-        vm.$store.commit('switch_Language', {language: 'zh-hans'})
+        vm.$store.commit('switch_Language', switchLanguage)
         window.location.reload()
       },
 

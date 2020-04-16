@@ -35,7 +35,7 @@
 
     data () {
       return {
-        currentCarousel: 'orange1',
+        currentCarousel: 'green_dark1',
       }
     },
 

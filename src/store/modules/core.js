@@ -19,7 +19,7 @@ const state = {
   taxonomyProductBrand: [],
   taxonomyProductApplication: [],
   formulationApplicationList: [],
-  appColor: 'primary'
+  appColor: 'green_dark1'
 }
 
 const mutations = {

@@ -236,15 +236,23 @@ export default {
       background-color: #2196f3;
 
       .green_dark2, .green_dark1 & {
-        background-color: #00793d;
+        background-color: #00793a;
       }
 
       .red1, .red2 & {
-        background-color: #c10b25;
+        background-color: #c50022;
       }
 
       .orange1, .orange2 & {
-        background-color: #f49800;
+        background-color: #f39500;
+      }
+
+      .blue_dark2, .blue_dark1 & {
+        background-color: #004a96;
+      }
+
+      .green_light2, .green_light1 & {
+        background-color: #65ac1e;
       }
       &:after {
         content: " ";
@@ -341,7 +349,7 @@ export default {
   & > div {
     & > ul {
       display: inline-block;
-      
+
       li {
         width: 50%;
         float: left;

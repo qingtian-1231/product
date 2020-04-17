@@ -82,14 +82,14 @@ body {
   }
 
   .green_dark2, .green_dark1 {
-    border-color: #00793d !important;
+    border-color: #00793a !important;
 
     header, footer, .slide-caption .button {
-      background-color: #00793d !important;
+      background-color: #00793a !important;
     }
 
     .search-container {
-      border-bottom: 20px solid #00793d !important;
+      border-bottom: 20px solid #00793a !important;
     }
 
     .caption {
@@ -97,7 +97,63 @@ body {
       & > a {
 
         &:first-child {
-          color: #00793d;
+          color: #00793a;
+          text-decoration: none;
+        }
+
+        &:last-child {
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .blue_dark2, .blue_dark1 {
+    border-color: #004a96 !important;
+
+    header, footer, .slide-caption .button {
+      background-color: #004a96 !important;
+    }
+
+    .search-container {
+      border-bottom: 20px solid #004a96 !important;
+    }
+
+    .caption {
+
+      & > a {
+
+        &:first-child {
+          color: #004a96;
+          text-decoration: none;
+        }
+
+        &:last-child {
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .green_light2, .green_light1 {
+    border-color: #65ac1e !important;
+
+    header, footer, .slide-caption .button {
+      background-color: #65ac1e !important;
+    }
+
+    .search-container {
+      border-bottom: 20px solid #65ac1e !important;
+    }
+
+    .caption {
+
+      & > a {
+
+        &:first-child {
+          color: #65ac1e;
           text-decoration: none;
         }
 
@@ -110,14 +166,14 @@ body {
   }
 
   .red1, .red2 {
-    border-color: #c10b25 !important;
+    border-color: #c50022 !important;
 
     header, footer, .slide-caption .button {
-      background-color: #c10b25 !important;
+      background-color: #c50022 !important;
     }
 
     .search-container {
-      border-bottom: 20px solid #c10b25 !important;
+      border-bottom: 20px solid #c50022 !important;
     }
 
     .caption {
@@ -125,7 +181,7 @@ body {
       & > a {
 
         &:first-child {
-          color: #c10b25;
+          color: #c50022;
           text-decoration: none;
         }
 
@@ -138,14 +194,14 @@ body {
   }
 
   .orange1, .orange2 {
-    border-color: #f49800 !important;
+    border-color: #f39500 !important;
 
     header, footer, .slide-caption .button {
-      background-color: #f49800 !important;
+      background-color: #f39500 !important;
     }
 
     .search-container {
-      border-bottom: 20px solid #f49800 !important;
+      border-bottom: 20px solid #f39500 !important;
     }
     
     .caption {
@@ -153,7 +209,7 @@ body {
       & > a {
 
         &:first-child {
-          color: #f49800;
+          color: #f39500;
           text-decoration: none;
         }
 

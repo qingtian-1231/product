@@ -36,13 +36,13 @@
             </picture>
           </a>
 
-          <div class="caption">
+          <div class="caption company-introduce">
             <a href="https://www.basf.com/global/en/corona-information.html" target="_blank">
             </a>
 
-            <p>
+            <span>
               {{ $t('home.ad') }}
-            </p>
+            </span>
 
 <!--            <a href="https://www.basf.com/global/en/corona-information.html" target="_blank" class="external">Read More</a>-->
           </div>
@@ -90,9 +90,16 @@
   }
 
   .teaser-container {
-    
+
     &.orange1 {
       border-color: #f49800;
+    }
+
+    .company-introduce {
+      font-size: 16px!important;
+      font-weight: normal;
+      letter-spacing: normal !important;
+      line-height: initial;
     }
   }
 

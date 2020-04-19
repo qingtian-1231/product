@@ -31,19 +31,7 @@
         </p>
       </v-col>
 
-      <v-col cols="12" class="introduce">
-        <h1>
-          <router-link :to="{ name: 'Register' }">
-            {{ $t('global.register') }} !
-          </router-link>
-          {{ $t('home.middleContent.registerTitle') }}
-        </h1>
-        <p>
-          {{ $t('home.middleContent.registerDescription') }}
-        </p>
-      </v-col>
-
-      <v-col cols="12" class="contact">
+      <v-col cols="12" :class="{'contact': 1, 'english-version': currentLanguage === 'en'}">
         <h2>{{ $t('home.middleContent.contact') }}</h2>
         <ul>
           <li>
@@ -86,7 +74,42 @@
             {{ $t('home.middleContent.xianggangInfo.address') }}<br><br><br>
             {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
           </li>
+
+          <template v-if="currentLanguage === 'en'">
+            <li>
+              <strong>{{ $t('home.middleContent.taiwanInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.taiwanInfo.street') }}<br><br>
+              {{ $t('home.middleContent.taiwanInfo.address') }}<br><br><br>
+              {{ $t('home.middleContent.taiwanInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.xianggangInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.xianggangInfo.street') }}<br><br>
+              {{ $t('home.middleContent.xianggangInfo.address') }}<br><br><br>
+              {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.xianggangInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.xianggangInfo.street') }}<br><br>
+              {{ $t('home.middleContent.xianggangInfo.address') }}<br><br><br>
+              {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
+            </li>
+          </template>
         </ul>
+      </v-col>
+
+      <v-col cols="12" class="introduce">
+        <h1>
+          <router-link :to="{ name: 'Register' }">
+            {{ $t('global.register') }} !
+          </router-link>
+          {{ $t('home.middleContent.registerTitle') }}
+        </h1>
+        <p>
+          {{ $t('home.middleContent.registerDescription') }}
+        </p>
       </v-col>
     </v-row>
   </v-container>
@@ -95,14 +118,20 @@
 <script>
   // Utilities
   // import IconApp from '../svg/App'
+  import { getCookie } from "../../utils/cookie"
 
   export default {
     components: {},
 
     data: function () {
       return {
-        cardElevation: 0
+        cardElevation: 0,
+        currentLanguage: 'zh-hans'
       }
+    },
+
+    mounted () {
+      this.currentLanguage = getCookie('drupal:session:language')
     },
 
     methods: {}
@@ -164,7 +193,7 @@
 
     .contact {
       text-align: left;
-      padding: 20px 50px;
+      padding: 0 50px;
 
       h2 {
         font-size: 1.4em;
@@ -195,16 +224,27 @@
       }
     }
 
+    .english-version {
+
+      li {
+        width: 12.5% !important;
+      }
+    }
+
     .about-us {
-      padding: 20px 50px;
+      padding: 0 50px;
 
       h1 {
         padding: 20px 0;
       }
+
+      .wechat-image {
+        margin-top: 20px;
+      }
     }
 
     .introduce {
-      padding: 20px 50px;
+      padding: 0 50px;
 
       h1 {
         padding: 20px 0;

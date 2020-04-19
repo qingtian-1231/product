@@ -1,5 +1,5 @@
 import { request } from '../../utils/request.js'
-import {getCookie, setCookie} from "../../utils/cookie";
+import { getCookie, setCookie } from "../../utils/cookie";
 
 const state = {
   path: 'api/menu_items/vue-app-menu',

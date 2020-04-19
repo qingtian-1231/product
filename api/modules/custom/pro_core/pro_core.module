@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Implements hook_rest_resource_alter().
+ */
+function pro_core_rest_resource_alter(&$definitions) {
+  if (isset($definitions['entity:user'])) {
+    $definitions['entity:user']['class'] = 'Drupal\pro_core\Plugin\rest\resource\UserEntityAlterResource';
+  }
+}

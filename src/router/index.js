@@ -12,12 +12,15 @@ import NotFound from '../views/NotFound'
 import Login from '../views/Login'
 import Download from '../views/Download'
 import FormulationsFilter from '../views/FormulationsFilter'
+import MyFavorites from '../views/MyFavorites'
+import OrderHistory from '../views/OrderHistory'
+import AccountSetting from '../views/AccountSetting'
 import Unauthorized from '../views/Unauthorized'
 
 Vue.use(Router)
 
-const defaultKeywords = '巴斯夫,化工产品,配方,巴斯夫产品'
-const defaultDescription = '巴斯夫产品,巴斯夫配方'
+const defaultKeywords = '巴斯夫, 化工产品, 配方, 巴斯夫产品'
+const defaultDescription = '巴斯夫产品, 巴斯夫配方'
 
 export default new Router({
   mode: 'history',
@@ -28,7 +31,7 @@ export default new Router({
       name: 'Home',
       component: Home,
       meta: {
-        title: '巴斯夫产品首页',
+        title: '巴斯夫产品中心',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -140,6 +143,39 @@ export default new Router({
       component: FormulationsFilter,
       meta: {
         title: '配方全局过滤页',
+        keywords: defaultKeywords,
+        description: defaultDescription,
+        keepAlive: true
+      }
+    },
+    {
+      path: '/my-favorites',
+      name: 'MyFavorites',
+      component: MyFavorites,
+      meta: {
+        title: '我的收藏',
+        keywords: defaultKeywords,
+        description: defaultDescription,
+        keepAlive: true
+      }
+    },
+    {
+      path: '/order-history',
+      name: 'OrderHistory',
+      component: OrderHistory,
+      meta: {
+        title: '订单历史',
+        keywords: defaultKeywords,
+        description: defaultDescription,
+        keepAlive: true
+      }
+    },
+    {
+      path: '/account-setting',
+      name: 'AccountSetting',
+      component: AccountSetting,
+      meta: {
+        title: '账户设置',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true

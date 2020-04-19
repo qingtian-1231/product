@@ -13,12 +13,29 @@ const state = {
   currentUser: {},
   favoriteProductList: [],
   favoriteFormulationList: [],
+  orderHistory:[]
 };
 
 const mutations = {
   processUserFields(state, payload) {
-    state.favoriteProductList = payload.field_product_list
-    state.favoriteFormulationList = payload.field_formulation_list
+    state.favoriteProductList = payload.result.field_product_list.map(item => {
+      item.uuid = item.value
+      let parentProductType = globalUtils.findParentTid(payload.productType, item.type)
+
+      if (parentProductType) {
+        item.parentTid = parentProductType.tid
+      }
+      else {
+        item.parentTid = item.type
+      }
+
+      return item
+    })
+    state.favoriteFormulationList = payload.result.field_formulation_list.map(item => {
+      item.uuid = item.value
+
+      return item
+    })
   },
 
   GET_USER_LIST(state, payload) {
@@ -37,6 +54,28 @@ const mutations = {
     if (index >= 0) {
       state.currentUser.followers.splice(index, 1);
     }
+  },
+
+  removeFavoriteProduct(state, productUuid) {
+    state.favoriteProductList = state.favoriteProductList.filter(item => {
+      if (item.uuid !== productUuid) {
+        return item
+      }
+    })
+  },
+
+  removeFavoriteFormulation(state, formulationUuid) {
+    state.favoriteFormulationList = state.favoriteFormulationList.filter(item => {
+      if (item.uuid !== formulationUuid) {
+        return item
+      }
+    })
+  },
+
+  processUserOrderHistory(state, payload) {
+    state.orderHistory = payload
+
+    console.log(state.orderHistory, 'state.orderHistory')
   },
 
   /**
@@ -97,7 +136,7 @@ const actions = {
       });
   },
 
-  getCurrentUser({dispatch, commit, state }) {
+  getCurrentUser({dispatch, commit, state, rootState }) {
     const sessionKey = "drupal:session";
     const session = getCookie(sessionKey);
     const sessionValue = session ? JSON.parse(session) : "";
@@ -111,7 +150,11 @@ const actions = {
 
       dispatch('getCurrentUserFields').then((result) => {
         if (result.status === 200) {
-          commit('processUserFields', result.data)
+          let payload = {}
+
+          payload.productType = rootState.core.taxonomyProductType
+          payload.result = result.data
+          commit('processUserFields', payload)
         }
       })
 
@@ -275,6 +318,24 @@ const actions = {
     state.isAdmin = false;
     state.isLogin = false;
     state.currentUser = {};
+  },
+
+  getUserOrderHistory({ commit, state }, userId) {
+    let requestPath = `api/user/${userId}/orders`
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = `en/api/user/${userId}/orders`
+    }
+    return request().get(requestPath)
+      .then(function (response) {
+        commit('processUserOrderHistory', response.data)
+        return Promise.resolve(response.data)
+      })
+      .catch(function (error) {
+        console.log(error)
+        return Promise.resolve(error)
+      })
   }
 };
 

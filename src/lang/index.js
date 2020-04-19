@@ -277,11 +277,11 @@ const messages = {
       search: {
         searchDescription1: 'Wellcome to visit BASF Product Center for Dispersions and Resins!\n' +
           'You can easily find BASF product information here. For customers in',
-        searchDescription2: ',  there are detailed application formulations for reference, who can also have a in-depth communication with BASF technical experts. Online request for samples or purchasing at 1688 flagship shop makes your orders more convenient and efficient than ever. ',
+        searchDescription2: ',  there are detailed application formulations for reference, who can also have a in-depth communication with BASF technical experts. Online request for samples or purchasing at 1688 flagship shop makes your orders more convenient than ever. ',
         search: 'Search',
         brand: 'Brand'
       },
-      ad: 'Dispersions & Resins division of BASF develops, produces and markets a range of high quality resins, additives and polymer dispersions worldwide. These raw materials are used in formulations for a number of industries, including coatings, construction, printing and packaging, adhesives and paper. With comprehensive product portfolio and extensive knowledge of the industry, we offer our customers innovative and sustainable solutions and helps them advance their formulations.',
+      ad: 'Dispersions & Resins division of BASF develops, produces and markets a range of high quality resins, additives and polymer dispersions worldwide. These raw materials are used in formulations for a number of industries, including coatings, construction, printing and packaging, adhesives and paper. With comprehensive product portfolio and extensive knowledge of the industry, we offer our customers innovative.',
       middleContent: {
         aboutBASF: 'About BASF',
         aboutBASFDescription: 'At BASF, we create chemistry for a sustainable future. We combine economic success with environmental protection and social responsibility. The approximately 122,000 employees in the BASF Group work on contributing to the success of our customers in nearly all sectors and almost every country in the world. Our portfolio is organized into six segments: Chemicals, Materials, Industrial Solutions, Surface Technologies, Nutrition & Care and Agricultural Solutions. BASF generated sales of around €63 billion in 2018. BASF shares are traded on the stock exchange in Frankfurt (BAS) and as American Depositary Receipts (BASFY) in the U.S. Further information at ',

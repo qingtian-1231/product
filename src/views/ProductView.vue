@@ -290,7 +290,7 @@
     methods: {
       sendEmail() {
         let vm = this
-        window.location.href = `mailto:?subject=产品${vm.productTitle}来自BASF产品助手&body=请查看产品详细信息${vm.productTitle}。
+        window.location.href = `mailto:?subject=产品${vm.productTitle}来自BASF产品中心&body=请查看产品详细信息${vm.productTitle}。
 我在BASF产品助手中找到了它：
 ${vm.currentLocation}`
       },

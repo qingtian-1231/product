@@ -72,6 +72,7 @@ body {
     text-transform: capitalize;
   }
 
+  /*默认颜色==========*/
   header, footer, .slide-caption .button {
     background-color: #2196f3 !important;
     transition: background-color .3s ease-in-out,color .3s ease-in-out;
@@ -80,6 +81,55 @@ body {
   .search-container {
     border-bottom: 20px solid #2196f3 !important;
   }
+
+  .caption {
+
+    & > a {
+
+      &:first-child {
+        color: #2196f3;
+        text-decoration: none;
+      }
+
+      &:last-child {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+  }
+
+  #middle-content .col {
+
+    h1 {
+      color: #2196f3;
+    }
+
+    h2 {
+      color: #2196f3;
+    }
+
+    a {
+      color: #2196f3;
+    }
+
+    .v-icon {
+      background-color: #2196f3;
+    }
+
+    .footer-welcome {
+      color: #2196f3;
+    }
+  }
+
+  #home-search .v-size--large {
+    background-color: #2196f3;
+
+    &:after {
+      background: #2196f3;
+    }
+  }
+
+  /*默认颜色==========*/
 
   .green_dark2, .green_dark1 {
     border-color: #00793a !important;
@@ -105,6 +155,36 @@ body {
           color: #000;
           text-decoration: none;
         }
+      }
+    }
+
+    #middle-content .col {
+      h1 {
+        color: #00793a;
+      }
+
+      h2 {
+        color: #00793a;
+      }
+
+      a {
+        color: #00793a;
+      }
+
+      .v-icon {
+        background-color: #00793a;
+      }
+
+      .footer-welcome {
+        color: #00793a;
+      }
+    }
+
+    #home-search .v-size--large {
+      background-color: #00793a;
+
+      &:after {
+        background: #00793a;
       }
     }
   }
@@ -135,6 +215,37 @@ body {
         }
       }
     }
+
+    #middle-content .col {
+
+      h1 {
+        color: #004a96;
+      }
+
+      h2 {
+        color: #004a96;
+      }
+
+      a {
+        color: #004a96;
+      }
+
+      .v-icon {
+        background-color: #004a96;
+      }
+
+      .footer-welcome {
+        color: #004a96;
+      }
+    }
+
+    #home-search .v-size--large {
+      background-color: #004a96;
+
+      &:after {
+        background: #004a96;
+      }
+    }
   }
 
   .green_light2, .green_light1 {
@@ -161,6 +272,37 @@ body {
           color: #000;
           text-decoration: none;
         }
+      }
+    }
+
+    #middle-content .col {
+
+      h1 {
+        color: #65ac1e;
+      }
+
+      h2 {
+        color: #65ac1e;
+      }
+
+      a {
+        color: #65ac1e;
+      }
+
+      .v-icon {
+        background-color: #65ac1e;
+      }
+
+      .footer-welcome {
+        color: #65ac1e;
+      }
+    }
+
+    #home-search .v-size--large {
+      background-color: #65ac1e;
+
+      &:after {
+        background: #65ac1e;
       }
     }
   }
@@ -191,6 +333,37 @@ body {
         }
       }
     }
+
+    #middle-content .col {
+
+      h1 {
+        color: #c50022;
+      }
+
+      h2 {
+        color: #c50022;
+      }
+
+      a {
+        color: #c50022;
+      }
+
+      .v-icon {
+        background-color: #c50022;
+      }
+
+      .footer-welcome {
+        color: #c50022;
+      }
+    }
+
+    #home-search .v-size--large {
+      background-color: #c50022;
+
+      &:after {
+        background: #c50022;
+      }
+    }
   }
 
   .orange1, .orange2 {
@@ -217,6 +390,37 @@ body {
           color: #000;
           text-decoration: none;
         }
+      }
+    }
+
+    #middle-content .col {
+
+      h1 {
+        color: #f39500;
+      }
+
+      h2 {
+        color: #f39500;
+      }
+
+      a {
+        color: #f39500;
+      }
+
+      .v-icon {
+        background-color: #f39500;
+      }
+
+      .footer-welcome {
+        color: #f39500;
+      }
+    }
+
+    #home-search .v-size--large {
+      background-color: #f39500;
+
+      &:after {
+        background: #f39500;
       }
     }
   }
@@ -273,13 +477,15 @@ body {
       & > a {
 
         &:first-child {
-          color: #2196f3;
+          color: #004a96;
           text-decoration: none;
         }
 
         &:last-child {
-          color: #000;
+          color: #565555;
           text-decoration: none;
+          position: absolute;
+          bottom: 10px;
         }
       }
 

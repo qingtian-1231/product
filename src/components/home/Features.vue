@@ -25,7 +25,7 @@
               </a>
               <p v-html="featureProduct.field_front_product_description"></p>
               <a target="_blank" :href="`/product/${featureProduct.uuid}`">
-                Read More
+                {{ $t('global.readMore') }}
               </a>
             </div>
           </div>

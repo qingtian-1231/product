@@ -13,7 +13,7 @@
         >
             <span>
               {{ $t('home.search.searchDescription1') }}
-              <a target="_blank" href="/register">{{ $t('global.register') }}</a>
+              <a target="_blank" href="/register">{{ $t('global.registration') }}</a>
               {{ $t('home.search.searchDescription2') }}
             </span>
           <search></search>
@@ -99,7 +99,7 @@
       font-size: 16px!important;
       font-weight: normal;
       letter-spacing: normal !important;
-      line-height: initial;
+      line-height: unset;
     }
   }
 

@@ -13,12 +13,23 @@
           <v-list two-line>
             <template v-for="(download, index) in downloadList">
               <v-hover :key="index" v-slot:default="{ hover }">
-                <v-list-item :class="hover ? 'elevation-12' : ''" @click="test">
+                <v-list-item targe :class="hover ? 'elevation-12' : ''" @click="test">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="download.title"></v-list-item-title>
+                  </v-list-item-content>
+
                   <v-list-item-avatar>
                     <v-icon class="material-icons-outlined">attach_file</v-icon>
                   </v-list-item-avatar>
+
                   <v-list-item-content>
-                    <v-list-item-title v-text="download.title"></v-list-item-title>
+                    <a @click="trackClickEvent()" :href="download.field_global_file" download target="_blank">
+                      <v-list-item-title v-text="download.filename"></v-list-item-title>
+                    </a>
+                  </v-list-item-content>
+
+                  <v-list-item-content>
+                    <v-list-item-title v-text="download.filesize"></v-list-item-title>
                   </v-list-item-content>
 
                   <v-list-item-action>
@@ -38,8 +49,8 @@
             </template>
           </v-list>
           <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler" ref="infiniteLoading" :distance="distance">
-            <span slot="no-more">没有更多下载文件了</span>
-            <span slot="no-results">没有下载文件</span>
+            <span slot="no-more">{{ $t('global.noMoreFiles') }}</span>
+            <span slot="no-results">{{ $t('global.noMoreFiles') }}</span>
           </infinite-loading>
         </v-card>
       </v-row>

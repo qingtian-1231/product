@@ -6,14 +6,32 @@
     class="bounceUp-enter-active"
   >
     <v-row dense>
-      <v-col cols="12">
+      <v-col cols="12" class="about-us">
         <h1>{{ $t('home.middleContent.aboutBASF') }}</h1>
         <p>
          {{ $t('home.middleContent.aboutBASFDescription') }}<a target="_blank" href="https://www.basf.com">www.basf.com</a>。
         </p>
+
+         <p>
+           <v-icon>chevron_right</v-icon>
+           <a aria-label="Link to Shopify" href="https://m.1688.com/page/offerlist.html?spm=a262to.11649723.category_view.12&catId=98047612&catPid=&isUserDefined=true&title=%E4%B9%B3%E6%B6%B2%E5%8F%8A%E9%85%8D%E6%96%B9%E5%8A%A9%E5%89%82&memberId=b2b-2123073290" target="_blank" rel="noopener noreferrer">
+             {{ $t('home.footer.link_buy_site') }}
+           </a>
+         </p>
+        <p class="footer-welcome">
+          <v-icon>chevron_right</v-icon>
+          {{ $t('home.footer.weChat') }}
+          <v-img
+            class="wechat-image"
+            width="180"
+            height="180"
+            :src="require('@/assets/global/wechat.png')"
+          >
+          </v-img>
+        </p>
       </v-col>
 
-      <v-col cols="12">
+      <v-col cols="12" class="introduce">
         <h1>
           <router-link :to="{ name: 'Register' }">
             {{ $t('global.register') }} !
@@ -23,27 +41,52 @@
         <p>
           {{ $t('home.middleContent.registerDescription') }}
         </p>
-<!--        <div class="">-->
-<!--          <div class="row text-center mx-0">-->
-<!--&lt;!&ndash;            <v-col cols="12" md="6" sm="12">&ndash;&gt;-->
-<!--&lt;!&ndash;              <router-link :to="{ name: 'Login' }">&ndash;&gt;-->
-<!--&lt;!&ndash;                <v-btn class="ma-2" block rounded color="success" >&ndash;&gt;-->
-<!--&lt;!&ndash;                  {{ $t('global.login') }}&ndash;&gt;-->
-<!--&lt;!&ndash;                  <v-icon right>keyboard_arrow_right</v-icon>&ndash;&gt;-->
-<!--&lt;!&ndash;                </v-btn>&ndash;&gt;-->
-<!--&lt;!&ndash;              </router-link>&ndash;&gt;-->
-<!--&lt;!&ndash;            </v-col>&ndash;&gt;-->
+      </v-col>
 
-<!--&lt;!&ndash;            <v-col cols="12" md="6" sm="12" class="mx-0">&ndash;&gt;-->
-<!--&lt;!&ndash;              <router-link :to="{ name: 'Register' }">&ndash;&gt;-->
-<!--&lt;!&ndash;                <v-btn class="ma-2" right block rounded color="info" >&ndash;&gt;-->
-<!--&lt;!&ndash;                  {{ $t('global.register') }}&ndash;&gt;-->
-<!--&lt;!&ndash;                  <v-icon right>keyboard_arrow_right</v-icon>&ndash;&gt;-->
-<!--&lt;!&ndash;                </v-btn>&ndash;&gt;-->
-<!--&lt;!&ndash;              </router-link>&ndash;&gt;-->
-<!--&lt;!&ndash;            </v-col>&ndash;&gt;-->
-<!--          </div>-->
-<!--        </div>-->
+      <v-col cols="12" class="contact">
+        <h2>{{ $t('home.middleContent.contact') }}</h2>
+        <ul>
+          <li>
+            <strong>{{ $t('home.middleContent.shanghaiInfo.title') }}</strong><br><br>
+            {{ $t('home.middleContent.shanghaiInfo.address') }}<br>
+            {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br><br>
+            {{ $t('home.middleContent.shanghaiInfo.phone') }}<br><br>
+            <a :href="`mailto:${$t('home.middleContent.shanghaiInfo.email')}`">
+              {{ $t('home.middleContent.shanghaiInfo.email') }}
+            </a>
+          </li>
+
+          <li>
+            <strong>{{ $t('home.middleContent.beijingInfo.title') }}</strong><br><br>
+            {{ $t('home.middleContent.beijingInfo.address') }}<br>
+            {{ $t('home.middleContent.beijingInfo.street') }}<br>
+            {{ $t('home.middleContent.beijingInfo.detail') }}<br>
+            {{ $t('home.middleContent.beijingInfo.postCode') }}<br><br>
+            {{ $t('home.middleContent.beijingInfo.phone') }}<br><br>
+          </li>
+
+          <li>
+            <strong>{{ $t('home.middleContent.guangzhouInfo.title') }}</strong><br><br>
+            {{ $t('home.middleContent.guangzhouInfo.street') }}<br>
+            {{ $t('home.middleContent.guangzhouInfo.address') }}<br><br>
+            {{ $t('home.middleContent.guangzhouInfo.postCode') }}<br><br>
+            {{ $t('home.middleContent.guangzhouInfo.phone') }}<br><br>
+          </li>
+
+          <li>
+            <strong>{{ $t('home.middleContent.taiwanInfo.title') }}</strong><br><br>
+            {{ $t('home.middleContent.taiwanInfo.street') }}<br><br>
+            {{ $t('home.middleContent.taiwanInfo.address') }}<br><br><br>
+            {{ $t('home.middleContent.taiwanInfo.phone') }}<br><br>
+          </li>
+
+          <li>
+            <strong>{{ $t('home.middleContent.xianggangInfo.title') }}</strong><br><br>
+            {{ $t('home.middleContent.xianggangInfo.street') }}<br><br>
+            {{ $t('home.middleContent.xianggangInfo.address') }}<br><br><br>
+            {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
+          </li>
+        </ul>
       </v-col>
     </v-row>
   </v-container>
@@ -73,6 +116,7 @@
 
     & > div {
       margin: 0 auto;
+      padding: 12px;
     }
 
     @media screen and (max-width: 640px) {
@@ -88,7 +132,7 @@
       margin-bottom: 25px;
 
       h1 {
-        padding: 60px 100px 30px;
+        /*padding: 60px 100px 30px;*/
 
         a {
           text-transform: capitalize;
@@ -96,7 +140,15 @@
       }
 
       p {
-        padding: 0 100px;
+        /*padding: 0 100px;*/
+        font-size: 16px!important;
+
+        .v-icon {
+          border-radius: 20px;
+          margin-right: 20px;
+          color: #fff;
+          top: -2px;
+        }
       }
 
       .icon {
@@ -107,6 +159,55 @@
         margin: 100px auto 60px;
         float: none;
         display: block;
+      }
+    }
+
+    .contact {
+      text-align: left;
+      padding: 20px 50px;
+
+      h2 {
+        font-size: 1.4em;
+        line-height: 1.3;
+        margin: 0;
+        padding: 20px 0;
+        border-bottom: 1px solid;
+      }
+
+      ul {
+        padding: 0;
+
+        li {
+          border-top: 1px solid #ccc;
+          float: left;
+          font-size: .8em;
+          line-height: 1.3;
+          min-height: auto;
+          padding: 20px 20px 0;
+          width: 20%;
+          list-style: none;
+
+          &:first-child {
+            border: none!important;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+
+    .about-us {
+      padding: 20px 50px;
+
+      h1 {
+        padding: 20px 0;
+      }
+    }
+
+    .introduce {
+      padding: 20px 50px;
+
+      h1 {
+        padding: 20px 0;
       }
     }
 

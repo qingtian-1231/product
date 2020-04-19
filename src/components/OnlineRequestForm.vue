@@ -41,14 +41,14 @@
           ></v-text-field>
           <div class="row text-center mx-0">
             <v-col cols="12" md="6" sm="12">
-              <v-btn class="ma-2" block rounded color="success" @click="closeRequestDialog()">
+              <v-btn class="ma-2" block rounded color="info" @click="closeRequestDialog()">
                 {{ $t('global.cancel') }}
                 <v-icon right>close</v-icon>
               </v-btn>
             </v-col>
 
             <v-col cols="12" md="6" sm="12" class="mx-0">
-              <v-btn class="ma-2" right block rounded color="info" @click="sendFeedback()">
+              <v-btn class="ma-2" right block rounded color="success" @click="sendFeedback()">
                 {{ $t('global.submit') }}
                 <v-icon right>keyboard_arrow_right</v-icon>
               </v-btn>

@@ -56,6 +56,24 @@
               </v-card-title>
               <v-divider class="py-5"></v-divider>
 
+              <div class="fa">
+                <h2>收藏产品</h2>
+                <ul v-for="(product, index) in favoriteProductList" :key="index">
+                  <li >
+                    <a :href="`/product/${product.value}`">{{ product.title }}</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="fa">
+                <h2>收藏配方</h2>
+                <ul v-for="(formulation, index) in favoriteFormulationList" :key="index">
+                  <li >
+                    <a :href="`/formulation/${formulation.value}`">{{ formulation.title }}</a>
+                  </li>
+                </ul>
+              </div>
+
               <v-btn block rounded color="primary" dark @click="userLogout()">
                 {{ $t('global.logout') }}<v-icon right dark>keyboard_arrow_right</v-icon>
               </v-btn>
@@ -226,6 +244,8 @@
         requestDialog: state => state.core.requestDialog,
         isLogin: state => state.user.isLogin,
         currentUser: state => state.user.currentUser,
+        favoriteProductList: state => state.user.favoriteProductList,
+        favoriteFormulationList: state => state.user.favoriteFormulationList
       }),
       displayName: function () {
         return (this.currentUser) ? this.currentUser.name : '未知名称'

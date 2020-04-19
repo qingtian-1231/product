@@ -5,7 +5,7 @@
         <template v-slot:badge>
           <span>{{ shoppingCartCount }}</span>
         </template>
-        <v-icon>shopping_basket</v-icon>
+        <v-icon>shopping_cart</v-icon>
       </v-badge>
     </v-btn>
     <v-card

@@ -28,7 +28,7 @@ export default new Router({
       name: 'Home',
       component: Home,
       meta: {
-        title: '巴斯夫产品助手首页',
+        title: '巴斯夫产品首页',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -50,7 +50,7 @@ export default new Router({
       name: 'Products',
       component: Products,
       meta: {
-        title: '巴斯夫产品',
+        title: '产品',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true

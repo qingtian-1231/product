@@ -48,7 +48,7 @@
               </template>
 
               <template v-else-if="language === 'en'">
-                中
+                中文
               </template>
             </v-btn>
           </v-col>
@@ -185,13 +185,13 @@
         }
         else {
           this.headerMenuClass = 'header-main-menu d-none'
-          this.searchGlobalClass = 'search bounceDown-enter-active'
+          this.searchGlobalClass = 'search fadeRight-enter-active'
         }
       },
 
       closeGlobalSearch () {
         this.headerMenuClass = 'header-main-menu'
-        this.searchGlobalClass = 'search bounceUp-leave-active'
+        this.searchGlobalClass = 'search fadeRight-leave-active'
         // d-none
       },
 

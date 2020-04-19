@@ -51,7 +51,7 @@ const mutations = {
           break
 
         case 'base:sample-order':
-          menuItem.options.icon = 'shopping_basket'
+          menuItem.options.icon = 'shopping_cart'
           break
         default:
           menuItem.options.icon = 'account_balance'

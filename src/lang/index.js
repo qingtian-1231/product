@@ -11,6 +11,7 @@ const messages = {
       companyName: '公司名称',
       position: '职位',
       register: '注册',
+      registration: '注册',
       cancel: '取消',
       submit: '提交',
       goBack: '返回上一页',
@@ -19,6 +20,10 @@ const messages = {
       registerSuccess: '您已经注册成功，请等待管理员确认激活您的账户，你注册的邮箱将会收到注册成功的邮件通知。',
       backToHome: '回到首页',
       loginSuccess: '您已经登录成功，现在请您使用完成的BASF产品中心的功能吧',
+      readMore: '更多',
+      noMoreProduct: '没有更多产品了',
+      noMoreFormulation: '没有更多配方了',
+      noMoreFiles: '没有更多下载文件了',
     },
     basket: {
       title: '样品购物车',
@@ -87,10 +92,45 @@ const messages = {
         aboutBASFDescription: '在巴斯夫，我们创造化学新作用——追求可持续发展的未来。我们将经济上的成功、社会责任和环境保护相结合。巴斯夫在全球拥有约122,000名员工，为几乎所有国家、所有行业的客户成功作出贡献。我们的产品分属六大业务领域：化学品、材料、工业解决方案、表面处理技术、营养与护理、农业解决方案。2018年巴斯夫全球销售额约630亿欧元。巴斯夫的股票在法兰克福（BAS）证券交易所上市，并以美国存托凭证（BASFY）的形式在美国证券市场交易。欲了解更多信息，请访问：',
         registerTitle: '巴斯夫产品中心全方位服务直通车',
         registerDescription: '注册用户可查看完整的产品数据和配方信息，个性化账户管理，收藏喜爱的产品，在线订购样品，轻松下载产品手册和技术说明书等。',
+        contact: '联系我们',
+        shanghaiInfo: {
+          title: '上海',
+          address: '上海浦东江心沙路300号',
+          postCode: '邮编: 200137',
+          phone: '电话: +86 21 2039 3509',
+          email: 'info@basf-product.com',
+        },
+        beijingInfo: {
+          title: '北京',
+          street: '北京朝阳区',
+          address: '东三环北路霞光里18号',
+          detail: '佳程广场A座25层',
+          postCode: '邮编: 100027',
+          phone: '电话: +86 10 5683 1500',
+        },
+        guangzhouInfo: {
+          title: '广州',
+          street: '广州市先烈中路69号',
+          address: '东山广场28楼2808室',
+          postCode: '邮编: 510095',
+          phone: '电话: +86 20 8713 6000',
+        },
+        taiwanInfo: {
+          title: '台湾',
+          street: '台北市104松江路87号',
+          address: '帝国大厦16楼',
+          phone: '电话: +886 2 2518 7600',
+        },
+        xianggangInfo: {
+          title: '香港',
+          street: '香港中环康乐广场1号',
+          address: '怡和大厦45楼',
+          phone: '电话: +852 2731 0111',
+        }
       },
       footer: {
         link_buy_site: '巴斯夫1688官方旗舰店',
-        copyright: '巴斯夫版权所有',
+        copyright: 'Copyright © BASF SE 2020',
         weChat: '欢迎关注“巴斯夫分散体与树脂”官方微信公众号',
       }
     },
@@ -159,12 +199,13 @@ const messages = {
       login: 'login',
       logout: 'logout',
       userName: 'User Name',
-      passWord: 'pass word',
+      passWord: 'Password',
       repeatPass: 'Repeat Password',
       email: 'email address',
       companyName: 'Company Name',
       position: 'Position',
       register: 'register',
+      registration: 'registration',
       cancel: 'cancel',
       submit: 'submit',
       goBack: 'go back to the last page',
@@ -173,6 +214,10 @@ const messages = {
       registerSuccess: 'You have successfully registered, please wait for the administrator to confirm activation of your account, your registered mailbox will receive an email notification of successful registration.',
       backToHome: 'Back to home page.',
       loginSuccess: 'You have logged in successfully, now please use the function of the completed BASF Product Center',
+      readMore: 'Read More',
+      noMoreProduct: 'No More Products',
+      noMoreFormulation: 'No More Formulations',
+      noMoreFiles: 'No More Download Files',
     },
     basket: {
       title: 'Sample shopping cart',
@@ -216,7 +261,7 @@ const messages = {
       title: 'Contact Us',
       description: 'If you have any suggestions or questions regarding the usage of BASF Product Center, please do not hesitate to give us your feedback.',
       feedbackContent: 'Content',
-      yourEmail: 'Your E-mail box'
+      yourEmail: 'E-mail'
     },
     loginDialog: {
       title: 'Register and take full advantage of BASF Product Assistant.',
@@ -233,19 +278,54 @@ const messages = {
         searchDescription1: 'Wellcome to visit BASF Product Center for Dispersions and Resins!\n' +
           'You can easily find BASF product information here. For customers in',
         searchDescription2: ',  there are detailed application formulations for reference, who can also have a in-depth communication with BASF technical experts. Online request for samples or purchasing at 1688 flagship shop makes your orders more convenient and efficient than ever. ',
-        search: 'search',
+        search: 'Search',
         brand: 'Brand'
       },
-      ad: 'The Dispersions & Resins division of BASF develops, produces and markets a range of high-quality resins, additives and polymer dispersions worldwide. These raw materials are used in formulations for a number of industries, including coatings, construction, printing and packaging, adhesives and paper. With its comprehensive product portfolio and its extensive knowledge of the industry, the Dispersions & Resins division offers its customers innovative and sustainable solutions and helps them advance their formulations.',
+      ad: 'Dispersions & Resins division of BASF develops, produces and markets a range of high quality resins, additives and polymer dispersions worldwide. These raw materials are used in formulations for a number of industries, including coatings, construction, printing and packaging, adhesives and paper. With comprehensive product portfolio and extensive knowledge of the industry, we offer our customers innovative and sustainable solutions and helps them advance their formulations.',
       middleContent: {
         aboutBASF: 'About BASF',
         aboutBASFDescription: 'At BASF, we create chemistry for a sustainable future. We combine economic success with environmental protection and social responsibility. The approximately 122,000 employees in the BASF Group work on contributing to the success of our customers in nearly all sectors and almost every country in the world. Our portfolio is organized into six segments: Chemicals, Materials, Industrial Solutions, Surface Technologies, Nutrition & Care and Agricultural Solutions. BASF generated sales of around €63 billion in 2018. BASF shares are traded on the stock exchange in Frankfurt (BAS) and as American Depositary Receipts (BASFY) in the U.S. Further information at ',
         registerTitle: 'Make the most of BASF Product Center',
         registerDescription: 'Get full access to exclusive formulations and complete product data. Individualize your own account and store favorite or order samples online. You can also easily download all product brochures and technical datasheets.',
+        contact: 'Contact Us',
+        shanghaiInfo: {
+          title: '上海',
+          address: '上海浦东江心沙路300号',
+          postCode: '邮编: 200137',
+          phone: '电话: +86 21 2039 3509',
+          email: 'info@basf-product.com',
+        },
+        beijingInfo: {
+          title: '北京',
+          street: '北京朝阳区',
+          address: '东三环北路霞光里18号',
+          detail: '佳程广场A座25层',
+          postCode: '邮编: 100027',
+          phone: '电话: +86 10 5683 1500',
+        },
+        guangzhouInfo: {
+          title: '广州',
+          street: '广州市先烈中路69号',
+          address: '东山广场28楼2808室',
+          postCode: '邮编: 510095',
+          phone: '电话: +86 20 8713 6000',
+        },
+        taiwanInfo: {
+          title: '台湾',
+          street: '台北市104松江路87号',
+          address: '帝国大厦16楼',
+          phone: '电话: +886 2 2518 7600',
+        },
+        xianggangInfo: {
+          title: '香港',
+          street: '香港中环康乐广场1号',
+          address: '怡和大厦45楼',
+          phone: '电话: +852 2731 0111',
+        }
       },
       footer: {
         link_buy_site: 'BASF 1688 Flagship Shop',
-        copyright: 'Copyright @ BASF',
+        copyright: 'Copyright © BASF SE 2020',
         weChat: 'QR code welcome to follow Wechat Official Account ‘BASF Dispersions & Resins’',
       }
     },

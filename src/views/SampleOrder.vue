@@ -5,8 +5,8 @@
   >
     <div class="header">
       <h1>
-        <v-icon x-large class="material-icons-outlined">system_update_alt</v-icon>
-        {{ $t('sampleOrder.title') }}
+        <v-icon x-large class="material-icons-outlined">shopping_cart</v-icon>
+          {{ $t('sampleOrder.title') }}
       </h1>
     </div>
 
@@ -149,6 +149,7 @@
 
         .v-icon {
           font-size: 54px;
+          margin-right: 10px;
         }
       }
     }

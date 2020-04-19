@@ -233,34 +233,13 @@ export default {
     .v-size--large {
       top: -8px;
       left: 20px;
-      background-color: #2196f3;
 
-      .green_dark2, .green_dark1 & {
-        background-color: #00793a;
-      }
-
-      .red1, .red2 & {
-        background-color: #c50022;
-      }
-
-      .orange1, .orange2 & {
-        background-color: #f39500;
-      }
-
-      .blue_dark2, .blue_dark1 & {
-        background-color: #004a96;
-      }
-
-      .green_light2, .green_light1 & {
-        background-color: #65ac1e;
-      }
       &:after {
         content: " ";
         display: block;
         position: absolute;
         height: 64px;
         width: 64px;
-        background: rgb(2, 143, 210);
         border-radius: 100%;
         top: 0px;
         left: 0px;

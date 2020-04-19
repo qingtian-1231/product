@@ -1,5 +1,11 @@
 <template>
   <div class="order-list">
+    <template v-if="!shoppingCart.length && !cart.length">
+      <div class="remove-shopping-cart">
+        <v-icon class="material-icons-outlined">remove_shopping_cart</v-icon>
+      </div>
+    </template>
+
     <template v-if="shoppingCart.length">
       <h2>
         {{ $t('sampleOrder.orderList.productList') }}

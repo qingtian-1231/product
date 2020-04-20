@@ -1,9 +1,7 @@
 <template>
   <div class="order-list">
     <template v-if="!shoppingCart.length && !cart.length">
-      <div class="remove-shopping-cart">
-        <v-icon class="material-icons-outlined">remove_shopping_cart</v-icon>
-      </div>
+      <h1 class="empty-cart">您的样品订单为空，请添加产品！</h1>
     </template>
 
     <template v-if="shoppingCart.length">

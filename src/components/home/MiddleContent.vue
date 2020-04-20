@@ -34,67 +34,119 @@
       <v-col cols="12" :class="{'contact': 1, 'english-version': currentLanguage === 'en'}">
         <h2>{{ $t('home.middleContent.contact') }}</h2>
         <ul>
-          <li>
-            <strong>{{ $t('home.middleContent.shanghaiInfo.title') }}</strong><br><br>
-            {{ $t('home.middleContent.shanghaiInfo.address') }}<br>
-            {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br><br>
-            {{ $t('home.middleContent.shanghaiInfo.phone') }}<br><br>
-            <a :href="`mailto:${$t('home.middleContent.shanghaiInfo.email')}`">
-              {{ $t('home.middleContent.shanghaiInfo.email') }}
-            </a>
-          </li>
+          <template v-if="currentLanguage === 'zh-hans'">
+            <li>
+              <strong>{{ $t('home.middleContent.shanghaiInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.shanghaiInfo.city') }}<br>
+              {{ $t('home.middleContent.shanghaiInfo.address') }}<br><br>
+              {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br>
+              {{ $t('home.middleContent.shanghaiInfo.phone') }}<br>
+              <a :href="`mailto:${$t('home.middleContent.shanghaiInfo.email')}`">
+                {{ $t('home.middleContent.shanghaiInfo.email') }}
+              </a>
+            </li>
 
-          <li>
-            <strong>{{ $t('home.middleContent.beijingInfo.title') }}</strong><br><br>
-            {{ $t('home.middleContent.beijingInfo.address') }}<br>
-            {{ $t('home.middleContent.beijingInfo.street') }}<br>
-            {{ $t('home.middleContent.beijingInfo.detail') }}<br>
-            {{ $t('home.middleContent.beijingInfo.postCode') }}<br><br>
-            {{ $t('home.middleContent.beijingInfo.phone') }}<br><br>
-          </li>
+            <li>
+              <strong>{{ $t('home.middleContent.beijingInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.beijingInfo.street') }}<br>
+              {{ $t('home.middleContent.beijingInfo.address') }}<br>
+              {{ $t('home.middleContent.beijingInfo.detail') }}<br><br>
+              {{ $t('home.middleContent.beijingInfo.postCode') }}<br>
+              {{ $t('home.middleContent.beijingInfo.phone') }}<br><br>
+            </li>
 
-          <li>
-            <strong>{{ $t('home.middleContent.guangzhouInfo.title') }}</strong><br><br>
-            {{ $t('home.middleContent.guangzhouInfo.street') }}<br>
-            {{ $t('home.middleContent.guangzhouInfo.address') }}<br><br>
-            {{ $t('home.middleContent.guangzhouInfo.postCode') }}<br><br>
-            {{ $t('home.middleContent.guangzhouInfo.phone') }}<br><br>
-          </li>
+            <li>
+              <strong>{{ $t('home.middleContent.guangzhouInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.guangzhouInfo.city') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.street') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.address') }}<br><br>
+              {{ $t('home.middleContent.guangzhouInfo.postCode') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.phone') }}<br><br>
+            </li>
 
-          <li>
-            <strong>{{ $t('home.middleContent.taiwanInfo.title') }}</strong><br><br>
-            {{ $t('home.middleContent.taiwanInfo.street') }}<br><br>
-            {{ $t('home.middleContent.taiwanInfo.address') }}<br><br><br>
-            {{ $t('home.middleContent.taiwanInfo.phone') }}<br><br>
-          </li>
-
-          <li>
-            <strong>{{ $t('home.middleContent.xianggangInfo.title') }}</strong><br><br>
-            {{ $t('home.middleContent.xianggangInfo.street') }}<br><br>
-            {{ $t('home.middleContent.xianggangInfo.address') }}<br><br><br>
-            {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
-          </li>
-
-          <template v-if="currentLanguage === 'en'">
             <li>
               <strong>{{ $t('home.middleContent.taiwanInfo.title') }}</strong><br><br>
-              {{ $t('home.middleContent.taiwanInfo.street') }}<br><br>
-              {{ $t('home.middleContent.taiwanInfo.address') }}<br><br><br>
+              {{ $t('home.middleContent.taiwanInfo.city') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.street') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.address') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.postCode') }}<br><br>
               {{ $t('home.middleContent.taiwanInfo.phone') }}<br><br>
             </li>
 
             <li>
               <strong>{{ $t('home.middleContent.xianggangInfo.title') }}</strong><br><br>
-              {{ $t('home.middleContent.xianggangInfo.street') }}<br><br>
+              {{ $t('home.middleContent.xianggangInfo.city') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.street') }}<br>
               {{ $t('home.middleContent.xianggangInfo.address') }}<br><br><br>
               {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
+            </li>
+          </template>
+
+
+          <template v-if="currentLanguage === 'en'">
+            <li>
+              <strong>{{ $t('home.middleContent.shanghaiInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.shanghaiInfo.city') }}<br>
+              {{ $t('home.middleContent.shanghaiInfo.address') }}<br>
+              {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br><br><br>
+              {{ $t('home.middleContent.shanghaiInfo.phone') }}<br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.beijingInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.beijingInfo.street') }}<br>
+              {{ $t('home.middleContent.beijingInfo.address') }}<br>
+              {{ $t('home.middleContent.beijingInfo.detail') }}<br><br><br>
+              {{ $t('home.middleContent.beijingInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.guangzhouInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.guangzhouInfo.city') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.street') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.address') }}<br><br><br>
+              {{ $t('home.middleContent.guangzhouInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.taiwanInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.taiwanInfo.city') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.street') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.address') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.postCode') }}<br><br>
+              {{ $t('home.middleContent.taiwanInfo.phone') }}<br><br>
             </li>
 
             <li>
               <strong>{{ $t('home.middleContent.xianggangInfo.title') }}</strong><br><br>
-              {{ $t('home.middleContent.xianggangInfo.street') }}<br><br>
-              {{ $t('home.middleContent.xianggangInfo.address') }}<br><br><br>
+              {{ $t('home.middleContent.xianggangInfo.city') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.street') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.address') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.postCode') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.city2') }}<br>
               {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong class="special">{{ $t('home.middleContent.basfInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.basfInfo.city') }}<br>
+              {{ $t('home.middleContent.basfInfo.street') }}<br>
+              {{ $t('home.middleContent.basfInfo.address') }}<br>
+              {{ $t('home.middleContent.basfInfo.postCode') }}<br><br>
+              {{ $t('home.middleContent.basfInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.greaterChinaInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.greaterChinaInfo.city') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.street') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.address') }}<br><br><br>
+              {{ $t('home.middleContent.greaterChinaInfo.phone') }}<br><br>
+              {{ $t('home.middleContent.greaterChinaInfo.title2') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.city2') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.street2') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.address2') }}<br><br><br>
+              {{ $t('home.middleContent.greaterChinaInfo.phone2') }}<br><br>
             </li>
           </template>
         </ul>
@@ -227,7 +279,16 @@
     .english-version {
 
       li {
-        width: 12.5% !important;
+        width: 14.28% !important;
+        white-space: nowrap;
+
+        strong {
+          white-space: nowrap;
+
+          &.special {
+            white-space: normal;
+          }
+        }
       }
     }
 

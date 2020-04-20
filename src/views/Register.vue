@@ -20,6 +20,13 @@
         </v-img>
         <div class="title mb-1">{{ $t('global.followWechat') }}</div>
       </div>
+      <v-alert
+        :value="alert"
+        :type="alertClass"
+        transition="scale-transition"
+      >
+        {{alertMessage}}
+      </v-alert>
       <template v-if="registerSuccess">
         <div class="success_message">
           <h2>
@@ -42,18 +49,18 @@
           <v-row>
             <v-col cols="12" sm="6">
               <v-text-field
-                :label="$t('global.userName')"
-                outlined
-                :rules="[rules.required, rules.max, rules.chineseVarchar, rules.FullwidthChar, rules.invilideChar]"
-                v-model="userName"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6">
-              <v-text-field
                 :label="$t('global.email')"
                 outlined
                 :rules="[rules.required, rules.emailMatch]"
                 v-model="userMail"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                :label="$t('global.userAccountName')"
+                outlined
+                :rules="[rules.required, rules.max, rules.chineseVarchar, rules.FullwidthChar, rules.invilideChar]"
+                v-model="userAccountName"
               ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6">
@@ -63,6 +70,28 @@
                 :rules="[rules.required]"
                 v-model="companyName"
               ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                :label="$t('global.phone')"
+                outlined
+                :rules="[rules.required]"
+                v-model="phone"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-select
+                class="select small"
+                v-model="businessModel"
+                :items="businessModelList"
+                item-text="name"
+                item-value="code"
+                return-object
+                :rules="[rules.required]"
+                :label="$t('global.businessModel')"
+                outlined
+                solo
+              ></v-select>
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
@@ -126,15 +155,34 @@
 
     data: function () {
       return {
+        businessModelList: [
+          {
+            code: 'Manufacturing',
+            name: '生产型企业',
+          },
+          {
+            code: 'Trade',
+            name: '贸易型企业'
+          },
+          {
+            code: 'Research Institutes',
+            name: '科研机构'
+          }
+        ],
+        alertMessage: '',
+        alertClass: '',
+        alert: false,
         registerSuccess: false,
         registerValid: true,
         passwordShow: false,
         rePasswordShow: false,
         password: '',
         rePassword: '',
-        userName: '',
+        userAccountName: '',
         userMail: '',
         companyName: '',
+        phone: '',
+        businessModel: {},
         companyPosition: '',
         rules: {
           required: v => !!v || '必须.',
@@ -173,7 +221,7 @@
           request().post('/user/register?_format=hal_json',
             {
               "name": {
-                "value": vm.userName
+                "value": vm.userMail
               },
               "mail":{
                 "value": vm.userMail
@@ -183,6 +231,15 @@
               },
               "field_company_name": {
                 "value": vm.companyName
+              },
+              "field_user_account_name": {
+                "value": vm.userAccountName
+              },
+              "field_phone": {
+                "value": vm.phone
+              },
+              "field_business_model": {
+                "value": vm.businessModel.code
               },
               "field_company_position": {
                 "value": vm.companyPosition
@@ -197,14 +254,35 @@
 
               return Promise.resolve(res)
             }, err => {
+              vm.$loading.hide()
+              vm.setAlert(err.response.data.message, 'error')
+
               return Promise.resolve(err)
             })
             .catch(function (error) {
-              console.log(error)
+              vm.$loading.hide()
+              vm.setAlert(error.response.data.message, 'error')
               return Promise.resolve(error)
             })
         }
-      }
+      },
+
+      setAlert (message, style, type) {
+        type === 'append'
+          ? (this.alertMessage += message)
+          : (this.alertMessage = message)
+        this.alertClass = style
+        this.alert = true
+        setTimeout(() => {
+          this.clearAlert()
+        }, 5000)
+      },
+
+      clearAlert () {
+        this.alertMessage = ''
+        this.alertClass = ''
+        this.alert = false
+      },
     }
   }
 </script>
@@ -237,6 +315,7 @@
     .content {
 
       .success_message {
+        margin-top: 50px;
 
         h2 {
           position: relative;

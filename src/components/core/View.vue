@@ -56,6 +56,26 @@
               </v-card-title>
               <v-divider class="py-5"></v-divider>
 
+              <div class="person-center">
+                <ul>
+                  <li >
+                    <router-link :to="{name: 'MyFavorites'}">
+                      <v-icon class="material-icons-outlined">star_outline</v-icon>我的收藏
+                    </router-link>
+                  </li>
+                  <li >
+                    <router-link :to="{name: 'OrderHistory'}">
+                      <v-icon class="material-icons-outlined">shopping_basket</v-icon>订单历史
+                    </router-link>
+                  </li>
+                  <li >
+                    <router-link :to="{name: 'AccountSetting'}">
+                      <v-icon class="material-icons-outlined">settings</v-icon>账户设置
+                    </router-link>
+                  </li>
+                </ul>
+              </div>
+
               <v-btn block rounded color="primary" dark @click="userLogout()">
                 {{ $t('global.logout') }}<v-icon right dark>keyboard_arrow_right</v-icon>
               </v-btn>
@@ -226,6 +246,8 @@
         requestDialog: state => state.core.requestDialog,
         isLogin: state => state.user.isLogin,
         currentUser: state => state.user.currentUser,
+        favoriteProductList: state => state.user.favoriteProductList,
+        favoriteFormulationList: state => state.user.favoriteFormulationList
       }),
       displayName: function () {
         return (this.currentUser) ? this.currentUser.name : '未知名称'
@@ -317,47 +339,91 @@
     }
   }
 </script>
-<style lang="sass" scoped>
-  .v-content
-    .v-navigation-drawer
-      max-width: 640px
-      top: 144px!important
-      overflow-y: auto
-      box-shadow: none
+<style lang="scss" scoped>
+  .v-content {
 
-      .mobile-menu
-        background: #fff
-        margin: 0
-        overflow-y: auto
-        padding: 0 0 40px
-        text-align: left
-        transition: all .3s
-        min-width: 300px
-        border-bottom: 1px solid #e2e2e2
+    .v-navigation-drawer {
+      max-width: 640px;
+      top: 144px!important;
+      overflow-y: auto;
+      box-shadow: none;
 
-        li
-          float: left
-          display: inline-block
-          position: relative
-          width: 100%
+      .mobile-menu {
+        background: #fff;
+        margin: 0;
+        overflow-y: auto;
+        padding: 0 0 40px;
+        text-align: left;
+        transition: all .3s;
+        min-width: 300px;
+        border-bottom: 1px solid #e2e2e2;
 
-          a
-            float: left
-            display: inline-block
-            position: relative
-            width: 100%
-            border-bottom: 4px solid transparent
-            height: 48px
-            padding: 10px
-            line-height: 32px
-            text-decoration: none
-            white-space: nowrap
-            font-size: 1em
-            transition: all .15s ease-in-out
-            color: #333
+        li {
+          float: left;
+          display: inline-block;
+          position: relative;
+          width: 100%;
 
-      &.hidden-to-app-bar
-        top: 72px!important
-      .cutome-card
-        border: 0
+          a {
+            float: left;
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            border-bottom: 4px solid transparent;
+            height: 48px;
+            padding: 10px;
+            line-height: 32px;
+            text-decoration: none;
+            white-space: nowrap;
+            font-size: 1em;
+            transition: all .15s ease-in-out;
+            color: #333;
+          }
+
+        }
+
+      }
+
+
+      &.hidden-to-app-bar {
+        top: 72px!important;
+      }
+
+      .cutome-card {
+        border: 0;
+      }
+    }
+
+    .person-center {
+      display: block;
+
+      ul {
+        padding: 0;
+        margin-left: -5px;
+        
+        li {
+          position: relative;
+          width: 100%;
+          display: inline-block;
+          float: left;
+          margin-bottom: 20px;
+          
+          a {
+            text-decoration: none;
+            font-size: 1em;
+            color: #333;
+
+            .v-icon {
+              height: 32px;
+              display: inline-block;
+              margin-right: 10px;
+              width: 32px;
+              margin-top: -1px;
+            }
+          }
+        }
+      }
+    }
+
+  }
 </style>

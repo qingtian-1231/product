@@ -41,6 +41,12 @@ globalUtils = {
     let return_item
     let self = this
     arr.forEach(item => {
+
+      // 如果自己就是父亲层级就返回自己
+      if (item.tid === value) {
+        return_item = item
+      }
+
       if (item.children_ids.indexOf(value) !== -1) {
         return_item = item
       }

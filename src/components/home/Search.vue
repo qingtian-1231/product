@@ -233,26 +233,13 @@ export default {
     .v-size--large {
       top: -8px;
       left: 20px;
-      background-color: #2196f3;
 
-      .green_dark2, .green_dark1 & {
-        background-color: #00793d;
-      }
-
-      .red1, .red2 & {
-        background-color: #c10b25;
-      }
-
-      .orange1, .orange2 & {
-        background-color: #f49800;
-      }
       &:after {
         content: " ";
         display: block;
         position: absolute;
         height: 64px;
         width: 64px;
-        background: rgb(2, 143, 210);
         border-radius: 100%;
         top: 0px;
         left: 0px;
@@ -341,7 +328,7 @@ export default {
   & > div {
     & > ul {
       display: inline-block;
-      
+
       li {
         width: 50%;
         float: left;

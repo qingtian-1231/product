@@ -1,5 +1,5 @@
 import { request } from '../../utils/request.js'
-import {getCookie, setCookie} from "../../utils/cookie";
+import { getCookie, setCookie } from "../../utils/cookie";
 
 const state = {
   path: 'api/menu_items/vue-app-menu',
@@ -19,7 +19,7 @@ const state = {
   taxonomyProductBrand: [],
   taxonomyProductApplication: [],
   formulationApplicationList: [],
-  appColor: 'primary'
+  appColor: 'green_dark1'
 }
 
 const mutations = {
@@ -51,7 +51,7 @@ const mutations = {
           break
 
         case 'base:sample-order':
-          menuItem.options.icon = 'shopping_basket'
+          menuItem.options.icon = 'shopping_cart'
           break
         default:
           menuItem.options.icon = 'account_balance'

@@ -12,6 +12,8 @@ const mutations = {
       item.field_global_file = apiServer + item.field_global_file
       return item
     })
+
+    console.log(state.downloadList, 'state.downloadList')
   },
 }
 

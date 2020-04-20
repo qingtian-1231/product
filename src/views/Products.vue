@@ -140,8 +140,8 @@
               ref="infiniteLoading"
               :distance="distance"
             >
-              <span slot="no-more">没有更多产品了</span>
-              <span slot="no-results">没有更多产品了</span>
+              <span slot="no-more">{{ $t('global.noMoreProduct') }}</span>
+              <span slot="no-results">{{ $t('global.noMoreProduct') }}</span>
             </infinite-loading>
           </v-card>
         </template>
@@ -225,8 +225,8 @@
             ref="infiniteLoading"
             :distance="distance"
           >
-            <span slot="no-more">没有更多产品了</span>
-            <span slot="no-results">没有更多产品了</span>
+            <span slot="no-more">{{ $t('global.noMoreProduct') }}</span>
+            <span slot="no-results">{{ $t('global.noMoreProduct') }}</span>
           </infinite-loading>
         </template>
       </v-row>

@@ -11,7 +11,7 @@
           dark
           flat
         >
-          <v-toolbar-title>订单地址信息</v-toolbar-title>
+          <v-toolbar-title>{{ $t('sampleOrder.OrderResume.title') }}</v-toolbar-title>
         </v-toolbar>
       </template>
 
@@ -29,7 +29,7 @@
 
               <v-list dense>
                 <v-list-item>
-                  <v-list-item-content>国家地区:</v-list-item-content>
+                  <v-list-item-content>{{ $t('sampleOrder.OrderResume.country') }}:</v-list-item-content>
                   <v-list-item-content class="align-end">
                     {{ item.country_code }}
                     {{ item.administrative_area }}
@@ -39,21 +39,21 @@
                 </v-list-item>
 
                 <v-list-item>
-                  <v-list-item-content>公司:</v-list-item-content>
+                  <v-list-item-content>{{ $t('sampleOrder.OrderResume.company') }}:</v-list-item-content>
                   <v-list-item-content class="align-end">{{ item.organization }}</v-list-item-content>
                 </v-list-item>
                 <v-list-item>
-                  <v-list-item-content>详细地址:</v-list-item-content>
+                  <v-list-item-content>{{ $t('sampleOrder.OrderResume.address') }}:</v-list-item-content>
                   <v-list-item-content class="align-end">{{ item.address_line1 }}</v-list-item-content>
                 </v-list-item>
 
                 <v-list-item>
-                  <v-list-item-content>邮政编码:</v-list-item-content>
+                  <v-list-item-content>{{ $t('sampleOrder.OrderResume.postCode') }}:</v-list-item-content>
                   <v-list-item-content class="align-end">{{ item.postal_code }}</v-list-item-content>
                 </v-list-item>
 
                 <v-list-item>
-                  <v-list-item-content>订单总价:</v-list-item-content>
+                  <v-list-item-content>{{ $t('sampleOrder.OrderResume.totalPrice') }}:</v-list-item-content>
                   <v-list-item-content class="align-end">{{ order_total_price.number }} {{ order_total_price.currency_code }}</v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -74,7 +74,7 @@
           dark
           flat
         >
-          <v-toolbar-title>订单详细信息</v-toolbar-title>
+          <v-toolbar-title>{{ $t('sampleOrder.OrderResume.orderInfo') }}</v-toolbar-title>
         </v-toolbar>
       </template>
 
@@ -92,17 +92,17 @@
 
               <v-list dense>
                 <v-list-item>
-                  <v-list-item-content>数量:</v-list-item-content>
+                  <v-list-item-content>{{ $t('sampleOrder.OrderResume.amount') }}:</v-list-item-content>
                   <v-list-item-content class="align-end">{{ item.quantity[0].value }}</v-list-item-content>
                 </v-list-item>
 
                 <v-list-item>
-                  <v-list-item-content>单价:</v-list-item-content>
+                  <v-list-item-content>{{ $t('sampleOrder.OrderResume.price') }}:</v-list-item-content>
                   <v-list-item-content class="align-end">{{ item.unit_price[0].number }} {{ item.unit_price[0].currency_code }}</v-list-item-content>
                 </v-list-item>
 
                 <v-list-item>
-                  <v-list-item-content>总价:</v-list-item-content>
+                  <v-list-item-content>{{ $t('sampleOrder.OrderResume.totalPrice') }}:</v-list-item-content>
                   <v-list-item-content class="align-end">{{ item.total_price[0].number }} {{ item.total_price[0].currency_code }}</v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -117,7 +117,7 @@
         class="float-left"
         @click="backPrevStep()"
       >
-        编辑地址信息
+        {{ $t('sampleOrder.OrderResume.editAddress') }}
       </v-btn>
 
       <v-btn
@@ -125,7 +125,7 @@
         color="primary"
         @click="completeOrder()"
       >
-        提交订单
+        {{ $t('sampleOrder.OrderResume.completeOrder') }}
       </v-btn>
     </div>
   </div>

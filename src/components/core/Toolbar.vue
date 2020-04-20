@@ -35,31 +35,22 @@
                 <v-icon class="d-md-none" dark>close</v-icon>
               </template>
             </v-btn>
-            <v-menu
-              min-width="90"
-              max-width="140"
-              offset-y
+
+            <v-btn
+              small
+              fab
+              color="primary"
+              dark
+              @click="switchLanguage(language)"
             >
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  small
-                  fab
-                  color="primary"
-                  dark
-                  v-on="on"
-                >
-                  <v-icon>translate</v-icon>
-                </v-btn>
+              <template v-if="language === 'zh-hans'">
+                EN
               </template>
-              <v-list>
-                <v-list-item  :class="language === 'zh-hans' ? 'current' : ''">
-                  <v-list-item-title><a @click="switchChinese">中文</a></v-list-item-title>
-                </v-list-item>
-                <v-list-item :class="language === 'en' ? 'current' : ''">
-                  <v-list-item-title><a @click="switchEnglish">English</a></v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
+
+              <template v-else-if="language === 'en'">
+                中文
+              </template>
+            </v-btn>
           </v-col>
           <v-col class="py-0 menu-layout hidden-sm-and-down" cols="12" sm="8">
             <menu-links></menu-links>
@@ -174,29 +165,18 @@
     },
 
     methods: {
-      switchEnglish () {
+      switchLanguage (language) {
         let vm = this
-        vm.$store.commit('switch_Language', {language: 'en'})
-        window.location.reload()
-        // vm.$store.dispatch('getApiMenu').then(() => {
-        //   vm.$store.commit('SET_SNACKBAR', {
-        //     globalSnackbar: true,
-        //     snackbarMessage: 'Your languages has been changed！'
-        //   })
-        // })
-      },
+        let switchLanguage = {}
 
-      switchChinese () {
-        let vm = this
-        vm.$store.commit('switch_Language', {language: 'zh-hans'})
+        if (language === 'zh-hans') {
+          switchLanguage = {language: 'en'}
+        }
+        else if (language === 'en') {
+          switchLanguage = {language: 'zh-hans'}
+        }
+        vm.$store.commit('switch_Language', switchLanguage)
         window.location.reload()
-
-        // vm.$store.dispatch('getApiMenu').then(() => {
-        //   vm.$store.commit('SET_SNACKBAR', {
-        //     globalSnackbar: true,
-        //     snackbarMessage: '您的语言切换成功！'
-        //   })
-        // })
       },
 
       openGlobalSearch () {
@@ -205,13 +185,13 @@
         }
         else {
           this.headerMenuClass = 'header-main-menu d-none'
-          this.searchGlobalClass = 'search bounceDown-enter-active'
+          this.searchGlobalClass = 'search fadeRight-enter-active'
         }
       },
 
       closeGlobalSearch () {
         this.headerMenuClass = 'header-main-menu'
-        this.searchGlobalClass = 'search bounceUp-leave-active'
+        this.searchGlobalClass = 'search fadeRight-leave-active'
         // d-none
       },
 

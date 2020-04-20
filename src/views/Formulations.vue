@@ -118,8 +118,8 @@
               </template>
             </v-list>
             <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler" ref="infiniteLoading" :distance="distance">
-              <span slot="no-more">没有更多配方了</span>
-              <span slot="no-results">没有更多配方了</span>
+              <span slot="no-more">{{ $t('global.noMoreFormulation') }}</span>
+              <span slot="no-results">{{ $t('global.noMoreFormulation') }}</span>
             </infinite-loading>
           </v-card>
         </template>
@@ -209,8 +209,8 @@
             ref="infiniteLoading"
             :distance="distance"
           >
-            <span slot="no-more">没有更多配方了</span>
-            <span slot="no-results">没有更多配方了</span>
+            <span slot="no-more">{{ $t('global.noMoreFormulation') }}</span>
+            <span slot="no-results">{{ $t('global.noMoreFormulation') }}</span>
           </infinite-loading>
         </template>
       </v-row>

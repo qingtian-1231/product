@@ -1,6 +1,7 @@
 <template>
   <div class="carousel">
     <v-carousel
+      continuous="false"
       cycle
       interval="6000"
       progress
@@ -27,12 +28,6 @@
 </template>
 
 <script>
-  let slider1 = require('@/assets/home/carsousel/home_slide1_large.jpg')
-  let slider2 = require('@/assets/home/carsousel/home_slide2_large.jpg')
-  let slider3 = require('@/assets/home/carsousel/home_slide3_large.jpg')
-  let slider4 = require('@/assets/home/carsousel/home_slide4_large.jpg')
-  let slider5 = require('@/assets/home/carsousel/home_slide5_large.jpg')
-  let slider6 = require('@/assets/home/carsousel/home_slide6_large.jpg')
   import { mapState } from 'vuex'
 
   export default {
@@ -40,33 +35,7 @@
 
     data () {
       return {
-        items: [
-          {
-            src: slider1,
-            color: 'orange1',
-          },
-          {
-            src: slider2,
-            color: 'orange2',
-          },
-          {
-            src: slider3,
-            color: 'green_dark1',
-          },
-          {
-            src: slider4,
-            color: 'green_dark2',
-          },
-          {
-            src: slider5,
-            color: 'red1',
-          },
-          {
-            src: slider6,
-            color: 'red2',
-          },
-        ],
-        currentCarousel: 'orange1',
+        currentCarousel: 'green_dark1',
       }
     },
 
@@ -125,8 +94,8 @@
       background-size: 70px 7967px;
       background-position: right -1271px;
       color: #fff;
-      height: 50px;
-      width: 224px;
+      height: 60px;
+      width: 280px;
       padding-top: 16px;
       text-align: center;
       text-transform: none;
@@ -135,7 +104,8 @@
       background-color: #f49800;
       cursor: pointer;
       display: block;
-      font-size: 1em;
+      font-size: 25px;
+      line-height: 25px;
 
       & .origin {
         background-color: #f49800;

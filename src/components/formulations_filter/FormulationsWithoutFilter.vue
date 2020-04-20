@@ -66,7 +66,7 @@
       </template>
     </v-list>
     <v-btn block rounded color="success" @click="findFormulations()">
-      查看更多
+      {{ $t('formulationFilter.moreFormulation') }}
       <v-icon right>keyboard_arrow_right</v-icon>
     </v-btn>
   </v-card>

@@ -6,41 +6,162 @@
     class="bounceUp-enter-active"
   >
     <v-row dense>
-      <v-col cols="12">
+      <v-col cols="12" class="about-us">
         <h1>{{ $t('home.middleContent.aboutBASF') }}</h1>
         <p>
          {{ $t('home.middleContent.aboutBASFDescription') }}<a target="_blank" href="https://www.basf.com">www.basf.com</a>。
         </p>
+
+         <p>
+           <v-icon>chevron_right</v-icon>
+           <a aria-label="Link to Shopify" href="https://m.1688.com/page/offerlist.html?spm=a262to.11649723.category_view.12&catId=98047612&catPid=&isUserDefined=true&title=%E4%B9%B3%E6%B6%B2%E5%8F%8A%E9%85%8D%E6%96%B9%E5%8A%A9%E5%89%82&memberId=b2b-2123073290" target="_blank" rel="noopener noreferrer">
+             {{ $t('home.footer.link_buy_site') }}
+           </a>
+         </p>
+        <p class="footer-welcome">
+          <v-icon>chevron_right</v-icon>
+          {{ $t('home.footer.weChat') }}
+          <v-img
+            class="wechat-image"
+            width="180"
+            height="180"
+            :src="require('@/assets/global/wechat.png')"
+          >
+          </v-img>
+        </p>
       </v-col>
 
-      <v-col cols="12">
-        <div class="unlock">
-          <h1>
-            {{ $t('home.middleContent.registerTitle') }}
-          </h1>
-          <p>
-            {{ $t('home.middleContent.registerDescription') }}
-          </p>
-          <div class="row text-center mx-0">
-            <v-col cols="12" md="6" sm="12">
-              <router-link :to="{ name: 'Login' }">
-                <v-btn class="ma-2" block rounded color="success" >
-                  {{ $t('global.login') }}
-                  <v-icon right>keyboard_arrow_right</v-icon>
-                </v-btn>
-              </router-link>
-            </v-col>
+      <v-col cols="12" :class="{'contact': 1, 'english-version': currentLanguage === 'en'}">
+        <h2>{{ $t('home.middleContent.contact') }}</h2>
+        <ul>
+          <template v-if="currentLanguage === 'zh-hans'">
+            <li>
+              <strong>{{ $t('home.middleContent.shanghaiInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.shanghaiInfo.city') }}<br>
+              {{ $t('home.middleContent.shanghaiInfo.address') }}<br><br>
+              {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br>
+              {{ $t('home.middleContent.shanghaiInfo.phone') }}<br>
+              <a :href="`mailto:${$t('home.middleContent.shanghaiInfo.email')}`">
+                {{ $t('home.middleContent.shanghaiInfo.email') }}
+              </a>
+            </li>
 
-            <v-col cols="12" md="6" sm="12" class="mx-0">
-              <router-link :to="{ name: 'Register' }">
-                <v-btn class="ma-2" right block rounded color="info" >
-                  {{ $t('global.register') }}
-                  <v-icon right>keyboard_arrow_right</v-icon>
-                </v-btn>
-              </router-link>
-            </v-col>
-          </div>
-        </div>
+            <li>
+              <strong>{{ $t('home.middleContent.beijingInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.beijingInfo.street') }}<br>
+              {{ $t('home.middleContent.beijingInfo.address') }}<br>
+              {{ $t('home.middleContent.beijingInfo.detail') }}<br><br>
+              {{ $t('home.middleContent.beijingInfo.postCode') }}<br>
+              {{ $t('home.middleContent.beijingInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.guangzhouInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.guangzhouInfo.city') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.street') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.address') }}<br><br>
+              {{ $t('home.middleContent.guangzhouInfo.postCode') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.taiwanInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.taiwanInfo.city') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.street') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.address') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.postCode') }}<br><br>
+              {{ $t('home.middleContent.taiwanInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.xianggangInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.xianggangInfo.city') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.street') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.address') }}<br><br><br>
+              {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
+            </li>
+          </template>
+
+
+          <template v-if="currentLanguage === 'en'">
+            <li>
+              <strong>{{ $t('home.middleContent.shanghaiInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.shanghaiInfo.city') }}<br>
+              {{ $t('home.middleContent.shanghaiInfo.address') }}<br>
+              {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br><br><br>
+              {{ $t('home.middleContent.shanghaiInfo.phone') }}<br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.beijingInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.beijingInfo.street') }}<br>
+              {{ $t('home.middleContent.beijingInfo.address') }}<br>
+              {{ $t('home.middleContent.beijingInfo.detail') }}<br><br><br>
+              {{ $t('home.middleContent.beijingInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.guangzhouInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.guangzhouInfo.city') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.street') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.address') }}<br><br><br>
+              {{ $t('home.middleContent.guangzhouInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.taiwanInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.taiwanInfo.city') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.street') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.address') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.postCode') }}<br><br>
+              {{ $t('home.middleContent.taiwanInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.xianggangInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.xianggangInfo.city') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.street') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.address') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.postCode') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.city2') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong class="special">{{ $t('home.middleContent.basfInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.basfInfo.city') }}<br>
+              {{ $t('home.middleContent.basfInfo.street') }}<br>
+              {{ $t('home.middleContent.basfInfo.address') }}<br>
+              {{ $t('home.middleContent.basfInfo.postCode') }}<br><br>
+              {{ $t('home.middleContent.basfInfo.phone') }}<br><br>
+            </li>
+
+            <li>
+              <strong>{{ $t('home.middleContent.greaterChinaInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.greaterChinaInfo.city') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.street') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.address') }}<br><br><br>
+              {{ $t('home.middleContent.greaterChinaInfo.phone') }}<br><br>
+              {{ $t('home.middleContent.greaterChinaInfo.title2') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.city2') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.street2') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.address2') }}<br><br><br>
+              {{ $t('home.middleContent.greaterChinaInfo.phone2') }}<br><br>
+            </li>
+          </template>
+        </ul>
+      </v-col>
+
+      <v-col cols="12" class="introduce">
+        <h1>
+          <router-link :to="{ name: 'Register' }">
+            {{ $t('global.register') }} !
+          </router-link>
+          {{ $t('home.middleContent.registerTitle') }}
+        </h1>
+        <p>
+          {{ $t('home.middleContent.registerDescription') }}
+        </p>
       </v-col>
     </v-row>
   </v-container>
@@ -49,14 +170,20 @@
 <script>
   // Utilities
   // import IconApp from '../svg/App'
+  import { getCookie } from "../../utils/cookie"
 
   export default {
     components: {},
 
     data: function () {
       return {
-        cardElevation: 0
+        cardElevation: 0,
+        currentLanguage: 'zh-hans'
       }
+    },
+
+    mounted () {
+      this.currentLanguage = getCookie('drupal:session:language')
     },
 
     methods: {}
@@ -67,10 +194,10 @@
   #middle-content {
     float: none;
     position: relative;
-    text-align: center;
 
     & > div {
       margin: 0 auto;
+      padding: 12px;
     }
 
     @media screen and (max-width: 640px) {
@@ -83,13 +210,26 @@
       border-radius: 8px;
       background: linear-gradient(0deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .8));
       margin-top: 30px;
+      margin-bottom: 25px;
 
       h1 {
-        padding: 60px 100px 30px;
+        /*padding: 60px 100px 30px;*/
+
+        a {
+          text-transform: capitalize;
+        }
       }
 
       p {
-        padding: 0 100px;
+        /*padding: 0 100px;*/
+        font-size: 16px!important;
+
+        .v-icon {
+          border-radius: 20px;
+          margin-right: 20px;
+          color: #fff;
+          top: -2px;
+        }
       }
 
       .icon {
@@ -103,6 +243,75 @@
       }
     }
 
+    .contact {
+      text-align: left;
+      padding: 0 50px;
+
+      h2 {
+        font-size: 1.4em;
+        line-height: 1.3;
+        margin: 0;
+        padding: 20px 0;
+        border-bottom: 1px solid;
+      }
+
+      ul {
+        padding: 0;
+
+        li {
+          border-top: 1px solid #ccc;
+          float: left;
+          font-size: .8em;
+          line-height: 1.3;
+          min-height: auto;
+          padding: 20px 20px 0;
+          width: 20%;
+          list-style: none;
+
+          &:first-child {
+            border: none!important;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+
+    .english-version {
+
+      li {
+        width: 14.28% !important;
+        white-space: nowrap;
+
+        strong {
+          white-space: nowrap;
+
+          &.special {
+            white-space: normal;
+          }
+        }
+      }
+    }
+
+    .about-us {
+      padding: 0 50px;
+
+      h1 {
+        padding: 20px 0;
+      }
+
+      .wechat-image {
+        margin-top: 20px;
+      }
+    }
+
+    .introduce {
+      padding: 0 50px;
+
+      h1 {
+        padding: 20px 0;
+      }
+    }
+
     .unlock {
       background-color: #fff;
       border-radius: 8px;
@@ -113,7 +322,6 @@
       box-shadow: 2px 2px 8px 0 rgba(0,0,0,.1);
       margin-bottom: 50px;
       padding-bottom: 50px!important;
-      text-align: center;
     }
   }
 </style>

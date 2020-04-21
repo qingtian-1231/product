@@ -128,25 +128,38 @@
             </li>
 
             <li>
-              <strong class="special">{{ $t('home.middleContent.basfInfo.title') }}</strong><br><br>
+              <strong>{{ $t('home.middleContent.greaterChinaInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.greaterChinaInfo.city') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.street') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.address') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.phone') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.title2') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.city2') }}<br>
+              <a :href="`mailto:${$t('home.middleContent.greaterChinaInfo.email')}`">
+                {{ $t('home.middleContent.greaterChinaInfo.email') }}
+              </a>
+            </li>
+
+            <li>
+              <br><br><strong class="special">{{ $t('home.middleContent.basfInfo.title') }}</strong><br>
               {{ $t('home.middleContent.basfInfo.city') }}<br>
               {{ $t('home.middleContent.basfInfo.street') }}<br>
               {{ $t('home.middleContent.basfInfo.address') }}<br>
               {{ $t('home.middleContent.basfInfo.postCode') }}<br><br>
-              {{ $t('home.middleContent.basfInfo.phone') }}<br><br>
+              <a :href="`mailto:${$t('home.middleContent.basfInfo.email')}`">
+                {{ $t('home.middleContent.basfInfo.email') }}
+              </a>
             </li>
 
             <li>
-              <strong>{{ $t('home.middleContent.greaterChinaInfo.title') }}</strong><br><br>
-              {{ $t('home.middleContent.greaterChinaInfo.city') }}<br>
-              {{ $t('home.middleContent.greaterChinaInfo.street') }}<br>
-              {{ $t('home.middleContent.greaterChinaInfo.address') }}<br><br><br>
-              {{ $t('home.middleContent.greaterChinaInfo.phone') }}<br><br>
-              {{ $t('home.middleContent.greaterChinaInfo.title2') }}<br>
-              {{ $t('home.middleContent.greaterChinaInfo.city2') }}<br>
-              {{ $t('home.middleContent.greaterChinaInfo.street2') }}<br>
-              {{ $t('home.middleContent.greaterChinaInfo.address2') }}<br><br><br>
-              {{ $t('home.middleContent.greaterChinaInfo.phone2') }}<br><br>
+              <br><br><strong class="special">{{ $t('home.middleContent.basfTaiwanInfo.title') }}</strong><br>
+              {{ $t('home.middleContent.basfTaiwanInfo.city') }}<br>
+              {{ $t('home.middleContent.basfTaiwanInfo.street') }}<br>
+              {{ $t('home.middleContent.basfTaiwanInfo.address') }}<br>
+              {{ $t('home.middleContent.basfTaiwanInfo.postCode') }}<br><br>
+              <a :href="`mailto:${$t('home.middleContent.basfTaiwanInfo.email')}`">
+                {{ $t('home.middleContent.basfTaiwanInfo.email') }}
+              </a>
             </li>
           </template>
         </ul>
@@ -208,9 +221,9 @@
 
     .col {
       border-radius: 8px;
-      background: linear-gradient(0deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .8));
-      margin-top: 30px;
-      margin-bottom: 25px;
+      background: #fff;
+      margin-top: 0px;
+      margin-bottom: 10px;
 
       h1 {
         /*padding: 60px 100px 30px;*/
@@ -246,6 +259,7 @@
     .contact {
       text-align: left;
       padding: 0 50px;
+      padding-bottom: 20px;
 
       h2 {
         font-size: 1.4em;
@@ -259,7 +273,6 @@
         padding: 0;
 
         li {
-          border-top: 1px solid #ccc;
           float: left;
           font-size: .8em;
           line-height: 1.3;
@@ -279,7 +292,8 @@
     .english-version {
 
       li {
-        width: 14.28% !important;
+        width: 20% !important;
+        padding-left: 0 !important;
         white-space: nowrap;
 
         strong {
@@ -296,7 +310,8 @@
       padding: 0 50px;
 
       h1 {
-        padding: 20px 0;
+        padding: 10px 0;
+        margin-top: 17px;
       }
 
       .wechat-image {

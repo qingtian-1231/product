@@ -6,11 +6,18 @@
     <div class="header">
       <h1>
         <v-icon x-large class="material-icons-outlined">person_add</v-icon>
-        个人信息修改
+        {{ $t('accountSetting.title') }}
       </h1>
     </div>
 
     <div class="content">
+      <v-alert
+        :value="alert"
+        :type="alertClass"
+        transition="scale-transition"
+      >
+        {{alertMessage}}
+      </v-alert>
       <template v-if="registerSuccess">
         <div class="success_message">
           <h2>
@@ -33,26 +40,26 @@
           <v-row>
             <v-col cols="12" sm="6">
               <v-text-field
-                :label="$t('global.userName')"
-                disabled
-                outlined
-                :rules="[rules.required, rules.max, rules.chineseVarchar, rules.FullwidthChar, rules.invilideChar]"
-                v-model="userName"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6">
-              <v-text-field
                 :label="$t('global.email')"
-                disabled
                 outlined
+                :disabled="disabled"
                 :rules="[rules.required, rules.emailMatch]"
                 v-model="userMail"
               ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
+                :label="$t('global.userAccountName')"
+                :disabled="disabled"
+                outlined
+                :rules="[rules.required, rules.max, rules.chineseVarchar, rules.FullwidthChar, rules.invilideChar]"
+                v-model="userAccountName"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
                 :label="$t('global.companyName')"
-                disabled
+                :disabled="disabled"
                 outlined
                 :rules="[rules.required]"
                 v-model="companyName"
@@ -60,17 +67,43 @@
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
+                :label="$t('global.phone')"
+                :disabled="disabled"
+                outlined
+                :rules="[rules.required]"
+                v-model="phone"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-select
+                class="select small"
+                v-model="businessModel"
+                :items="businessModelList"
+                item-text="name"
+                item-value="code"
+                return-object
+                :rules="[rules.required]"
+                :label="$t('global.businessModel')"
+                :disabled="disabled"
+                outlined
+                solo
+              ></v-select>
+            </v-col>
+
+            <v-col cols="12" sm="6">
+              <v-text-field
                 :label="$t('global.position')"
-                disabled
+                :disabled="disabled"
                 outlined
                 :rules="[rules.required]"
                 v-model="companyPosition"
               ></v-text-field>
             </v-col>
+
             <v-col cols="12" sm="6">
               <v-text-field
                 :label="$t('global.passWord')"
-                disabled
+                :disabled="disabled"
                 outlined
                 v-model="password"
                 :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
@@ -80,10 +113,11 @@
                 @click:append="passwordShow = !passwordShow"
               ></v-text-field>
             </v-col>
+
             <v-col cols="12" sm="6">
               <v-text-field
                 :label="$t('global.repeatPass')"
-                disabled
+                :disabled="disabled"
                 outlined
                 v-model="rePassword"
                 :append-icon="rePasswordShow ? 'mdi-eye' : 'mdi-eye-off'"
@@ -98,7 +132,7 @@
           <div class="bottom row text-center mx-0">
             <v-col cols="12" md="6" sm="12" class="mx-0">
               <v-btn class="ma-2" right block rounded color="info" @click="registerUser()">
-                确认修改
+                {{ $t('accountSetting.confirm') }}
                 <v-icon right>keyboard_arrow_right</v-icon>
               </v-btn>
             </v-col>
@@ -112,19 +146,39 @@
   import { request } from '../utils/request'
 
   export default {
-    name: 'online-request-form',
+    name: 'account-setting',
 
     data: function () {
       return {
+        disabled: true,
+        businessModelList: [
+          {
+            code: 'Manufacturing',
+            name: '生产型企业',
+          },
+          {
+            code: 'Trade',
+            name: '贸易型企业'
+          },
+          {
+            code: 'Research Institutes',
+            name: '科研机构'
+          }
+        ],
+        alertMessage: '',
+        alertClass: '',
+        alert: false,
         registerSuccess: false,
         registerValid: true,
         passwordShow: false,
         rePasswordShow: false,
         password: '',
         rePassword: '',
-        userName: '',
+        userAccountName: '',
         userMail: '',
         companyName: '',
+        phone: '',
+        businessModel: {},
         companyPosition: '',
         rules: {
           required: v => !!v || '必须.',
@@ -163,7 +217,7 @@
           request().post('/user/register?_format=hal_json',
             {
               "name": {
-                "value": vm.userName
+                "value": vm.userMail
               },
               "mail":{
                 "value": vm.userMail
@@ -173,6 +227,15 @@
               },
               "field_company_name": {
                 "value": vm.companyName
+              },
+              "field_user_account_name": {
+                "value": vm.userAccountName
+              },
+              "field_phone": {
+                "value": vm.phone
+              },
+              "field_business_model": {
+                "value": vm.businessModel.code
               },
               "field_company_position": {
                 "value": vm.companyPosition
@@ -187,14 +250,35 @@
 
               return Promise.resolve(res)
             }, err => {
+              vm.$loading.hide()
+              vm.setAlert(err.response.data.message, 'error')
+
               return Promise.resolve(err)
             })
             .catch(function (error) {
-              console.log(error)
+              vm.$loading.hide()
+              vm.setAlert(error.response.data.message, 'error')
               return Promise.resolve(error)
             })
         }
-      }
+      },
+
+      setAlert (message, style, type) {
+        type === 'append'
+          ? (this.alertMessage += message)
+          : (this.alertMessage = message)
+        this.alertClass = style
+        this.alert = true
+        setTimeout(() => {
+          this.clearAlert()
+        }, 5000)
+      },
+
+      clearAlert () {
+        this.alertMessage = ''
+        this.alertClass = ''
+        this.alert = false
+      },
     }
   }
 </script>

@@ -199,6 +199,10 @@ const messages = {
       select: '选择',
       selectFormulation: '查找配方',
       moreFormulation: '查看更多',
+    },
+    accountSetting: {
+      title: '个人信息修改',
+      confirm: '确认修改'
     }
   },
   'en': {
@@ -337,26 +341,33 @@ const messages = {
           city2: 'Japan',
           phone: 'Tel: +81 3 3796 9293',
         },
-        basfInfo: {
-          title: 'BASF East Asia Regional Headquarters',
-          city: 'Dispersions & Resins ',
-          street: '45/F Jardine House',
-          address: 'No. 1 Connaught House ',
-          postCode: 'Hong Kong ',
-          phone: 'Tel: +852 2731 0111',
-        },
         greaterChinaInfo: {
           title: 'Greater China',
+          city: 'East Asia Regional Headquarters',
+          street: 'Dispersions & Resins',
+          address: '45/F Jardine House',
+          phone: 'No. 1 Connaught House ',
+          title2: 'Hong Kong  ',
+          city2: 'Tel: +852 2731 0111 ',
+          email: 'Email: Dispersions-Resins-Asia@basf.com',
+        },
+        basfInfo: {
+          title: 'Shanghai',
           city: '300 Jiang Xin Sha Road',
           street: 'Pudong, Shanghai 200137',
           address: 'China',
-          phone: 'Tel: +86 21 2039 1000',
-          title2: '16th Floor',
-          city2: '87 Sung Chiang Road ',
-          street2: 'Taipei 10486 ',
-          address2: 'Taiwan ',
-          phone2: 'Tel: +886 2 2518 7600',
-        }
+          postCode: 'Tel: +86 21 2039 3509',
+          email: 'Email: Dispersions-Resins-CN@basf.com',
+        },
+
+        basfTaiwanInfo: {
+          title: 'Taiwan',
+          city: '16th Floor',
+          street: '87 Sung Chiang Road ',
+          address: 'Taipei 10486 ',
+          postCode: 'Taiwan ',
+          email: 'Email: Dispersions-Resins-CN@basf.com',
+        },
       },
       footer: {
         link_buy_site: 'BASF 1688 Flagship Shop',
@@ -421,6 +432,10 @@ const messages = {
       select: 'select',
       selectFormulation: 'find formulation',
       moreFormulation: 'find more',
+    },
+    accountSetting: {
+      title: 'Personal Information Modify',
+      confirm: 'confirm'
     }
   }
 }

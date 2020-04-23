@@ -1,15 +1,15 @@
 <template>
   <div class="cookie notification on" v-if="cookieStatus">
     <span>
-      此应用程序使用cookie来满足您的需求和功能. 使用此应用程序即表示您同意我们的
+      {{ $t('global.cookieDescription') }}
       <a
         href="https://www.basf.com/en/tools/legal/data-protection.html"
         target="_blank"
-        >隐私政策
+        > {{ $t('global.cookiePolicy') }}
       </a>
     </span>
     <v-btn dark color="primary" class="confirm" @click="closeCookieMessageStatus()">
-      确认
+      {{ $t('global.confirm') }}
     </v-btn>
   </div>
 </template>

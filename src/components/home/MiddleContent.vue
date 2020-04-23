@@ -196,7 +196,10 @@
     },
 
     mounted () {
-      this.currentLanguage = getCookie('drupal:session:language')
+      let cookieLanguage = getCookie('drupal:session:language')
+      if (cookieLanguage) {
+        this.currentLanguage = cookieLanguage
+      }
     },
 
     methods: {}

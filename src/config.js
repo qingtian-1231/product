@@ -5,7 +5,7 @@
 module.exports = {
   prod: {
     pageCount: 10,
-    apiServer: "http://api.basf-product.com/"
+    apiServer: "https://api.basf-product.com/"
   },
   test: {
     pageCount: 10,

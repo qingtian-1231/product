@@ -24,6 +24,9 @@ const messages = {
       backToHome: '回到首页',
       loginSuccess: '您已经登录成功，现在请您使用完成的BASF产品中心的功能吧',
       readMore: '更多',
+      confirm: '确认',
+      cookieDescription: '此应用程序使用cookie来满足您的需求和功能. 使用此应用程序即表示您同意我们的',
+      cookiePolicy: '隐私政策',
       noMoreProduct: '没有更多产品了',
       noMoreFormulation: '没有更多配方了',
       noMoreFiles: '没有更多下载文件了',
@@ -230,6 +233,9 @@ const messages = {
       backToHome: 'Back to home page.',
       loginSuccess: 'You have logged in successfully, now please use the function of the completed BASF Product Center',
       readMore: 'Read More',
+      confirm: 'Confirm',
+      cookieDescription: 'This application uses cookies to meet your needs and functions. By using this application, you agree to our ',
+      cookiePolicy: 'Privacy Policy',
       noMoreProduct: 'No More Products',
       noMoreFormulation: 'No More Formulations',
       noMoreFiles: 'No More Download Files',
@@ -296,7 +302,7 @@ const messages = {
         search: 'Search',
         brand: 'Brand'
       },
-      ad: 'Dispersions & Resins division of BASF develops, produces and markets a range of high quality resins, additives and polymer dispersions worldwide. These raw materials are used in formulations for a number of industries, including coatings, construction, printing and packaging, adhesives and paper. With comprehensive product portfolio and extensive knowledge of the industry, we offer our customers innovative.',
+      ad: 'Dispersions & Resins division of BASF develops, produces and markets a range of high-quality resins, additives and polymer dispersions worldwide. These raw materials are used in formulations for various industries, including coatings, construction, printing and packaging, adhesives and paper. With comprehensive product portfolio and extensive knowledge of the industry, we offer our customers innovative and sustainable solutions.',
       middleContent: {
         aboutBASF: 'About BASF',
         aboutBASFDescription: 'At BASF, we create chemistry for a sustainable future. We combine economic success with environmental protection and social responsibility. The approximately 122,000 employees in the BASF Group work on contributing to the success of our customers in nearly all sectors and almost every country in the world. Our portfolio is organized into six segments: Chemicals, Materials, Industrial Solutions, Surface Technologies, Nutrition & Care and Agricultural Solutions. BASF generated sales of around €63 billion in 2018. BASF shares are traded on the stock exchange in Frankfurt (BAS) and as American Depositary Receipts (BASFY) in the U.S. Further information at ',

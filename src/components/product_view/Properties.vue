@@ -1,23 +1,20 @@
 <template>
   <v-card flat color="basil" id="properties">
     <div class="props">
-      <h4>{{ $t('productView.techData') }}</h4>
-      <p>{{ $t('productView.techDataDescription') }}</p>
       <ul>
         <template v-for="(item, index) in productProperties">
           <li :key="index" v-if="item.value.length">
             <div class="item-property">
-            <span>
-              <v-icon class="material-icons-outlined">colorize</v-icon>
-            </span>
-            <span>
+            <span class="label grey-2">
               {{ item.label }}
             </span>
-              <span><b>{{ item.value }}</b></span>
+              <span>{{ item.value }}</span>
             </div>
           </li>
         </template>
       </ul>
+<!--      <span class="label">{{ $t('productView.techData') }}</span>-->
+      <p>{{ $t('productView.techDataDescription') }}</p>
     </div>
   </v-card>
 </template>

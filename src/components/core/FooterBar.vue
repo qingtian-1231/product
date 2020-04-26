@@ -69,7 +69,7 @@ export default {
         font-size: .75em;
         font-family: Helvetica Neue LT W01_71488914,Helvetica,Arial,sans-serif;
         font-weight: 600;
-        width: 225px;
+        width: 100px;
 
         @media screen and (min-width: 480px) {
           margin: 0 0 0 16px;

@@ -1,3 +1,4 @@
+import { getCookie } from "../utils/cookie"
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home'
@@ -22,6 +23,10 @@ Vue.use(Router)
 const defaultKeywords = '巴斯夫, 化工产品, 配方, 巴斯夫产品'
 const defaultDescription = '巴斯夫产品, 巴斯夫配方'
 
+let language = getCookie('drupal:session:language') || 'zh-hans'
+
+console.log(language, 'language')
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -31,7 +36,7 @@ export default new Router({
       name: 'Home',
       component: Home,
       meta: {
-        title: '巴斯夫产品中心',
+        title: language === 'zh-hans' ? '巴斯夫产品中心' : 'BASF Product Center',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -42,7 +47,7 @@ export default new Router({
       name: 'Industry',
       component: Industry,
       meta: {
-        title: '行业',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--行业介绍' : 'BASF Product Center --- Industry Introduce',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -53,7 +58,7 @@ export default new Router({
       name: 'Products',
       component: Products,
       meta: {
-        title: '产品',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--产品介绍' : 'BASF Product Center --- Product Introduce',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -64,7 +69,7 @@ export default new Router({
       name: 'Product',
       component: ProductView,
       meta: {
-        title: '产品详情页',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--产品详情页' : 'BASF Product Center --- Product Details Page',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -75,7 +80,7 @@ export default new Router({
       name: 'Formulations',
       component: Formulations,
       meta: {
-        title: '配方',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--推荐配方' : 'BASF Product Center --- Recommended Formula',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -86,7 +91,7 @@ export default new Router({
       name: 'Formulation',
       component: FormulationView,
       meta: {
-        title: '配方详情页',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--配方详情页' : 'BASF Product Center --- Formula Details Page',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -97,7 +102,7 @@ export default new Router({
       name: 'SampleOrder',
       component: SampleOrder,
       meta: {
-        title: '样品订单',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--样品订单' : 'BASF Product Center --- Sample Order',
         auth: 'user-login',
         keywords: defaultKeywords,
         description: defaultDescription,
@@ -109,7 +114,7 @@ export default new Router({
       name: 'Login',
       component: Login,
       meta: {
-        title: '登录',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--登录' : 'BASF Product Center --- Login',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -120,7 +125,7 @@ export default new Router({
       name: 'Register',
       component: Register,
       meta: {
-        title: '登录',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--注册' : 'BASF Product Center ---  Registration',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -131,7 +136,7 @@ export default new Router({
       name: 'Download',
       component: Download,
       meta: {
-        title: '下载',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--资料下载' : 'BASF Product Center ---  Data Download',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -142,7 +147,7 @@ export default new Router({
       name: 'FormulationsFilter',
       component: FormulationsFilter,
       meta: {
-        title: '配方全局过滤页',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--配方选择' : 'BASF Product Center ---  Select Formulation',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -153,7 +158,7 @@ export default new Router({
       name: 'MyFavorites',
       component: MyFavorites,
       meta: {
-        title: '我的收藏',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--我的收藏' : 'BASF Product Center ---  My Collection',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -164,7 +169,7 @@ export default new Router({
       name: 'OrderHistory',
       component: OrderHistory,
       meta: {
-        title: '订单历史',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--订单历史' : 'BASF Product Center ---  Order History',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -175,7 +180,7 @@ export default new Router({
       name: 'AccountSetting',
       component: AccountSetting,
       meta: {
-        title: '账户设置',
+        title: language === 'zh-hans' ? '巴斯夫产品中心--账户设置' : 'BASF Product Center ---  Account Setting',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true

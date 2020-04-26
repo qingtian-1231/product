@@ -67,7 +67,7 @@
             </v-btn>
 
             <v-btn icon @click="addBasket()">
-              <v-icon large class="material-icons-outlined">shopping_basket</v-icon>
+              <v-icon large class="material-icons-outlined">shopping_cart</v-icon>
             </v-btn>
           </div>
         </div>
@@ -85,22 +85,18 @@
           >
             <v-tab @click="showIcon">
               {{ $t('productView.basicInfo') }}
-              <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab>
               {{ $t('productView.property') }}
-              <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab>
               {{ $t('productView.formulation') }}
-              <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab>
               {{ $t('productView.download') }}
-              <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
           </v-tabs>
           <v-tabs-items v-model="tab">
@@ -117,7 +113,7 @@
               ></formulations>
             </v-tab-item>
             <v-tab-item>
-              <additional :product-relation-file="productRelationFile"></additional>
+              <additional :product-relation-file="productRelationFile" :title-field="productInfo.title"></additional>
             </v-tab-item>
           </v-tabs-items>
         </div>
@@ -159,7 +155,7 @@
             <p>{{ $t('productView.favorite') }}</p>
           </v-btn>
           <v-btn icon tile large>
-            <v-icon large class="material-icons-outlined">shopping_basket</v-icon>
+            <v-icon large class="material-icons-outlined">shopping_cart</v-icon>
             <p>{{ $t('productView.basket') }}</p>
           </v-btn>
         </div>
@@ -283,7 +279,7 @@
         vm.productBasic = vm.productBasicInformation
         vm.productInfo = vm.productInformation
         vm.productFormulation = vm.productRelationFormulation.value
-        // console.log(vm.productBasic.parentTid, vm.productBasic, 'productProperties')
+        // console.log(vm.productInfo, vm.productBasic, 'productProperties')
       })
     },
 
@@ -389,11 +385,10 @@ ${vm.currentLocation}`
     h1 {
       width: 68%;
       float: left;
-      line-height: 1.3;
+      line-height: 48px;
       margin: 0;
       padding-left: 70px;
       padding-top: 8px;
-      font-size: 2.2rem;
 
       .icon-container {
         margin: -7px 10px 0 -70px;
@@ -423,11 +418,7 @@ ${vm.currentLocation}`
       & > div {
         border-bottom: 1px solid #eee;
         border-radius: 8px 8px 0 0;
-        padding-top: 40px;
-
-        @media screen and (min-width: 1024px) {
-          padding-bottom: 40px;
-        }
+        padding-top: 20px;
 
         & > div {
           display: -webkit-box;
@@ -474,17 +465,18 @@ ${vm.currentLocation}`
         }
 
         &:first-child {
-          padding-top: 40px;
+          padding-top: 0;
         }
 
         .v-tabs {
           height: auto;
           text-align: center;
-          margin-bottom: 45px;
+          margin-bottom: 20px;
           overflow: hidden;
 
           .v-tab {
             font-size: 1.1rem;
+            text-transform: capitalize;
 
             &.v-tab--active {
 
@@ -536,12 +528,12 @@ ${vm.currentLocation}`
       width: 180px;
 
       .v-icon {
-        font-size: 48px;
+        font-size: 30px!important;
       }
 
       p {
         line-height: 48px;
-        margin: 0;
+        margin: 0 10px;
       }
 
       @media screen and (min-width: 1024px) {

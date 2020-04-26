@@ -17,7 +17,7 @@ const messages = {
       registration: '注册',
       cancel: '取消',
       submit: '提交',
-      goBack: '返回上一页',
+      goBack: '返回',
       followWechat: '关注公众号',
       thanksRegister: '感谢您注册本站',
       registerSuccess: '您已经注册成功，请等待管理员确认激活您的账户，你注册的邮箱将会收到注册成功的邮件通知。',
@@ -25,7 +25,7 @@ const messages = {
       loginSuccess: '您已经登录成功，现在请您使用完成的BASF产品中心的功能吧',
       readMore: '更多',
       confirm: '确认',
-      cookieDescription: '此应用程序使用cookie来满足您的需求和功能. 使用此应用程序即表示您同意我们的',
+      cookieDescription: '此应用程序使用cookie来满足您的需求和功能。使用此应用程序即表示您同意我们的',
       cookiePolicy: '隐私政策',
       noMoreProduct: '没有更多产品了',
       noMoreFormulation: '没有更多配方了',
@@ -39,14 +39,14 @@ const messages = {
     },
     productView: {
       basicInfo: '基本信息',
-      property: '属性',
+      property: '技术参数',
       formulation: '配方',
       download: '下载',
       share: '分享',
       favorite: '最爱',
       basket: '购物车',
       techData: '技术数据',
-      techDataDescription: '确切的规格可以在规格数据表中找到',
+      techDataDescription: '更多信息详见产品技术说明书',
     },
     formulationView: {
       basicInfo: '基本信息',
@@ -132,11 +132,12 @@ const messages = {
           phone: '电话: +886 2 2518 7600',
         },
         xianggangInfo: {
-          title: '香港',
+          title: '亚太区总部',
           city: '香港中环',
           street: '康乐广场1号',
           address: '怡和大厦45楼',
           phone: '电话: +852 2731 0111',
+          email: 'Dispersions-Resins-Asia@basf.com',
         }
       },
       footer: {
@@ -226,7 +227,7 @@ const messages = {
       registration: 'registration',
       cancel: 'cancel',
       submit: 'submit',
-      goBack: 'go back to the last page',
+      goBack: 'Back',
       followWechat: 'Follow the public account',
       thanksRegister: 'Thank you for registering this site',
       registerSuccess: 'You have successfully registered, please wait for the administrator to confirm activation of your account, your registered mailbox will receive an email notification of successful registration.',
@@ -248,14 +249,14 @@ const messages = {
     },
     productView: {
       basicInfo: 'Basic Information',
-      property: 'property',
+      property: 'Technical Parameters',
       formulation: 'formulation',
       download: 'download',
       share: 'share',
       favorite: 'favorite',
       basket: 'basket',
       techData: 'Technical data',
-      techDataDescription: 'The exact specifications can be found in the specification data sheet',
+      techDataDescription: 'For more information, please refer to the product technical specification',
     },
     formulationView: {
       basicInfo: 'Basic Information',
@@ -314,7 +315,7 @@ const messages = {
           city: '7 Temasek Boulevard',
           address: '#35-01 Suntec Tower One ',
           postCode: 'Singapore 038987',
-          phone: '电话: +86 21 2039 3509',
+          phone: 'Tel: +86 21 2039 3509',
         },
         beijingInfo: {
           title: 'Australia & New Zealand',
@@ -378,7 +379,7 @@ const messages = {
       footer: {
         link_buy_site: 'BASF 1688 Flagship Shop',
         copyright: 'Copyright © BASF SE 2020',
-        weChat: 'QR code welcome to follow Wechat Official Account ‘BASF Dispersions & Resins’',
+        weChat: 'Welcome to follow Wechat Official Account ‘BASF Dispersions & Resins’',
       }
     },
     sampleOrder: {

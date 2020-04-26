@@ -12,7 +12,7 @@
          {{ $t('home.middleContent.aboutBASFDescription') }}<a target="_blank" href="https://www.basf.com">www.basf.com</a>。
         </p>
 
-         <p>
+        <p class="buy-link">
            <v-icon>chevron_right</v-icon>
            <a aria-label="Link to Shopify" href="https://m.1688.com/page/offerlist.html?spm=a262to.11649723.category_view.12&catId=98047612&catPid=&isUserDefined=true&title=%E4%B9%B3%E6%B6%B2%E5%8F%8A%E9%85%8D%E6%96%B9%E5%8A%A9%E5%89%82&memberId=b2b-2123073290" target="_blank" rel="noopener noreferrer">
              {{ $t('home.footer.link_buy_site') }}
@@ -23,8 +23,8 @@
           {{ $t('home.footer.weChat') }}
           <v-img
             class="wechat-image"
-            width="180"
-            height="180"
+            width="130"
+            height="130"
             :src="require('@/assets/global/wechat.png')"
           >
           </v-img>
@@ -36,13 +36,25 @@
         <ul>
           <template v-if="currentLanguage === 'zh-hans'">
             <li>
-              <strong>{{ $t('home.middleContent.shanghaiInfo.title') }}</strong><br><br>
-              {{ $t('home.middleContent.shanghaiInfo.city') }}<br>
-              {{ $t('home.middleContent.shanghaiInfo.address') }}<br><br>
+              <strong>{{ $t('home.middleContent.xianggangInfo.title') }}</strong><br><br>
+              {{ $t('home.middleContent.xianggangInfo.city') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.street') }}<br>
+              {{ $t('home.middleContent.xianggangInfo.address') }}<br><br>
+              {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br><br>
+              邮箱：<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
+                Dispersions-Resins-Asia<br>@basf.com
+              </a>
+            </li>
+
+            <li>
+              <strong>上海</strong><br><br>
+              上海浦东新区<br>
+              江心沙路<br><br>
+              300号<br>
               {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br>
-              {{ $t('home.middleContent.shanghaiInfo.phone') }}<br>
-              <a :href="`mailto:${$t('home.middleContent.shanghaiInfo.email')}`">
-                {{ $t('home.middleContent.shanghaiInfo.email') }}
+              {{ $t('home.middleContent.shanghaiInfo.phone') }}<br><br>
+              邮箱：<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
+                Dispersions-Resins-CN<br>@basf.com
               </a>
             </li>
 
@@ -53,6 +65,9 @@
               {{ $t('home.middleContent.beijingInfo.detail') }}<br><br>
               {{ $t('home.middleContent.beijingInfo.postCode') }}<br>
               {{ $t('home.middleContent.beijingInfo.phone') }}<br><br>
+              邮箱：<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
+                Dispersions-Resins-CN<br>@basf.com
+              </a>
             </li>
 
             <li>
@@ -62,6 +77,9 @@
               {{ $t('home.middleContent.guangzhouInfo.address') }}<br><br>
               {{ $t('home.middleContent.guangzhouInfo.postCode') }}<br>
               {{ $t('home.middleContent.guangzhouInfo.phone') }}<br><br>
+              邮箱：<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
+                Dispersions-Resins-CN<br>@basf.com
+              </a>
             </li>
 
             <li>
@@ -71,14 +89,9 @@
               {{ $t('home.middleContent.taiwanInfo.address') }}<br>
               {{ $t('home.middleContent.taiwanInfo.postCode') }}<br><br>
               {{ $t('home.middleContent.taiwanInfo.phone') }}<br><br>
-            </li>
-
-            <li>
-              <strong>{{ $t('home.middleContent.xianggangInfo.title') }}</strong><br><br>
-              {{ $t('home.middleContent.xianggangInfo.city') }}<br>
-              {{ $t('home.middleContent.xianggangInfo.street') }}<br>
-              {{ $t('home.middleContent.xianggangInfo.address') }}<br><br><br>
-              {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
+              邮箱：<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
+                Dispersions-Resins-CN<br>@basf.com
+              </a>
             </li>
           </template>
 
@@ -90,6 +103,9 @@
               {{ $t('home.middleContent.shanghaiInfo.address') }}<br>
               {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br><br><br>
               {{ $t('home.middleContent.shanghaiInfo.phone') }}<br>
+              Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
+              Dispersions-Resins-Asia<br>@basf.com
+            </a>
             </li>
 
             <li>
@@ -97,7 +113,9 @@
               {{ $t('home.middleContent.beijingInfo.street') }}<br>
               {{ $t('home.middleContent.beijingInfo.address') }}<br>
               {{ $t('home.middleContent.beijingInfo.detail') }}<br><br><br>
-              {{ $t('home.middleContent.beijingInfo.phone') }}<br><br>
+              {{ $t('home.middleContent.beijingInfo.phone') }}<br>
+              Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
+              Dispersions-Resins-Asia<br>@basf.com</a>
             </li>
 
             <li>
@@ -105,7 +123,9 @@
               {{ $t('home.middleContent.guangzhouInfo.city') }}<br>
               {{ $t('home.middleContent.guangzhouInfo.street') }}<br>
               {{ $t('home.middleContent.guangzhouInfo.address') }}<br><br><br>
-              {{ $t('home.middleContent.guangzhouInfo.phone') }}<br><br>
+              {{ $t('home.middleContent.guangzhouInfo.phone') }}<br>
+              Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
+              Dispersions-Resins-Asia<br>@basf.com</a>
             </li>
 
             <li>
@@ -114,7 +134,9 @@
               {{ $t('home.middleContent.taiwanInfo.street') }}<br>
               {{ $t('home.middleContent.taiwanInfo.address') }}<br>
               {{ $t('home.middleContent.taiwanInfo.postCode') }}<br><br>
-              {{ $t('home.middleContent.taiwanInfo.phone') }}<br><br>
+              {{ $t('home.middleContent.taiwanInfo.phone') }}<br>
+              Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
+              Dispersions-Resins-Asia<br>@basf.com</a>
             </li>
 
             <li>
@@ -122,44 +144,41 @@
               {{ $t('home.middleContent.xianggangInfo.city') }}<br>
               {{ $t('home.middleContent.xianggangInfo.street') }}<br>
               {{ $t('home.middleContent.xianggangInfo.address') }}<br>
-              {{ $t('home.middleContent.xianggangInfo.postCode') }}<br>
-              {{ $t('home.middleContent.xianggangInfo.city2') }}<br>
-              {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br>
+              Tokyo 106-6121, Japan<br><br>
+              {{ $t('home.middleContent.xianggangInfo.phone') }}<br>
+              Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
+              Dispersions-Resins-Asia<br>@basf.com</a>
             </li>
 
             <li>
               <strong>{{ $t('home.middleContent.greaterChinaInfo.title') }}</strong><br><br>
-              {{ $t('home.middleContent.greaterChinaInfo.city') }}<br>
-              {{ $t('home.middleContent.greaterChinaInfo.street') }}<br>
+              <strong>{{ $t('home.middleContent.greaterChinaInfo.city') }}</strong><br>
               {{ $t('home.middleContent.greaterChinaInfo.address') }}<br>
               {{ $t('home.middleContent.greaterChinaInfo.phone') }}<br>
-              {{ $t('home.middleContent.greaterChinaInfo.title2') }}<br>
+              {{ $t('home.middleContent.greaterChinaInfo.title2') }}<br><br>
               {{ $t('home.middleContent.greaterChinaInfo.city2') }}<br>
-              <a :href="`mailto:${$t('home.middleContent.greaterChinaInfo.email')}`">
-                {{ $t('home.middleContent.greaterChinaInfo.email') }}
-              </a>
+              Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
+              Dispersions-Resins-Asia<br>@basf.com</a>
             </li>
 
             <li>
               <br><br><strong class="special">{{ $t('home.middleContent.basfInfo.title') }}</strong><br>
               {{ $t('home.middleContent.basfInfo.city') }}<br>
               {{ $t('home.middleContent.basfInfo.street') }}<br>
-              {{ $t('home.middleContent.basfInfo.address') }}<br>
-              {{ $t('home.middleContent.basfInfo.postCode') }}<br><br>
-              <a :href="`mailto:${$t('home.middleContent.basfInfo.email')}`">
-                {{ $t('home.middleContent.basfInfo.email') }}
-              </a>
+              {{ $t('home.middleContent.basfInfo.address') }}<br><br>
+              {{ $t('home.middleContent.basfInfo.postCode') }}<br>
+              Email:<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
+              Dispersions-Resins-CN<br>@basf.com</a>
             </li>
 
             <li>
               <br><br><strong class="special">{{ $t('home.middleContent.basfTaiwanInfo.title') }}</strong><br>
               {{ $t('home.middleContent.basfTaiwanInfo.city') }}<br>
               {{ $t('home.middleContent.basfTaiwanInfo.street') }}<br>
-              {{ $t('home.middleContent.basfTaiwanInfo.address') }}<br>
-              {{ $t('home.middleContent.basfTaiwanInfo.postCode') }}<br><br>
-              <a :href="`mailto:${$t('home.middleContent.basfTaiwanInfo.email')}`">
-                {{ $t('home.middleContent.basfTaiwanInfo.email') }}
-              </a>
+              Taipei 10486, Taiwan <br><br>
+              Tel: +886 2 2518 7600<br>
+              Email:<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
+              Dispersions-Resins-CN<br>@basf.com</a>
             </li>
           </template>
         </ul>
@@ -167,7 +186,7 @@
 
       <v-col cols="12" class="introduce">
         <h1>
-          <router-link :to="{ name: 'Register' }">
+          <router-link :to="{ name: 'Register' }" class="special-color">
             {{ $t('global.register') }} !
           </router-link>
           {{ $t('home.middleContent.registerTitle') }}
@@ -317,8 +336,12 @@
         margin-top: 17px;
       }
 
+      .buy-link {
+      margin-top: 25px;
+    }
+
       .wechat-image {
-        margin-top: 20px;
+        /*margin-top: 20px;*/
       }
     }
 
@@ -327,6 +350,10 @@
 
       h1 {
         padding: 20px 0;
+      }
+      
+      .special-color {
+        color: #004a96;
       }
     }
 

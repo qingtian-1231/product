@@ -99,7 +99,7 @@
       font-size: 16px!important;
       font-weight: normal;
       letter-spacing: normal !important;
-      line-height: unset;
+      line-height: 1.5;
     }
   }
 

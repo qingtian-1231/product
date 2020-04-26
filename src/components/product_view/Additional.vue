@@ -1,23 +1,21 @@
 <template>
   <v-card flat color="basil" id="additional">
     <div class="additional">
-      <h4>{{ $t('productView.download') }}</h4>
+      <span class="label">{{ $t('productView.download') }}</span>
       <ul>
         <template v-for="(item, index) in productRelationFile.value">
           <li :key="index">
             <figure class="download document">
-              <p>Acronal® LR 8960</p>
-               <small>
-                <span>安全数据表<br></span>
-                 <span><br></span>
-                 <span>
-                   请联系我们的专家以获取特定国家/地区的安全数据表。<br>
-                 </span>
-              </small>
+              <p>{{ titleField.value }}</p>
+              <p></p>
+              <span>
+                   {{ item.description }}。<br>
+              </span>
+              <p></p>
               <a target="_blank" :href="item.url" class="btn btn-default">
-                <v-icon large class="material-icons-outlined">book</v-icon>
+                <v-icon large class="material-icons-outlined">insert_drive_file</v-icon>
               </a>
-              <span>最新日期: {{ item.changed }}</span>
+              <span>日期: {{ item.changed }}</span>
             </figure>
           </li>
         </template>
@@ -32,6 +30,10 @@
     props: {
       productRelationFile: {
         type: Object
+      },
+
+      titleField: {
+        type: String
       }
     },
     data () {
@@ -41,6 +43,7 @@
     },
 
     mounted() {
+      console.log(this.productRelationFile, 'productRelationFile')
     }
   }
 </script>
@@ -106,7 +109,6 @@
             padding: 6% 7% 18%;
             position: relative;
             width: 100%;
-            min-height: 320px;
 
             p {
               margin: 0;

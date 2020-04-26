@@ -33,13 +33,6 @@
         {{ field_product_name.value }}
       </p>
 
-      <p v-if="buy_link.value">
-        <span class="grey-2 label">
-          {{ buy_link.label }}
-        </span>
-        <a target="_blank" :href="buy_link.value.uri">{{ buy_link.value.title }}</a>
-      </p>
-
       <p>
         <span class="grey-2 label">
           {{ benefits.label }}
@@ -50,8 +43,7 @@
     </div>
 
     <div class="app" v-if="recommended_application">
-      <h2>应用</h2>
-      <p>{{ recommended_application.label }}</p>
+      <span class="grey-2 label">{{ recommended_application.label }}</span>
       <ul class="clearfix">
         <template v-for="(item, index) in recommended_application.value">
           <li :key="index">
@@ -62,7 +54,7 @@
           </li>
         </template>
       </ul>
-      <p>{{ suitable_application.label }}</p>
+      <span class="grey-2 label">{{ suitable_application.label }}</span>
       <ul>
         <template v-for="(item, index) in suitable_application.value">
           <li :key="index">
@@ -77,7 +69,7 @@
 
     <div class="countries">
       <template v-if="country_registration_group">
-        <h2>{{ country_registration_group.label }}</h2>
+        <span class="grey-2 label">{{ country_registration_group.label }}</span>
         <ul class="clearfix">
           <template v-for="(field, index) in country_registration_group.value">
             <li :key="index">
@@ -86,13 +78,31 @@
               <v-icon>outlined_flag</v-icon>
             </span>
                 <span>{{ field.field_country_registration.value }}<br></span>
-                <span><b>{{ field.field_country_registration_descr.value }}</b></span>
+                <span>{{ field.field_country_registration_descr.value }}</span>
               </div>
             </li>
           </template>
         </ul>
       </template>
     </div>
+
+    <p v-if="product_origin.value">
+        <span class="grey-2 label">
+          {{ product_origin.label }}
+        </span>
+      {{ product_origin.value }}
+    </p>
+
+    <p v-if="product_package.value">
+        <span class="grey-2 label">
+          {{ product_package.label }}
+        </span>
+      {{ product_package.value }}
+    </p>
+
+    <p v-if="buy_link.value">
+      <a target="_blank" :href="buy_link.value.uri">{{ buy_link.label }}</a>
+    </p>
   </v-card>
 </template>
 
@@ -139,6 +149,12 @@
       buy_link: function () {
         return (this.productInfo && this.productInfo.field_buy_link) ? this.productInfo.field_buy_link : {}
       },
+      product_package: function () {
+        return (this.productInfo && this.productInfo.field_product_package) ? this.productInfo.field_product_package : {}
+      },
+      product_origin: function () {
+        return (this.productInfo && this.productInfo.field_product_origin) ? this.productInfo.field_product_origin : {}
+      },
       recommended_application: function () {
         return (this.productInfo && this.productInfo.recommended_application) ? this.productInfo.recommended_application : []
       },
@@ -162,44 +178,39 @@
 
   h2, p, ul {
     display: inline-block;
-    margin: 0 0 25px;
+    margin: 0;
     padding: 0;
     width: 100%;
-    font-size: 1.25rem;
   }
 
-  .information {
+  h2 {
+    padding-bottom: 0;
+  }
 
-    h2 {
-      padding-bottom: 25px;
-    }
+  p {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
 
-    p {
-      padding-bottom: 25px;
-      border-bottom: 1px solid #eee;
-
-      span {
-        display: block;
-        text-transform: capitalize;
-        color: #aaa;
-      }
-
-      &:nth-child(2n) {
-        @media screen and (min-width: 640px) {
-          margin-right: 8px;
-        }
-      }
-
-      &:last-of-type {
-        margin-left: 0;
-        margin-right: 0;
-        width: 100%;
-      }
+    &:nth-child(2n) {
       @media screen and (min-width: 640px) {
-        width: calc(50% - 8px);
+        margin-right: 8px;
       }
     }
 
+    &:last-of-type {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+    }
+    @media screen and (min-width: 640px) {
+      width: calc(50% - 8px);
+    }
+  }
+
+  span {
+    display: block;
+    text-transform: capitalize;
+    color: #808080;
   }
 
   .app {
@@ -260,10 +271,10 @@
         width: 100%;
 
         span {
-          font-size: 1em;
+          font-size: 16px;
 
           &:last-child {
-            font-size: 70%;
+            font-size: 16px;
             max-height: 60px;
             overflow: hidden;
             overflow-y: auto;

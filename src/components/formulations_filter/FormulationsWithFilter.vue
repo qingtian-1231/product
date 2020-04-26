@@ -33,7 +33,7 @@
         </v-list-item>
       </v-list>
     </template>
-    <v-btn block rounded color="success" @click="findFormulations()">
+    <v-btn rounded color="success" @click="findFormulations()">
       {{ $t('formulationFilter.selectFormulation') }}
       <v-icon right>keyboard_arrow_right</v-icon>
     </v-btn>
@@ -161,8 +161,14 @@
 <style lang="scss" scoped>
 .formulations-with-filter {
 
+  .v-list {
+    width: 50%;
+    float: left;
+  }
+  
   .v-btn {
-    margin: 25px 0;
+    margin: 25px;
+    float: right;
   }
 }
 </style>

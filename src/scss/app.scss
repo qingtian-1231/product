@@ -434,11 +434,13 @@ body {
     }
 
     p {
-      font-size: 14px !important;
+      font-size: 16px !important;
+      color: #333;
     }
 
     span.label {
-      font-size: 16px !important;
+      font-size: 18px !important;
+      color: #808080;
     }
   }
 
@@ -563,7 +565,6 @@ main {
 
   & > span {
     float: left;
-    font-size: .75em;
     line-height: 24px;
     max-width: 80%;
     vertical-align: middle;
@@ -824,8 +825,9 @@ main {
       &:last-child {
         line-height: 1.4;
         max-width: 50%;
+        width: 30%;
         right: 0;
-        text-align: right;
+        text-align: left;
       }
     }
 

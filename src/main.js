@@ -102,8 +102,8 @@ store.dispatch('getApiMenu').then(() => {
             theme: {
               themes: {
                 light: {
-                  primary: '#028fd2',
-                  secondary: '#239187',
+                  primary: '#2196f3',
+                  secondary: '#00793a',
                   accent: '#8c9eff',
                   error: '#b71c1c',
                 },

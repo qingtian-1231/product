@@ -102,6 +102,16 @@ const mutations = {
         continue
       }
 
+      if (field === 'field_product_package') {
+        state.productInfo.field_product_package = result.field_product_package
+        continue
+      }
+
+      if (field === 'field_product_origin') {
+        state.productInfo.field_product_origin = result.field_product_origin
+        continue
+      }
+
       if (field === 'field_recommended_application') {
         state.productInfo.recommended_application = result.field_recommended_application
         continue

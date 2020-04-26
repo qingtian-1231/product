@@ -29,6 +29,7 @@ class ProductResource extends ResourceBase {
    * @return \Drupal\rest\ResourceResponse
    */
   public function get($id = NULL) {
+    $countries = \Drupal::service('country_manager')->getList();
     $entity_manager = \Drupal::entityManager();
     $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
     $entity = $entity_manager->loadEntityByUuid('commerce_product', $id);
@@ -49,7 +50,6 @@ class ProductResource extends ResourceBase {
       'field_front_product_description',
       'field_product_prd',
       'field_product_sbu',
-      'field_product_package',
       'field_product_art',
     ];
 
@@ -158,7 +158,8 @@ class ProductResource extends ResourceBase {
               foreach ($field_item_list as $field_item) {
                 $value[] = [
                   'url' => $host . '/file-download/download/public/' . $field_item->entity->fid->value,
-                  'changed' => date('c', $field_item->entity->changed->value),
+                  'description' => $field_item->getValue()['description'],
+                  'changed' => date('Y-m-d', $field_item->entity->changed->value),
                 ];
               }
 
@@ -173,6 +174,13 @@ class ProductResource extends ResourceBase {
               $product[$field] = [
                 'label' => $this->getTranslateLabel($field_definition->getLabel()),
                 'value' => !empty($value) ? $value: '',
+              ];
+            }
+            elseif ($field_definition->getType() === 'address_country') {
+              $country = $countries[$field_item_list->value];
+              $product[$field] = [
+                'label' => $this->getTranslateLabel($field_definition->getLabel()),
+                'value' => $country->render(),
               ];
             }
             else {

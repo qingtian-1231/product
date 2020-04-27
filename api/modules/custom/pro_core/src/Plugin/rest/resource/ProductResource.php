@@ -180,7 +180,7 @@ class ProductResource extends ResourceBase {
               $country = $countries[$field_item_list->value];
               $product[$field] = [
                 'label' => $this->getTranslateLabel($field_definition->getLabel()),
-                'value' => $country->render(),
+                'value' => $country ? $country->render() : '',
               ];
             }
             else {

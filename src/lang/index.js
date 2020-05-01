@@ -297,9 +297,8 @@ const messages = {
     },
     home: {
       search: {
-        searchDescription1: 'Wellcome to visit BASF Product Center for Dispersions and Resins!\n' +
-          'You can easily find BASF product information here. For customers in',
-        searchDescription2: ',  there are detailed application formulations for reference, who can also have a in-depth communication with BASF technical experts. Online request for samples or purchasing at 1688 flagship shop makes your orders more convenient than ever. ',
+        searchDescription1: 'Welcome to visit BASF Product Center for Dispersions and Resins! You can easily find product information here. For customers in',
+        searchDescription2: ', there are recommended formulations for reference. Online request for samples or purchase at 1688 flagship shop make your orders more convenient than ever. ',
         search: 'Search',
         brand: 'Brand'
       },

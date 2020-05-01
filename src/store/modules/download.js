@@ -1,4 +1,5 @@
 import { request, apiServer} from '../../utils/request'
+import {getCookie} from "../../utils/cookie";
 
 const state = {
   path: 'api/globalfile/list',
@@ -19,7 +20,14 @@ const mutations = {
 
 const actions = {
   getDownloadList({commit, state}, options) {
-    return request().get(state.path, {
+    let requestPath = state.path
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + state.path
+    }
+
+    return request().get(requestPath, {
       params: options
     })
       .then(function (response) {

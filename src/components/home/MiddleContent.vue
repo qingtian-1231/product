@@ -42,19 +42,19 @@
               {{ $t('home.middleContent.xianggangInfo.address') }}<br><br>
               {{ $t('home.middleContent.xianggangInfo.phone') }}<br><br><br>
               邮箱：<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
-                Dispersions-Resins-Asia<br>@basf.com
+                Dispersions-Resins-Asia<br><span class="special-class">@basf.com</span>
               </a>
             </li>
 
             <li>
               <strong>上海</strong><br><br>
               上海浦东新区<br>
-              江心沙路<br><br>
-              300号<br>
-              {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br>
-              {{ $t('home.middleContent.shanghaiInfo.phone') }}<br><br>
+              江心沙路<br>
+              300号<br><br>
+              {{ $t('home.middleContent.shanghaiInfo.phone') }}<br>
+              {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br><br>
               邮箱：<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
-                Dispersions-Resins-CN<br>@basf.com
+                Dispersions-Resins-CN<br><span class="special-class">@basf.com</span>
               </a>
             </li>
 
@@ -63,10 +63,10 @@
               {{ $t('home.middleContent.beijingInfo.street') }}<br>
               {{ $t('home.middleContent.beijingInfo.address') }}<br>
               {{ $t('home.middleContent.beijingInfo.detail') }}<br><br>
-              {{ $t('home.middleContent.beijingInfo.postCode') }}<br>
-              {{ $t('home.middleContent.beijingInfo.phone') }}<br><br>
+              {{ $t('home.middleContent.beijingInfo.phone') }}<br>
+              {{ $t('home.middleContent.beijingInfo.postCode') }}<br><br>
               邮箱：<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
-                Dispersions-Resins-CN<br>@basf.com
+                Dispersions-Resins-CN<br><span class="special-class">@basf.com</span>
               </a>
             </li>
 
@@ -75,10 +75,10 @@
               {{ $t('home.middleContent.guangzhouInfo.city') }}<br>
               {{ $t('home.middleContent.guangzhouInfo.street') }}<br>
               {{ $t('home.middleContent.guangzhouInfo.address') }}<br><br>
-              {{ $t('home.middleContent.guangzhouInfo.postCode') }}<br>
-              {{ $t('home.middleContent.guangzhouInfo.phone') }}<br><br>
+              {{ $t('home.middleContent.guangzhouInfo.phone') }}<br>
+              {{ $t('home.middleContent.guangzhouInfo.postCode') }}<br><br>
               邮箱：<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
-                Dispersions-Resins-CN<br>@basf.com
+                Dispersions-Resins-CN<br><span class="special-class">@basf.com</span>
               </a>
             </li>
 
@@ -86,15 +86,14 @@
               <strong>{{ $t('home.middleContent.taiwanInfo.title') }}</strong><br><br>
               {{ $t('home.middleContent.taiwanInfo.city') }}<br>
               {{ $t('home.middleContent.taiwanInfo.street') }}<br>
-              {{ $t('home.middleContent.taiwanInfo.address') }}<br>
+              {{ $t('home.middleContent.taiwanInfo.address') }}<br><br>
+              {{ $t('home.middleContent.taiwanInfo.phone') }}<br>
               {{ $t('home.middleContent.taiwanInfo.postCode') }}<br><br>
-              {{ $t('home.middleContent.taiwanInfo.phone') }}<br><br>
               邮箱：<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
-                Dispersions-Resins-CN<br>@basf.com
+                Dispersions-Resins-CN<br><span class="special-class">@basf.com</span>
               </a>
             </li>
           </template>
-
 
           <template v-if="currentLanguage === 'en'">
             <li>
@@ -104,7 +103,7 @@
               {{ $t('home.middleContent.shanghaiInfo.postCode') }}<br><br><br>
               {{ $t('home.middleContent.shanghaiInfo.phone') }}<br>
               Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
-              Dispersions-Resins-Asia<br>@basf.com
+              Dispersions-Resins-Asia<br><span class="special-class">@basf.com</span>
             </a>
             </li>
 
@@ -115,7 +114,7 @@
               {{ $t('home.middleContent.beijingInfo.detail') }}<br><br><br>
               {{ $t('home.middleContent.beijingInfo.phone') }}<br>
               Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
-              Dispersions-Resins-Asia<br>@basf.com</a>
+              Dispersions-Resins-Asia<br><span class="special-class">@basf.com</span></a>
             </li>
 
             <li>
@@ -125,7 +124,7 @@
               {{ $t('home.middleContent.guangzhouInfo.address') }}<br><br><br>
               {{ $t('home.middleContent.guangzhouInfo.phone') }}<br>
               Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
-              Dispersions-Resins-Asia<br>@basf.com</a>
+              Dispersions-Resins-Asia<br><span class="special-class">@basf.com</span></a>
             </li>
 
             <li>
@@ -136,7 +135,7 @@
               {{ $t('home.middleContent.taiwanInfo.postCode') }}<br><br>
               {{ $t('home.middleContent.taiwanInfo.phone') }}<br>
               Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
-              Dispersions-Resins-Asia<br>@basf.com</a>
+              Dispersions-Resins-Asia<br><span class="special-class">@basf.com</span></a>
             </li>
 
             <li>
@@ -147,7 +146,7 @@
               Tokyo 106-6121, Japan<br><br>
               {{ $t('home.middleContent.xianggangInfo.phone') }}<br>
               Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
-              Dispersions-Resins-Asia<br>@basf.com</a>
+              Dispersions-Resins-Asia<br><span class="special-class">@basf.com</span></a>
             </li>
 
             <li>
@@ -158,7 +157,7 @@
               {{ $t('home.middleContent.greaterChinaInfo.title2') }}<br><br>
               {{ $t('home.middleContent.greaterChinaInfo.city2') }}<br>
               Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
-              Dispersions-Resins-Asia<br>@basf.com</a>
+              Dispersions-Resins-Asia<br><span class="special-class">@basf.com</span></a>
             </li>
 
             <li>
@@ -168,7 +167,7 @@
               {{ $t('home.middleContent.basfInfo.address') }}<br><br>
               {{ $t('home.middleContent.basfInfo.postCode') }}<br>
               Email:<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
-              Dispersions-Resins-CN<br>@basf.com</a>
+              Dispersions-Resins-CN<br><span class="special-class">@basf.com</span></a>
             </li>
 
             <li>
@@ -178,7 +177,7 @@
               Taipei 10486, Taiwan <br><br>
               Tel: +886 2 2518 7600<br>
               Email:<a :href="`mailto:Dispersions-Resins-CN@basf.com`">
-              Dispersions-Resins-CN<br>@basf.com</a>
+              Dispersions-Resins-CN<br><span class="special-class">@basf.com</span></a>
             </li>
           </template>
         </ul>
@@ -367,6 +366,11 @@
       box-shadow: 2px 2px 8px 0 rgba(0,0,0,.1);
       margin-bottom: 50px;
       padding-bottom: 50px!important;
+    }
+
+    .special-class {
+      position: relative;
+      left: 39px;
     }
   }
 </style>

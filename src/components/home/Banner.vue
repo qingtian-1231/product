@@ -110,5 +110,9 @@
     text-align: left;
     padding: 24px 30px 24px !important;
     background-color: #fff;
+
+    a {
+      text-transform: uppercase;
+    }
   }
 </style>

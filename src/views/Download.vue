@@ -29,7 +29,7 @@
                   </v-list-item-content>
 
                   <v-list-item-content>
-                    <v-list-item-title v-text="download.filesize"></v-list-item-title>
+                    <v-list-item-title class="right" v-text="download.filesize"></v-list-item-title>
                   </v-list-item-content>
 
                   <v-list-item-action>
@@ -145,6 +145,10 @@
     .infinite-loading-container {
       height: 72px;
       line-height: 72px;
+    }
+
+    .right {
+      text-align: right;
     }
   }
 </style>

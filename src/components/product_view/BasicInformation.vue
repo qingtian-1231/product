@@ -42,20 +42,24 @@
 
     </div>
 
-    <div class="app" v-if="recommended_application">
-      <span class="grey-2 label">{{ recommended_application.label }}</span>
-      <ul class="clearfix">
-        <template v-for="(item, index) in recommended_application.value">
-          <li :key="index">
-            <v-btn>
-              <v-icon>done</v-icon>
-              <small>{{ item.value }}</small>
-            </v-btn>
-          </li>
-        </template>
-      </ul>
-      <span class="grey-2 label">{{ suitable_application.label }}</span>
-      <ul>
+    <div class="app">
+      <p v-if="recommended_application" class="full-width">
+        <span class="grey-2 label">{{ recommended_application.label }}</span>
+        <ul class="clearfix">
+          <template v-for="(item, index) in recommended_application.value">
+            <li :key="index">
+              <v-btn>
+                <v-icon>done</v-icon>
+                <small>{{ item.value }}</small>
+              </v-btn>
+            </li>
+          </template>
+        </ul>
+      </p>
+
+      <p v-if="recommended_application" class="full-width">
+        <span class="grey-2 label">{{ suitable_application.label }}</span>
+        <ul>
         <template v-for="(item, index) in suitable_application.value">
           <li :key="index">
             <v-btn>
@@ -65,42 +69,43 @@
           </li>
         </template>
       </ul>
+      </p>
     </div>
 
     <div class="countries">
-      <template v-if="country_registration_group">
+      <p v-if="country_registration_group" class="full-width">
         <span class="grey-2 label">{{ country_registration_group.label }}</span>
         <ul class="clearfix">
-          <template v-for="(field, index) in country_registration_group.value">
-            <li :key="index">
-              <div class="item-property">
-            <span>
-              <v-icon>outlined_flag</v-icon>
-            </span>
-                <span>{{ field.field_country_registration.value }}<br></span>
-                <span>{{ field.field_country_registration_descr.value }}</span>
-              </div>
-            </li>
-          </template>
-        </ul>
-      </template>
+        <template v-for="(field, index) in country_registration_group.value">
+          <li :key="index">
+            <div class="item-property">
+              <span>
+                <v-icon>outlined_flag</v-icon>
+              </span>
+              <span>{{ field.field_country_registration.value }}<br></span>
+              <span>{{ field.field_country_registration_descr.value }}</span>
+            </div>
+          </li>
+        </template>
+      </ul>
+      </p>
     </div>
 
-    <p v-if="product_origin.value">
+    <p v-if="product_origin.value" class="full-width">
         <span class="grey-2 label">
           {{ product_origin.label }}
         </span>
       {{ product_origin.value }}
     </p>
 
-    <p v-if="product_package.value">
+    <p v-if="product_package.value" class="full-width">
         <span class="grey-2 label">
           {{ product_package.label }}
         </span>
       {{ product_package.value }}
     </p>
 
-    <p v-if="buy_link.value">
+    <p v-if="buy_link.value" class="full-width">
       <a target="_blank" :href="buy_link.value.uri">{{ buy_link.label }}</a>
     </p>
   </v-card>
@@ -176,6 +181,16 @@
 <style lang="scss" scoped>
   #basic-information {
 
+    .full-width {
+      width: 100%;
+    }
+
+    .item-property {
+      height: auto;
+      border: none;
+      float: initial;
+      padding-left: 5px;
+    }
   h2, p, ul {
     display: inline-block;
     margin: 0;
@@ -216,7 +231,6 @@
   .app {
 
     p {
-      margin-bottom: 15px;
     }
 
     ul {
@@ -251,7 +265,7 @@
         }
 
         @media screen and (min-width: 1024px) {
-          width: 24%;
+          width: 10%;
         }
       }
     }
@@ -265,7 +279,7 @@
 
       li {
         position: relative;
-        display: inline-block;
+        display: inline-grid;
         float: left;
         margin: 0 1%;
         width: 100%;
@@ -284,7 +298,7 @@
 
         @media screen and (min-width: 940px) {
           width: 48%;
-          margin: 10px 1%;
+          margin: 0;
         }
       }
 

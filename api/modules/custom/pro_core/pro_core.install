@@ -52,7 +52,7 @@ function pro_core_update_8001() {
       if (!empty($data[8])) {
         $field_buy_link = [
           'title' => '购买链接',
-          'url' => $data[8],
+          'uri' => $data[8],
         ];
       }
 
@@ -112,7 +112,7 @@ function pro_core_update_8001() {
       if (!empty($data[8])) {
         $field_buy_link = [
           'title' => '购买链接',
-          'url' => $data[8],
+          'uri' => $data[8],
         ];
       }
 
@@ -234,7 +234,7 @@ function pro_core_update_8001() {
         'field_glass_transition_temperatu' => $data[30],
         'field_thinner' => $data[19],
         'field_viscosity' => $data[23],
-        'field_buy_link' => $field_buy_link,
+        'field_buy_link' => [$field_buy_link],
         'field_qiangzhidangliang' => $data[36],
         'field_hydroxyl_value' => $data[35],
         'field_softening_point' => $data[37],

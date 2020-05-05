@@ -1,0 +1,5 @@
+services:
+  pro_core.event_subscriber:
+    class: Drupal\pro_core\EventSubscriber\ProCoreSubscriber
+    tags:
+      - {name: event_subscriber}

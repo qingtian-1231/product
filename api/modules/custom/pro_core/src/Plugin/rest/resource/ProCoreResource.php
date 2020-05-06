@@ -347,6 +347,15 @@ class ProCoreResource extends ResourceBase {
     fclose($handle);
   }
 
+//  function pro_core_update_8003() {
+//    $entity_type_manager = \Drupal::service('entity_type.manager');
+//    $storageCommerceProduct = $entity_type_manager->getStorage('commerce_product');
+//
+//    $node = $storageCommerceProduct->loadByProperties(['title' => 'Joncryl® HYB 6340']);
+//    var_dump($node[30]);exit;
+//
+//  }
+
   public function permissions() {
     return [];
   }

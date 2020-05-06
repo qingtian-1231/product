@@ -136,6 +136,7 @@ function pro_core_update_8001() {
       }
 
       $product_variation = [];
+      $art = [];
       if (!empty($data[45])) {
         $variation_array = explode('#', $data[45]);
         foreach ($variation_array as $item) {
@@ -151,6 +152,7 @@ function pro_core_update_8001() {
           ]);
           $variation->save();
 
+          array_push($art, $arr[0]);
           array_push($product_variation, $variation);
         }
       }
@@ -225,7 +227,7 @@ function pro_core_update_8001() {
         'field_ingredient_content' => '',
         'field_recommended_application' => $field_recommended_application,
         'field_molar_mass' => $data[26],
-        'field_product_art' => '',
+        'field_product_art' => implode($art, '|'),
         'field_boiling_point' => $data[27],
         'field_country_registration_group' => $field_country_registration_group,
         'field_free_formaldehyde_content' => $data[20],

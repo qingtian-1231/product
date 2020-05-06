@@ -112,12 +112,8 @@ class ProCoreResource extends ResourceBase {
   }
 
   function pro_core_update_8002() {
-    global $base_url;
-
     $entity_manager = \Drupal::entityManager();
-    $file = $base_url . '/sites/default/files/product_inpu.csv';
     $source_file = drupal_get_path('module', 'pro_core') . '/example_data/product_input.csv';
-
     $handle = fopen($source_file, "r");
 
     $jump = 0;
@@ -204,7 +200,7 @@ class ProCoreResource extends ResourceBase {
         if (!empty($data[8])) {
           $field_buy_link = [
             'title' => '购买链接',
-            'url' => $data[8],
+            'uri' => $data[8],
           ];
         }
 
@@ -347,14 +343,91 @@ class ProCoreResource extends ResourceBase {
     fclose($handle);
   }
 
-//  function pro_core_update_8003() {
-//    $entity_type_manager = \Drupal::service('entity_type.manager');
-//    $storageCommerceProduct = $entity_type_manager->getStorage('commerce_product');
-//
-//    $node = $storageCommerceProduct->loadByProperties(['title' => 'Joncryl® HYB 6340']);
-//    var_dump($node[30]);exit;
-//
-//  }
+  function pro_core_update_8003() {
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $storageCommerceProduct = $entity_type_manager->getStorage('commerce_product');
+
+    $entity_manager = \Drupal::entityManager();
+    $source_file = drupal_get_path('module', 'pro_core') . '/example_data/product_input_EN.csv';
+    $handle = fopen($source_file, "r");
+
+    $jump = 0;
+
+    while (($data = fgetcsv($handle)) !== false) {
+      //下面这行代码可以解决中文字符乱码问题
+      $jump++;
+      foreach ($data as $index => $term) {
+        $data[$index] = iconv('gbk', 'utf-8', $term);
+      }
+
+      // 跳过前两行标题
+      if ($jump == 1 || $jump == 2) {
+        continue;
+      }
+
+      $data[4] = str_replace(['?', '？'], "®", $data[4]);
+      $data[5] = str_replace(['?', '？'], "®", $data[5]);
+      $data[6] = str_replace(['?', '？'], "®", $data[6]);
+      $field_recommended_application = [];
+
+      if (!empty($data[16])) {
+        $recommended_application = explode('#', $data[16]);
+        foreach ($recommended_application as $item) {
+          array_push($field_recommended_application, $item);
+        }
+      }
+      $commerceProduct = $storageCommerceProduct->loadByProperties(['title' => $data[4]]);
+      $commerceProduct = reset($commerceProduct);
+
+      if ($commerceProduct && !$commerceProduct->hasTranslation('en')) {
+        $entity_array = $commerceProduct->toArray();
+        $translated_fields = [];
+        $translated_fields['title'] = $data[4];
+        $translated_fields['body'] = $data[10];
+        $translated_fields['field__nco'] = $data[25];
+        $translated_fields['field__oh'] = $data[31];
+        $translated_fields['field_hazen_chroma'] = $data[41];
+        $translated_fields['field_ph'] = $data[32];
+        $translated_fields['field_other_names'] = $data[5];
+        $translated_fields['field_freeze_thaw_stability'] = $data[34];
+        $translated_fields['field_molecular_weight'] = $data[22];
+        $translated_fields['field_solid_content'] = $data[18];
+        $translated_fields['field_physical_form'] = $data[13];
+        $translated_fields['field_benefits'] = $data[15];
+        $translated_fields['field_functional_group'] = $data[24];
+        $translated_fields['field_calculated_value'] = $data[21];
+        $translated_fields['field_density'] = $data[29];
+        $translated_fields['field_product_name'] = $data[6];
+        $translated_fields['field_average_particle'] = $data[39];
+        $translated_fields['field_total_voc'] = $data[38];
+        $translated_fields['field_product_package'] = $data[43];
+        $translated_fields['field_minimum_film_forming_tempe'] = $data[33];
+        $translated_fields['field_molar_mass'] = $data[26];
+        $translated_fields['field_boiling_point'] = $data[27];
+        $translated_fields['field_free_formaldehyde_content'] = $data[20];
+        $translated_fields['field_solvent'] = $data[42];
+        $translated_fields['field_melting_point'] = $data[40];
+        $translated_fields['field_glass_transition_temperatu'] = $data[30];
+        $translated_fields['field_thinner'] = $data[19];
+        $translated_fields['field_viscosity'] = $data[23];
+        $translated_fields['field_buy_link'] = [
+          'title' => 'Purchase link',
+          'uri' => $data[8],
+        ];
+        $translated_fields['field_qiangzhidangliang'] = $data[36];
+        $translated_fields['field_hydroxyl_value'] = $data[35];
+        $translated_fields['field_softening_point'] = $data[37];
+        $translated_fields['field_generic_chemical_name'] = $data[12];
+        $translated_fields['field_acid_value'] = $data[28];
+        $translated_fields['field_recommended_application'] = $field_recommended_application;
+
+        $translated_entity_array = array_merge($entity_array, $translated_fields);
+        $commerceProduct->addTranslation('en', $translated_entity_array)->save();
+      }
+    }
+
+    fclose($handle);
+  }
 
   public function permissions() {
     return [];

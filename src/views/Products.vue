@@ -24,7 +24,8 @@
           </template>
         </v-col>
 
-        <v-col class="col-xs-4">
+        <v-col class="col-xs-4" style="text-align: right;">
+          <span class="product-list-count">{{ productListCount }}</span>
           <v-btn
             icon
             class="float-right"
@@ -269,6 +270,7 @@ export default {
       requestProductDialog: state => state.core.requestProductDialog,
       previewProductBasicInformation: state => state.product.productBasicInformation,
       previewProductProperties: state => state.product.productProperties,
+      productListCount: state => state.product.productListCount,
       taxonomyProductApplication: state => state.core.taxonomyProductApplication,
       taxonomyProductType: state => state.core.taxonomyProductType,
       taxonomyProductBrand: state => state.core.taxonomyProductBrand,
@@ -353,6 +355,9 @@ export default {
       if (vm.productQuery.hasOwnProperty("product_type")) {
         let subIds = []
         subIds = vm.getChildrenIds(vm.taxonomyProductType, vm.productQuery.product_type)
+        if (!subIds) {
+          subIds = [];
+        }
         filter.product_type_ids = vm.productQuery.product_type + '+' + subIds.join('+')
       }
 
@@ -465,17 +470,24 @@ export default {
       for (let id in terms) {
         if (terms[id]['tid'] == target_id) {
           childrens = terms[id]['children_ids']
+
+          if (terms[id].children.length > 0) {
+            for (let cid in terms[id].children) {
+              // 已经选中的分类获得他所有的孩子的id
+              childrens.push.apply(childrens, terms[id].children[cid]['children_ids']);
+            }
+          }
           vm.currentTerm = terms[id]
         }
       }
 
       if (childrens.length <= 0) {
         for (let id in terms) {
-          childrens = vm.getChildrenIds(terms[id]['children'], target_id)
+          return vm.getChildrenIds(terms[id]['children'], target_id)
         }
+      } else {
+        return childrens
       }
-
-      return childrens
     },
 
     removeFilter() {
@@ -639,5 +651,15 @@ export default {
     background-color: rgba(226, 213, 213, 0.32);
     color: #655c5c !important;
   }
+}
+
+
+.product-list-count {
+  border: 1px solid #2196f3;
+  border-radius: 8px;
+  margin-right: 10px;
+  padding: 2px 10px;
+  line-height: 38px;
+  color: #2196f3;
 }
 </style>

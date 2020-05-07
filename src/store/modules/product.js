@@ -13,6 +13,7 @@ const state = {
   productProperties: {},
   productRelationFormulation: {},
   productRelationFile: {},
+  productListCount: 0,
 }
 
 const mutations = {
@@ -37,6 +38,10 @@ const mutations = {
       }
       return item
     })
+  },
+
+  processProductListMeta(state, payload) {
+    state.productListCount = payload.count
   },
 
   processProductDetails(state, payload) {
@@ -196,6 +201,8 @@ const actions = {
         payload.productType = rootState.core.taxonomyProductType
         payload.favorite = rootState.user.favoriteProductList
         payload.result = response.data.results
+
+        commit('processProductListMeta', response.data.pager)
         commit('processProductList', payload)
 
         return Promise.resolve(response)

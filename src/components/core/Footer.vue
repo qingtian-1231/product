@@ -10,7 +10,7 @@
     >
       <v-row class="align-center">
         <div class="ml-auto mr-auto ml-md-0 d-flex align-center col col-auto footer-left">
-          <span class="mr-3 overline">{{ $t('home.footer.copyright') }}</span>
+          <span class="mr-3">{{ $t('home.footer.copyright') }}</span>
         </div>
       </v-row>
     </v-container>

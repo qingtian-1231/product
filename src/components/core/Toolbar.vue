@@ -97,9 +97,9 @@
                   <div class="item listed product result">
               <span>
                 <template v-if="result.type === 'product'">
-                  <router-link :to="{name: 'Product', params: {id: result.uuid}}">
-                  {{ result.title }}
-                </router-link>
+                  <router-link :to="{name: 'Product', params: {id: result.uuid}}" @click.native="flushCom">
+                    {{ result.title }}
+                  </router-link>
                 </template>
 
                 <template v-else>
@@ -187,6 +187,10 @@
           this.headerMenuClass = 'header-main-menu d-none'
           this.searchGlobalClass = 'search fadeRight-enter-active'
         }
+      },
+
+      flushCom () {
+        this.$router.go(0);
       },
 
       closeGlobalSearch () {

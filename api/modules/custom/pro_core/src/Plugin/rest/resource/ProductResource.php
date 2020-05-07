@@ -139,11 +139,13 @@ class ProductResource extends ResourceBase {
                 default:
                   $entity_reference_value = [];
                   foreach ($field_item_list as $para) {
-                    if ($para->entity->hasTranslation($language)) {
-                      $para->entity = $para->entity->getTranslation($language);
-                    }
+                    if ($para->entity) {
+                      if ($para->entity->hasTranslation($language)) {
+                        $para->entity = $para->entity->getTranslation($language);
+                      }
 
-                    $entity_reference_value[] = $this->getFields($para->entity->getFields());
+                      $entity_reference_value[] = $this->getFields($para->entity->getFields());
+                    }
                   }
                   $product[$field] = [
                     'label' => $this->getTranslateLabel($field_definition->getLabel()),
@@ -294,10 +296,17 @@ class ProductResource extends ResourceBase {
 
   protected function processTerm($field_item_list) {
     $value = [];
+    $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
     foreach ($field_item_list as $term_filed) {
       $filed_value = $term_filed->getValue();
       $term = Term::load($filed_value['target_id']);
-      $value[] = $term->getName();
+      if ($term->hasTranslation($language)) {
+        $value[] = $term->getTranslation($language)->getName();
+      }
+      else {
+        $value[] = $term->getName();
+      }
+
     }
 
     return $value;

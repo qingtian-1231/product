@@ -31,17 +31,18 @@ class UserEntityAlterResource extends EntityResource {
         if (is_array($value) && count($value) > 0) {
           foreach ($value as $key => $uuid) {
             $entity = $entity_manager->loadEntityByUuid('commerce_product', $uuid);
-            $targetId = $entity->field_product_brand->getValue()[0]['target_id'];
+            if ($entity) {
+              $targetId = $entity->field_product_brand->getValue()[0]['target_id'];
+              if ($targetId) {
+                $term = Term::load($targetId);
+                $value[$key]['brand'] = $term->getName();
+              }
 
-            if ($targetId) {
-              $term = Term::load($targetId);
-              $value[$key]['brand'] = $term->getName();
+              $value[$key]['title'] = $entity->title->getValue()[0]['value'];
+              $value[$key]['description'] = $entity->body->getValue()[0]['value'];
+              $value[$key]['type'] = $entity->field_product_type->getValue()[0]['target_id'];
+              $value[$key]['benefits'] = $entity->field_benefits->getValue()[0]['value'];
             }
-
-            $value[$key]['title'] = $entity->title->getValue()[0]['value'];
-            $value[$key]['description'] = $entity->body->getValue()[0]['value'];
-            $value[$key]['type'] = $entity->field_product_type->getValue()[0]['target_id'];
-            $value[$key]['benefits'] = $entity->field_benefits->getValue()[0]['value'];
           }
         }
       }

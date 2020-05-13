@@ -442,6 +442,13 @@ body {
       font-size: 18px !important;
       color: #808080;
     }
+
+    .info {
+      background: #fff!important;
+      border: 1px solid #333 !important;
+      color: #333 !important;
+      min-width: 50% !important;
+    }
   }
 
 
@@ -575,6 +582,8 @@ main {
 
     &:last-of-type {
       float: right;
+      position: relative;
+      right: 20px;
     }
   }
 }
@@ -902,4 +911,9 @@ main {
 
 .v-text-field.v-text-field--solo:not(.v-text-field--solo-flat)>.v-input__control>.v-input__slot {
   box-shadow: none;
+}
+
+
+#products .product-list .v-list .v-list-item__title span:last-child p {
+  display: inline;
 }

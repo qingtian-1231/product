@@ -7,7 +7,7 @@ import router from './router'
 import store from './store'
 
 import VueI18n from 'vue-i18n'
-import { messages } from './lang'
+// import { messages } from './lang'
 import { getCookie } from "./utils/cookie.js";
 import loading from './utils/loading.js' // 引入loading
 // For Nprogress 页面加载动画.
@@ -83,6 +83,14 @@ Vue.use(SvgIcon, {
 Vue.use(VueClipboard)
 Vue.use(InfiniteLoading);
 Vue.use(VueI18n)
+
+import en from './lang/en'
+import zh from './lang/zh'
+
+const messages = {
+  "zh-hans": zh,
+  "en": en
+}
 
 // Create VueI18n instance with options
 const i18n = new VueI18n({

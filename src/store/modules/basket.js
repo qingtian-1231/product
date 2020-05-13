@@ -1,5 +1,6 @@
 import { request } from '../../utils/request'
 import { globalUtils } from '../../utils/globalUtils'
+import {getCookie} from "../../utils/cookie";
 
 const state = {
   _format: 'json',
@@ -162,7 +163,14 @@ const actions = {
   },
 
   getCountries ({commit, state}) {
-    return request().get('api/order_address_field/resource/default/default/default', {
+    let requestPath = 'api/order_address_field/resource/default/default/default'
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + requestPath
+    }
+
+    return request().get(requestPath, {
       params: {
         _format: state._format
       }
@@ -177,7 +185,13 @@ const actions = {
   },
 
   getProvinces ({commit, state}, contryCode) {
-    return request().get('api/order_address_field/resource/' + contryCode +'/default/default', {
+    let requestPath = 'api/order_address_field/resource/' + contryCode +'/default/default'
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + requestPath
+    }
+    return request().get(requestPath, {
       params: {
         _format: state._format
       }
@@ -192,7 +206,13 @@ const actions = {
   },
 
   getCities ({commit, state}, payload) {
-    return request().get(`api/order_address_field/resource/${payload.country_code}/${payload.province_code}/default`, {
+    let requestPath = `api/order_address_field/resource/${payload.country_code}/${payload.province_code}/default`
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + requestPath
+    }
+    return request().get(requestPath, {
       params: {
         _format: state._format
       }
@@ -207,7 +227,13 @@ const actions = {
   },
 
   getLocals ({commit, state}, payload) {
-    return request().get(`api/order_address_field/resource/${payload.country_code}/${payload.province_code}/${payload.city_code}`, {
+    let requestPath = `api/order_address_field/resource/${payload.country_code}/${payload.province_code}/${payload.city_code}`
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + requestPath
+    }
+    return request().get(requestPath, {
       params: {
         _format: state._format
       }

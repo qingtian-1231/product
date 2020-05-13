@@ -7,7 +7,7 @@
       temporary
       width="100%"
       hide-overlay
-      height="calc(100% - 144px)"
+      height="100%"
       @input="updateLoginStatus"
       :class="hiddenTopAppBar ? 'hidden-to-app-bar' : ''"
     >
@@ -48,7 +48,7 @@
           >
             <template v-if="isLogin || loginSuccess">
               <v-card-title class="px-0 my-5">
-                <span class="headline">{{ displayName }}, 欢迎你</span>
+                <span class="headline">{{ displayName }}, {{ $t('global.welcome') }}</span>
                 <v-spacer></v-spacer>
                 <v-btn dark icon @click.stop="closeLoginSheet" class="black--text">
                   <v-icon>keyboard_arrow_left</v-icon>
@@ -60,17 +60,17 @@
                 <ul>
                   <li >
                     <router-link :to="{name: 'MyFavorites'}">
-                      <v-icon class="material-icons-outlined">star_outline</v-icon>我的收藏
+                      <v-icon class="material-icons-outlined">star_outline</v-icon>{{ $t('global.myFavorite') }}
                     </router-link>
                   </li>
                   <li >
                     <router-link :to="{name: 'OrderHistory'}">
-                      <v-icon class="material-icons-outlined">shopping_basket</v-icon>订单历史
+                      <v-icon class="material-icons-outlined">shopping_basket</v-icon>{{ $t('global.orderHistory') }}
                     </router-link>
                   </li>
                   <li >
                     <router-link :to="{name: 'AccountSetting'}">
-                      <v-icon class="material-icons-outlined">settings</v-icon>账户设置
+                      <v-icon class="material-icons-outlined">settings</v-icon>{{ $t('global.accountSetting') }}
                     </router-link>
                   </li>
                 </ul>
@@ -125,10 +125,12 @@
 <!--                  label="记住用户?"-->
 <!--                  required-->
 <!--                ></v-checkbox>-->
-
-                <v-btn block rounded color="secondary" dark @click="userLogin()">
-                  {{ $t('global.login') }}<v-icon right dark>keyboard_arrow_right</v-icon>
-                </v-btn>
+                <div class="html" style="line-height: 36px;">
+                  <small><a target="_blank" href="/forget-pass">Forgot your password?</a></small>
+                  <v-btn block rounded color="info" right dark @click="userLogin()">
+                    {{ $t('global.login') }}<v-icon right dark>keyboard_arrow_right</v-icon>
+                  </v-btn>
+                </div>
               </v-form>
             </template>
           </v-card>
@@ -147,18 +149,21 @@
             <v-divider class="py-5"></v-divider>
 
             <blockquote class="blockquote px-0 py-8">
-              {{ $t('home.middleContent.registerDescription') }}
+              <router-link :to="{ name: 'Register' }" class="special-color" style="text-transform: capitalize">
+                {{ $t('global.register') }} !
+              </router-link>
+              {{ $t('home.middleContent.registerDescriptionPart') }}
             </blockquote>
-            <router-link :to="{name: 'Register'}">
-              <v-btn
-                block
-                rounded
-                color="secondary"
-                dark
-              >
-                {{ $t('global.register') }}<v-icon right dark>keyboard_arrow_right</v-icon>
-              </v-btn>
-            </router-link>
+<!--            <router-link :to="{name: 'Register'}">-->
+<!--              <v-btn-->
+<!--                block-->
+<!--                rounded-->
+<!--                color="secondary"-->
+<!--                dark-->
+<!--              >-->
+<!--                {{ $t('global.register') }}<v-icon right dark>keyboard_arrow_right</v-icon>-->
+<!--              </v-btn>-->
+<!--            </router-link>-->
           </v-card>
         </v-col>
       </v-row>
@@ -218,11 +223,11 @@
         userPass: '',
         rememberMe: false,
         rules: {
-          required: v => !!v || '必须.',
-          min: v => v.length >= 8 || '至少8位字符',
-          max: v => v.length <= 20 || '不能超过20位字符',
-          emailMatch: v => (/.+@.+\..+/.test(v) || '请输入合法的email地址'),
-          confirmPass: v => this.password === v || '确认密码不正确'
+          required: v => !!v || this.$t('global.required'),
+          min: v => v.length >= 8 || this.$t('global.min'),
+          max: v => v.length <= 20 || this.$t('global.max'),
+          emailMatch: v => (/.+@.+\..+/.test(v) || this.$t('global.emailMatch')),
+          confirmPass: v => this.password === v || this.$t('global.confirmPass')
         },
         paddingTop: 144,
       }
@@ -425,5 +430,12 @@
       }
     }
 
+  }
+
+  .html {
+
+    button {
+      float: right;
+    }
   }
 </style>

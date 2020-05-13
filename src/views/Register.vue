@@ -129,7 +129,7 @@
 
           <div class="bottom row text-center mx-0">
             <v-col cols="12" md="6" sm="12">
-              <v-btn class="ma-2" block rounded color="success" @click="$router.back(-1)">
+              <v-btn class="ma-2" block rounded color="info" @click="$router.back(-1)">
                 {{ $t('global.cancel') }}
                 <v-icon right>close</v-icon>
               </v-btn>
@@ -149,6 +149,7 @@
 </template>
 <script>
   import { request } from '../utils/request'
+  import $ from 'jquery'
 
   export default {
     name: 'online-request-form',
@@ -158,15 +159,15 @@
         businessModelList: [
           {
             code: 'Manufacturing',
-            name: '生产型企业',
+            name: this.$t('businessModelList.Manufacturing'),
           },
           {
             code: 'Trade',
-            name: '贸易型企业'
+            name: this.$t('businessModelList.Trade'),
           },
           {
             code: 'Research Institutes',
-            name: '科研机构'
+            name: this.$t('businessModelList.ResearchInstitutes')
           }
         ],
         alertMessage: '',
@@ -185,25 +186,25 @@
         businessModel: {},
         companyPosition: '',
         rules: {
-          required: v => !!v || '必须.',
-          min: v => v.length >= 8 || '至少8位字符',
-          max: v => v.length <= 20 || '不能超过20位字符',
-          emailMatch: v => (/.+@.+\..+/.test(v) || '请输入合法的email地址'),
-          confirmPass: v => this.password === v || '确认密码不正确',
+          required: v => !!v || this.$t('global.required'),
+          min: v => v.length >= 8 || this.$t('global.min'),
+          max: v => v.length <= 20 || this.$t('global.max'),
+          emailMatch: v => (/.+@.+\..+/.test(v) || this.$t('global.emailMatch')),
+          confirmPass: v => this.password === v || this.$t('global.confirmPass'),
           chineseVarchar: v => {
             let reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/
 
-            return !reg.test(v) || '用户名仅能包含英文字符下划线或者数字'
+            return !reg.test(v) || this.$t('global.chineseVarchar')
           },
           FullwidthChar: v => {
             let reg = /[\uFF00-\uFFEF]/
 
-            return !reg.test(v) || '您输入了非法的全角字符'
+            return !reg.test(v) || this.$t('global.FullwidthChar')
           },
           invilideChar: v => {
             let reg = /[`~!@#$%^&*()+=<>?:|"{},\\./;'[\]]/
 
-            return !reg.test(v) || '您输入了非法字符'
+            return !reg.test(v) || this.$t('global.invilideChar')
           }
         },
       }
@@ -283,6 +284,12 @@
         this.alertClass = ''
         this.alert = false
       },
+    },
+
+    mounted () {
+      $('#register-form').find('input').each((index, item) => {
+        $(item).attr('autocomplete', 'off')
+      })
     }
   }
 </script>

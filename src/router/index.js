@@ -16,6 +16,8 @@ import FormulationsFilter from '../views/FormulationsFilter'
 import MyFavorites from '../views/MyFavorites'
 import OrderHistory from '../views/OrderHistory'
 import AccountSetting from '../views/AccountSetting'
+import ForgetPass from '../views/ForgetPass'
+import ResetPass from '../views/ResetPass'
 import Unauthorized from '../views/Unauthorized'
 
 Vue.use(Router)
@@ -190,6 +192,16 @@ export default new Router({
       path: '/unauthorized',
       name: 'Unauthorized',
       component: Unauthorized
+    },
+    {
+      path: '/forget-pass',
+      name: 'ForgetPass',
+      component: ForgetPass
+    },
+    {
+      path: '/reset-pass/:tempPass',
+      name: 'ResetPass',
+      component: ResetPass
     },
     {
       path: '/notfound',

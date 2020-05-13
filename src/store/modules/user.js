@@ -13,7 +13,8 @@ const state = {
   currentUser: {},
   favoriteProductList: [],
   favoriteFormulationList: [],
-  orderHistory:[]
+  orderHistory:[],
+  CurrentUserField: {},
 };
 
 const mutations = {
@@ -36,24 +37,6 @@ const mutations = {
 
       return item
     })
-  },
-
-  GET_USER_LIST(state, payload) {
-    state.userList = payload.users;
-  },
-
-  ATTACH_FOLLOWER(state, follower) {
-    state.currentUser.followers.push(follower);
-  },
-
-  DETACH_FOLLOWER(state, followerId) {
-    let index = state.currentUser.followers.findIndex(follower => {
-      return follower.user_id === followerId;
-    });
-
-    if (index >= 0) {
-      state.currentUser.followers.splice(index, 1);
-    }
   },
 
   removeFavoriteProduct(state, productUuid) {
@@ -88,11 +71,15 @@ const mutations = {
     state.currentUser = payload.user;
   },
 
-  SET_USERSTAT(state, userstat) {
-    if (state.currentUser && state.currentUser.id) {
-      state.currentUser.userstat = userstat;
+  processCurrentUserFields(state, payload) {
+    for (let item in payload) {
+      if (!state.currentUser.hasOwnProperty(item) && payload[item].length === 1) {
+        state.currentUser[item] = payload[item][0].value
+      }
     }
-  },
+
+    console.log(state.currentUser, 'state.currentUser')
+  }
 };
 
 const actions = {
@@ -184,65 +171,7 @@ const actions = {
   },
 
   // 保存用户当前设置到userstats，如果userstats记录不存在则新建, 如果userstats记录已存在则更新
-  updateUserSettings({ commit, state }) {
-    if (state.isLogin) {
-      // 如果userstats记录已存在则更新
-      if (state.currentUser.userstat && state.currentUser.userstat.id) {
-        return request()
-          .put("/userstats/" + state.currentUser.userstat.user_id, {
-            userstats: [
-              {
-                id: state.currentUser.userstat.id,
-                user_id: state.currentUser.userstat.user_id,
-                community_id: state.settings.selectedCommunityId,
-                defaultlanguage_only: state.settings.onlyChinese
-              }
-            ]
-          })
-          .then(
-            res => {
-              commit("SET_USERSTAT", res.data.userstats[0]);
-              return Promise.resolve(res);
-            },
-            err => {
-              return Promise.resolve(err);
-            }
-          )
-          .catch(function(error) {
-            console.log(error);
-            return Promise.resolve(error);
-          });
-      } else {
-        // 如果userstats记录不存在则新建
-        return request()
-          .post("/userstats", {
-            userstats: [
-              {
-                user_id: state.currentUser.id,
-                total_posts: 0,
-                total_favorites: 0,
-                community_id: state.settings.selectedCommunityId,
-                defaultlanguage_only: state.settings.onlyChinese
-              }
-            ]
-          })
-          .then(
-            res => {
-              commit("SET_USERSTAT", res.data.userstats[0]);
-              return Promise.resolve(res);
-            },
-            err => {
-              return Promise.resolve(err);
-            }
-          )
-          .catch(function(error) {
-            console.log(error);
-            return Promise.resolve(error);
-          });
-      }
-    } else {
-      return Promise.resolve();
-    }
+  forgetPass({ commit, state }, mail) {
   },
 
   getCurrentUserFields ({ commit, state }) {
@@ -260,6 +189,7 @@ const actions = {
           }
         })
         .then((response) => {
+          commit('processCurrentUserFields', response.data)
           return Promise.resolve(response)
         })
         .catch(error => {

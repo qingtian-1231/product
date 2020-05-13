@@ -1,7 +1,7 @@
 <template>
   <div class="order-list">
     <template v-if="!shoppingCart.length && !cart.length">
-      <h1 class="empty-cart">您的样品订单为空，请添加产品！</h1>
+      <h1 class="empty-cart">{{ $t('sampleOrder.orderList.emptyCart') }}</h1>
     </template>
 
     <template v-if="shoppingCart.length">
@@ -68,7 +68,7 @@
           </template>
         </v-simple-table>
         <div class="pagination">
-          <v-btn color="info" class="float-left" @click="$router.back(-1)">
+          <v-btn color="warning" class="float-left" @click="$router.back(-1)">
             {{ $t('sampleOrder.orderList.cancel') }}
           </v-btn>
           <v-btn class="float-right" color="primary" @click="addCart()">
@@ -138,7 +138,7 @@
             </template>
           </v-simple-table>
           <div class="pagination">
-            <v-btn color="info" class="float-left" @click="cancelOrder(cartOrder.order_id)">
+            <v-btn color="warning" class="float-left" @click="cancelOrder(cartOrder.order_id)">
               {{ $t('sampleOrder.orderList.cancelOrder') }}
             </v-btn>
             <v-btn class="float-right" color="primary" @click="shippingOrder(cartOrder)">

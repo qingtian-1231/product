@@ -86,7 +86,7 @@
                     >
                       <v-list-item-title>
                         <span>{{ product.title }}</span>
-                        <span>{{ product.field_benefits }}</span>
+                        <span v-html="product.body"></span>
                       </v-list-item-title>
                     </v-list-item-content>
 
@@ -349,6 +349,9 @@ export default {
       if (vm.productQuery.hasOwnProperty("industry")) {
         let subIds = []
         subIds = vm.getChildrenIds(vm.taxonomyProductApplication, vm.productQuery.industry)
+        if (!subIds) {
+          subIds = [];
+        }
         filter.product_application_ids = vm.productQuery.industry + '+' + subIds.join('+')
       }
 
@@ -364,6 +367,9 @@ export default {
       if (vm.productQuery.hasOwnProperty("product_brand")) {
         let subIds = []
         subIds = vm.getChildrenIds(vm.taxonomyProductBrand, vm.productQuery.product_brand);
+        if (!subIds) {
+          subIds = [];
+        }
         filter.product_brand_ids = vm.productQuery.product_brand + '+' + subIds.join('+')
       }
 

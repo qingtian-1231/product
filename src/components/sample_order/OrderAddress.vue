@@ -119,7 +119,7 @@
 
     <div class="pagination">
       <v-btn
-        color="info"
+        color="warning"
         class="float-left"
         @click="backPrevStep()"
       >
@@ -168,11 +168,11 @@
         address_line2: '',
         organization: '',
         rules: {
-          required: v => !!v || '必须.',
-          min: v => v.length >= 8 || '至少8位字符',
-          max: v => v.length <= 20 || '不能超过20位字符',
-          emailMatch: v => (/.+@.+\..+/.test(v) || '请输入合法的email地址'),
-          confirmPass: v => this.password === v || '确认密码不正确'
+          required: v => !!v || this.$t('global.required'),
+          min: v => v.length >= 8 || this.$t('global.min'),
+          max: v => v.length <= 20 || this.$t('global.max'),
+          emailMatch: v => (/.+@.+\..+/.test(v) || this.$t('global.emailMatch')),
+          confirmPass: v => this.password === v || this.$t('global.confirmPass')
         },
       }
     },

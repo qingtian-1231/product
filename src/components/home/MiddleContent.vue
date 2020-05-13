@@ -14,7 +14,7 @@
 
         <p class="buy-link">
            <v-icon>chevron_right</v-icon>
-           <a aria-label="Link to Shopify" href="https://m.1688.com/page/offerlist.html?spm=a262to.11649723.category_view.12&catId=98047612&catPid=&isUserDefined=true&title=%E4%B9%B3%E6%B6%B2%E5%8F%8A%E9%85%8D%E6%96%B9%E5%8A%A9%E5%89%82&memberId=b2b-2123073290" target="_blank" rel="noopener noreferrer">
+           <a aria-label="Link to Shopify" href="https://basfinchina.1688.com/page/offerlist_98047612.htm?spm=a2615.7691456.autotrace-categoryNavNew.7.5836dc8buyLxDr" target="_blank" rel="noopener noreferrer">
              {{ $t('home.footer.link_buy_site') }}
            </a>
          </p>

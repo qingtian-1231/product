@@ -48,7 +48,7 @@
             </v-col>
 
             <v-col cols="12" md="6" sm="12" class="mx-0">
-              <v-btn class="ma-2" right block rounded color="success" @click="sendFeedback()">
+              <v-btn class="ma-2" right block rounded color="info" @click="sendFeedback()">
                 {{ $t('global.submit') }}
                 <v-icon right>keyboard_arrow_right</v-icon>
               </v-btn>
@@ -72,8 +72,8 @@
         feedback_content: '',
         email_address: '',
         rules: {
-          required: v => !!v || '必须.',
-          emailMatch: v => (/.+@.+\..+/.test(v) || '请输入合法的email地址')
+          required: v => !!v || this.$t('global.required'),
+          emailMatch: v => (/.+@.+\..+/.test(v) || this.$t('global.emailMatch'))
         },
       }
     },

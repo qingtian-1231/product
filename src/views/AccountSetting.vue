@@ -1,6 +1,6 @@
 <template>
   <v-container
-    id="register"
+    id="account-setting"
     tag="section"
   >
     <div class="header">
@@ -18,7 +18,7 @@
       >
         {{alertMessage}}
       </v-alert>
-      <template v-if="registerSuccess">
+      <template v-if="accountSettingSuccess">
         <div class="success_message">
           <h2>
             <v-icon color="primary">check_circle_outline</v-icon>
@@ -36,13 +36,24 @@
       </template>
 
       <template v-else>
-        <v-form ref="registerForm" id="register-form" class="form" v-model="registerValid" lazy-validation>
+        <v-form ref="accountSettingForm" id="account-setting-form" class="form" v-model="accountSettingValid" lazy-validation>
+          <div class="bottom row text-center mx-0">
+            <v-col cols="6" md="6" sm="0" class="mx-0">
+            </v-col>
+            <v-col cols="6" md="6" sm="12" class="mx-0" style="text-align: right">
+              <v-btn class="ma-2" right block rounded color="info" @click="accountSettingEdit()">
+                {{ $t('accountSetting.edit') }}
+                <v-icon right>keyboard_arrow_right</v-icon>
+              </v-btn>
+            </v-col>
+          </div>
+
           <v-row>
             <v-col cols="12" sm="6">
               <v-text-field
                 :label="$t('global.email')"
                 outlined
-                :disabled="disabled"
+                :disabled="true"
                 :rules="[rules.required, rules.emailMatch]"
                 v-model="userMail"
               ></v-text-field>
@@ -99,39 +110,60 @@
                 v-model="companyPosition"
               ></v-text-field>
             </v-col>
-
-            <v-col cols="12" sm="6">
-              <v-text-field
-                :label="$t('global.passWord')"
-                :disabled="disabled"
-                outlined
-                v-model="password"
-                :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.min]"
-                :type="passwordShow ? 'text' : 'password'"
-                counter
-                @click:append="passwordShow = !passwordShow"
-              ></v-text-field>
-            </v-col>
-
-            <v-col cols="12" sm="6">
-              <v-text-field
-                :label="$t('global.repeatPass')"
-                :disabled="disabled"
-                outlined
-                v-model="rePassword"
-                :append-icon="rePasswordShow ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.confirmPass]"
-                :type="rePasswordShow ? 'text' : 'password'"
-                counter
-                @click:append="rePasswordShow = !rePasswordShow"
-              ></v-text-field>
-            </v-col>
           </v-row>
 
+          <div class="d-flex">
+            <v-checkbox
+              v-model="passDisabled"
+              label="修改密码"
+            ></v-checkbox>
+          </div>
+
+          <v-expansion-panels
+            v-model="panel"
+            :disabled="passDisabled"
+            multiple
+          >
+            <v-expansion-panel>
+              <v-expansion-panel-header>密码修改</v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-row>
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      :label="$t('global.currentPass')"
+                      :disabled="disabled"
+                      outlined
+                      v-model="currentPassword"
+                      :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
+                      :rules="[rules.required, rules.min]"
+                      :type="passwordShow ? 'text' : 'password'"
+                      counter
+                      @click:append="passwordShow = !passwordShow"
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      :label="$t('global.newPassWord')"
+                      :disabled="disabled"
+                      outlined
+                      v-model="newPassword"
+                      :append-icon="rePasswordShow ? 'mdi-eye' : 'mdi-eye-off'"
+                      :rules="[rules.required, rules.confirmPass]"
+                      :type="rePasswordShow ? 'text' : 'password'"
+                      counter
+                      @click:append="rePasswordShow = !rePasswordShow"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
           <div class="bottom row text-center mx-0">
-            <v-col cols="12" md="6" sm="12" class="mx-0">
-              <v-btn class="ma-2" right block rounded color="info" @click="registerUser()">
+            <v-col cols="6" md="6" sm="0" class="mx-0">
+            </v-col>
+            <v-col cols="6" md="6" sm="12" class="mx-0" style="text-align: right">
+              <v-btn class="ma-2" right block rounded color="info" @click="userAccountSetting()">
                 {{ $t('accountSetting.confirm') }}
                 <v-icon right>keyboard_arrow_right</v-icon>
               </v-btn>
@@ -144,6 +176,7 @@
 </template>
 <script>
   import { request } from '../utils/request'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'account-setting',
@@ -154,26 +187,26 @@
         businessModelList: [
           {
             code: 'Manufacturing',
-            name: '生产型企业',
+            name: this.$t('businessModelList.Manufacturing'),
           },
           {
             code: 'Trade',
-            name: '贸易型企业'
+            name: this.$t('businessModelList.Trade'),
           },
           {
             code: 'Research Institutes',
-            name: '科研机构'
+            name: this.$t('businessModelList.ResearchInstitutes')
           }
         ],
         alertMessage: '',
         alertClass: '',
         alert: false,
-        registerSuccess: false,
-        registerValid: true,
+        accountSettingSuccess: false,
+        accountSettingValid: true,
         passwordShow: false,
         rePasswordShow: false,
-        password: '',
-        rePassword: '',
+        currentPassword: '',
+        newPassword: '',
         userAccountName: '',
         userMail: '',
         companyName: '',
@@ -181,28 +214,38 @@
         businessModel: {},
         companyPosition: '',
         rules: {
-          required: v => !!v || '必须.',
-          min: v => v.length >= 8 || '至少8位字符',
-          max: v => v.length <= 20 || '不能超过20位字符',
-          emailMatch: v => (/.+@.+\..+/.test(v) || '请输入合法的email地址'),
-          confirmPass: v => this.password === v || '确认密码不正确',
+          required: v => !!v || this.$t('global.required'),
+          min: v => v.length >= 8 || this.$t('global.min'),
+          max: v => v.length <= 20 || this.$t('global.max'),
+          emailMatch: v => (/.+@.+\..+/.test(v) || this.$t('global.emailMatch')),
+          confirmPass: v => this.password === v || this.$t('global.confirmPass'),
           chineseVarchar: v => {
             let reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/
 
-            return !reg.test(v) || '用户名仅能包含英文字符下划线或者数字'
+            return !reg.test(v) || this.$t('global.chineseVarchar')
           },
           FullwidthChar: v => {
             let reg = /[\uFF00-\uFFEF]/
 
-            return !reg.test(v) || '您输入了非法的全角字符'
+            return !reg.test(v) || this.$t('global.FullwidthChar')
           },
           invilideChar: v => {
             let reg = /[`~!@#$%^&*()+=<>?:|"{},\\./;'[\]]/
 
-            return !reg.test(v) || '您输入了非法字符'
+            return !reg.test(v) || this.$t('global.invilideChar')
           }
         },
+        panel: [],
+        passDisabled: true,
+        readonly: false,
       }
+    },
+
+    computed: {
+      ...mapState({
+        isLogin: state => state.user.isLogin,
+        currentUser: state => state.user.currentUser
+      }),
     },
 
     methods: {
@@ -210,38 +253,53 @@
         this.$emit('fatherMethod')
       },
 
-      registerUser () {
+      accountSettingEdit () {
+        this.disabled = false
+      },
+
+      userAccountSetting () {
         let vm = this
-        if (vm.$refs.registerForm.validate()) {
+        let data = {}
+        if (vm.$refs.accountSettingForm.validate()) {
           vm.$loading.show()
-          request().post('/user/register?_format=hal_json',
-            {
-              "name": {
-                "value": vm.userMail
-              },
-              "mail":{
-                "value": vm.userMail
-              },
-              "pass":{
-                "value": vm.password
-              },
-              "field_company_name": {
+          data = {
+            "field_company_name": [
+              {
                 "value": vm.companyName
-              },
-              "field_user_account_name": {
+              }
+            ],
+            "field_user_account_name": [
+              {
                 "value": vm.userAccountName
-              },
-              "field_phone": {
+              }
+            ],
+            "field_phone": [
+              {
                 "value": vm.phone
-              },
-              "field_business_model": {
-                "value": vm.businessModel.code
-              },
-              "field_company_position": {
+              }
+            ],
+            "field_business_model": [
+              {
+                "value": vm.businessModel.code ? vm.businessModel.code : vm.businessModel
+              }
+            ],
+            "field_company_position": [
+              {
                 "value": vm.companyPosition
               }
-            }
-          )
+            ]
+          }
+
+          if (vm.currentPassword && vm.newPassword) {
+            data.pass = [
+              {
+                "value": vm.newPassword,
+                "existing": vm.currentPassword
+              }
+            ]
+          }
+
+          request().post(`/user/${vm.currentUser.uid}?_format=hal_json`, data)
             .then(res => {
               if (res.status === '200' || res.statusText === 'OK') {
                 vm.registerSuccess = true
@@ -279,11 +337,24 @@
         this.alertClass = ''
         this.alert = false
       },
+    },
+
+    mounted () {
+      let vm = this
+
+      if (vm.currentUser) {
+        vm.userMail = vm.currentUser.mail
+        vm.userAccountName = vm.currentUser.field_user_account_name
+        vm.companyName = vm.currentUser.field_company_name
+        vm.phone = vm.currentUser.field_phone
+        vm.businessModel = vm.currentUser.field_business_model
+        vm.companyPosition = vm.currentUser.field_company_position
+      }
     }
   }
 </script>
 <style lang="scss" scoped>
-  #register {
+  #account-setting {
     margin: 30px auto;
     background-color: #fff;
     text-align: center;

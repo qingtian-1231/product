@@ -134,7 +134,8 @@
   import Basket from '../Basket'
   import MenuLinks from '../base/Menu'
   import { debounce } from '../../utils/globalUtils'
-  import { getCookie } from "../../utils/cookie";
+  import { getCookie } from "../../utils/cookie"
+  import $ from 'jquery'
 
   export default {
     components: { Logo, Basket, MenuLinks },
@@ -182,11 +183,23 @@
       openGlobalSearch () {
         if (this.$router.history.current.name === 'Home') {
           this.$store.commit('changeSearchFocus')
+          let scrollHeight = $('.search-content').offset().top / 2 + 50
+          this.scrollTop(scrollHeight)
+
+          $('.search-content').find('input').focus()
         }
         else {
           this.headerMenuClass = 'header-main-menu d-none'
           this.searchGlobalClass = 'search fadeRight-enter-active'
         }
+      },
+
+      scrollTop (scrollHeight) {
+        window.scrollTo({
+          top: scrollHeight,
+          left: 0,
+          behavior: 'smooth'
+        });
       },
 
       flushCom () {

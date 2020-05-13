@@ -72,6 +72,8 @@ class OrderAddressFieldResource extends ResourceBase {
    */
   public function get($contry_code_default, $state_code_default, $city_code_default) {
     $return = [];
+    $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+
     if ($contry_code_default === 'default' && $state_code_default === 'default' && $city_code_default === 'default') {
       $countries = \Drupal\Core\Locale\CountryManager::getStandardList();
       foreach ($countries as $contry_code => $contry) {
@@ -88,7 +90,7 @@ class OrderAddressFieldResource extends ResourceBase {
       foreach ($states as $state_code => $state) {
         $return[] = [
           'code' => $state_code,
-          'name' => $state->getLocalName(),
+          'name' => $language === 'en' ? $state->getName() : $state->getLocalName(),
         ];
       }
     }
@@ -103,7 +105,7 @@ class OrderAddressFieldResource extends ResourceBase {
         foreach ($cities as $city_code => $city) {
           $return[] = [
             'code' => $city_code,
-            'name' => $city->getLocalName(),
+            'name' => $language === 'en' ? $city->getName() : $city->getLocalName(),
           ];
         }
       }
@@ -121,7 +123,7 @@ class OrderAddressFieldResource extends ResourceBase {
         foreach ($locals as $local_code => $local) {
           $return[] = [
             'code' => $local_code,
-            'name' => $local->getLocalName(),
+            'name' => $language === 'en' ? $local->getName() : $local->getLocalName(),
           ];
         }
       }

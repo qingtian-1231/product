@@ -89,7 +89,8 @@
     "drupal/file_delete": "^1.0",
     "drupal/mailsystem": "^4.3",
     "drupal/adminimal_theme": "^1.5",
-    "drupal/swiftmailer": "^1.0@beta"
+    "drupal/swiftmailer": "^1.0@beta",
+    "drupal/rest_password": "^1.6"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

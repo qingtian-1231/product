@@ -414,3 +414,94 @@ function pro_core_update_8003() {
 
     fclose($handle);
 }
+
+/**
+ * 导入配方数据
+ *
+ */
+function pro_core_update_8004() {
+    Environment::setTimeLimit(1000);
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $storageCommerceProduct = $entity_type_manager->getStorage('commerce_product');
+    $source_file = drupal_get_path('module', 'pro_core') . '/example_data/formulation.csv';
+    $handle = fopen($source_file, "r");
+
+    $jump = 0;
+    while (($data = fgetcsv($handle)) !== false) {
+      //下面这行代码可以解决中文字符乱码问题
+      $jump++;
+
+      // 跳过前两行标题
+      if ($jump == 1 || $jump == 2) {
+        continue;
+      }
+
+      $field_formulation_industry = [];
+      if (!empty($data[4])) {
+        $formulation_industry_array = explode('#', $data[4]);
+        foreach ($formulation_industry_array as $item) {
+          array_push($field_formulation_industry, Term::load($item));
+        }
+      }
+
+      $field_formula_composition = [];
+      if (!empty($data[7])) {
+        $formulation_array = explode('#', $data[7]);
+        foreach ($formulation_array as $item) {
+          if (strpos($item, '总计') !== false) {
+            continue;
+          }
+          else {
+            $formulations = explode(';', $item);
+            $commerceProduct = $storageCommerceProduct->loadByProperties(['title' => $formulations[0]]);
+
+            if (count($commerceProduct) > 0) {
+              // basf 产品
+              $commerceProduct = reset($commerceProduct);
+
+              $paragraph = Paragraph::create([
+                'type' => 'basf_product',
+                'field_part_basf_product' => [
+                  'target_id' => $commerceProduct->product_id->getValue()[0]['value'],
+                ],
+                'field_basf_work' => isset($formulations[1]) ? $formulations[1] : '',
+                'field_proportion_char' => isset($formulations[2]) ? $formulations[2] : ''
+              ]);
+
+            } else {
+              $paragraph = Paragraph::create([
+                'type' => 'normal_product',
+                'field_part_normal_product' => [
+                  $formulations[0],
+                ],
+                'field_work' => isset($formulations[1]) ? $formulations[1] : '',
+                'field_proportion_char' => isset($formulations[2]) ? $formulations[2] : ''
+              ]);
+            }
+
+            $paragraph->save();
+
+            array_push($field_formula_composition, [
+              'target_id' => $paragraph->id(),
+              'target_revision_id' => $paragraph->getRevisionId(),
+            ]);
+          }
+        }
+      }
+
+      $node = Node::create([
+        'type' => 'formulation',
+        'uid' => 1,
+        'title' => $data[0],
+        'field_formulation_number' => [$data[0]],
+        'field_formulation_name' => [$data[1]],
+        'field_formula_composition' => $field_formula_composition,
+        'field_formulationbenefits' => !empty($data[6]) ? $data[6] : '',
+        'field_formulation_industry' => $field_formulation_industry,
+      ]);
+
+      $node->save();
+    }
+
+    fclose($handle);
+  }

@@ -15,7 +15,7 @@
         <li :key="index" v-if="item.value.length">
           <div class="item-property">
             <span>
-              <v-icon class="material-icons-outlined">colorize</v-icon>
+<!--              <v-icon class="material-icons-outlined">colorize</v-icon>-->
             </span>
             <span>
               {{ item.label }}

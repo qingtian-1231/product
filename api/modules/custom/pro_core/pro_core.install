@@ -505,3 +505,100 @@ function pro_core_update_8004() {
 
     fclose($handle);
   }
+
+
+/**
+ * 导入配方翻译
+ *
+ */
+function pro_core_update_8005() {
+    Environment::setTimeLimit(1000);
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $storageCommerceProduct = $entity_type_manager->getStorage('commerce_product');
+    $storageFormulation = $entity_type_manager->getStorage('node');
+    $source_file = drupal_get_path('module', 'pro_core') . '/example_data/formulation_en.csv';
+    $handle = fopen($source_file, "r");
+
+    $jump = 0;
+    while (($data = fgetcsv($handle)) !== false) {
+      //下面这行代码可以解决中文字符乱码问题
+      $jump++;
+
+      // 跳过前两行标题
+      if ($jump == 1 || $jump == 2) {
+        continue;
+      }
+
+      $field_formulation_industry = [];
+      if (!empty($data[4])) {
+        $formulation_industry_array = explode('#', $data[4]);
+        foreach ($formulation_industry_array as $item) {
+          array_push($field_formulation_industry, Term::load($item));
+        }
+      }
+
+      $field_formula_composition = [];
+      if (!empty($data[7])) {
+        $formulation_array = explode('#', $data[7]);
+        foreach ($formulation_array as $item) {
+          if (strpos($item, 'Total') !== false) {
+            continue;
+          }
+          else {
+            $formulations = explode(';', $item);
+            $commerceProduct = $storageCommerceProduct->loadByProperties(['title' => $formulations[0]]);
+
+            if (count($commerceProduct) > 0) {
+              // basf 产品
+              $commerceProduct = reset($commerceProduct);
+
+              $paragraph = Paragraph::create([
+                'type' => 'basf_product',
+                'field_part_basf_product' => [
+                  'target_id' => $commerceProduct->product_id->getValue()[0]['value'],
+                ],
+                'field_basf_work' => isset($formulations[1]) ? $formulations[1] : '',
+                'field_proportion_char' => isset($formulations[2]) ? $formulations[2] : ''
+              ]);
+
+            } else {
+              $paragraph = Paragraph::create([
+                'type' => 'normal_product',
+                'field_part_normal_product' => [
+                  $formulations[0],
+                ],
+                'field_work' => isset($formulations[1]) ? $formulations[1] : '',
+                'field_proportion_char' => isset($formulations[2]) ? $formulations[2] : ''
+              ]);
+            }
+
+            $paragraph->save();
+
+            array_push($field_formula_composition, [
+              'target_id' => $paragraph->id(),
+              'target_revision_id' => $paragraph->getRevisionId(),
+            ]);
+          }
+        }
+      }
+
+      $formulation = $storageFormulation->loadByProperties(['title' => $data[0]]);
+      $formulation = reset($formulation);
+
+      if ($formulation && !$formulation->hasTranslation('en')) {
+        $entity_array = $formulation->toArray();
+        $translated_fields = [];
+        $translated_fields['title'] = $data[0];
+        $translated_fields['field_formulation_number'] = $data[0];
+        $translated_fields['field_formulation_name'] = $data[1];
+        $translated_fields['field_formulationbenefits'] = !empty($data[6]) ? $data[6] : '';
+        $translated_fields['field_formulation_industry'] = $field_formulation_industry;
+        $translated_fields['field_formula_composition'] = $field_formula_composition;
+
+        $translated_entity_array = array_merge($entity_array, $translated_fields);
+        $formulation->addTranslation('en', $translated_entity_array)->save();
+      }
+    }
+
+    fclose($handle);
+  }

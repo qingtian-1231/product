@@ -33,6 +33,7 @@ class ProductResource extends ResourceBase {
     $entity_manager = \Drupal::entityManager();
     $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
     $entity = $entity_manager->loadEntityByUuid('commerce_product', $id);
+    $product_id = $entity->product_id->getValue()[0]['value'];
     $product = [];
     $filter_fields = [
       'type',
@@ -127,14 +128,23 @@ class ProductResource extends ResourceBase {
                   ];
                   break;
 
-//                case 'field_product_type':
-//                  $value = $this->processTerm($field_item_list);
-//
-//                  $product[$field] = [
-//                    'label' => $field_definition->getLabel(),
-//                    'value' => $value,
-//                  ];
-//                  break;
+                case 'field_formulation':
+                  $paragraphStorage = \Drupal::entityTypeManager()->getStorage('paragraph');
+                  $paragraphs = $paragraphStorage->loadByProperties(['field_part_basf_product' => $product_id]);
+                  $value = [];
+                  if (count($paragraphs) > 0) {
+                    foreach ($paragraphs as $key => $paragraph) {
+                      $formulation_array = $paragraph->getParentEntity()->toArray();
+                      $value[$key]['field_formulation_name'] = !empty($formulation_array['field_formulation_name']) ? $formulation_array['field_formulation_name'][0]['value'] : '';
+                      $value[$key]['uuid'] = $formulation_array['uuid'][0]['value'];
+                    }
+                    $product[$field] = [
+                      'label' => $field_definition->getLabel(),
+                      'value' => array_unique($value, SORT_REGULAR),
+                    ];
+                  }
+
+                  break;
 
                 default:
                   $entity_reference_value = [];
@@ -158,9 +168,16 @@ class ProductResource extends ResourceBase {
               $value = [];
               $host = \Drupal::request()->getSchemeAndHttpHost();
               foreach ($field_item_list as $field_item) {
+                $decription_array = [];
+                $decription = $field_item->getValue()['description'];
+                if ($decription) {
+                  $decription_array = explode('#', $decription);
+                }
+
                 $value[] = [
                   'url' => $host . '/file-download/download/public/' . $field_item->entity->fid->value,
-                  'description' => $field_item->getValue()['description'],
+                  'description' => isset($decription_array[0]) ? $decription_array[0] : '',
+                  'version' => isset($decription_array[1]) ? $decription_array[1] : '',
                   'changed' => date('Y-m-d', $field_item->entity->changed->value),
                 ];
               }

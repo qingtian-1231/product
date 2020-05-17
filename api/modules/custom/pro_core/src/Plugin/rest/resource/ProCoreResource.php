@@ -7,6 +7,7 @@ use Drupal\rest\ResourceResponse;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\Component\Utility\Environment;
 
 /**
  * Provides a Demo Resource
@@ -423,6 +424,74 @@ class ProCoreResource extends ResourceBase {
 
         $translated_entity_array = array_merge($entity_array, $translated_fields);
         $commerceProduct->addTranslation('en', $translated_entity_array)->save();
+      }
+    }
+
+    fclose($handle);
+  }
+
+  function pro_core_update_8004() {
+    Environment::setTimeLimit(1000);
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $storageCommerceProduct = $entity_type_manager->getStorage('commerce_product');
+    $targetDirectory = 'public://product-introduce-files/';
+    $source_file = drupal_get_path('module', 'pro_core') . '/example_data/product_files.csv';
+    $handle = fopen($source_file, "r");
+
+    if (!is_dir($targetDirectory)) {
+      /** @var \Drupal\Core\File\FileSystemInterface $file_system */
+      $file_system = \Drupal::service('file_system');
+      $file_system->mkdir($targetDirectory);
+    }
+
+    $jump = 0;
+
+    while (($data = fgetcsv($handle)) !== false) {
+      //下面这行代码可以解决中文字符乱码问题
+      $jump++;
+
+      // 跳过前两行标题
+      if ($jump == 1) {
+        continue;
+      }
+
+      $commerceProduct = $storageCommerceProduct->loadByProperties(['title' => $data[3]]);
+      if (count($commerceProduct) > 0) {
+        $commerceProduct = reset($commerceProduct);
+        $source_file = drupal_get_path('module', 'pro_core') . '/product_files/' . $data[5];
+        if (file_exists($source_file)) {
+          $file_data = file_get_contents($source_file);
+          $file = file_save_data($file_data, 'public://product-introduce-files/' . $data[5], FILE_EXISTS_REPLACE);
+
+          $commerceProduct->field_product_file = [
+            'target_id' => $file->id(),
+            'display' => 1,
+            'description' => $data[4] . '#' . $data[6],
+          ];
+
+          $commerceProduct->save();
+        }
+        else {
+          \Drupal::logger('pro_core')->notice($data[3] . '中文文件不存在');
+        }
+
+        if ($commerceProduct->hasTranslation('en')) {
+          $transCommerceProduct = $commerceProduct->getTranslation('en');
+          $source_file = drupal_get_path('module', 'pro_core') . '/product_files/' . $data[8];
+          if (file_exists($source_file)) {
+            $file_data = file_get_contents($source_file);
+            $file = file_save_data($file_data, 'public://product-introduce-files/' . $data[8], FILE_EXISTS_REPLACE);
+            $transCommerceProduct->field_product_file = [
+              'target_id' => $file->id(),
+              'display' => 1,
+              'description' => $data[7] . '#' . $data[9],
+            ];
+            $transCommerceProduct->save();
+          }
+          else {
+            \Drupal::logger('pro_core')->notice($data[3] . '英文文件不存在');
+          }
+        }
       }
     }
 

@@ -278,8 +278,8 @@
       }).then(() => {
         vm.productBasic = vm.productBasicInformation
         vm.productInfo = vm.productInformation
-        vm.productFormulation = vm.productRelationFormulation.value
-        // console.log(vm.productInfo, vm.productBasic, 'productProperties')
+        vm.productFormulation = vm.productRelationFormulation
+        // console.log(vm.productFormulation, 'productProperties')
       })
     },
 

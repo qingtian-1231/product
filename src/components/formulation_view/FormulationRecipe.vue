@@ -1,14 +1,15 @@
 <template>
-  <v-card flat color="basil" id="formulation-recipe">
-    <h2 class="light clearfix"><b>{{ $t('formulationView.formulationRecipe.formula_title') }}</b></h2>
-    <div id="recipe">
-      <ul>
-        <li>
+  <div>
+    <v-card flat color="basil" id="formulation-recipe">
+      <h2 class="light clearfix"><b>{{ $t('formulationView.formulationRecipe.formula_title') }}</b></h2>
+      <div id="recipe">
+        <ul>
+          <li>
           <span>
             <input type="number" name="total" placeholder="100" value="">
             <v-icon>keyboard</v-icon>
           </span>
-          <span>
+            <span>
             <h2 class="light">
               <icon
                 width="40"
@@ -22,20 +23,20 @@
               </template>
             </h2>
           </span>
-      </li>
-      </ul>
-      <div>
-        <span class="label">{{ $t('formulationView.formulationRecipe.formulaRatio') }}</span>
-        <span class="label">{{ $t('formulationView.formulationRecipe.formula_Composition') }}</span>
-      </div>
-      <ul class="clearfix">
-        <template v-for="(item, index) in formulationInfo">
-          <template v-if="item.hasOwnProperty('field_part_basf_product')">
-            <li class="basf" :key="index">
+          </li>
+        </ul>
+        <div>
+          <span class="label">{{ $t('formulationView.formulationRecipe.formulaRatio') }}</span>
+          <span class="label">{{ $t('formulationView.formulationRecipe.formula_Composition') }}</span>
+        </div>
+        <ul class="clearfix">
+          <template v-for="(item, index) in formulationInfo">
+            <template v-if="item.hasOwnProperty('field_part_basf_product')">
+              <li class="basf" :key="index">
               <span>
-                <input type="number" name="DISPEX_ULTRA_PA_4550" :placeholder="item.field_proportion.value" :value="item.field_proportion.value">
+                <input type="number" name="DISPEX_ULTRA_PA_4550" :placeholder="item.field_proportion_char.value" :value="item.field_proportion_char.value">
               </span>
-              <span>
+                <span>
                 <icon
                   width="24"
                   height="24"
@@ -47,34 +48,54 @@
                   <b>{{ item.field_part_basf_product.value }}</b>
                 </router-link>
                 <v-btn icon>
-                  <v-icon class="material-icons-outlined">pageview</v-icon>
+                  <v-icon @click="previewProduct(item.field_part_basf_product)" class="material-icons-outlined">pageview</v-icon>
                 </v-btn>
-                <v-btn icon>
-                  <v-icon class="material-icons-outlined">shopping_basket</v-icon>
-                </v-btn>
+                  <!--                <v-btn icon>-->
+                  <!--                  <v-icon class="material-icons-outlined">shopping_basket</v-icon>-->
+                  <!--                </v-btn>-->
               </span>
-            </li>
-          </template>
+              </li>
+            </template>
 
-          <template v-else>
-            <li class="basic" :key="index">
-              <span><input type="number" name="WATER_DEMINERALIZED" :placeholder="item.field_proportion.value" :value="item.field_proportion.value"></span>
-              <span>{{ item.field_part_normal_product.value }}</span>
-            </li>
+            <template v-else>
+              <li class="basic" :key="index">
+                <span><input type="number" name="WATER_DEMINERALIZED" :placeholder="item.field_proportion_char.value" :value="item.field_proportion_char.value"></span>
+                <span>{{ item.field_part_normal_product.value }}</span>
+              </li>
+            </template>
           </template>
-        </template>
-      </ul>
-    </div>
-    <div class="to-basket clearfix"></div>
-  </v-card>
+        </ul>
+      </div>
+      <div class="to-basket clearfix"></div>
+    </v-card>
+    <v-dialog
+      v-model="requestProductDialog"
+      transition="dialog-bottom-transition"
+      scrollable
+      persistent
+      max-width="344px"
+    >
+      <v-card>
+        <product-details
+          @fatherMethod="closeRequestDialog()"
+          :product="selectedProduct"
+          :preview-product-basic="previewProductBasicInformation"
+          :preview-product-prop="previewProductProperties"
+        >
+        </product-details>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
   import Icon from "../../components/svg/features/Icon";
   import IconColorants from '../../components/svg/formulations/Colorants'
+  import ProductDetails from "../../components/ProductDetails";
+  import { mapState } from "vuex";
 
   export default {
-    components: { Icon },
+    components: { Icon, ProductDetails },
 
     props: {
       basicInfo: {
@@ -85,10 +106,37 @@
       }
     },
 
-    data () {
-      return {
+    data: () => ({
+      selectedProduct: {}
+    }),
 
-      }
+    computed: {
+      ...mapState({
+        requestProductDialog: state => state.core.requestProductDialog,
+        previewProductBasicInformation: state => state.product.productBasicInformation,
+        previewProductProperties: state => state.product.productProperties,
+        isLogin: state => state.user.isLogin
+      })
+    },
+
+    methods: {
+      previewProduct(product) {
+        let vm = this;
+        vm.$loading.show();
+        vm.$store
+          .dispatch("getProductDetails", {
+            id: product.uuid
+          })
+          .then(() => {
+            vm.selectedProduct = product;
+            vm.$loading.hide();
+            vm.$store.state.core.requestProductDialog = true;
+          });
+      },
+
+      closeRequestDialog() {
+        this.$store.state.core.requestProductDialog = false;
+      },
     }
   }
 </script>

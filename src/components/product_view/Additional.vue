@@ -13,9 +13,10 @@
               </span>
               <p></p>
               <a target="_blank" :href="item.url" class="btn btn-default">
-                <v-icon large class="material-icons-outlined">insert_drive_file</v-icon>
+<!--                <v-icon large class="material-icons-outlined">insert_drive_file</v-icon>-->
+                <v-icon large class="material-icons-outlined">archive</v-icon>
               </a>
-              <span>日期: {{ item.changed }}</span>
+              <span>{{ item.version }}</span>
             </figure>
           </li>
         </template>

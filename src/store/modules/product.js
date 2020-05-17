@@ -133,7 +133,9 @@ const mutations = {
       }
 
       if (field === 'field_formulation') {
-        state.productRelationFormulation = result.field_formulation
+        state.productRelationFormulation = result.field_formulation.value
+
+        console.log(state.productRelationFormulation, 'state.productRelationFormulation')
         continue
       }
 

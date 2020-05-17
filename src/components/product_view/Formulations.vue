@@ -5,14 +5,20 @@
       <template v-for="(item, index) in productRelationFormulation">
         <div class="item listed formulation referenced locked" :key="index">
           <span>
-            <router-link :to="{name: 'Formulation', params: {id: item.uuid.value }}">
-              <icon-interior bg-color-class="default"></icon-interior>
-              {{ item.field_formulation_name.value }}
+            <router-link :to="{name: 'Formulation', params: {id: item.uuid }}">
+              <icon
+                width="32"
+                height="32"
+                icon-name="14"
+                bg-color-class="Hydropalat"
+              >
+            </icon>
+              {{ item.field_formulation_name }}
             </router-link>
           </span>
           <span>
             <v-btn icon>
-              <v-icon class="material-icons-outlined">lock</v-icon>
+<!--              <v-icon class="material-icons-outlined">lock</v-icon>-->
             </v-btn>
           </span>
         </div>
@@ -22,11 +28,11 @@
 </template>
 
 <script>
-  import IconInterior from  '../../components/svg/formulations/Interior'
-
+  // import IconInterior from  '../../components/svg/formulations/Interior'
+  import Icon from "../../components/svg/features/Icon";
   export default {
     name: 'formulations',
-    components: { IconInterior },
+    components: { Icon },
     props: {
       productRelationFormulation: {
         type: Object
@@ -51,6 +57,18 @@
       margin: 0 0 25px;
       padding: 0;
       width: 100%;
+    }
+
+    .formulation {
+
+      a {
+
+        .icon-container {
+          position: relative;
+          margin-right: 32px;
+          top: -15px;
+        }
+      }
     }
   }
 </style>

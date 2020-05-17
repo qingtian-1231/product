@@ -112,53 +112,53 @@
             </v-col>
           </v-row>
 
-          <div class="d-flex">
-            <v-checkbox
-              v-model="passDisabled"
-              label="修改密码"
-            ></v-checkbox>
-          </div>
+<!--          <div class="d-flex">-->
+<!--            <v-checkbox-->
+<!--              v-model="passDisabled"-->
+<!--              label="修改密码"-->
+<!--            ></v-checkbox>-->
+<!--          </div>-->
 
-          <v-expansion-panels
-            v-model="panel"
-            :disabled="passDisabled"
-            multiple
-          >
-            <v-expansion-panel>
-              <v-expansion-panel-header>密码修改</v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <v-row>
-                  <v-col cols="12" sm="6">
-                    <v-text-field
-                      :label="$t('global.currentPass')"
-                      :disabled="disabled"
-                      outlined
-                      v-model="currentPassword"
-                      :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
-                      :rules="[rules.required, rules.min]"
-                      :type="passwordShow ? 'text' : 'password'"
-                      counter
-                      @click:append="passwordShow = !passwordShow"
-                    ></v-text-field>
-                  </v-col>
+<!--          <v-expansion-panels-->
+<!--            v-model="panel"-->
+<!--            :disabled="passDisabled"-->
+<!--            multiple-->
+<!--          >-->
+<!--            <v-expansion-panel>-->
+<!--              <v-expansion-panel-header>密码修改</v-expansion-panel-header>-->
+<!--              <v-expansion-panel-content>-->
+<!--                <v-row>-->
+<!--                  <v-col cols="12" sm="6">-->
+<!--                    <v-text-field-->
+<!--                      :label="$t('global.currentPass')"-->
+<!--                      :disabled="disabled"-->
+<!--                      outlined-->
+<!--                      v-model="currentPassword"-->
+<!--                      :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"-->
+<!--                      :rules="[rules.required, rules.min]"-->
+<!--                      :type="passwordShow ? 'text' : 'password'"-->
+<!--                      counter-->
+<!--                      @click:append="passwordShow = !passwordShow"-->
+<!--                    ></v-text-field>-->
+<!--                  </v-col>-->
 
-                  <v-col cols="12" sm="6">
-                    <v-text-field
-                      :label="$t('global.newPassWord')"
-                      :disabled="disabled"
-                      outlined
-                      v-model="newPassword"
-                      :append-icon="rePasswordShow ? 'mdi-eye' : 'mdi-eye-off'"
-                      :rules="[rules.required, rules.confirmPass]"
-                      :type="rePasswordShow ? 'text' : 'password'"
-                      counter
-                      @click:append="rePasswordShow = !rePasswordShow"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
+<!--                  <v-col cols="12" sm="6">-->
+<!--                    <v-text-field-->
+<!--                      :label="$t('global.newPassWord')"-->
+<!--                      :disabled="disabled"-->
+<!--                      outlined-->
+<!--                      v-model="newPassword"-->
+<!--                      :append-icon="rePasswordShow ? 'mdi-eye' : 'mdi-eye-off'"-->
+<!--                      :rules="[rules.required, rules.confirmPass]"-->
+<!--                      :type="rePasswordShow ? 'text' : 'password'"-->
+<!--                      counter-->
+<!--                      @click:append="rePasswordShow = !rePasswordShow"-->
+<!--                    ></v-text-field>-->
+<!--                  </v-col>-->
+<!--                </v-row>-->
+<!--              </v-expansion-panel-content>-->
+<!--            </v-expansion-panel>-->
+<!--          </v-expansion-panels>-->
           <div class="bottom row text-center mx-0">
             <v-col cols="6" md="6" sm="0" class="mx-0">
             </v-col>

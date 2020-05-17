@@ -24,7 +24,7 @@
         <div class="row text-center mx-0">
           <v-col cols="12" md="6" sm="12">
             <router-link :to="{ name: 'Login' }">
-              <v-btn class="ma-2" block rounded color="success" @click="closeLoginDialog()">
+              <v-btn class="ma-2" block rounded color="info" @click="closeLoginDialog()">
                 {{ $t('global.login') }}
               </v-btn>
             </router-link>

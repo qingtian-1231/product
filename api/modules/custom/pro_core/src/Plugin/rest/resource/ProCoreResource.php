@@ -8,6 +8,8 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Component\Utility\Environment;
+use Drupal\paragraphs\Entity\Paragraph;
+use \Drupal\node\Entity\Node;
 
 /**
  * Provides a Demo Resource

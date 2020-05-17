@@ -51,8 +51,10 @@ class UserEntityAlterResource extends EntityResource {
         if (is_array($value) && count($value) > 0) {
           foreach ($value as $key => $uuid) {
             $entity = $entity_manager->loadEntityByUuid('node', $uuid);
-            $value[$key]['title'] = $value[$key]['formulation_name'] = $entity->field_formulation_name->getValue()[0]['value'];
-            $value[$key]['formulationbenefits'] = $entity->field_formulationbenefits->getValue()[0]['value'];
+            if ($entity) {
+              $value[$key]['title'] = $value[$key]['formulation_name'] = $entity->field_formulation_name->getValue()[0]['value'];
+              $value[$key]['formulationbenefits'] = $entity->field_formulationbenefits->getValue()[0]['value'];
+            }
           }
         }
       }

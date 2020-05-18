@@ -13,8 +13,8 @@
     <div class="content">
       <div class="QR-code">
         <v-img
-          :src="require('@/assets/global/qr_code.jpg')"
-          :lazy-src="require('@/assets/global/qr_code.jpg')"
+          :src="require('@/assets/global/wechat.png')"
+          :lazy-src="require('@/assets/global/wechat.png')"
           contain
         >
         </v-img>
@@ -125,6 +125,12 @@
                 @click:append="rePasswordShow = !rePasswordShow"
               ></v-text-field>
             </v-col>
+            <v-col cols="12" sm="6" class="yin-si-xie-yi">
+              <v-row align="center">
+                <v-switch v-model="agree" label="同意" :rules="[rules.required]"></v-switch>
+                <a target="_blank" href="#">隐私协议</a>
+              </v-row>
+            </v-col>
           </v-row>
 
           <div class="bottom row text-center mx-0">
@@ -156,6 +162,7 @@
 
     data: function () {
       return {
+        agree: false,
         businessModelList: [
           {
             code: 'Manufacturing',
@@ -341,6 +348,20 @@
     .bottom {
       padding-top: 40px;
       border-top: 1px solid #eee;
+    }
+  }
+
+  .yin-si-xie-yi {
+
+    .row {
+
+      margin: 0;
+
+      a {
+        position: relative;
+        top: -3px;
+        left: 10px;
+      }
     }
   }
 </style>

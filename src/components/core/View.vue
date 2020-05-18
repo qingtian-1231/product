@@ -139,14 +139,14 @@
             class="mx-auto px-6 cutome-card"
             outlined
           >
-            <v-card-title class="px-0 my-5">
+            <v-card-title class="px-0 my-2">
               <span class="headline black--text">
                 <v-icon large>lock_open</v-icon>
                 {{ $t('home.middleContent.registerTitle') }}
               </span>
             </v-card-title>
 
-            <v-divider class="py-5"></v-divider>
+            <v-divider class="py-1"></v-divider>
 
             <blockquote class="blockquote px-0 py-8">
               <router-link :to="{ name: 'Register' }" class="special-color" style="text-transform: capitalize">

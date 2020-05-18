@@ -6,8 +6,7 @@
         <ul>
           <li>
           <span>
-            <input type="number" name="total" placeholder="100" value="">
-            <v-icon>keyboard</v-icon>
+            <input type="number" name="total" placeholder="1" value="" disabled>
           </span>
             <span>
             <h2 class="light">
@@ -34,7 +33,7 @@
             <template v-if="item.hasOwnProperty('field_part_basf_product')">
               <li class="basf" :key="index">
               <span>
-                <input type="number" name="DISPEX_ULTRA_PA_4550" :placeholder="item.field_proportion_char.value" :value="item.field_proportion_char.value">
+                <input type="number" name="DISPEX_ULTRA_PA_4550" :placeholder="item.field_proportion_char.value" :value="item.field_proportion_char.value" disabled>
               </span>
                 <span>
                 <icon
@@ -59,7 +58,7 @@
 
             <template v-else>
               <li class="basic" :key="index">
-                <span><input type="number" name="WATER_DEMINERALIZED" :placeholder="item.field_proportion_char.value" :value="item.field_proportion_char.value"></span>
+                <span><input type="number" name="WATER_DEMINERALIZED" :placeholder="item.field_proportion_char.value" :value="item.field_proportion_char.value" disabled></span>
                 <span>{{ item.field_part_normal_product.value }}</span>
               </li>
             </template>

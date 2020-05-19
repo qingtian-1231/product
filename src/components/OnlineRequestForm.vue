@@ -39,6 +39,13 @@
             :rules="[rules.required, rules.emailMatch]"
             outlined
           ></v-text-field>
+
+          <v-col cols="12" sm="6" class="yin-si-xie-yi">
+            <v-row align="center">
+              <v-switch v-model="agree" :label="$t('global.agree')" :rules="[rules.required]"></v-switch>
+              <a target="_blank" href="#">{{ $t('global.private') }}</a>
+            </v-row>
+          </v-col>
           <div class="row text-center mx-0">
             <v-col cols="12" md="6" sm="12">
               <v-btn class="ma-2" block rounded color="info" @click="closeRequestDialog()">
@@ -135,6 +142,18 @@
 
         i {
           font-size: 2.5rem;
+        }
+      }
+    }
+
+    .yin-si-xie-yi {
+
+      .row {
+
+        a {
+          position: relative;
+          top: -3px;
+          left: 10px;
         }
       }
     }

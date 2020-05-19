@@ -45,6 +45,9 @@ module.exports = {
     orderHistory: '订单历史',
     accountSetting: '账户设置',
     welcome: '欢迎你',
+    forget: '忘记密码?',
+    agree: '同意',
+    private: '隐私协议',
   },
   businessModelList: {
     Manufacturing: '生产型企业',
@@ -232,5 +235,6 @@ module.exports = {
     title: '个人信息修改',
     confirm: '确认修改',
     edit: '编辑',
+    successMessage: '个人信息修改成功',
   }
 }

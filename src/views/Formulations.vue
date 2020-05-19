@@ -30,9 +30,10 @@
 
         <v-col class="col-xs-2" style="text-align: right">
           <span class="formulation-list-count">{{ formulationListCount }}</span>
-          <v-btn icon class="float-right" color="primary" @click="showFormulationCard()">
-            <v-icon>apps</v-icon>
-          </v-btn>
+
+<!--          <v-btn icon class="float-right" color="primary" @click="showFormulationCard()">-->
+<!--            <v-icon>apps</v-icon>-->
+<!--          </v-btn>-->
 
           <v-btn icon class="float-right" color="primary" @click="(showList = true), (showCard = false)">
             <v-icon>view_headline</v-icon>

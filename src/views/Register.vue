@@ -127,8 +127,8 @@
             </v-col>
             <v-col cols="12" sm="6" class="yin-si-xie-yi">
               <v-row align="center">
-                <v-switch v-model="agree" label="同意" :rules="[rules.required]"></v-switch>
-                <a target="_blank" href="#">隐私协议</a>
+                <v-switch v-model="agree" :label="$t('global.agree')" :rules="[rules.required]"></v-switch>
+                <a target="_blank" href="#">{{ $t('global.private') }}</a>
               </v-row>
             </v-col>
           </v-row>

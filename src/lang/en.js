@@ -45,6 +45,9 @@ module.exports = {
     orderHistory: 'Order History',
     accountSetting: 'Account Settings',
     welcome: 'Welcome',
+    forget: 'Forgot your password?',
+    agree: 'Agree',
+    private: 'Privacy Agreement',
   },
   businessModelList: {
     Manufacturing: 'Manufacturing',
@@ -257,5 +260,6 @@ module.exports = {
     title: 'Personal Information Modify',
     confirm: 'confirm',
     edit: 'edit',
+    successMessage: 'Personal information modified successfully',
   }
 }

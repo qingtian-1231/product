@@ -1,7 +1,14 @@
 <template>
   <v-card flat color="basil" id="formulations">
     <div class="formula">
-      <h4>含{{ titleField.value }}的配方</h4>
+      <template v-if="currentLanguage === 'zh-hans'">
+        <h4>包含{{ titleField.value }}的配方</h4>
+      </template>
+
+      <template v-if="currentLanguage === 'en'">
+        <h4>Formulations with {{ titleField.value }}</h4>
+      </template>
+
       <template v-for="(item, index) in productRelationFormulation">
         <div class="item listed formulation referenced locked" :key="index">
           <span>
@@ -30,6 +37,8 @@
 <script>
   // import IconInterior from  '../../components/svg/formulations/Interior'
   import Icon from "../../components/svg/features/Icon";
+  import { getCookie } from "../../utils/cookie"
+
   export default {
     name: 'formulations',
     components: { Icon },
@@ -44,8 +53,16 @@
 
     data () {
       return {
+        currentLanguage: 'zh-hans'
       }
-    }
+    },
+
+    mounted () {
+      let cookieLanguage = getCookie('drupal:session:language')
+      if (cookieLanguage) {
+        this.currentLanguage = cookieLanguage
+      }
+    },
   }
 </script>
 

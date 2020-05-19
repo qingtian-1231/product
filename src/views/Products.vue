@@ -26,14 +26,14 @@
 
         <v-col class="col-xs-4" style="text-align: right;">
           <span class="product-list-count">{{ productListCount }}</span>
-          <v-btn
-            icon
-            class="float-right"
-            color="secondary"
-            @click="showProductCard()"
-          >
-            <v-icon>apps</v-icon>
-          </v-btn>
+<!--          <v-btn-->
+<!--            icon-->
+<!--            class="float-right"-->
+<!--            color="secondary"-->
+<!--            @click="showProductCard()"-->
+<!--          >-->
+<!--            <v-icon>apps</v-icon>-->
+<!--          </v-btn>-->
 
           <v-btn
             icon

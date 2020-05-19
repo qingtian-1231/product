@@ -11,7 +11,8 @@ const state = {
   formulationDetails: [],
   formulationFiles: [],
   formulationBasicInformation: {},
-  formulationProperties: {}
+  formulationProperties: {},
+  formulationListCount: 0,
 }
 
 const mutations = {
@@ -32,6 +33,10 @@ const mutations = {
       }
       return item
     })
+  },
+
+  processFormulationListMeta(state, payload) {
+    state.formulationListCount = payload.count
   },
 
   processFormulationDetails(state, payload) {
@@ -126,6 +131,8 @@ const actions = {
 
         payload.favorite = rootState.user.favoriteFormulationList
         payload.result = response.data.results
+
+        commit('processFormulationListMeta', response.data.pager)
         commit('processFormulationList', payload)
         return Promise.resolve(response)
       })

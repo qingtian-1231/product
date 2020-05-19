@@ -28,7 +28,8 @@
           </template>
         </v-col>
 
-        <v-col class="col-xs-2">
+        <v-col class="col-xs-2" style="text-align: right">
+          <span class="formulation-list-count">{{ formulationListCount }}</span>
           <v-btn icon class="float-right" color="primary" @click="showFormulationCard()">
             <v-icon>apps</v-icon>
           </v-btn>
@@ -253,6 +254,7 @@
 
     computed: {
       ...mapState({
+        formulationListCount: state => state.formulation.formulationListCount,
         requestFormulationDialog: state => state.core.requestFormulationDialog,
         formulationFieldsDefinition: state => state.formulation.formulationFieldsDefinition,
         previewFormulationBasicInformation: state => state.formulation.formulationBasicInformation,
@@ -684,5 +686,14 @@
         }
       }
     }
+  }
+
+  .formulation-list-count {
+    border: 1px solid #2196f3;
+    border-radius: 8px;
+    margin-right: 10px;
+    padding: 2px 10px;
+    line-height: 38px;
+    color: #2196f3;
   }
 </style>

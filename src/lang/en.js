@@ -189,6 +189,8 @@ module.exports = {
     footer: {
       link_buy_site: 'BASF 1688 Flagship Shop',
       copyright: 'Copyright © BASF SE 2020',
+      disclaimerLink: 'https://www.basf.com/cn/en/legal/disclaimer.html',
+      disclaimer: 'Disclaimer',
       weChat: 'Welcome to follow Wechat Official Account ‘BASF Dispersions & Resins’',
     }
   },

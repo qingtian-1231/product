@@ -195,7 +195,7 @@
                 class="ma-2"
                 block
                 rounded
-                color="success"
+                color="info"
                 v-clipboard:copy="currentLocation"
                 v-clipboard:success="onCopy"
                 v-clipboard:error="onError"

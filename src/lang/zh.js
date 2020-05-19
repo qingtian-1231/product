@@ -164,6 +164,8 @@ module.exports = {
     footer: {
       link_buy_site: '巴斯夫1688官方旗舰店',
       copyright: 'Copyright © BASF SE 2020',
+      disclaimerLink: 'https://www.basf.com/cn/zh/legal/disclaimer.html',
+      disclaimer: '免责声明',
       weChat: '欢迎关注“巴斯夫分散体与树脂”官方微信公众号',
     }
   },

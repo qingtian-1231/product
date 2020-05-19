@@ -134,7 +134,8 @@ class ProductResource extends ResourceBase {
                   $value = [];
                   if (count($paragraphs) > 0) {
                     foreach ($paragraphs as $key => $paragraph) {
-                      $formulation_array = $paragraph->getParentEntity()->toArray();
+                      $parent_entity = $paragraph->getParentEntity();
+                      $formulation_array = $parent_entity->getTranslation($language)->toArray();
                       $value[$key]['field_formulation_name'] = !empty($formulation_array['field_formulation_name']) ? $formulation_array['field_formulation_name'][0]['value'] : '';
                       $value[$key]['uuid'] = $formulation_array['uuid'][0]['value'];
                     }

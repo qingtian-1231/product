@@ -332,6 +332,11 @@ class ProductResource extends ResourceBase {
 
   protected function getTranslateLabel($label) {
     $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+    if ($language === 'zh-hans') {
+      return $label;
+    }
+
     $translatedLabel = '没有翻译';
     if ($label instanceof TranslatableMarkup) {
       $translatedLabel = $label->render();

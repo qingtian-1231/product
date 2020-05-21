@@ -126,7 +126,7 @@
 <!--                  required-->
 <!--                ></v-checkbox>-->
                 <div class="html" style="line-height: 36px;">
-                  <small><a target="_blank" href="/forget-pass">Forgot your password?</a></small>
+                  <small><a target="_blank" href="/forget-pass">{{ $t('global.forget') }}</a></small>
                   <v-btn block rounded color="info" right dark @click="userLogin()">
                     {{ $t('global.login') }}<v-icon right dark>keyboard_arrow_right</v-icon>
                   </v-btn>
@@ -139,16 +139,16 @@
             class="mx-auto px-6 cutome-card"
             outlined
           >
-            <v-card-title class="px-0 my-5">
+            <v-card-title class="px-0 my-0">
               <span class="headline black--text">
                 <v-icon large>lock_open</v-icon>
                 {{ $t('home.middleContent.registerTitle') }}
               </span>
             </v-card-title>
 
-            <v-divider class="py-5"></v-divider>
+            <v-divider class="py-0"></v-divider>
 
-            <blockquote class="blockquote px-0 py-8">
+            <blockquote class="blockquote px-0 py-4">
               <router-link :to="{ name: 'Register' }" class="special-color" style="text-transform: capitalize">
                 {{ $t('global.register') }} !
               </router-link>

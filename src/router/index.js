@@ -18,6 +18,7 @@ import OrderHistory from '../views/OrderHistory'
 import AccountSetting from '../views/AccountSetting'
 import ForgetPass from '../views/ForgetPass'
 import ResetPass from '../views/ResetPass'
+import Disclaimer from '../views/Disclaimer'
 import Unauthorized from '../views/Unauthorized'
 
 Vue.use(Router)
@@ -183,6 +184,17 @@ export default new Router({
       component: AccountSetting,
       meta: {
         title: language === 'zh-hans' ? '巴斯夫产品中心--账户设置' : 'BASF Product Center ---  Account Setting',
+        keywords: defaultKeywords,
+        description: defaultDescription,
+        keepAlive: true
+      }
+    },
+    {
+      path: '/disclaimer',
+      name: 'Disclaimer',
+      component: Disclaimer,
+      meta: {
+        title: language === 'zh-hans' ? '巴斯夫产品中心--免责声明' : 'BASF Product Center ---  Disclaimer',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true

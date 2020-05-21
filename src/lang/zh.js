@@ -45,6 +45,9 @@ module.exports = {
     orderHistory: '订单历史',
     accountSetting: '账户设置',
     welcome: '欢迎你',
+    forget: '忘记密码?',
+    agree: '同意',
+    private: '隐私协议',
   },
   businessModelList: {
     Manufacturing: '生产型企业',
@@ -164,6 +167,8 @@ module.exports = {
     footer: {
       link_buy_site: '巴斯夫1688官方旗舰店',
       copyright: 'Copyright © BASF SE 2020',
+      disclaimerLink: 'https://www.basf.com/cn/zh/legal/disclaimer.html',
+      disclaimer: '免责声明',
       weChat: '欢迎关注“巴斯夫分散体与树脂”官方微信公众号',
     }
   },
@@ -230,5 +235,6 @@ module.exports = {
     title: '个人信息修改',
     confirm: '确认修改',
     edit: '编辑',
+    successMessage: '个人信息修改成功',
   }
 }

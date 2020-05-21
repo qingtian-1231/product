@@ -195,7 +195,7 @@
                 class="ma-2"
                 block
                 rounded
-                color="success"
+                color="info"
                 v-clipboard:copy="currentLocation"
                 v-clipboard:success="onCopy"
                 v-clipboard:error="onError"
@@ -278,8 +278,8 @@
       }).then(() => {
         vm.productBasic = vm.productBasicInformation
         vm.productInfo = vm.productInformation
-        vm.productFormulation = vm.productRelationFormulation.value
-        // console.log(vm.productInfo, vm.productBasic, 'productProperties')
+        vm.productFormulation = vm.productRelationFormulation
+        // console.log(vm.productFormulation, 'productProperties')
       })
     },
 

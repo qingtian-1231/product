@@ -45,6 +45,9 @@ module.exports = {
     orderHistory: 'Order History',
     accountSetting: 'Account Settings',
     welcome: 'Welcome',
+    forget: 'Forgot your password?',
+    agree: 'Agree',
+    private: 'Privacy Agreement',
   },
   businessModelList: {
     Manufacturing: 'Manufacturing',
@@ -189,6 +192,8 @@ module.exports = {
     footer: {
       link_buy_site: 'BASF 1688 Flagship Shop',
       copyright: 'Copyright © BASF SE 2020',
+      disclaimerLink: 'https://www.basf.com/cn/en/legal/disclaimer.html',
+      disclaimer: 'Disclaimer',
       weChat: 'Welcome to follow Wechat Official Account ‘BASF Dispersions & Resins’',
     }
   },
@@ -255,5 +260,6 @@ module.exports = {
     title: 'Personal Information Modify',
     confirm: 'confirm',
     edit: 'edit',
+    successMessage: 'Personal information modified successfully',
   }
 }

@@ -11,6 +11,9 @@
       <v-row class="align-center">
         <div class="ml-auto mr-auto ml-md-0 d-flex align-center col col-auto footer-left">
           <span class="mr-3">{{ $t('home.footer.copyright') }}</span>
+          <span class="mr-3">
+            <a target="_blank" :href="$t('home.footer.disclaimerLink')">{{ $t('home.footer.disclaimer') }}</a>
+          </span>
         </div>
       </v-row>
     </v-container>
@@ -40,7 +43,6 @@
       align-items: start !important;
 
       a {
-        display: block;
         margin-bottom: 10px;
         color: #fff;
         text-decoration: none;

@@ -95,7 +95,7 @@
           </v-tabs>
           <v-tabs-items v-model="tab">
             <v-tab-item>
-              <formulation-recipe :basic-info="formulationBasic" :formulation-info="formulationInfo"></formulation-recipe>
+              <formulation-recipe :basic-info="formulationBasic" :formulation-info="formulationRecipeInfo"></formulation-recipe>
             </v-tab-item>
 
             <v-tab-item>
@@ -182,7 +182,7 @@
                 class="ma-2"
                 block
                 rounded
-                color="success"
+                color="info"
                 v-clipboard:copy="currentLocation"
                 v-clipboard:success="onCopy"
                 v-clipboard:error="onError"
@@ -222,6 +222,7 @@
         tab: 0,
         formulationBasic: {},
         formulationProp: {},
+        formulationRecipeInfo: [],
       }
     },
 
@@ -248,6 +249,7 @@
       }).then(result => {
         vm.formulationBasic = vm.formulationBasicInformation
         vm.formulationProp = vm.formulationProperties
+        vm.formulationRecipeInfo = vm.formulationInfo
       })
     },
 

@@ -63,7 +63,7 @@
                 :label="$t('global.userAccountName')"
                 :disabled="disabled"
                 outlined
-                :rules="[rules.required, rules.max, rules.chineseVarchar, rules.FullwidthChar, rules.invilideChar]"
+                :rules="[rules.required, rules.max, rules.FullwidthChar, rules.invilideChar]"
                 v-model="userAccountName"
               ></v-text-field>
             </v-col>
@@ -299,10 +299,12 @@
             ]
           }
 
-          request().post(`/user/${vm.currentUser.uid}?_format=hal_json`, data)
+          request().patch(`/user/${vm.currentUser.uid}?_format=hal_json`, data)
             .then(res => {
               if (res.status === '200' || res.statusText === 'OK') {
+                vm.setAlert(vm.$t('accountSetting.successMessage'), 'success')
                 vm.registerSuccess = true
+                vm.disabled = true
                 vm.$loading.hide()
               }
 

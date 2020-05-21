@@ -136,7 +136,7 @@
           </v-card>
 
           <v-card
-            class="mx-auto px-6 cutome-card"
+            class="mx-auto px-6 cutome-card cutome-card-bottom"
             outlined
           >
             <v-card-title class="px-0 my-0">
@@ -396,6 +396,10 @@
 
       .cutome-card {
         border: 0;
+      }
+
+      .cutome-card-bottom {
+        margin-top: 21px;
       }
     }
 

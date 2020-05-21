@@ -150,6 +150,16 @@ class FormulationResource extends ResourceBase {
         'error' => '不能获取到正确配方信息',
       ];
     }
+
+    foreach ($formulation['field_formula_composition']['value'] as &$item) {
+      if (strpos($item['field_proportion_char']['value'], '~') !== false) {
+        continue;
+      } else {
+        $item['field_proportion_char']['value'] = ($item['field_proportion_char']['value'] * 100) . '%';
+      }
+
+    }
+    
     return new ResourceResponse($formulation);
   }
 

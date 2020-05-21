@@ -107,6 +107,35 @@ class FormulationResource extends ResourceBase {
                 'value' => $entity_reference_value,
               ];
             }
+            elseif ($field_definition->getType() === 'entity_reference') {
+              switch ($field) {
+                case 'field_formulation_industry':
+                  $value = $this->processTerm($field_item_list);
+
+                  $formulation[$field] = [
+                    'label' => $this->getTranslateLabel($field_definition->getLabel()),
+                    'value' => is_array($value) ? implode(', ', $value) : $value,
+                  ];
+                  break;
+
+                default:
+                  $entity_reference_value = [];
+                  foreach ($field_item_list as $para) {
+                    if ($para->entity) {
+                      if ($para->entity->hasTranslation($language)) {
+                        $para->entity = $para->entity->getTranslation($language);
+                      }
+
+                      $entity_reference_value[] = $this->getFields($para->entity->getFields());
+                    }
+                  }
+                  $formulation[$field] = [
+                    'label' => $this->getTranslateLabel($field_definition->getLabel()),
+                    'value' => $entity_reference_value,
+                  ];
+                  break;
+              }
+            }
             else {
               $formulation[$field] = [
                 'label' => $this->getTranslateLabel($field_definition->getLabel()),
@@ -121,6 +150,16 @@ class FormulationResource extends ResourceBase {
         'error' => '不能获取到正确配方信息',
       ];
     }
+
+    foreach ($formulation['field_formula_composition']['value'] as &$item) {
+      if (strpos($item['field_proportion_char']['value'], '~') !== false) {
+        continue;
+      } else {
+        $item['field_proportion_char']['value'] = ($item['field_proportion_char']['value'] * 100) . '%';
+      }
+
+    }
+    
     return new ResourceResponse($formulation);
   }
 
@@ -165,6 +204,24 @@ class FormulationResource extends ResourceBase {
     }
 
     return $return;
+  }
+
+  protected function processTerm($field_item_list) {
+    $value = [];
+    $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+    foreach ($field_item_list as $term_filed) {
+      $filed_value = $term_filed->getValue();
+      $term = Term::load($filed_value['target_id']);
+      if ($term->hasTranslation($language)) {
+        $value[] = $term->getTranslation($language)->getName();
+      }
+      else {
+        $value[] = $term->getName();
+      }
+
+    }
+
+    return $value;
   }
 
   protected function getTranslateLabel($label) {

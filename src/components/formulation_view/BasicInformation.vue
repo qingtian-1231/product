@@ -15,12 +15,12 @@
         </span>
         {{ formulationBasic.industry.value }}
       </p>
-      <p>
-        <span class="grey-2">
-        {{ formulationBasic.formulation_cluster.label }}
-        </span>
-        {{ formulationBasic.formulation_cluster.value }}
-      </p>
+<!--      <p>-->
+<!--        <span class="grey-2">-->
+<!--        {{ formulationBasic.formulation_cluster.label }}-->
+<!--        </span>-->
+<!--        {{ formulationBasic.formulation_cluster.value }}-->
+<!--      </p>-->
       <p>
         <span class="grey-2">
         {{ formulationBasic.benefits.label }}
@@ -53,7 +53,7 @@
 <style lang="scss" scoped>
   #basic-information {
 
-    h2, p, ul {
+     p, ul {
       display: inline-block;
       margin: 0 0 25px;
       padding: 0;
@@ -63,7 +63,7 @@
     .information {
 
       h2 {
-        padding-bottom: 25px;
+        /*padding-bottom: 25px;*/
       }
 
       p {

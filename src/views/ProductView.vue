@@ -33,8 +33,8 @@
               :bg-color-class="productBrandValue"
             >
             </icon>
-            <template v-if="productInfo.title">
-              {{ productInfo.title.value }}
+            <template v-if="productTitle">
+              <span v-html="productTitle"></span>
             </template>
           </h1>
           <div>
@@ -242,7 +242,7 @@
       }),
 
       productTitle: function () {
-        return (this.productInfo && this.productInfo.title) ? this.productInfo.title.value : ''
+        return (this.productInfo && this.productInfo.title) ? this.productInfo.title.value.replace('®', '<sup>®</sup>') : ''
       },
 
       productTypeId: function () {
@@ -279,7 +279,7 @@
         vm.productBasic = vm.productBasicInformation
         vm.productInfo = vm.productInformation
         vm.productFormulation = vm.productRelationFormulation
-        // console.log(vm.productFormulation, 'productProperties')
+        console.log(vm.productBasic, 'productProperties')
       })
     },
 

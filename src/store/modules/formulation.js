@@ -56,8 +56,8 @@ const mutations = {
         state.formulationBasicInformation.name = result.field_formulation_name
         continue
       }
-      if (field === 'field_industry_of_formula') {
-        state.formulationBasicInformation.industry = result.field_industry_of_formula
+      if (field === 'field_formulation_industry') {
+        state.formulationBasicInformation.industry = result.field_formulation_industry
         continue
       }
       if (field === 'field_formulation_number') {

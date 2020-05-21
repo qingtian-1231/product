@@ -25,8 +25,8 @@
               bg-color-class="Hydropalat"
             >
             </icon>
-            <template v-if="formulationBasic.name">
-              {{ formulationBasic.name.value }}
+            <template v-if="formulationTitle">
+              <span v-html="formulationTitle"></span>
             </template>
 
           </h1>
@@ -236,7 +236,7 @@
       }),
 
       formulationTitle: function () {
-        return (this.formulationBasic && this.formulationBasic.name) ? this.formulationBasic.name.value : ''
+        return (this.formulationBasic && this.formulationBasic.name) ? this.formulationBasic.name.value.replace('®', '<sup>®</sup>') : ''
       }
     },
 
@@ -250,6 +250,8 @@
         vm.formulationBasic = vm.formulationBasicInformation
         vm.formulationProp = vm.formulationProperties
         vm.formulationRecipeInfo = vm.formulationInfo
+
+        console.log(vm.formulationBasic, 'vm.formulationBasic')
       })
     },
 
@@ -414,11 +416,12 @@ ${vm.currentLocation}`
           .v-tabs {
             height: auto;
             text-align: center;
-            margin-bottom: 45px;
+            margin-bottom: 20px;
             overflow: hidden;
 
             .v-tab {
               font-size: 1.1rem;
+              text-transform: capitalize;
 
               &.v-tab--active {
 

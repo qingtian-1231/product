@@ -63,6 +63,13 @@ class UserEntityAlterResource extends EntityResource {
 
     }
 
-    return new ResourceResponse($userResponse);
+    // 禁用缓存
+    $build = array(
+      '#cache' => array(
+        'max-age' => 0,
+      ),
+    );
+    return (new ResourceResponse($userResponse))->addCacheableDependency($build);
+//    return new ResourceResponse($userResponse);
   }
 }

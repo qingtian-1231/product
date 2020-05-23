@@ -172,6 +172,8 @@ const mutations = {
     if (payload.favorite) {
       favorite = payload.favorite
     }
+
+    console.log(favorite, 'favorite')
     let hasFavorite = globalUtils.findElementInArray(favorite, state.productDetails.uuid, 'value')
 
     if (hasFavorite) {
@@ -179,6 +181,13 @@ const mutations = {
     } else {
       state.productBasicInformation.isFeature = false
     }
+
+    console.log(state.productBasicInformation.isFeature, 'state.productBasicInformation.isFeature')
+  },
+
+  processProductDetailsFeature(state, payload) {
+    console.log(payload, 'payload')
+    state.productBasicInformation.isFeature = payload
   }
 }
 

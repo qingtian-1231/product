@@ -43,7 +43,7 @@
           <v-col cols="12" sm="6" class="yin-si-xie-yi">
             <v-row align="center">
               <v-switch v-model="agree" :label="$t('global.agree')" :rules="[rules.required]"></v-switch>
-              <a target="_blank" href="#">{{ $t('global.private') }}</a>
+              <a target="_blank" href="https://www.basf.com/en/tools/legal/data-protection.html">{{ $t('global.private') }}</a>
             </v-row>
           </v-col>
           <div class="row text-center mx-0">

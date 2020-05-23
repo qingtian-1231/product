@@ -33,10 +33,17 @@
         </v-list-item>
       </v-list>
     </template>
-    <v-btn rounded color="success" @click="findFormulations()">
-      {{ $t('formulationFilter.selectFormulation') }}
-      <v-icon right>keyboard_arrow_right</v-icon>
-    </v-btn>
+
+    <v-row class="formulations-without-filter-button">
+      <v-col cols="6"></v-col>
+      <v-col cols="6" style="text-align: right">
+        <v-btn rounded color="info" @click="findFormulations()">
+          {{ $t('formulationFilter.selectFormulation') }}
+          <v-icon right>keyboard_arrow_right</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+
   </v-card>
 </template>
 
@@ -50,7 +57,7 @@
       return {
         formulationFilterList: [
           {
-            label: '60度光泽',
+            label: this.$t('formulationFilter.gloss_60'),
             selected: {},
             filedName: 'field_luster_60',
             selectList: [
@@ -65,7 +72,7 @@
             ]
           },
           {
-            label: '板材',
+            label: this.$t('formulationFilter.sheet_metal'),
             selected: {},
             filedName: 'field_sheet',
             selectList: [
@@ -84,7 +91,7 @@
             ]
           },
           {
-            label: '厚度',
+            label: this.$t('formulationFilter.thickness'),
             selected: {},
             filedName: 'field_thickness',
             selectList: [
@@ -103,7 +110,7 @@
             ]
           },
           {
-            label: 'SST',
+            label: this.$t('formulationFilter.SST'),
             selected: {},
             filedName: 'field_sst',
             selectList: [

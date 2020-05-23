@@ -6,7 +6,7 @@
         <ul>
           <li>
           <span>
-            <input type="number" name="total" placeholder="1" value="" disabled>
+            <input type="number" name="total" placeholder="100%" value="" disabled>
           </span>
             <span>
             <h2 class="light">

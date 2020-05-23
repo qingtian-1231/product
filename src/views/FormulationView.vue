@@ -40,10 +40,10 @@
 
             <v-btn
               icon
-              @click="favoritesFormulationStar('formulation', formulationBasic.isFeature ? 'delete' : 'add', formulationBasic.uuid)"
+              @click="favoritesFormulationStar('formulation', formulationBasicInformation.isFeature ? 'delete' : 'add', formulationBasic.uuid)"
             >
               <v-icon
-                v-if="!formulationBasic.isFeature"
+                v-if="!formulationBasicInformation.isFeature"
                 class="material-icons-outlined"
                 large
               >
@@ -121,10 +121,10 @@
             icon
             tile
             large
-            @click="favoritesFormulationStar('formulation', formulationBasic.isFeature ? 'delete' : 'add', formulationBasic.uuid)"
+            @click="favoritesFormulationStar('formulation', formulationBasicInformation.isFeature ? 'delete' : 'add', formulationBasic.uuid)"
           >
             <v-icon
-              v-if="!formulationBasic.isFeature"
+              v-if="!formulationBasicInformation.isFeature"
               large
               class="material-icons-outlined"
             >
@@ -171,7 +171,7 @@
             {{ formulationTitle }}
           </h2>
           <p>
-            分享这个页面
+            {{ $t('global.shareThisPage') }}
           </p>
           <p>
             {{ currentLocation }}
@@ -187,7 +187,7 @@
                 v-clipboard:success="onCopy"
                 v-clipboard:error="onError"
               >
-                复制链接
+                {{ $t('global.copyLink') }}
               </v-btn>
             </v-col>
 
@@ -195,7 +195,7 @@
 
             <v-col cols="12" md="6" sm="12" class="mx-0">
               <v-btn class="ma-2" right block rounded color="info" @click="sendEmail()">
-                发送邮件
+                {{ $t('global.sendEmail') }}
               </v-btn>
             </v-col>
           </div>
@@ -240,22 +240,26 @@
       }
     },
 
-    mounted () {
-      let vm = this
-      let formulationId = vm.$route.params.id
-      vm.currentLocation = window.location.href
-      vm.$store.dispatch('getFormulationDetails', {
-        id: formulationId
-      }).then(result => {
-        vm.formulationBasic = vm.formulationBasicInformation
-        vm.formulationProp = vm.formulationProperties
-        vm.formulationRecipeInfo = vm.formulationInfo
-
-        console.log(vm.formulationBasic, 'vm.formulationBasic')
-      })
+    created () {
+      this.loadFormulation()
     },
 
     methods: {
+      loadFormulation() {
+        let vm = this
+        let formulationId = vm.$route.params.id
+        vm.currentLocation = window.location.href
+        vm.$store.dispatch('getFormulationDetails', {
+          id: formulationId
+        }).then(result => {
+          vm.formulationBasic = vm.formulationBasicInformation
+          vm.formulationProp = vm.formulationProperties
+          vm.formulationRecipeInfo = vm.formulationInfo
+
+          // console.log(vm.formulationBasic, 'vm.formulationBasic')
+        })
+      },
+
       favoritesFormulationStar (type, action, formulationId) {
         let vm = this
         let favoriteInfo = {}
@@ -269,9 +273,13 @@
           vm.$store.dispatch('processFavoriteForUser', favoriteInfo).then(result => {
             if (result.status === 200) {
               if (action === 'add') {
+                vm.$store.commit('addFavoriteFormulation', formulationId)
                 vm.formulationBasic.isFeature = true
+                vm.loadFormulation()
               } else if (action === 'delete') {
+                vm.$store.commit('removeFavoriteFormulation', formulationId)
                 vm.formulationBasic.isFeature = false
+                vm.loadFormulation()
               }
             }
 
@@ -291,7 +299,7 @@
 
       sendEmail() {
         let vm = this
-        window.location.href = `mailto:?subject=配方${vm.formulationTitle}来自BASF产品助手&body=请查看配方详细信息${vm.formulationTitle}。
+        window.location.href = `mailto:?subject=配方${vm.formulationBasic.name.value}来自BASF产品中心&body=请查看配方详细信息${vm.formulationBasic.name.value}。
 我在BASF产品助手中找到了它：
 ${vm.currentLocation}`
       },

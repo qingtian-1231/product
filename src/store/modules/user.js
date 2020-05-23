@@ -47,12 +47,20 @@ const mutations = {
     })
   },
 
+  addFavoriteProduct(state, productUuid) {
+    state.favoriteProductList.push({'uuid': productUuid, 'value': productUuid})
+  },
+
   removeFavoriteFormulation(state, formulationUuid) {
     state.favoriteFormulationList = state.favoriteFormulationList.filter(item => {
       if (item.uuid !== formulationUuid) {
         return item
       }
     })
+  },
+
+  addFavoriteFormulation(state, formulationUuid) {
+    state.favoriteFormulationList.push({'uuid': formulationUuid, 'value': formulationUuid})
   },
 
   processUserOrderHistory(state, payload) {

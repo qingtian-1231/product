@@ -65,10 +65,16 @@
         ></v-divider>
       </template>
     </v-list>
-    <v-btn block rounded color="success" @click="findFormulations()">
-      {{ $t('formulationFilter.moreFormulation') }}
-      <v-icon right>keyboard_arrow_right</v-icon>
-    </v-btn>
+    <v-row class="formulations-without-filter-button">
+      <v-col cols="6"></v-col>
+      <v-col cols="6" style="text-align: right">
+        <v-btn rounded color="info" @click="findFormulations()">
+          {{ $t('formulationFilter.moreFormulation') }}
+          <v-icon right>keyboard_arrow_right</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+
   </v-card>
 </template>
 
@@ -225,6 +231,10 @@
     .v-avatar {
       cursor: pointer;
     }
+  }
+
+  .formulations-without-filter-button {
+    margin: 0 0;
   }
 
   .v-btn {

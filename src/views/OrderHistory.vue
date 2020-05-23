@@ -6,7 +6,7 @@
     <div class="header">
       <h1>
         <v-icon x-large class="material-icons-outlined">shopping_cart</v-icon>
-        订单历史
+        {{ $t('global.orderHistory') }}
       </h1>
     </div>
 
@@ -31,27 +31,27 @@
       return {
           headers: [
             {
-              text: '订单号',
+              text: this.$t('global.orderNumber'),
               align: 'start',
               value: 'order_number',
             },
             {
-              text: '总价',
+              text: this.$t('global.orderTotalPrice'),
               value: 'total_price__number',
               sortable: false,
             },
             {
-              text: '订单状态',
+              text: this.$t('global.orderStatus'),
               value: 'state',
               sortable: false,
             },
             {
-              text: '创建时间',
+              text: this.$t('global.orderCreate'),
               value: 'created',
               sortable: false,
             },
             {
-              text: '下单时间',
+              text: this.$t('global.OrderTime'),
               value: 'placed',
               sortable: false,
             },

@@ -47,10 +47,10 @@
 
             <v-btn
               icon
-              @click="favoritesProductStar('product', productBasic.isFeature ? 'delete' : 'add', productBasic.uuid)"
+              @click="favoritesProductStar('product', productBasicInformation.isFeature ? 'delete' : 'add', productBasic.uuid)"
             >
               <v-icon
-                v-if="!productBasic.isFeature"
+                v-if="!productBasicInformation.isFeature"
                 class="material-icons-outlined"
                 large
               >
@@ -135,10 +135,10 @@
             icon
             title
             large
-            @click="favoritesProductStar('product', productBasic.isFeature ? 'delete' : 'add', productBasic.uuid)"
+            @click="favoritesProductStar('product', productBasicInformation.isFeature ? 'delete' : 'add', productBasic.uuid)"
           >
             <v-icon
-              v-if="!productBasic.isFeature"
+              v-if="!productBasicInformation.isFeature"
               large
               class="material-icons-outlined"
             >
@@ -180,11 +180,10 @@
           </v-btn>
         </v-toolbar>
         <div id="share-dialog">
-          <h2>
-            {{ productTitle }}
+          <h2 v-html="productTitle">
           </h2>
           <p>
-            分享这个页面
+            {{ $t('global.shareThisPage') }}
           </p>
           <p>
             {{ currentLocation }}
@@ -200,7 +199,7 @@
                 v-clipboard:success="onCopy"
                 v-clipboard:error="onError"
               >
-                复制链接
+                {{ $t('global.copyLink') }}
               </v-btn>
             </v-col>
 
@@ -208,7 +207,7 @@
 
             <v-col cols="12" md="6" sm="12" class="mx-0">
               <v-btn class="ma-2" right block rounded color="info" @click="sendEmail()">
-                发送邮件
+                {{ $t('global.sendEmail') }}
               </v-btn>
             </v-col>
           </div>
@@ -232,6 +231,7 @@
 
     computed: {
       ...mapState({
+        isLogin: state => state.user.isLogin,
         requestProductDialog: state => state.core.requestProductDialog,
         productDetails: state=> state.product.productDetails,
         productInformation: state => state.product.productInfo,
@@ -269,25 +269,31 @@
       }
     },
 
-    mounted () {
-      let vm = this
-      let productId = vm.$route.params.id
-      vm.currentLocation = window.location.href
-      vm.$store.dispatch('getProductDetails', {
-        id: productId
-      }).then(() => {
-        vm.productBasic = vm.productBasicInformation
-        vm.productInfo = vm.productInformation
-        vm.productFormulation = vm.productRelationFormulation
-        console.log(vm.productBasic, 'productProperties')
-      })
+    created () {
+      this.loadProduct()
     },
 
     methods: {
+      loadProduct() {
+        let vm = this
+        let productId = vm.$route.params.id
+        vm.$loading.show();
+        vm.currentLocation = window.location.href
+        vm.$store.dispatch('getProductDetails', {
+          id: productId
+        }).then(() => {
+          vm.productBasic = vm.productBasicInformation
+          vm.productInfo = vm.productInformation
+          vm.productFormulation = vm.productRelationFormulation
+          vm.$loading.hide();
+          // console.log(vm.productBasic, 'productProperties')
+        })
+      },
+
       sendEmail() {
         let vm = this
-        window.location.href = `mailto:?subject=产品${vm.productTitle}来自BASF产品中心&body=请查看产品详细信息${vm.productTitle}。
-我在BASF产品助手中找到了它：
+        window.location.href = `mailto:?subject=产品${vm.productInfo.title.value}来自BASF产品中心&body=请查看产品详细信息${vm.productInfo.title.value}。
+我在BASF产品中心中找到了它：
 ${vm.currentLocation}`
       },
       addBasket () {
@@ -323,9 +329,13 @@ ${vm.currentLocation}`
             .then(result => {
               if (result.status === 200) {
                 if (action === "add") {
-                  vm.productBasic.isFeature = true;
+                  vm.$store.commit('addFavoriteProduct', productId)
+                  vm.$store.commit('processProductDetailsFeature', true)
+                  vm.loadProduct()
                 } else if (action === "delete") {
-                  vm.productBasic.isFeature = false;
+                  vm.$store.commit('removeFavoriteProduct', productId)
+                  vm.$store.commit('processProductDetailsFeature', false)
+                  vm.loadProduct()
                 }
               }
 

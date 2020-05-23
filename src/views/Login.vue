@@ -39,8 +39,8 @@
         <v-col cols="3">
           <div class="title mb-1">{{ $t('global.followWechat') }}</div>
           <v-img
-            :src="require('@/assets/global/qr_code.jpg')"
-            :lazy-src="require('@/assets/global/qr_code.jpg')"
+            :src="require('@/assets/global/wechat.png')"
+            :lazy-src="require('@/assets/global/wechat.png')"
             contain
           >
           </v-img>
@@ -70,7 +70,7 @@
             </v-col>
             <div class="bottom row text-center mx-0">
               <v-col cols="12" md="6" sm="12">
-                <v-btn class="ma-2" block rounded color="success" @click="$router.back(-1)">
+                <v-btn class="ma-2" block rounded color="info" @click="$router.back(-1)">
                   {{ $t('global.cancel') }}
                   <v-icon right>close</v-icon>
                 </v-btn>

@@ -21,7 +21,7 @@
             <div class="caption">
               <a target="_blank" :href="`/product/${featureProduct.uuid}`">
 <!--                <h1>What’s new</h1>-->
-                <h2 class="title">{{ featureProduct.title }}</h2>
+                <h2 class="title" v-html="featureProduct.title"></h2>
               </a>
               <p v-html="featureProduct.field_front_product_description"></p>
               <a target="_blank" :href="`/product/${featureProduct.uuid}`">

@@ -14,6 +14,7 @@ const mutations = {
     let product_default_image = require('@/assets/home/default.png')
 
     state.featureProduct = payload.map(function (item) {
+      item.title = item.title.replace('®', '<sup>®</sup>')
       if (item.field_media_image) {
         item.field_media_image = apiServer + item.field_media_image
       } else {

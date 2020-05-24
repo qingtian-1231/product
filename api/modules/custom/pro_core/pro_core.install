@@ -682,3 +682,268 @@ function pro_core_update_8006() {
 
   fclose($handle);
 }
+
+
+/**
+ * 导入首页产品数据
+ *
+ */
+function pro_core_update_8007() {
+  $entity_manager = \Drupal::entityManager();
+  $source_file = drupal_get_path('module', 'pro_core') . '/example_data/product_input.csv';
+  $handle = fopen($source_file, "r");
+
+  $jump = 0;
+  while (($data = fgetcsv($handle)) !== false) {
+    //下面这行代码可以解决中文字符乱码问题
+    $jump++;
+    foreach ($data as $index => $term) {
+      $data[$index] = iconv('gbk', 'utf-8', $term);
+    }
+
+    // 跳过前两行标题
+    if ($jump == 1 || $jump == 2) {
+      continue;
+    }
+
+    $data[4] = str_replace(['?', '？'], "®", $data[4]);
+    $data[5] = str_replace(['?', '？'], "®", $data[5]);
+    $data[6] = str_replace(['?', '？'], "®", $data[6]);
+
+    if (!empty($data[46])) {
+      $entity = \Drupal::entityTypeManager()->getStorage('commerce_product')->load($data[46]);
+
+      $field_buy_link = [];
+      if (!empty($data[8])) {
+        $field_buy_link = [
+          'title' => '购买链接',
+          'uri' => $data[8],
+        ];
+      }
+
+      $field_country_registration_group = [];
+      if (!empty($data[17])) {
+        $country_array = explode(',', $data[17]);
+        foreach ($country_array as $item) {
+          $paragraph = Paragraph::create([
+            'type' => 'country_registration_group',
+            'field_country_registration' => [$item],
+            'field_country_registration_descr' => ''
+          ]);
+          $paragraph->save();
+
+          array_push($field_country_registration_group, [
+            'target_id' => $paragraph->id(),
+            'target_revision_id' => $paragraph->getRevisionId(),
+          ]);
+        }
+      }
+
+      $product_variation = [];
+      $art = [];
+      if (!empty($data[45])) {
+        $variation_array = explode('#', $data[45]);
+        foreach ($variation_array as $item) {
+          $arr = explode(',', $item);
+          // The price of the variation.
+          $price = new \Drupal\commerce_price\Price($arr[1], 'CNY');
+          $variation = \Drupal\commerce_product\Entity\ProductVariation::create([
+            'type' => 'default', // The default variation type is 'default'.
+            'sku' => $arr[0], // The variation sku.
+            'status' => 1, // The product status. 0 for disabled, 1 for enabled.
+            'price' => $price,
+            'attribute_product_amount' => $arr[2]
+          ]);
+          $variation->save();
+
+          array_push($art, $arr[0]);
+          array_push($product_variation, ['target_id' => $variation->id()]);
+        }
+      }
+
+      $field_product_brand = '';
+      if (!empty($data[9])) {
+        $field_product_brand = Term::load($data[9]);
+      }
+
+      $field_product_type = '';
+      if (!empty($data[11])) {
+        $field_product_type = Term::load($data[11]);
+      }
+
+      $field_suitable_application = [];
+      if (!empty($data[14])) {
+        $suitable_application_array = explode(',', $data[14]);
+        foreach ($suitable_application_array as $item) {
+          array_push($field_suitable_application, Term::load($item));
+        }
+      }
+
+      $field_recommended_application = [];
+      if (!empty($data[16])) {
+        $recommended_application = explode('#', $data[16]);
+        foreach ($recommended_application as $item) {
+          array_push($field_recommended_application, $item);
+        }
+      }
+
+      $field_product_origin = 'CN';
+      if (!empty($data[44])) {
+        $product_origin_country_array = explode(',', $data[44]);
+        $field_product_origin = $product_origin_country_array[0];
+      }
+
+      $entity->field_freeze_thaw_stability->value = $data[34];
+      $entity->field_buy_link->value = $field_buy_link;
+      $entity->field__nco->value = $data[25];
+      $entity->field__oh->value = $data[31];
+      $entity->field_hazen_chroma->value = $data[41];
+      $entity->field_molecular_weight->value = $data[22];
+      $entity->field_solid_content->value = $data[18];
+      $entity->field_physical_form->value = $data[13];
+      $entity->field_benefits->value = $data[15];
+      $entity->field_functional_group->value = $data[24];
+      $entity->field_calculated_value->value = $data[21];
+      $entity->field_density->value = $data[29];
+      $entity->field_average_particle->value = $data[39];
+      $entity->field_total_voc->value = $data[38];
+      $entity->field_product_package->value = $data[43];
+      $entity->field_minimum_film_forming_tempe->value = $data[33];
+      $entity->field_molar_mass->value = $data[26];
+      $entity->field_boiling_point->value = $data[27];
+      $entity->field_free_formaldehyde_content->value = $data[20];
+      $entity->field_solvent->value = $data[42];
+      $entity->field_melting_point->value = $data[40];
+      $entity->field_glass_transition_temperatu->value = $data[30];
+      $entity->field_thinner->value = $data[19];
+      $entity->field_viscosity->value = $data[23];
+      $entity->field_qiangzhidangliang->value = $data[36];
+      $entity->field_hydroxyl_value->value = $data[35];
+      $entity->field_softening_point->value = $data[37];
+      $entity->field_acid_value->value = $data[28];
+      $entity->field_product_sbu->value = $data[2];
+      $entity->field_product_prd->value = $data[3];
+      $entity->field_product_art->value = implode($art, '|');
+      $entity->field_product_brand->value = $field_product_brand;
+      $entity->field_product_type->value = $field_product_type;
+      $entity->field_product_origin->value = $field_product_origin;
+
+      $entity->variations = $product_variation;
+
+      $entity->save();
+    }
+
+  }
+  fclose($handle);
+}
+
+/**
+ * 导入首页产品数据
+ *
+ */
+function pro_core_update_8008() {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $storageCommerceProduct = $entity_type_manager->getStorage('commerce_product');
+
+  $entity_manager = \Drupal::entityManager();
+  $source_file = drupal_get_path('module', 'pro_core') . '/example_data/product_input_EN.csv';
+  $handle = fopen($source_file, "r");
+
+  $translate_title = [
+    'Basonat® HW 3280 MBA',
+    'Joncryl® HYB 6345 ap',
+    'Joncryl® 7256',
+    'Joncryl® 7168',
+    'Foamaster® WO 2360',
+    'Dispex® ULTRA PX 4585',
+  ];
+  $jump = 0;
+
+  while (($data = fgetcsv($handle)) !== false) {
+    //下面这行代码可以解决中文字符乱码问题
+    $jump++;
+    foreach ($data as $index => $term) {
+      $data[$index] = iconv('gbk', 'utf-8', $term);
+    }
+
+    // 跳过前两行标题
+    if ($jump == 1 || $jump == 2) {
+      continue;
+    }
+
+    $data[4] = str_replace(['?', '？'], "®", $data[4]);
+    $data[5] = str_replace(['?', '？'], "®", $data[5]);
+    $data[6] = str_replace(['?', '？'], "®", $data[6]);
+
+    if (in_array($data[4], $translate_title)) {
+      $field_recommended_application = [];
+
+      if (!empty($data[16])) {
+        $recommended_application = explode('#', $data[16]);
+        foreach ($recommended_application as $item) {
+          array_push($field_recommended_application, $item);
+        }
+      }
+
+      $art = [];
+      if (!empty($data[45])) {
+        $variation_array = explode('#', $data[45]);
+        foreach ($variation_array as $item) {
+          $arr = explode(',', $item);
+          array_push($art, $arr[0]);
+        }
+      }
+      $commerceProduct = $storageCommerceProduct->loadByProperties(['title' => $data[4]]);
+      $commerceProduct = reset($commerceProduct);
+
+      if ($commerceProduct->hasTranslation('en')) {
+        $transCommerceProduct = $commerceProduct->getTranslation('en');
+
+        $transCommerceProduct->body->value = $data[10];
+        $transCommerceProduct->field__nco->value = $data[25];
+        $transCommerceProduct->field__oh->value = $data[31];
+        $transCommerceProduct->field_buy_link->value = [
+          'title' => 'Purchase link',
+          'uri' => $data[8],
+        ];
+        $transCommerceProduct->field_hazen_chroma->value = $data[41];
+        $transCommerceProduct->field_ph->value = $data[32];
+        $transCommerceProduct->field_other_names->value = $data[5];
+        $transCommerceProduct->field_freeze_thaw_stability->value = $data[34];
+        $transCommerceProduct->field_molecular_weight->value = $data[22];
+        $transCommerceProduct->field_solid_content->value = $data[18];
+        $transCommerceProduct->field_physical_form->value = $data[13];
+        $transCommerceProduct->field_benefits->value = $data[15];
+        $transCommerceProduct->field_functional_group->value = $data[24];
+        $transCommerceProduct->field_calculated_value->value = $data[21];
+        $transCommerceProduct->field_density->value = $data[29];
+        $transCommerceProduct->field_product_name->value = $data[6];
+        $transCommerceProduct->field_average_particle->value = $data[39];
+        $transCommerceProduct->field_total_voc->value = $data[38];
+        $transCommerceProduct->field_product_package->value = $data[43];
+        $transCommerceProduct->field_minimum_film_forming_tempe->value = $data[33];
+        $transCommerceProduct->field_molar_mass->value = $data[26];
+        $transCommerceProduct->field_boiling_point->value = $data[27];
+        $transCommerceProduct->field_free_formaldehyde_content->value = $data[20];
+        $transCommerceProduct->field_solvent->value = $data[42];
+        $transCommerceProduct->field_melting_point->value = $data[40];
+        $transCommerceProduct->field_glass_transition_temperatu->value = $data[30];
+        $transCommerceProduct->field_thinner->value = $data[19];
+        $transCommerceProduct->field_viscosity->value = $data[23];
+        $transCommerceProduct->field_qiangzhidangliang->value = $data[36];
+        $transCommerceProduct->field_hydroxyl_value->value = $data[35];
+        $transCommerceProduct->field_softening_point->value = $data[37];
+        $transCommerceProduct->field_generic_chemical_name->value = $data[12];
+        $transCommerceProduct->field_acid_value->value = $data[28];
+        $transCommerceProduct->field_recommended_application->value = $data[10];
+        $transCommerceProduct->field_product_sbu->value = $data[2];
+        $transCommerceProduct->field_product_prd->value = $data[3];
+        $transCommerceProduct->field_product_art->value = implode($art, '|');
+
+        $transCommerceProduct->save();
+      }
+    }
+  }
+
+  fclose($handle);
+}

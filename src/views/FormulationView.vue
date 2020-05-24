@@ -139,11 +139,11 @@
               star
             </v-icon>
 
-            <p>{{ $t('formulationView.share') }}</p>
+            <p>{{ $t('formulationView.favorite') }}</p>
           </v-btn>
           <v-btn icon tile large @click="openShareDialog()">
             <v-icon large class="material-icons-outlined">share</v-icon>
-            <p>{{ $t('formulationView.favorite') }}</p>
+            <p>{{ $t('formulationView.share') }}</p>
           </v-btn>
         </div>
       </v-col>

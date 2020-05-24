@@ -56,6 +56,8 @@ module.exports = {
     shareThisPage: '分享这个页面',
     copyLink: '复制链接',
     sendEmail: '发送邮件',
+    myFavoriteProduct: '我的收藏产品',
+    myFavoriteFormulation: '我的收藏产品',
   },
   businessModelList: {
     Manufacturing: '生产型企业',

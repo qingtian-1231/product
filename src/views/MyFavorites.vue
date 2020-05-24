@@ -13,7 +13,7 @@
       <v-row dense>
         <h1>
           <v-icon class="material-icons-outlined">star_outline</v-icon>
-          我的收藏产品
+          {{ $t('global.myFavoriteProduct') }}
         </h1>
         <v-card class="mx-auto product-list fade-enter-active" width="100%">
           <v-list two-line>
@@ -79,7 +79,7 @@
       <v-row dense>
         <h1>
           <v-icon class="material-icons-outlined">star_outline</v-icon>
-          我的收藏配方
+          {{ $t('global.myFavoriteFormulation') }}
         </h1>
         <v-card
           class="mx-auto formulation-list"

@@ -917,3 +917,22 @@ main {
 #products .product-list .v-list .v-list-item__title span:last-child p {
   display: inline;
 }
+
+@media screen and (max-width: 480px) {
+
+  .slide-caption {
+    margin-left: 0;
+    left: 0;
+    bottom: 35px;
+
+    h1 {
+      font-size: 16px;
+    }
+
+    .button {
+      height: 30px !important;
+      line-height: 30px !important;
+      width: 140px !important;
+    }
+  }
+}

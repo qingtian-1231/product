@@ -24,7 +24,6 @@
           :align="alignment"
           :justify="justify"
           class="teaser-container orange1"
-          style="height: 320px;"
         >
           <a href="https://www.basf.com/" target="_blank">
             <picture target="_blank" :href="require('@/assets/home/default.png')">
@@ -90,6 +89,7 @@
   }
 
   .teaser-container {
+    height: 320px;
 
     &.orange1 {
       border-color: #f49800;
@@ -113,6 +113,16 @@
 
     a {
       text-transform: uppercase;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .teaser-container {
+      height: auto;
+
+      img {
+        width: 100%;
+      }
     }
   }
 </style>

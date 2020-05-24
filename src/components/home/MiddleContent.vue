@@ -313,7 +313,7 @@
     .english-version {
 
       li {
-        width: 20% !important;
+        width: 20%;
         padding-left: 0 !important;
         white-space: nowrap;
 
@@ -371,6 +371,17 @@
     .special-class {
       position: relative;
       left: 39px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    #middle-content {
+      ul {
+
+        li {
+          width: 100% !important;
+        }
+      }
     }
   }
 </style>

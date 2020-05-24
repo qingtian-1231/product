@@ -668,4 +668,33 @@ export default {
   line-height: 38px;
   color: #2196f3;
 }
+
+
+@media screen and (max-width: 480px) {
+  #products {
+
+    .product-list {
+      .v-list {
+
+        .v-list-item__title {
+          span {
+            &:first-child {
+              width: 40%;
+              display: inline-block;
+            }
+
+            &:last-child {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .infinite-loading-container {
+      height: 72px;
+      line-height: 72px;
+    }
+  }
+}
 </style>

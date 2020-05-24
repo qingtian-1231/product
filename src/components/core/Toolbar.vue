@@ -287,7 +287,8 @@
         padding-right: 50px !important;
 
         @media screen and (max-width: 600px) {
-         text-align: right;
+          text-align: right;
+          padding-right: 0 !important;
         }
       }
     }

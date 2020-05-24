@@ -155,11 +155,21 @@ class FormulationResource extends ResourceBase {
       if (strpos($item['field_proportion_char']['value'], '~') !== false) {
         continue;
       } else {
-        $item['field_proportion_char']['value'] = ($item['field_proportion_char']['value'] * 100) . '%';
+        if (!empty($item['field_proportion_char']['value'])) {
+          if ((int) $item['field_proportion_char']['value'] > 1) {
+            $item['field_proportion_char']['value'] = $item['field_proportion_char']['value'] . '%';
+          } else {
+            $item['field_proportion_char']['value'] = ($item['field_proportion_char']['value'] * 100) . '%';
+          }
+
+        } else {
+          $item['field_proportion_char']['value'] = '';
+        }
+
       }
 
     }
-    
+
     return new ResourceResponse($formulation);
   }
 

@@ -187,9 +187,15 @@ const actions = {
     const current_user =
       ((sessionValue || "").authenticated || "").current_user || "";
 
+    let requestPath = 'user/' + current_user.uid
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/user/' + current_user.uid
+    }
     if (current_user) {
       return request()
-        .get('user/' + current_user.uid, {
+        .get(requestPath, {
           params: {
             _format: state._format
           }

@@ -56,6 +56,8 @@ module.exports = {
     shareThisPage: 'Share This Page',
     copyLink: 'Copy Link',
     sendEmail: 'Send Email',
+    myFavoriteProduct: 'My Favorite Products',
+    myFavoriteFormulation: 'My Favorite Formulations',
   },
   businessModelList: {
     Manufacturing: 'Manufacturing',

@@ -76,9 +76,11 @@
                 </ul>
               </div>
 
-              <v-btn block rounded color="primary" dark @click="userLogout()">
-                {{ $t('global.logout') }}<v-icon right dark>keyboard_arrow_right</v-icon>
-              </v-btn>
+              <div style="text-align: right">
+                <v-btn block rounded color="info" dark @click="userLogout()">
+                  {{ $t('global.logout') }}<v-icon right dark>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </div>
             </template>
 
             <template v-else>

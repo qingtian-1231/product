@@ -376,33 +376,33 @@ export default {
       vm.$loading.show()
       vm.$store.dispatch("getProductList", {filter: filter, options: options}).then(() => {
         let products = vm.$store.state.product.productList;
-        products = products.map((product) => {
-          vm.$store.dispatch('getProductDetails', {
-            id: product.uuid
-          }).then(result => {
-            delete result.uuid
-            delete result.product_id
-            delete result.langcode
-            delete result.variations
-            delete result.body
-            delete result.default_langcode
-            delete result.field_benefits
-            delete result.field_buy_link
-            delete result.field_country_registration_group
-            delete result.field_product_brand
-            delete result.field_other_names
-            delete result.field_recommended_application
-            delete result.field_suitable_application
-            delete result.field_product_brand
-            delete result.field_product_type
-            delete result.field_formulation
-            delete result.title
-
-            product.basic = result
-          })
-
-          return product
-        })
+        // products = products.map((product) => {
+        //   vm.$store.dispatch('getProductDetails', {
+        //     id: product.uuid
+        //   }).then(result => {
+        //     delete result.uuid
+        //     delete result.product_id
+        //     delete result.langcode
+        //     delete result.variations
+        //     delete result.body
+        //     delete result.default_langcode
+        //     delete result.field_benefits
+        //     delete result.field_buy_link
+        //     delete result.field_country_registration_group
+        //     delete result.field_product_brand
+        //     delete result.field_other_names
+        //     delete result.field_recommended_application
+        //     delete result.field_suitable_application
+        //     delete result.field_product_brand
+        //     delete result.field_product_type
+        //     delete result.field_formulation
+        //     delete result.title
+        //
+        //     product.basic = result
+        //   })
+        //
+        //   return product
+        // })
 
         if (products.length) {
           vm.productList = vm.productList.concat(products);

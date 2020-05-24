@@ -135,7 +135,7 @@ const mutations = {
       if (field === 'field_formulation') {
         state.productRelationFormulation = result.field_formulation.value
 
-        console.log(state.productRelationFormulation, 'state.productRelationFormulation')
+        // console.log(state.productRelationFormulation, 'state.productRelationFormulation')
         continue
       }
 
@@ -173,7 +173,7 @@ const mutations = {
       favorite = payload.favorite
     }
 
-    console.log(favorite, 'favorite')
+    // console.log(favorite, 'favorite')
     let hasFavorite = globalUtils.findElementInArray(favorite, state.productDetails.uuid, 'value')
 
     if (hasFavorite) {
@@ -182,11 +182,11 @@ const mutations = {
       state.productBasicInformation.isFeature = false
     }
 
-    console.log(state.productBasicInformation.isFeature, 'state.productBasicInformation.isFeature')
+    // console.log(state.productBasicInformation.isFeature, 'state.productBasicInformation.isFeature')
   },
 
   processProductDetailsFeature(state, payload) {
-    console.log(payload, 'payload')
+    // console.log(payload, 'payload')
     state.productBasicInformation.isFeature = payload
   }
 }

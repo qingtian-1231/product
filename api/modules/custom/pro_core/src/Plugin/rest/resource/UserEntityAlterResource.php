@@ -32,6 +32,12 @@ class UserEntityAlterResource extends EntityResource {
           foreach ($value as $key => $uuid) {
             $entity = $entity_manager->loadEntityByUuid('commerce_product', $uuid);
             if ($entity) {
+              $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+              if ($entity->hasTranslation($language)) {
+                $entity = $entity->getTranslation($language);
+              }
+
               $targetId = $entity->field_product_brand->getValue()[0]['target_id'];
               if ($targetId) {
                 $term = Term::load($targetId);
@@ -52,6 +58,11 @@ class UserEntityAlterResource extends EntityResource {
           foreach ($value as $key => $uuid) {
             $entity = $entity_manager->loadEntityByUuid('node', $uuid);
             if ($entity) {
+              $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+              if ($entity->hasTranslation($language)) {
+                $entity = $entity->getTranslation($language);
+              }
               $value[$key]['title'] = $value[$key]['formulation_name'] = $entity->field_formulation_name->getValue()[0]['value'];
               $value[$key]['formulationbenefits'] = $entity->field_formulationbenefits->getValue()[0]['value'];
             }

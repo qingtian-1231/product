@@ -398,23 +398,23 @@
         vm.$loading.show()
         vm.$store.dispatch('getFormulationList', {filter: filter, options: options}).then(() => {
           let formulations = vm.$store.state.formulation.formulationList
-          formulations = formulations.map((formulation) => {
-            vm.$store.dispatch('getFormulationDetails', {
-              id: formulation.uuid
-            }).then(result => {
-              delete result.field_formula_composition
-              delete result.field_formulation_file
-              delete result.field_formulation_cluster
-              delete result.field_formulation_name
-              delete result.field_formulationbenefits
-              delete result.field_is_public
-              delete result.body
-
-              formulation.basic = result
-            })
-
-            return formulation
-          })
+          // formulations = formulations.map((formulation) => {
+          //   vm.$store.dispatch('getFormulationDetails', {
+          //     id: formulation.uuid
+          //   }).then(result => {
+          //     delete result.field_formula_composition
+          //     delete result.field_formulation_file
+          //     delete result.field_formulation_cluster
+          //     delete result.field_formulation_name
+          //     delete result.field_formulationbenefits
+          //     delete result.field_is_public
+          //     delete result.body
+          //
+          //     formulation.basic = result
+          //   })
+          //
+          //   return formulation
+          // })
           if (formulations.length) {
             vm.formulationList = vm.formulationList.concat(formulations)
             $state.loaded()

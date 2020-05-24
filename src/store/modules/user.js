@@ -85,8 +85,6 @@ const mutations = {
         state.currentUser[item] = payload[item][0].value
       }
     }
-
-    console.log(state.currentUser, 'state.currentUser')
   }
 };
 

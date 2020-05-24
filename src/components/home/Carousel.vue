@@ -6,7 +6,7 @@
       interval="6000"
       progress
       progress-color="primary"
-      height="720"
+      :height="height"
       delimiter-icon="mdi-minus"
       show-arrows-on-hover
       touch
@@ -35,6 +35,7 @@
 
     data () {
       return {
+        height: 720,
         currentCarousel: 'green_dark1',
       }
     },
@@ -53,11 +54,22 @@
       }
     },
 
-    created () {},
+    created () {
+      if (this._isMobile()) {
+        this.height = 240
+      }
+    },
 
     mounted () {
       let vm = this
       vm.$store.dispatch('getCarousel')
+    },
+
+    methods: {
+      _isMobile() {
+        let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+        return flag;
+      }
     }
   }
 </script>

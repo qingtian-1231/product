@@ -147,4 +147,14 @@
       padding-top: 0;
     }
   }
+
+  @media screen and (max-width: 480px) {
+    .teaser-container {
+      height: auto;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
 </style>

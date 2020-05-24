@@ -317,6 +317,7 @@ export default {
   @media screen and (max-width: 640px) {
     width: 100%;
     top: 5%;
+    margin-top: 20px;
   }
 }
 

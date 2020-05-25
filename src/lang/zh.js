@@ -58,6 +58,8 @@ module.exports = {
     sendEmail: '发送邮件',
     myFavoriteProduct: '我的收藏产品',
     myFavoriteFormulation: '我的收藏产品',
+    loading: '正在加载...',
+    version: '版本',
   },
   businessModelList: {
     Manufacturing: '生产型企业',
@@ -106,7 +108,8 @@ module.exports = {
     title: '联系我们',
     description: '如果您对使用巴斯夫产品中心有任何建议或疑问，请随时与我们联系。',
     feedbackContent: '内容',
-    yourEmail: '您的邮箱地址'
+    yourEmail: '您的邮箱地址',
+    thanks: '感谢您的反馈！',
   },
   loginDialog: {
     title: '注册,充分利用BASF产品助手。',

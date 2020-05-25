@@ -213,6 +213,7 @@
   import Additional from '../components/formulation_view/Additional'
   import FormulationRecipe from '../components/formulation_view/FormulationRecipe'
   import { mapState } from 'vuex'
+  import { getCookie } from "../utils/cookie";
 
   export default {
     components: { Icon, BasicInformation, Properties, Additional, FormulationRecipe },
@@ -299,9 +300,18 @@
 
       sendEmail() {
         let vm = this
-        window.location.href = `mailto:?subject=配方${vm.formulationBasic.name.value}来自BASF产品中心&body=请查看配方详细信息${vm.formulationBasic.name.value}。
-我在BASF产品助手中找到了它：
+        let currentLanguage = getCookie('drupal:session:language')
+
+        if (currentLanguage === 'en') {
+          window.location.href = `mailto:?subject=配方${vm.formulationBasic.name.value}来自BASF产品中心&body=请查看配方详细信息${vm.formulationBasic.name.value}。
+我在BASF产品中心中找到了它：
 ${vm.currentLocation}`
+        } else {
+          window.location.href = `mailto:?subject=Formulation${vm.formulationBasic.name.value} from BASF Product Center&body=Please browse the formulation information${vm.formulationBasic.name.value}。
+I find it at BASF Product Center:
+${vm.currentLocation}`
+        }
+
       },
 
       onCopy(e) {

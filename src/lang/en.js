@@ -58,6 +58,8 @@ module.exports = {
     sendEmail: 'Send Email',
     myFavoriteProduct: 'My Favorite Products',
     myFavoriteFormulation: 'My Favorite Formulations',
+    loading: 'Loading...',
+    version: 'Version',
   },
   businessModelList: {
     Manufacturing: 'Manufacturing',
@@ -106,7 +108,8 @@ module.exports = {
     title: 'Contact Us',
     description: 'If you have any suggestions or questions regarding the usage of BASF Product Center, please do not hesitate to give us your feedback.',
     feedbackContent: 'Content',
-    yourEmail: 'E-mail'
+    yourEmail: 'E-mail',
+    thanks: 'Thanks for your feedback！',
   },
   loginDialog: {
     title: 'Register and take full advantage of BASF Product Assistant.',

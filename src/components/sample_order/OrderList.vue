@@ -68,10 +68,10 @@
           </template>
         </v-simple-table>
         <div class="pagination">
-          <v-btn color="warning" class="float-left" @click="$router.back(-1)">
+          <v-btn color="info" class="float-left" @click="$router.back(-1)">
             {{ $t('sampleOrder.orderList.cancel') }}
           </v-btn>
-          <v-btn class="float-right" color="primary" @click="addCart()">
+          <v-btn class="float-right" color="info" @click="addCart()">
             {{ $t('sampleOrder.orderList.addCart') }}
           </v-btn>
         </div>

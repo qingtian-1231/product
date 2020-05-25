@@ -4,11 +4,11 @@
       <div class="success_message">
         <h2>
           <v-icon color="primary">check_circle_outline</v-icon>
-          感谢您的反馈！
+          {{ $t('onlineRequestForm.thanks') }}
         </h2>
 
         <v-btn class="ma-2" rounded color="success" @click="closeRequestDialog()">
-          关闭
+          {{ $t('global.close') }}
         </v-btn>
       </div>
     </template>

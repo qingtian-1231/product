@@ -1,38 +1,41 @@
 <template>
-  <v-card
-    class="mx-auto formulations-with-filter fade-enter-active"
-    width="100%"
-  >
-    <template v-for="(item, index) in formulationFilterList">
-      <v-list
-        two-line
-        height="60"
-        :key="index">
-        <v-list-item>
-          <v-col cols="2">
-            <v-subheader>{{ item.label }}</v-subheader>
-          </v-col>
-          <v-col cols="8">
-            <v-select
-              class="select small"
-              v-model="item.selected"
-              :hint="`${item.selected.value}, ${item.selected.name}`"
-              :items="item.selectList"
-              item-text="name"
-              item-value="code"
-              return-object
-              :label="$t('formulationFilter.select')"
-              filled
-              dense
-              hide-details
-              solo
-            ></v-select>
-          </v-col>
-          <v-col cols="2">
-          </v-col>
-        </v-list-item>
-      </v-list>
-    </template>
+  <div>
+    <v-card
+      class="mx-auto formulations-with-filter fade-enter-active clearfix"
+      width="100%"
+    >
+      <template v-for="(item, index) in formulationFilterList">
+        <v-list
+          two-line
+          height="60"
+          :key="index">
+          <v-list-item>
+            <v-col cols="2">
+              <v-subheader>{{ item.label }}</v-subheader>
+            </v-col>
+            <v-col cols="8">
+              <v-select
+                class="select small"
+                v-model="item.selected"
+                :hint="`${item.selected.value}, ${item.selected.name}`"
+                :items="item.selectList"
+                item-text="name"
+                item-value="code"
+                return-object
+                :label="$t('formulationFilter.select')"
+                filled
+                dense
+                hide-details
+                solo
+              ></v-select>
+            </v-col>
+            <v-col cols="2">
+            </v-col>
+          </v-list-item>
+        </v-list>
+      </template>
+
+    </v-card>
 
     <v-row class="formulations-without-filter-button">
       <v-col cols="6"></v-col>
@@ -43,8 +46,7 @@
         </v-btn>
       </v-col>
     </v-row>
-
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -167,6 +169,7 @@
 
 <style lang="scss" scoped>
 .formulations-with-filter {
+  box-shadow: none;
 
   .v-list {
     width: 50%;
@@ -178,4 +181,17 @@
     float: right;
   }
 }
+  
+  .clearfix:after {
+    content: '';
+    display: block;
+    visibility: hidden;
+    height: 0;
+    line-height: 0;
+    clear: both;
+  }
+
+  .clearfix {
+    zoom: 1;
+  }
 </style>

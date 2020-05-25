@@ -154,7 +154,7 @@
             </v-icon>
             <p>{{ $t('productView.favorite') }}</p>
           </v-btn>
-          <v-btn icon tile large>
+          <v-btn icon tile large @click="addBasket()">
             <v-icon large class="material-icons-outlined">shopping_cart</v-icon>
             <p>{{ $t('productView.basket') }}</p>
           </v-btn>
@@ -225,6 +225,7 @@
   import Additional from '../components/product_view/Additional'
   import { mapState } from 'vuex'
   import Icon from "../components/svg/features/Icon";
+  import { getCookie } from "../utils/cookie";
 
   export default {
     components: { Icon, BasicInformation, Properties, Formulations, Additional },
@@ -292,9 +293,18 @@
 
       sendEmail() {
         let vm = this
-        window.location.href = `mailto:?subject=产品${vm.productInfo.title.value}来自BASF产品中心&body=请查看产品详细信息${vm.productInfo.title.value}。
+        let currentLanguage = getCookie('drupal:session:language')
+
+        if (currentLanguage === 'en') {
+          window.location.href = `mailto:?subject=产品${vm.productInfo.title.value}来自BASF产品中心&body=请查看产品详细信息${vm.productInfo.title.value}。
 我在BASF产品中心中找到了它：
 ${vm.currentLocation}`
+        } else {
+          window.location.href = `mailto:?subject=Product${vm.productInfo.title.value} from BASF Product Center&body= Please browse the product information${vm.productInfo.title.value}。
+I find it at BASF Product Center:
+${vm.currentLocation}`
+        }
+
       },
       addBasket () {
         let vm = this

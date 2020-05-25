@@ -113,7 +113,7 @@
     </v-data-iterator>
     <div class="pagination">
       <v-btn
-        color="warning"
+        color="info"
         class="float-left"
         @click="backPrevStep()"
       >
@@ -122,7 +122,7 @@
 
       <v-btn
         class="float-right"
-        color="primary"
+        color="info"
         @click="completeOrder()"
       >
         {{ $t('sampleOrder.OrderResume.completeOrder') }}

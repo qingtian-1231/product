@@ -16,7 +16,7 @@
 <!--                <v-icon large class="material-icons-outlined">insert_drive_file</v-icon>-->
                 <v-icon large class="material-icons-outlined">archive</v-icon>
               </a>
-              <span>{{ item.version }}</span>
+              <span>{{ $t('global.version') }}: {{ item.version }}</span>
             </figure>
           </li>
         </template>

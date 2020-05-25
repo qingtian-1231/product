@@ -42,6 +42,10 @@
       display: block!important;
       align-items: start !important;
 
+      span:first-child {
+        font-size: 14px;
+      }
+
       a {
         margin-bottom: 10px;
         color: #fff;

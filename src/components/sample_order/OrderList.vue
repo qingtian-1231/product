@@ -138,10 +138,10 @@
             </template>
           </v-simple-table>
           <div class="pagination">
-            <v-btn color="warning" class="float-left" @click="cancelOrder(cartOrder.order_id)">
+            <v-btn color="info" class="float-left" @click="cancelOrder(cartOrder.order_id)">
               {{ $t('sampleOrder.orderList.cancelOrder') }}
             </v-btn>
-            <v-btn class="float-right" color="primary" @click="shippingOrder(cartOrder)">
+            <v-btn class="float-right" color="info" @click="shippingOrder(cartOrder)">
               {{ $t('sampleOrder.orderList.completeOrder') }}
             </v-btn>
           </div>

@@ -37,7 +37,7 @@
 
     </v-card>
 
-    <v-row class="formulations-without-filter-button">
+    <v-row class="formulations-without-filter-button" style="margin: 0">
       <v-col cols="6"></v-col>
       <v-col cols="6" style="text-align: right">
         <v-btn rounded color="info" @click="findFormulations()">

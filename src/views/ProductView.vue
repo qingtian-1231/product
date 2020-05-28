@@ -287,7 +287,7 @@
           vm.productInfo = vm.productInformation
           vm.productFormulation = vm.productRelationFormulation
           vm.$loading.hide();
-          // console.log(vm.productBasic, 'productProperties')
+          // console.log(vm.productInfo, 'productProperties')
         })
       },
 

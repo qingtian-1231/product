@@ -89,6 +89,7 @@
               name="searchInput"
               id="smartSearch"
               v-model="globalSearchKeyWord"
+              @blur="closeGlobalSearch()"
               @keyup="globalSearch()"
             >
             <ul class="search-result">
@@ -421,7 +422,7 @@
         border-radius: 0;
         box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.25);
         height: auto;
-        max-height: 200px;
+        max-height: 300px;
         margin: 0;
         overflow-y: auto;
         padding: 0;

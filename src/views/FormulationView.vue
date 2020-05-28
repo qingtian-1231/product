@@ -257,7 +257,7 @@
           vm.formulationProp = vm.formulationProperties
           vm.formulationRecipeInfo = vm.formulationInfo
 
-          // console.log(vm.formulationBasic, 'vm.formulationBasic')
+          // console.log(vm.formulationRecipeInfo, 'vm.formulationBasic')
         })
       },
 

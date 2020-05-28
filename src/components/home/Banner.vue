@@ -105,7 +105,6 @@
 
   .search-container {
     height: 320px;
-    overflow: hidden;
     position: relative;
     text-align: left;
     padding: 24px 30px 24px !important;

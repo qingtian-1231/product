@@ -85,7 +85,7 @@
 
             <template v-else>
               <v-card-title class="px-0 my-5">
-                <span class="headline">{{ $t('global.login') }}</span>
+                <span class="headline" style="text-transform: capitalize;">{{ $t('global.login') }}</span>
                 <v-spacer></v-spacer>
                 <v-btn dark icon @click.stop="closeLoginSheet" class="black--text">
                   <v-icon>keyboard_arrow_left</v-icon>
@@ -105,7 +105,7 @@
                   v-model="userName"
                   :rules="[rules.required, rules.max]"
                   counter
-                  :label="$t('global.userName')"
+                  :label="$t('global.email')"
                   outlined
                   required
                 ></v-text-field>
@@ -227,7 +227,7 @@
         rules: {
           required: v => !!v || this.$t('global.required'),
           min: v => v.length >= 8 || this.$t('global.min'),
-          max: v => v.length <= 20 || this.$t('global.max'),
+          max: v => v.length <= 40 || this.$t('global.max'),
           emailMatch: v => (/.+@.+\..+/.test(v) || this.$t('global.emailMatch')),
           confirmPass: v => this.password === v || this.$t('global.confirmPass')
         },

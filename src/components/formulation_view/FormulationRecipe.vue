@@ -26,39 +26,50 @@
         </ul>
         <div>
           <span class="label">{{ $t('formulationView.formulationRecipe.formulaRatio') }}</span>
+          <span class="label">{{ $t('formulationView.formulationRecipe.formulaWork') }}</span>
           <span class="label">{{ $t('formulationView.formulationRecipe.formula_Composition') }}</span>
         </div>
         <ul class="clearfix">
           <template v-for="(item, index) in formulationInfo">
             <template v-if="item.hasOwnProperty('field_part_basf_product')">
               <li class="basf" :key="index">
-              <span>
-                <input type="number" name="DISPEX_ULTRA_PA_4550" :placeholder="item.field_proportion_char.value" :value="item.field_proportion_char.value" disabled>
-              </span>
                 <span>
-                <icon
-                  width="24"
-                  height="24"
-                  :icon-name="item.field_part_basf_product.termId"
-                  :bg-color-class="item.field_part_basf_product.brandName"
-                >
-                </icon>
-                <router-link :to="{name: 'Product', params: {id: item.field_part_basf_product.uuid}}" target="_blank">
-                  <b>{{ item.field_part_basf_product.value }}</b>
-                </router-link>
-                <v-btn icon>
-                  <v-icon @click="previewProduct(item.field_part_basf_product)" class="material-icons-outlined">pageview</v-icon>
-                </v-btn>
-                  <!--                <v-btn icon>-->
-                  <!--                  <v-icon class="material-icons-outlined">shopping_basket</v-icon>-->
-                  <!--                </v-btn>-->
-              </span>
+                  <input type="number" name="DISPEX_ULTRA_PA_4550" :placeholder="item.field_proportion_char.value" :value="item.field_proportion_char.value" disabled>
+                </span>
+                <span>
+                  {{ item.field_basf_work.value }}
+                </span>
+                <span>
+                  <icon
+                    width="24"
+                    height="24"
+                    :icon-name="item.field_part_basf_product.termId"
+                    :bg-color-class="item.field_part_basf_product.brandName"
+                  >
+                  </icon>
+                  <router-link :to="{name: 'Product', params: {id: item.field_part_basf_product.uuid}}" target="_blank">
+                    <b>{{ item.field_part_basf_product.value }}</b>
+                  </router-link>
+                  <v-btn icon>
+                    <v-icon @click="previewProduct(item.field_part_basf_product)" class="material-icons-outlined">pageview</v-icon>
+                  </v-btn>
+                    <!--                <v-btn icon>-->
+                    <!--                  <v-icon class="material-icons-outlined">shopping_basket</v-icon>-->
+                    <!--                </v-btn>-->
+                </span>
               </li>
             </template>
 
             <template v-else>
               <li class="basic" :key="index">
-                <span><input type="number" name="WATER_DEMINERALIZED" :placeholder="item.field_proportion_char.value" :value="item.field_proportion_char.value" disabled></span>
+                <span>
+                  <template v-if="item.field_proportion_char.value">
+                    <input type="number" name="WATER_DEMINERALIZED" :placeholder="item.field_proportion_char.value" :value="item.field_proportion_char.value" disabled>
+                  </template>
+                </span>
+                <span>
+                  {{ item.field_work.value }}
+                </span>
                 <span>{{ item.field_part_normal_product.value }}</span>
               </li>
             </template>
@@ -156,6 +167,7 @@
     .basf {
 
       span {
+        min-height: 30px;
 
         &:last-child {
           box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
@@ -166,6 +178,7 @@
     .basic {
 
       span {
+        min-height: 30px;
 
         &:last-child {
           box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
@@ -174,6 +187,7 @@
     }
 
     span {
+      font-size: 16px;
 
       &:first-child {
         width: 22.5%;
@@ -184,11 +198,9 @@
         position: relative;
         border-radius: 8px;
         line-height: 32px;
-        font-size: .75em;
 
         @media screen and (min-width: 960px) {
           width: 12.5%;
-          font-size: 1em;
         }
 
         & > input {
@@ -206,9 +218,24 @@
         }
       }
 
+      &:nth-child(2) {
+        width: 22.5%;
+        -webkit-animation: .4s ease-out 0s 1 rotateX;
+        animation: .4s ease-out 0s 1 rotateX;
+        display: inline-block;
+        float: left;
+        position: relative;
+        border-radius: 8px;
+        line-height: 32px;
+        -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        padding: 0 8px 0 3.5%;
+        margin-left: 2%;
+      }
+
       &:last-child {
         padding: 0 8px 0 12.5%;
-        width: 75.5%;
+        width: 50%;
         margin-left: 2%;
         -webkit-animation: .4s ease-out 0s 1 rotateX;
         animation: .4s ease-out 0s 1 rotateX;
@@ -217,11 +244,12 @@
         position: relative;
         border-radius: 8px;
         line-height: 32px;
-        font-size: .75em;
+        -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 
         @media screen and (min-width: 960px) {
           padding: 0 8px 0 12.5%;
-          width: 85.5%;
+          width: 50%;
           margin-left: 2%;
         }
 

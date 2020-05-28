@@ -18,7 +18,7 @@
           <v-icon>lock_open</v-icon>
           {{ $t('home.middleContent.registerTitle') }}
         </h2>
-        <p>
+        <p style="text-align: left;">
           {{ $t('home.middleContent.registerDescription') }}
         </p>
         <div class="row text-center mx-0">

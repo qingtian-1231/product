@@ -9,7 +9,7 @@
               <p>{{ titleField.value }}</p>
               <p></p>
               <span>
-                   {{ item.description }}。<br>
+                   {{ item.description }}<br>
               </span>
               <p></p>
               <a target="_blank" :href="item.url" class="btn btn-default">

@@ -99,7 +99,7 @@
         rules: {
           required: v => !!v || this.$t('global.required'),
           min: v => v.length >= 8 || this.$t('global.min'),
-          max: v => v.length <= 20 || this.$t('global.max'),
+          max: v => v.length <= 40 || this.$t('global.max'),
           emailMatch: v => (/.+@.+\..+/.test(v) || this.$t('global.emailMatch')),
           confirmPass: v => this.password === v || this.$t('global.confirmPass'),
           chineseVarchar: v => {

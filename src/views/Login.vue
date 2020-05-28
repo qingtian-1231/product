@@ -49,7 +49,7 @@
           <v-form ref="loginForm" id="login-form" class="form" v-model="loginValid" lazy-validation>
             <v-col cols="12">
               <v-text-field
-                :label="$t('global.userName')"
+                :label="$t('global.email')"
                 v-model="userName"
                 :rules="[rules.required, rules.max]"
                 counter
@@ -68,6 +68,9 @@
                 outlined
               ></v-text-field>
             </v-col>
+            <div class="html" style="line-height: 36px;">
+              <small><a target="_blank" href="/forget-pass">{{ $t('global.forget') }}</a></small>
+            </div>
             <div class="bottom row text-center mx-0">
               <v-col cols="12" md="6" sm="12">
                 <v-btn class="ma-2" block rounded color="info" @click="$router.back(-1)">
@@ -91,7 +94,7 @@
               <v-icon>lock_open</v-icon>
               {{ $t('home.middleContent.registerTitle') }}
             </h2>
-            <p>
+            <p style="margin-top: 35px;">
               {{ $t('home.middleContent.registerDescription') }}
             </p>
           </div>
@@ -128,7 +131,7 @@
         rules: {
           required: v => !!v || this.$t('global.required'),
           min: v => v.length >= 8 || this.$t('global.min'),
-          max: v => v.length <= 20 || this.$t('global.max'),
+          max: v => v.length <= 40 || this.$t('global.max'),
           emailMatch: v => (/.+@.+\..+/.test(v) || this.$t('global.emailMatch')),
           confirmPass: v => this.password === v || this.$t('global.confirmPass'),
         },
@@ -239,5 +242,12 @@
       padding-top: 40px;
       border-top: 1px solid #eee;
     }
+  }
+
+  .html {
+    text-align: right;
+    padding: 0 15px;
+    position: relative;
+    bottom: 15px;
   }
 </style>

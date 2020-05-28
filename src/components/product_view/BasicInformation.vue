@@ -72,24 +72,24 @@
       </p>
     </div>
 
-<!--    <div class="countries">-->
-<!--      <p v-if="country_registration_group" class="full-width">-->
-<!--        <span class="grey-2 label">{{ country_registration_group.label }}</span>-->
-<!--        <ul class="clearfix">-->
-<!--        <template v-for="(field, index) in country_registration_group.value">-->
-<!--          <li :key="index">-->
-<!--            <div class="item-property">-->
-<!--              <span>-->
-<!--                <v-icon>outlined_flag</v-icon>-->
-<!--              </span>-->
-<!--              <span>{{ field.field_country_registration.value }}<br></span>-->
-<!--              <span>{{ field.field_country_registration_descr.value }}</span>-->
-<!--            </div>-->
-<!--          </li>-->
-<!--        </template>-->
-<!--      </ul>-->
-<!--      </p>-->
-<!--    </div>-->
+    <div class="countries">
+      <p v-if="country_registration_group.value" class="full-width">
+        <span class="grey-2 label">{{ country_registration_group.label }}</span>
+        <ul class="clearfix">
+          <template v-for="(field, index) in country_registration_group.value">
+          <li :key="index">
+            <div class="item-property">
+              <span>
+                <v-icon>outlined_flag</v-icon>
+              </span>
+              <span>{{ field.field_country_registration.value }}<br></span>
+              <span>{{ field.field_country_registration_descr.value }}</span>
+            </div>
+          </li>
+        </template>
+        </ul>
+      </p>
+    </div>
 
     <p v-if="product_origin.value" class="full-width">
         <span class="grey-2 label">

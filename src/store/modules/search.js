@@ -46,7 +46,7 @@ const actions = {
         dispatch('formulationSearch', keyWord).then(formulations => {
           formulationsArr = formulations.data.results.map(item => {
             return {
-              title: item.title,
+              title: item.field_formulation_name,
               uuid: item.uuid,
               type: item.type
             }

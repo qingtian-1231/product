@@ -90,7 +90,10 @@
     "drupal/mailsystem": "^4.3",
     "drupal/adminimal_theme": "^1.5",
     "drupal/swiftmailer": "^1.0@beta",
-    "drupal/rest_password": "^1.6"
+    "drupal/rest_password": "^1.6",
+    "drupal/views_data_export": "^1.0@RC",
+    "drupal/dropdown_language": "^2.6",
+    "drupal/toolbar_language_switcher": "^1.0@alpha"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

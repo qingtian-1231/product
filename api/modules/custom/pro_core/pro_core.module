@@ -8,3 +8,27 @@ function pro_core_rest_resource_alter(&$definitions) {
     $definitions['entity:user']['class'] = 'Drupal\pro_core\Plugin\rest\resource\UserEntityAlterResource';
   }
 }
+
+/**
+ * Implements hook_mail_alter().
+ *
+ * Sets the default "from" address to the current store email.
+ */
+function pro_core_mail_alter(&$message) {
+  $to = $message['to'];
+
+  if (substr($message['id'], 0, 9) == 'commerce_') {
+    if (strpos($to, '@basf.com') === false) {
+      $config = \Drupal::config('system.site');
+      $site_mail = $config->get('mail');
+      $message['from'] = $site_mail;
+    }
+  } else {
+    // 使用管理员的邮箱作为代发标识
+    $account = \Drupal\user\Entity\User::load(1);
+
+    if (strpos($to, '@basf.com') !== false) {
+      $message['from'] = $account->getEmail();
+    }
+  }
+}

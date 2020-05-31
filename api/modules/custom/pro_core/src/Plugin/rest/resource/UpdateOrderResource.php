@@ -81,18 +81,28 @@ class UpdateOrderResource extends ResourceBase {
   public function post(array $address_data) {
     $orderId = $address_data['order_id'];
     $order = \Drupal\commerce_order\Entity\Order::load($orderId);
-    $profile = $order->getBillingProfile();
+    $list = \Drupal::entityTypeManager()
+      ->getStorage('profile')
+      ->loadByProperties([
+        'uid' => $this->currentUser->id(),
+        'type' => 'customer',
+      ]);
+    $profile = reset($list);
     $languageCode = \Drupal::languageManager()->getCurrentLanguage()->getId();
     $return = [];
 
     if (empty($profile)) {
       $profile = Profile::create([
         'type' => 'customer',
-        'uid' => $this->currentUser->id()
+        'uid' => [
+          'target_id' => $this->currentUser->id()
+        ]
       ]);
-      $profile->save();
     }
 
+    $profile->field_display_name = isset($address_data['displayName']) ? $address_data['displayName'] : null;
+    $profile->field_sample_application = isset($address_data['sample_application']) ? $address_data['sample_application'] : null;
+    $profile->field_company_industry = isset($address_data['company_industry']) ? $address_data['company_industry']['code'] : null;
     $profile->address->given_name = isset($address_data['given_name']) ? $address_data['given_name'] : null;
     $profile->address->family_name = isset($address_data['family_name']) ? $address_data['family_name'] : null;
     $profile->address->organization = isset($address_data['organization']) ? $address_data['organization'] : null;
@@ -103,10 +113,14 @@ class UpdateOrderResource extends ResourceBase {
     $profile->address->postal_code = isset($address_data['postal_code']) ? $address_data['postal_code'] : null;
     $profile->address->address_line1 = isset($address_data['address_line1']) ? $address_data['address_line1'] :null;
     $profile->address->address_line2 = isset($address_data['address_line2']) ? $address_data['address_line2'] : null;
+//    $profile->setData('uid', $this->currentUser->id());
+    $profile->setDefault(TRUE);
     $profile->save();
 
-    $order->setBillingProfile($profile);
-    $order->save();
+//    var_dump($profile->toArray());exit;
+//    $order->setBillingProfile($profile);
+//    $order->save();
+
 
     $return['order_total_price'] = $order->getTotalPrice()->toArray();
     foreach ($order->getItems() as $order_item) {
@@ -172,6 +186,11 @@ class UpdateOrderResource extends ResourceBase {
         }
       }
     }
+
+    $address_return[0]['field_display_name'] = $profile->field_display_name->getValue()[0]['value'];
+    $address_return[0]['field_sample_application'] = $profile->field_sample_application->getValue()[0]['value'];
+    $address_return[0]['company_industry'] = $profile->field_company_industry->getValue()[0]['value'];
+
     $return['order_address'] = $address_return;
 
     return new ResourceResponse($return);

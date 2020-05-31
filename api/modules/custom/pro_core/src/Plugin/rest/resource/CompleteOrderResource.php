@@ -28,6 +28,7 @@ class CompleteOrderResource extends ResourceBase {
   public function get($order_id) {
     if (empty($order_id)) {
       throw new BadRequestHttpException(t('没有提供订单ID'));
+      watchdog_exception('complete_order_resource', $e, '没有提供订单ID');
     }
 
     try {

@@ -248,6 +248,12 @@
       }),
     },
 
+    created () {
+      if (!this.isLogin) {
+        window.location = '/'
+      }
+    },
+
     methods: {
       closeRequestDialog: function () {
         this.$emit('fatherMethod')

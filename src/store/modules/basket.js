@@ -102,7 +102,7 @@ const actions = {
      *
      */
     product.variationsItem = product.variations.map(variation => {
-      return variation.attribute_product_amount.value
+      return variation.attribute_product_amount.value || null
     })
 
     product.selectVariation = product.variationsItem[0]

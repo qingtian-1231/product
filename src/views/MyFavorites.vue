@@ -213,6 +213,12 @@
       }
     },
 
+    created () {
+      if (!this.isLogin) {
+        window.location = '/'
+      }
+    },
+
     methods: {
       previewProduct(product) {
         let vm = this;

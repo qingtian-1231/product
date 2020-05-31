@@ -90,9 +90,11 @@
   import OrderAddress from '../components/sample_order/OrderAddress'
   import OrderResume from '../components/sample_order/OrderResume'
   import OrderComplete from '../components/sample_order/OrderComplete'
+  import { mapState } from "vuex";
 
   export default {
     components: { OrderList, OrderAddress, OrderResume, OrderComplete },
+
     data: function () {
       return {
         e1: 1,
@@ -101,6 +103,12 @@
         altLabels: true,
         editable: false,
       }
+    },
+
+    computed: {
+      ...mapState({
+        isLogin: state => state.user.isLogin
+      })
     },
 
     watch: {
@@ -118,6 +126,10 @@
     created () {
       let vm = this
       let step = vm.$router.history.current.query.step
+
+      if (!vm.isLogin) {
+        window.location = '/'
+      }
 
       if (step === 'sampleOrder') {
         vm.e1 = 1

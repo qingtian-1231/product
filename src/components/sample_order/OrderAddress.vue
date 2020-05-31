@@ -280,7 +280,11 @@
           vm.locality = {
             'code': vm.userAddressProfile.locality
           }
-          console.log(vm.userAddressProfile, 'userAddressProfile')
+
+          vm.dependent_locality = {
+            'code': vm.userAddressProfile.dependent_locality
+          }
+          // console.log(vm.userAddressProfile, 'userAddressProfile')
         })
       },
 

@@ -17,6 +17,7 @@ const state = {
   order_total_price: '',
   order_items: [],
   order_address: [],
+  userAddressProfile: {},
   completeOrderStatus: false
 }
 
@@ -29,6 +30,15 @@ const mutations = {
   processCart (state, payload) {
     state.cart = payload
     state.cartCount = payload.length
+
+    if (payload.length) {
+      state.orderID = payload[0]['order_id']
+    }
+    // console.log(payload[0]['order_id'][0]['value'], 'payload')
+  },
+
+  processUserProfile (state, payload) {
+    state.userAddressProfile = payload
   },
 
   /**
@@ -252,6 +262,23 @@ const actions = {
       .post('/api/order_rest/submit?_format=hal_json', address)
       .then(result => {
         commit('processShippingOrder', result.data)
+        return Promise.resolve(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
+
+  getUserProfile({commit, state}, oderId) {
+    return request()
+      .get('api/getProfile/' + oderId, {
+        params: {
+          _format: 'hal_json'
+        }
+      })
+      .then(result => {
+
+        commit('processUserProfile', result.data)
         return Promise.resolve(result)
       })
       .catch(error => {

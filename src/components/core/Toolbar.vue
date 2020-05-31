@@ -69,7 +69,7 @@
             </v-btn>
           </v-col>
         </v-row>
-        <v-row :class="`mx-0 ${searchGlobalClass}`">
+        <v-row :class="`mx-0 ${searchGlobalClass}`" style="animation-duration: 0.25s">
           <template v-if="globalSearchLoading">
             <v-progress-circular
               :size="72"
@@ -192,6 +192,9 @@
         else {
           this.headerMenuClass = 'header-main-menu d-none'
           this.searchGlobalClass = 'search fadeRight-enter-active'
+          setTimeout(() => {
+            $('#smartSearch').focus()
+          }, 1000)
         }
       },
 

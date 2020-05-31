@@ -12,6 +12,7 @@
       id="minibasket"
       light
       :class="miniBasketClass"
+      style="animation-duration: 0.25s"
     >
       <div>
         <h2>
@@ -119,11 +120,15 @@ export default {
 
   methods: {
     closeMiniBasket () {
-      this.miniBasketClass = 'bounce-leave-active'
+      this.miniBasketClass = 'fadeDown-leave-active'
+
+      setTimeout(() => {
+        this.miniBasketClass = 'hiddenBasket'
+      }, 1000)
     },
 
     openMiniBasket () {
-      this.miniBasketClass = 'bounce-enter-active'
+      this.miniBasketClass = 'fadeDown-enter-active'
     },
 
     clearShoppingCart () {
@@ -135,7 +140,7 @@ export default {
       if (!vm.isLogin) {
         this.$store.commit('open_login_dialog')
       } else {
-        this.$router.push({ path: '/sample-order'})
+        this.$router.push({ path: '/sample-order', query: {step: 'sampleOrder'}})
       }
     },
 
@@ -157,7 +162,7 @@ export default {
       min-width: 400px;
 
       &.hiddenBasket {
-        visibility: hidden;
+        display: none;
       }
     }
   }

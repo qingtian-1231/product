@@ -92,7 +92,7 @@
                 <th class="text-left">{{ $t('sampleOrder.orderList.amount') }}</th>
                 <th class="text-left">{{ $t('sampleOrder.orderList.price') }}</th>
                 <th class="text-left">{{ $t('sampleOrder.orderList.variation') }}</th>
-                <th class="text-left">{{ $t('sampleOrder.orderList.action') }}</th>
+<!--                <th class="text-left">{{ $t('sampleOrder.orderList.action') }}</th>-->
               </tr>
               </thead>
               <tbody v-if="cartOrder.hasOwnProperty('order_items')">
@@ -128,11 +128,11 @@
                 <td>
                   <span>{{ order_item.purchased_entity.sku }}</span>
                 </td>
-                <td>
-                  <v-btn icon small @click="removeShoppingCart(product.uuid)">
-                    <v-icon>delete</v-icon>
-                  </v-btn>
-                </td>
+<!--                <td>-->
+<!--                  <v-btn icon small @click="removeShoppingCart(product.uuid)">-->
+<!--                    <v-icon>delete</v-icon>-->
+<!--                  </v-btn>-->
+<!--                </td>-->
               </tr>
               </tbody>
             </template>
@@ -276,6 +276,7 @@ export default {
 
     shippingOrder (cartOrder) {
       this.$store.commit('processOrder', cartOrder)
+      this.$router.push({ path: '/sample-order', query: {step: 'address'}})
       this.$emit('nextstep')
     }
   }

@@ -4,20 +4,46 @@
       <v-row>
         <v-col cols="12" sm="6">
           <v-text-field
-            :label="$t('sampleOrder.orderAddress.firstName')"
+            :label="$t('sampleOrder.orderAddress.displayName')"
             outlined
             :rules="[rules.required, rules.max]"
-            v-model="family_name"
+            v-model="displayName"
           ></v-text-field>
         </v-col>
+
         <v-col cols="12" sm="6">
           <v-text-field
-            :label="$t('sampleOrder.orderAddress.lastName')"
+            :label="$t('sampleOrder.orderAddress.company')"
             outlined
-            :rules="[rules.required, rules.max]"
-            v-model="given_name"
+            :rules="[rules.required]"
+            v-model="organization"
           ></v-text-field>
         </v-col>
+
+        <v-col cols="12" sm="6">
+          <v-select
+            class="select small"
+            v-model="company_industry"
+            :items="companyIndustryList"
+            item-text="name"
+            item-value="code"
+            return-object
+            :rules="[rules.required]"
+            label="行业"
+            outlined
+            solo
+          ></v-select>
+        </v-col>
+
+        <v-col cols="12" sm="6">
+          <v-text-field
+            label="样品应用"
+            outlined
+            :rules="[rules.required, rules.max]"
+            v-model="sample_application"
+          ></v-text-field>
+        </v-col>
+
         <v-col cols="12" sm="6">
           <v-select
             class="select small"
@@ -84,34 +110,19 @@
 
         <v-col cols="12" sm="6">
           <v-text-field
-            :label="$t('sampleOrder.orderAddress.postCode')"
-            outlined
-            :rules="[rules.required]"
-            v-model="postal_code"
-          ></v-text-field>
-        </v-col>
-
-        <v-col cols="12" sm="6">
-          <v-text-field
             :label="$t('sampleOrder.orderAddress.streetAddress')"
             outlined
             :rules="[rules.required]"
             v-model="address_line1"
           ></v-text-field>
         </v-col>
+
         <v-col cols="12" sm="6">
           <v-text-field
-            :label="$t('sampleOrder.orderAddress.streetAddress2')"
-            outlined
-            v-model="address_line2"
-          ></v-text-field>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-text-field
-            :label="$t('sampleOrder.orderAddress.company')"
+            :label="$t('sampleOrder.orderAddress.postCode')"
             outlined
             :rules="[rules.required]"
-            v-model="organization"
+            v-model="postal_code"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -150,6 +161,7 @@
         cityList: state => state.basket.cityList,
         localityList: state => state.basket.localityList,
         orderID: state => state.basket.orderID,
+        userAddressProfile: state => state.basket.userAddressProfile,
         isLogin: state => state.user.isLogin
       })
     },
@@ -157,7 +169,9 @@
     data () {
       return {
         orderAddressValid: true,
-        family_name: '',
+        displayName: '',
+        sample_application: '',
+        company_industry: '',
         given_name: '',
         country_code: '',
         administrative_area: '',
@@ -167,6 +181,32 @@
         address_line1: '',
         address_line2: '',
         organization: '',
+        companyIndustryList: [
+          {
+            code: 'Automotive Coating',
+            name: this.$t('companyIndustryList.AutomotiveCoating'),
+          },
+          {
+            code: 'Industrial Coating',
+            name: this.$t('companyIndustryList.IndustrialCoating'),
+          },
+          {
+            code: 'Wood Coating',
+            name: this.$t('companyIndustryList.WoodCoating')
+          },
+          {
+            code: 'Printing & Packaging',
+            name: this.$t('companyIndustryList.PrintingPackaging'),
+          },
+          {
+            code: 'Construction',
+            name: this.$t('companyIndustryList.Construction'),
+          },
+          {
+            code: 'Adhesive',
+            name: this.$t('companyIndustryList.Adhesive')
+          }
+        ],
         rules: {
           required: v => !!v || this.$t('global.required'),
           min: v => v.length >= 8 || this.$t('global.min'),
@@ -182,11 +222,7 @@
         let vm = this
         if (val.code) {
           vm.$loading.show()
-          vm.$store.dispatch('getProvinces', val.code).then(result => {
-            if (result.status === 200) {
-              vm.$loading.hide()
-            }
-          })
+          vm.loadProvince(val.code)
         }
       },
 
@@ -194,14 +230,7 @@
         let vm = this
         if (val.code) {
           vm.$loading.show()
-          this.$store.dispatch('getCities', {
-            country_code: vm.country_code.code,
-            province_code: val.code
-          }).then(result => {
-            if (result.status === 200) {
-              vm.$loading.hide()
-            }
-          })
+          vm.loadArea(val.code)
         }
       },
 
@@ -209,22 +238,22 @@
         let vm = this
         if (val.code) {
           vm.$loading.show()
-          this.$store.dispatch('getLocals', {
-            country_code: vm.country_code.code,
-            province_code: vm.administrative_area.code,
-            city_code: val.code
-          }).then(result => {
-            if (result.status === 200) {
-              vm.$loading.hide()
-            }
-          })
+          vm.loadLocality(val.code)
         }
       },
 
+      orderID: function (val, oldval) {
+        this.loadUserAddressProfile(val)
+      }
     },
 
     mounted () {
-      this.$store.dispatch('getCountries')
+      let vm = this
+      vm.$store.dispatch('getCountries')
+
+      if (vm.orderID) {
+        vm.loadUserAddressProfile(vm.orderID)
+      }
     },
 
     methods: {
@@ -232,13 +261,80 @@
         this.$emit('prevstep')
       },
 
+      loadUserAddressProfile (orderID) {
+        let vm = this
+        vm.$store.dispatch('getUserProfile', orderID).then(() => {
+          vm.displayName = vm.userAddressProfile.field_display_name
+          vm.organization = vm.userAddressProfile.organization
+          vm.postal_code = vm.userAddressProfile.postal_code
+          vm.sample_application = vm.userAddressProfile.field_sample_application
+          vm.company_industry = vm.userAddressProfile.field_company_industry
+          vm.address_line1 = vm.userAddressProfile.address_line1
+          vm.country_code = {
+            'code': vm.userAddressProfile.country_code
+          }
+          vm.administrative_area = {
+            'code': vm.userAddressProfile.administrative_area
+          }
+
+          vm.locality = {
+            'code': vm.userAddressProfile.locality
+          }
+          console.log(vm.userAddressProfile, 'userAddressProfile')
+        })
+      },
+
+      loadProvince(code, callback) {
+        let vm = this
+        vm.$store.dispatch('getProvinces', code).then(result => {
+          if (result.status === 200) {
+            if (callback) {
+              callback()
+            }
+            vm.$loading.hide()
+          }
+        })
+      },
+
+      loadArea(code, callback) {
+        let vm = this
+        this.$store.dispatch('getCities', {
+          country_code: vm.country_code.code,
+          province_code: code
+        }).then(result => {
+          if (result.status === 200) {
+            if (callback) {
+              callback()
+            }
+            vm.$loading.hide()
+          }
+        })
+      },
+
+      loadLocality(code, callback) {
+        let vm = this
+        vm.$store.dispatch('getLocals', {
+          country_code: vm.country_code.code,
+          province_code: vm.administrative_area.code,
+          city_code: code
+        }).then(result => {
+          if (result.status === 200) {
+            if (callback) {
+              callback()
+            }
+            vm.$loading.hide()
+          }
+        })
+      },
+
       updateOrderAddress () {
         let vm = this
         let address = {}
         if (vm.$refs.orderAddressForm.validate()) {
           address.order_id = vm.orderID
-          address.given_name = vm.given_name
-          address.family_name = vm.family_name
+          address.sample_application = vm.sample_application
+          address.displayName = vm.displayName
+          address.company_industry = vm.company_industry
           address.organization = vm.organization
           address.country_code = vm.country_code ? vm.country_code.code : null
           address.administrative_area = vm.administrative_area ? vm.administrative_area.code : null
@@ -250,6 +346,7 @@
           vm.$loading.show()
           vm.$store.dispatch('updateOrderAddress', address).then(result => {
             vm.$loading.hide()
+            this.$router.push({ path: '/sample-order', query: {step: 'resume'}})
             vm.$emit('nextstep')
           })
         }

@@ -66,6 +66,14 @@ module.exports = {
     Trade: 'Trade',
     ResearchInstitutes: 'ResearchInstitutes',
   },
+  companyIndustryList: {
+    AutomotiveCoating: 'Automotive Coating',
+    IndustrialCoating: 'Industrial Coating',
+    WoodCoating: 'Wood Coating',
+    PrintingPackaging: 'Printing & Packaging',
+    Construction: 'Construction',
+    Adhesive: 'Adhesive',
+  },
   basket: {
     title: 'Sample shopping cart',
     clearBasket: 'Empty shopping cart',

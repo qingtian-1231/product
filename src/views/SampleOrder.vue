@@ -115,6 +115,27 @@
       },
     },
 
+    created () {
+      let vm = this
+      let step = vm.$router.history.current.query.step
+
+      if (step === 'sampleOrder') {
+        vm.e1 = 1
+      }
+
+      if (step === 'address') {
+        vm.e1 = 2
+      }
+
+      if (step === 'resume') {
+        vm.e1 = 3
+      }
+
+      if (step === 'complete') {
+        vm.e1 = 4
+      }
+    },
+
     methods: {
       prevStep (n) {
         if (n > 1) {

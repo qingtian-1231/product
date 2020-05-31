@@ -269,7 +269,7 @@
 
         vm.$router.push({ path: 'formulations', query: options})
       },
-      
+
       goFormulationDetail (formulationId, UnLocked) {
         let vm = this
         if (UnLocked) {

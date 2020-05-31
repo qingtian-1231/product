@@ -67,6 +67,12 @@
       }),
     },
 
+    created () {
+      if (!this.isLogin) {
+        window.location = '/'
+      }
+    },
+
     mounted () {
       let vm = this
 

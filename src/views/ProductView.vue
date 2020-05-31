@@ -66,8 +66,9 @@
               </v-icon>
             </v-btn>
 
-            <v-btn icon @click="addBasket()">
-              <v-icon large class="material-icons-outlined">shopping_cart</v-icon>
+            <v-btn icon @click=" hasAddBasket ? removeBasket() : addBasket()">
+              <v-icon v-if="hasAddBasket" color="yellow" large class="material-icons-outlined">shopping_cart</v-icon>
+              <v-icon v-else large class="material-icons-outlined">shopping_cart</v-icon>
             </v-btn>
           </div>
         </div>
@@ -240,10 +241,15 @@
         productProperties: state => state.product.productProperties,
         productRelationFormulation: state => state.product.productRelationFormulation,
         productRelationFile: state => state.product.productRelationFile,
+        shoppingCart: state => state.basket.shoppingCart
       }),
 
       productTitle: function () {
         return (this.productInfo && this.productInfo.title) ? this.productInfo.title.value.replace('®', '<sup>®</sup>') : ''
+      },
+
+      productUuid: function () {
+        return (this.productBasic && this.productBasic.uuid) ? this.productBasic.uuid : ''
       },
 
       productTypeId: function () {
@@ -266,12 +272,14 @@
         alertType: '',
         alterClass: '',
         alert: false,
-        currentLocation: ''
+        currentLocation: '',
+        hasAddBasket: false,
       }
     },
 
     created () {
       this.loadProduct()
+      this.$store.commit("initComputedShoppingCart")
     },
 
     methods: {
@@ -287,7 +295,8 @@
           vm.productInfo = vm.productInformation
           vm.productFormulation = vm.productRelationFormulation
           vm.$loading.hide();
-          // console.log(vm.productInfo, 'productProperties')
+          // console.log(vm.productBasic, 'productProperties')
+          vm.changeProductBasketStatus()
         })
       },
 
@@ -306,13 +315,33 @@ ${vm.currentLocation}`
         }
 
       },
+
       addBasket () {
         let vm = this
         if (vm.productDetails.hasOwnProperty('variations') && vm.productDetails.variations.length > 0) {
           vm.$store.dispatch('addShoppingCart', {product: vm.productDetails})
+          vm.changeProductBasketStatus()
         } else {
-          vm.setAlert('当前产品未设置价格以及产品规格，如果您希望获得此产品的样品，请联系管理员添加', 'info')
+          vm.setAlert('当前产品未设置价格以及产品规格，如果您希望获得此产品的样品，请联系管理员添加', 'warning')
         }
+      },
+
+      changeProductBasketStatus () {
+        let vm = this
+        vm.hasAddBasket = false
+        vm.shoppingCart.forEach(item => {
+
+          console.log(item.uuid, vm.productUuid, item.uuid === vm.productUuid)
+          if (item.uuid === vm.productUuid) {
+            vm.hasAddBasket = true
+          }
+        })
+      },
+
+      removeBasket () {
+        this.$store.dispatch('removeShoppingCart', this.productUuid)
+
+        this.changeProductBasketStatus()
       },
 
       openShareDialog() {

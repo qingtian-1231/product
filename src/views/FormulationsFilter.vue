@@ -12,7 +12,7 @@
         >
           <template v-for="(item, i) in formulationApplicationList">
 
-            <template v-if="i === 0">
+            <template v-if="item.name === 'Industrial coating' || item.name === '工业涂料'">
               <v-expansion-panel
                 :key="i"
               >
@@ -57,7 +57,15 @@
 
     data: () => ({
       panel: 0,
-    })
+    }),
+
+    created() {
+      this.formulationApplicationList.forEach((item, index) => {
+        if (item.name === '工业涂料' || item.name === 'Industrial coating') {
+          this.panel = index
+        }
+      })
+    }
   }
 </script>
 <style lang="scss" scoped>

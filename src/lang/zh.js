@@ -66,6 +66,14 @@ module.exports = {
     Trade: '贸易型企业',
     ResearchInstitutes: '科研机构',
   },
+  companyIndustryList: {
+    AutomotiveCoating: '汽车涂料',
+    IndustrialCoating: '工业涂料',
+    WoodCoating: '木器涂料',
+    PrintingPackaging: '印刷与包装',
+    Construction: '建筑',
+    Adhesive: '粘合剂',
+  },
   basket: {
     title: '样品购物车',
     clearBasket: '清空购物车',
@@ -207,6 +215,7 @@ module.exports = {
       emptyCart: '您的样品订单为空，请添加产品！'
     },
     orderAddress: {
+      displayName: '姓名',
       firstName: '姓',
       lastName: '名',
       country: '国家',
@@ -216,7 +225,7 @@ module.exports = {
       postCode: '邮政编码',
       streetAddress: '街道地址',
       streetAddress2: '街道地址2',
-      company: '公司',
+      company: '公司名称',
       editOrder: '编辑样品订单',
       goOn: '继续',
     },

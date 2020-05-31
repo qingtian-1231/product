@@ -142,6 +142,36 @@ const actions = {
       })
   },
 
+  getFormulationWithoutList({commit, state, rootState}, payload) {
+    let requestPath = 'api/formulations/without-filter-list'
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/api/formulations/without-filter-list'
+    }
+
+    return request().get(`${requestPath}`, {
+      params: payload.options
+    })
+      .then(function (response) {
+        let payload = {
+          favorite: '',
+          result: ''
+        }
+
+        payload.favorite = rootState.user.favoriteFormulationList
+        payload.result = response.data.results
+
+        commit('processFormulationListMeta', response.data.pager)
+        commit('processFormulationList', payload)
+        return Promise.resolve(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+        return Promise.resolve(error)
+      })
+  },
+
   getFormulationDetails({dispatch, commit, state, rootState}, payload) {
     let requestPath = 'api/formulation_detail_resource/' + payload.id
     let currentLanguage = getCookie('drupal:session:language')

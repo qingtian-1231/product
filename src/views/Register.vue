@@ -59,7 +59,7 @@
               <v-text-field
                 :label="$t('global.userAccountName')"
                 outlined
-                :rules="[rules.required, rules.max, rules.chineseVarchar, rules.FullwidthChar, rules.invilideChar]"
+                :rules="[rules.required, rules.max, rules.FullwidthChar, rules.invilideChar]"
                 v-model="userAccountName"
               ></v-text-field>
             </v-col>

@@ -39,7 +39,7 @@ export default new Router({
       name: 'Home',
       component: Home,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心' : 'BASF Product Center',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心' : 'BASF Product Center for Dispersions and Resins',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -50,7 +50,7 @@ export default new Router({
       name: 'Industry',
       component: Industry,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--行业介绍' : 'BASF Product Center --- Industry Introduce',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_行业' : 'BASF Product Center for Dispersions and Resins_Industry',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -61,7 +61,7 @@ export default new Router({
       name: 'Products',
       component: Products,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--产品介绍' : 'BASF Product Center --- Product Introduce',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_产品' : 'BASF Product Center for Dispersions and Resins_Products',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -72,7 +72,7 @@ export default new Router({
       name: 'Product',
       component: ProductView,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--产品详情页' : 'BASF Product Center --- Product Details Page',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_产品详情页' : 'BASF Product Center --- Product Details Page',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -83,7 +83,7 @@ export default new Router({
       name: 'Formulations',
       component: Formulations,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--推荐配方' : 'BASF Product Center --- Recommended Formula',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_配方' : 'BASF Product Center for Dispersions and Resins_Formulations',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -94,7 +94,7 @@ export default new Router({
       name: 'Formulation',
       component: FormulationView,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--配方详情页' : 'BASF Product Center --- Formula Details Page',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_配方详情页' : 'BASF Product Center --- Formula Details Page',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -105,7 +105,7 @@ export default new Router({
       name: 'SampleOrder',
       component: SampleOrder,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--样品订单' : 'BASF Product Center --- Sample Order',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_样品订单' : 'BASF Product Center for Dispersions and Resins_Sample Order',
         auth: 'user-login',
         keywords: defaultKeywords,
         description: defaultDescription,
@@ -117,7 +117,7 @@ export default new Router({
       name: 'Login',
       component: Login,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--登录' : 'BASF Product Center --- Login',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--登录' : 'BASF Product Center --- Login',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -128,7 +128,7 @@ export default new Router({
       name: 'Register',
       component: Register,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--注册' : 'BASF Product Center ---  Registration',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--注册' : 'BASF Product Center ---  Registration',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -139,7 +139,7 @@ export default new Router({
       name: 'Download',
       component: Download,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--资料下载' : 'BASF Product Center ---  Data Download',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_下载' : 'BASF Product Center for Dispersions and Resins_Download',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -150,7 +150,7 @@ export default new Router({
       name: 'FormulationsFilter',
       component: FormulationsFilter,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--配方选择' : 'BASF Product Center ---  Select Formulation',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--配方选择' : 'BASF Product Center ---  Select Formulation',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -161,7 +161,7 @@ export default new Router({
       name: 'MyFavorites',
       component: MyFavorites,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--我的收藏' : 'BASF Product Center ---  My Collection',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--我的收藏' : 'BASF Product Center ---  My Collection',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true

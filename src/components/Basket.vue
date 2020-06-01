@@ -16,7 +16,7 @@
     >
       <div>
         <h2>
-          <v-icon>shopping_basket</v-icon>
+          <v-icon>shopping_cart</v-icon>
           {{ $t('basket.title') }}
           <v-btn icon @click="closeMiniBasket()">
             <v-icon class="material-icons-outlined">close</v-icon>

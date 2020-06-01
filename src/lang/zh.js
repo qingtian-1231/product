@@ -23,7 +23,7 @@ module.exports = {
     thanksRegister: '感谢您注册本站',
     registerSuccess: '您已经注册成功，请等待管理员确认激活您的账户，你注册的邮箱将会收到注册成功的邮件通知。',
     backToHome: '回到首页',
-    loginSuccess: '您已经登录成功，现在请您使用完成的BASF产品中心的功能吧',
+    loginSuccess: '您已经成功登陆，现在请您使用BASF产品中心全部功能吧！',
     readMore: '更多',
     confirm: '确认',
     cookieDescription: '此应用程序使用cookie来满足您的需求和功能。使用此应用程序即表示您同意我们的',
@@ -77,7 +77,7 @@ module.exports = {
   basket: {
     title: '样品购物车',
     clearBasket: '清空购物车',
-    seeOrder: '查看样品订单',
+    seeOrder: '结算订单',
     productWeight: '产品分量'
   },
   productView: {
@@ -128,7 +128,7 @@ module.exports = {
     loginTitle: '产品中心',
     loginTitle2: '',
     welcome: '欢迎您',
-    loginSite: '登陆本站',
+    loginSite: '',
   },
   home: {
     search: {
@@ -244,7 +244,7 @@ module.exports = {
     },
     orderComplete: {
       congratulations: '恭喜您下单成功',
-      message: '请注意查收我们发出的邮件，你注册的邮箱将会收到订单信息的邮件通知',
+      message: '请注意查收我们发出的邮件，你注册的邮箱将会收到订单信息的邮件通知。',
       goHome: '回到首页',
       seeProduct: '浏览产品'
     },

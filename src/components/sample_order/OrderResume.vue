@@ -52,10 +52,10 @@
                   <v-list-item-content class="align-end">{{ item.postal_code }}</v-list-item-content>
                 </v-list-item>
 
-                <v-list-item>
-                  <v-list-item-content>{{ $t('sampleOrder.OrderResume.totalPrice') }}:</v-list-item-content>
-                  <v-list-item-content class="align-end">{{ order_total_price.number }} {{ order_total_price.currency_code }}</v-list-item-content>
-                </v-list-item>
+<!--                <v-list-item>-->
+<!--                  <v-list-item-content>{{ $t('sampleOrder.OrderResume.totalPrice') }}:</v-list-item-content>-->
+<!--                  <v-list-item-content class="align-end">{{ order_total_price.number }} {{ order_total_price.currency_code }}</v-list-item-content>-->
+<!--                </v-list-item>-->
               </v-list>
             </v-card>
           </v-col>

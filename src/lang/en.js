@@ -23,7 +23,7 @@ module.exports = {
     thanksRegister: 'Thank you for registering this site',
     registerSuccess: 'You have successfully registered, please wait for the administrator to confirm activation of your account, your registered mailbox will receive an email notification of successful registration.',
     backToHome: 'Back to home page.',
-    loginSuccess: 'You have logged in successfully, now please use the function of the completed BASF Product Center',
+    loginSuccess: 'You have logged in successfully, now you can access all the functions of BASF Product Center.',
     readMore: 'Read More',
     confirm: 'Confirm',
     cookieDescription: 'This application uses cookies to meet your needs and functions. By using this application, you agree to our ',
@@ -39,7 +39,7 @@ module.exports = {
     chineseVarchar: 'Username can only contain underscores or numbers in English characters',
     FullwidthChar: 'You entered an illegal full-width character',
     invilideChar: 'You entered an illegal character',
-    forgetPass: 'Put in your mail address to Reset your Pass',
+    forgetPass: 'Please input your email address to reset password.',
     resetPass: 'Input your new pass',
     myFavorite: 'My Collection',
     orderHistory: 'Order History',
@@ -75,9 +75,9 @@ module.exports = {
     Adhesive: 'Adhesive',
   },
   basket: {
-    title: 'Sample shopping cart',
+    title: 'Sample Shopping Cart',
     clearBasket: 'Empty shopping cart',
-    seeOrder: 'View Sample Order',
+    seeOrder: 'Check Out',
     productWeight: 'Product Weight'
   },
   productView: {
@@ -128,7 +128,7 @@ module.exports = {
     loginTitle: 'Product Center',
     loginTitle2: '',
     welcome: 'Welcome',
-    loginSite: 'Login to this site',
+    loginSite: '',
   },
   home: {
     search: {
@@ -250,26 +250,26 @@ module.exports = {
       streetAddress: 'Street address',
       streetAddress2: 'Street address2',
       company: 'Company',
-      editOrder: 'Edit sample order',
-      goOn: 'Go on',
+      editOrder: 'Edit Order',
+      goOn: 'Continue',
     },
     OrderResume: {
-      title: 'Order address information',
+      title: 'Order Address Information',
       country: 'Country / Region',
       company: 'Company',
       address: 'Address',
       postCode: 'Post Code',
-      totalPrice: 'Total Order Price',
+      totalPrice: 'Total Amount',
       orderInfo: 'Order Details',
       amount: 'Quantity',
       price: 'Unit Price',
-      editAddress: 'Edit address information',
+      editAddress: 'Edit Address',
       completeOrder: 'Complete order'
     },
     orderComplete: {
       congratulations: 'Congratulations on your successful order',
-      message: 'Please pay attention to check the emails sent by us, your registered mailbox will receive email notification of order information',
-      goHome: 'Back to the homepage',
+      message: 'Please pay attention to check the emails sent by us, your registered mailbox will receive email notification of order information.',
+      goHome: 'Back to Home',
       seeProduct: 'Browse products'
     },
   },

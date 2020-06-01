@@ -43,7 +43,7 @@
       align-items: start !important;
 
       span:first-child {
-        font-size: 14px;
+        /*font-size: 14px;*/
       }
 
       a {

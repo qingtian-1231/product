@@ -22,7 +22,7 @@
         <div class="success_message">
           <h2>
             <v-icon color="primary">check_circle_outline</v-icon>
-            {{ $t('login.welcome') }} {{ displayName }}, {{ $t('login.loginSite') }}
+            {{ $t('login.welcome') }} {{ displayName }}! {{ $t('login.loginSite') }}
           </h2>
           <p>
             {{ $t('global.loginSuccess') }}
@@ -226,6 +226,9 @@
 
         h2 {
           position: relative;
+          line-height: 40px;
+          font-weight: bold;
+          margin-bottom: 5px;
 
           i {
             margin: -10px 0 0 -21px;

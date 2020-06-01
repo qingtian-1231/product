@@ -234,11 +234,12 @@ export default {
     addCart() {
       let vm = this
       let orders = []
-      let order = {}
+
       orders = vm.shoppingCart.map(product => {
+        let order = {}
         order.purchased_entity_type = "commerce_product_variation"
         order.quantity = 1
-        order.purchased_entity_id = vm.getSelectVariationId(product);
+        order.purchased_entity_id = vm.getSelectVariationId(product)
         return order;
       });
 

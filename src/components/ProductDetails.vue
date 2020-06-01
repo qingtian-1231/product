@@ -47,7 +47,7 @@
       </v-btn>
 
       <v-btn icon>
-        <v-icon class="material-icons-outlined" large>shopping_basket</v-icon>
+        <v-icon class="material-icons-outlined" large>shopping_cart</v-icon>
       </v-btn>
     </div>
   </div>

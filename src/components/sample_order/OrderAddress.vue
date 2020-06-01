@@ -121,7 +121,6 @@
           <v-text-field
             :label="$t('sampleOrder.orderAddress.postCode')"
             outlined
-            :rules="[rules.required]"
             v-model="postal_code"
           ></v-text-field>
         </v-col>

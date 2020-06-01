@@ -7,7 +7,7 @@
           {{ $t('sampleOrder.orderComplete.congratulations') }}！
         </h2>
         <p>
-          {{ $t('sampleOrder.orderComplete.message') }}。
+          {{ $t('sampleOrder.orderComplete.message') }}
         </p>
         <router-link :to="{ name: 'Home' }">
           <v-btn class="ma-2" rounded color="success">

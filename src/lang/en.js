@@ -11,7 +11,7 @@ module.exports = {
     currentPass: 'Current PassWord',
     newPassWord: 'New Password',
     repeatPass: 'Repeat Password',
-    email: 'email address',
+    email: 'Email Address',
     companyName: 'Company Name',
     position: 'Position',
     register: 'register',

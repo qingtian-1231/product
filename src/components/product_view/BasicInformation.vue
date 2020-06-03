@@ -283,6 +283,7 @@
         float: left;
         margin: 0 1%;
         width: 100%;
+        list-style: none;
 
         span {
           font-size: 16px;

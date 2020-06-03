@@ -454,6 +454,8 @@ export default {
     previewProduct(product) {
       let vm = this;
       vm.$loading.show();
+
+      console.log(product, 'product in the preview product')
       vm.$store
         .dispatch("getProductDetails", {
           id: product.uuid
@@ -462,6 +464,8 @@ export default {
           vm.selectedProduct = product;
           vm.$loading.hide();
           vm.$store.state.core.requestProductDialog = true;
+
+          console.log(product.uuid, '触发状态')
         });
     },
 

@@ -68,8 +68,6 @@
     display: contents;
     height: 96px;
     left: 0;
-    margin-left: -13px;
-    margin-top: -3px;
     max-height: 96px;
     max-width: 96px;
     position: absolute;

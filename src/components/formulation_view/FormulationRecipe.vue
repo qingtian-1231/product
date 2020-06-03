@@ -17,8 +17,8 @@
                 bg-color-class="Hydropalat"
               >
               </icon>
-              <template v-if="basicInfo.name">
-                {{ basicInfo.name.value }}
+              <template v-if="formulationTitle">
+                 <p v-html="formulationTitle"></p>
               </template>
             </h2>
           </span>
@@ -126,7 +126,11 @@
         previewProductBasicInformation: state => state.product.productBasicInformation,
         previewProductProperties: state => state.product.productProperties,
         isLogin: state => state.user.isLogin
-      })
+      }),
+
+      formulationTitle: function () {
+        return (this.basicInfo && this.basicInfo.name) ? this.basicInfo.name.value.replace('®', '<sup>®</sup>') : ''
+      }
     },
 
     methods: {

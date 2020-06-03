@@ -72,7 +72,7 @@ export default new Router({
       name: 'Product',
       component: ProductView,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_产品详情页' : 'BASF Product Center --- Product Details Page',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_产品详情页' : 'BASF Product Center for Dispersions and Resins --- Product Details Page',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -94,7 +94,7 @@ export default new Router({
       name: 'Formulation',
       component: FormulationView,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_配方详情页' : 'BASF Product Center --- Formula Details Page',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_配方详情页' : 'BASF Product Center for Dispersions and Resins --- Formula Details Page',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -117,7 +117,7 @@ export default new Router({
       name: 'Login',
       component: Login,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--登录' : 'BASF Product Center --- Login',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--登录' : 'BASF Product Center for Dispersions and Resins --- Login',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -128,7 +128,7 @@ export default new Router({
       name: 'Register',
       component: Register,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--注册' : 'BASF Product Center ---  Registration',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--注册' : 'BASF Product Center for Dispersions and Resins ---  Registration',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -150,7 +150,7 @@ export default new Router({
       name: 'FormulationsFilter',
       component: FormulationsFilter,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--配方选择' : 'BASF Product Center ---  Select Formulation',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--配方选择' : 'BASF Product Center for Dispersions and Resins ---  Select Formulation',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -161,7 +161,7 @@ export default new Router({
       name: 'MyFavorites',
       component: MyFavorites,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--我的收藏' : 'BASF Product Center ---  My Collection',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--我的收藏' : 'BASF Product Center for Dispersions and Resins ---  My Collection',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -172,7 +172,7 @@ export default new Router({
       name: 'OrderHistory',
       component: OrderHistory,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--订单历史' : 'BASF Product Center ---  Order History',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--订单历史' : 'BASF Product Center for Dispersions and Resins ---  Order History',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -183,7 +183,7 @@ export default new Router({
       name: 'AccountSetting',
       component: AccountSetting,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--账户设置' : 'BASF Product Center ---  Account Setting',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--账户设置' : 'BASF Product Center for Dispersions and Resins ---  Account Setting',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true
@@ -194,7 +194,7 @@ export default new Router({
       name: 'Disclaimer',
       component: Disclaimer,
       meta: {
-        title: language === 'zh-hans' ? '巴斯夫产品中心--免责声明' : 'BASF Product Center ---  Disclaimer',
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--免责声明' : 'BASF Product Center for Dispersions and Resins ---  Disclaimer',
         keywords: defaultKeywords,
         description: defaultDescription,
         keepAlive: true

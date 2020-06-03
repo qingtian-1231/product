@@ -287,8 +287,15 @@ const actions = {
   },
 
   completeOrder ({commit, state}, orderId) {
+    let requestPath = `api/complete_order/${orderId}`
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = `en/api/complete_order/${orderId}`
+    }
+
     return request()
-      .get(`api/complete_order/${orderId}`, {
+      .get(requestPath, {
         params: {
           _format: state._format
         }

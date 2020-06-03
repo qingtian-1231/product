@@ -80,6 +80,7 @@
 </template>
 <script>
   import { request } from '../utils/request'
+  import { getCookie } from '../utils/cookie'
 
   export default {
     name: 'reset-pass',
@@ -126,7 +127,14 @@
         let vm = this
         if (vm.$refs.resetPassForm.validate()) {
           vm.$loading.show()
-          request().post('/user/lost-password-reset?_format=json',
+
+          let requestPath = '/user/lost-password-reset?_format=json'
+          let currentLanguage = getCookie('drupal:session:language')
+
+          if (currentLanguage === 'en') {
+            requestPath = '/en/user/lost-password-reset?_format=json'
+          }
+          request().post(requestPath,
             {
               "name": vm.userMail,
               "temp_pass": vm.$router.history.current.params.tempPass,

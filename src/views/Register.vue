@@ -155,6 +155,7 @@
 </template>
 <script>
   import { request } from '../utils/request'
+  import { getCookie } from '../utils/cookie'
   import $ from 'jquery'
 
   export default {
@@ -226,7 +227,14 @@
         let vm = this
         if (vm.$refs.registerForm.validate()) {
           vm.$loading.show()
-          request().post('/user/register?_format=hal_json',
+          let requestPath = '/user/register?_format=hal_json'
+          let currentLanguage = getCookie('drupal:session:language')
+
+          if (currentLanguage === 'en') {
+            requestPath = '/en/user/register?_format=hal_json'
+          }
+
+          request().post(requestPath,
             {
               "name": {
                 "value": vm.userMail

@@ -50,6 +50,7 @@
 </template>
 <script>
   import { request } from '../utils/request'
+  import { getCookie } from '../utils/cookie'
 
   export default {
     name: 'forget-pass',
@@ -92,7 +93,14 @@
         let vm = this
         if (vm.$refs.forgetPassForm.validate()) {
           vm.$loading.show()
-          request().post('/user/lost-password?_format=json',
+          let requestPath = '/user/lost-password?_format=json'
+          let currentLanguage = getCookie('drupal:session:language')
+
+          if (currentLanguage === 'en') {
+            requestPath = '/en/user/lost-password?_format=json'
+          }
+
+          request().post(requestPath,
             {
               "mail": vm.userMail,
             }

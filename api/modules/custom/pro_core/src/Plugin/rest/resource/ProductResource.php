@@ -135,9 +135,11 @@ class ProductResource extends ResourceBase {
                   if (count($paragraphs) > 0) {
                     foreach ($paragraphs as $key => $paragraph) {
                       $parent_entity = $paragraph->getParentEntity();
-                      $formulation_array = $parent_entity->getTranslation($language)->toArray();
-                      $value[$key]['field_formulation_name'] = !empty($formulation_array['field_formulation_name']) ? $formulation_array['field_formulation_name'][0]['value'] : '';
-                      $value[$key]['uuid'] = $formulation_array['uuid'][0]['value'];
+                      if ($parent_entity) {
+                        $formulation_array = $parent_entity->getTranslation($language)->toArray();
+                        $value[$key]['field_formulation_name'] = !empty($formulation_array['field_formulation_name']) ? $formulation_array['field_formulation_name'][0]['value'] : '';
+                        $value[$key]['uuid'] = $formulation_array['uuid'][0]['value'];
+                      }
                     }
                     $product[$field] = [
                       'label' => $field_definition->getLabel(),

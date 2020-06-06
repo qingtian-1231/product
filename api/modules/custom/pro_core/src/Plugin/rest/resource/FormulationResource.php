@@ -181,8 +181,10 @@ class FormulationResource extends ResourceBase {
         if ($field_definition instanceof FieldConfig) {
           if ($field_definition->getType() === 'entity_reference') {
             if ($field_item_list[0]->entity) {
-              $type_Id = array_pop($field_item_list[0]->entity->field_product_type->getValue());
-              $brand_id = array_pop($field_item_list[0]->entity->field_product_brand->getValue());
+              $field_product_type = $field_item_list[0]->entity->field_product_type->getValue();
+              $field_product_brand = $field_item_list[0]->entity->field_product_brand->getValue();
+              $type_Id = reset($field_product_type);
+              $brand_id = reset($field_product_brand);
               $productType = Term::load($type_Id['target_id']);
 
               $brand = Term::load($brand_id['target_id']);

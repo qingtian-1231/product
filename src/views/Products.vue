@@ -94,12 +94,11 @@
                       v-if="!!parseInt(product.field_is_public) || isLogin"
                     >
                       <v-list-item-action>
-                        <v-btn icon>
-                          <v-icon
-                            class="material-icons-outlined"
-                            @click="previewProduct(product)"
-                            >pageview</v-icon
-                          >
+                        <v-btn
+                          icon
+                          @click="previewProduct(product)"
+                        >
+                          <v-icon class="material-icons-outlined">pageview</v-icon>
                         </v-btn>
                       </v-list-item-action>
                       <v-list-item-action>

@@ -1,5 +1,7 @@
 <?php
 
+use \Drupal\Core\Render\Markup;
+
 /**
  * Implements hook_rest_resource_alter().
  */
@@ -16,6 +18,7 @@ function pro_core_rest_resource_alter(&$definitions) {
  */
 function pro_core_mail_alter(&$message) {
   $to = $message['to'];
+  $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
 
   if (substr($message['id'], 0, 9) == 'commerce_') {
     if (strpos($to, '@basf.com') === false) {
@@ -31,4 +34,55 @@ function pro_core_mail_alter(&$message) {
       $message['from'] = $account->getEmail();
     }
   }
+
+  switch ($message['id']) {
+    case 'rest_password_password_reset_rest':
+      if ($language === 'en') {
+        $user = user_load_by_mail($message['to']);
+        $service = \Drupal::service('tempstore.shared');
+        $collection = 'rest_password';
+        $tempstore = $service->get($collection, $user->id());
+        $displayName = $user->getDisplayName();
+        $tempPass = $tempstore->get('temp_pass');
+
+        $message['subject'] = "Account $displayName at BASF Product Center (Changing Password)";
+        $message['body'] = [
+          "{$displayName},
+A request to reset the password of this account
+on the Basf Product Center has been submitted.
+You can now reset your password by clicking or
+copying the following address:
+Your username is：{$displayName}
+This is your temporary password change connection
+https://www.basf-product.com/reset-pass/{$tempPass}，
+This temporary password change link will expire in 7 days.
+
+-BASF Product Center Team
+#This email is an automatic email, please do not reply directly#"
+        ];
+      }
+
+      break;
+
+//    case 'commerce_order_receipt':
+//      $render = $message['body'][0];
+//      echo (string) $render;exit;
+//      break;
+
+    default;
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function pro_core_theme_registry_alter(&$theme_registry) {
+  $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $theme_registry['commerce_order_receipt']['path'] = 'modules/custom/pro_core/templates';
+  if ($language === 'en') {
+    $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-en';
+  } else {
+    $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-zh';
+  }
+
 }

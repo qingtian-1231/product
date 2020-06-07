@@ -87,9 +87,9 @@
               type="text"
               placeholder="Search"
               name="searchInput"
+              class="smartSearch"
               id="smartSearch"
               v-model="globalSearchKeyWord"
-              @blur="closeGlobalSearch()"
               @keyup="globalSearch()"
             >
             <ul class="search-result">
@@ -163,7 +163,18 @@
     },
 
     mounted () {
-      this.clearSearchResult()
+      let vm = this
+      vm.clearSearchResult()
+
+      $('body').click(function(e){
+        if(
+          $(e.target).attr('class') !== 'router-link-exact-active router-link-active' &&
+          $(e.target).attr('class') !== 'v-icon notranslate material-icons theme--dark' &&
+          $(e.target).attr('class') !== 'smartSearch'
+        ){
+          vm.closeGlobalSearch()
+        }
+      });
     },
 
     methods: {

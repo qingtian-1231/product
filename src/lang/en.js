@@ -45,6 +45,7 @@ module.exports = {
     orderHistory: 'Order History',
     orderNumber: 'Order Number',
     orderTotalPrice: 'Total Price',
+    orderProduct: 'Product',
     orderStatus: 'Order Status',
     orderCreate: 'Creation time',
     OrderTime: 'Order time',
@@ -227,14 +228,15 @@ module.exports = {
     orderList: {
       productList: 'Product List',
       productName: 'Product Name',
+      productV: 'Product',
       amount: 'Quantity',
-      variation: 'Variation',
+      variation: 'Package',
       action: 'operating',
       cancel: 'Cancel product',
       addCart: 'Add to cart',
       unSuccessProduct: 'Incomplete orders',
-      cancelOrder: 'Cancel the current order',
-      completeOrder: 'Settle the current order',
+      cancelOrder: 'Cancel order',
+      completeOrder: 'Check Out',
       price: 'price',
       productWeight: 'Product Weight',
       emptyCart: 'Your sample order is empty, please add products!'
@@ -281,6 +283,8 @@ module.exports = {
     sheet_metal: 'Sheet Metal',
     thickness: 'Thickness',
     SST: 'SST',
+    filterSubtitle: 'Waterborne resins for metal protective coatings',
+    withOutFilterSubtitle: 'Other formulations for industrial coating'
   },
   accountSetting: {
     title: 'Personal Information Modify',

@@ -28,7 +28,17 @@ const mutations = {
   },
 
   processCart (state, payload) {
-    state.cart = payload
+    state.cart = payload.map(function (item) {
+      item.order_items = item.order_items.map(function (subItem) {
+        let tempArray = subItem.title.split('-')
+
+        subItem.title = tempArray[0]
+        subItem.package = tempArray[1]
+        return subItem
+      })
+
+      return item
+    })
     state.cartCount = payload.length
 
     if (payload.length) {

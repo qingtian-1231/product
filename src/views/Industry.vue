@@ -80,6 +80,9 @@
         let query = vm.$router.history.current.query
         let term_id = query.industry
 
+        if (!term_id) {
+          term_id = 4
+        }
         vm.$loading.show()
         vm.$store.dispatch('getTaxonomyDetail', {term_type: 'applacation', term_id: term_id}).then(result => {
           if (result.status === 200) {

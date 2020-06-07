@@ -23,7 +23,7 @@
             cols="12"
           >
             <v-card>
-              <v-card-title class="subheading font-weight-bold">{{ item.family_name }}, {{ item.given_name }}</v-card-title>
+              <v-card-title class="subheading font-weight-bold">{{ item.field_display_name }}</v-card-title>
 
               <v-divider></v-divider>
 

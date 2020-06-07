@@ -126,7 +126,7 @@
                   <span>{{ order_item.total_price.formatted }}</span>
                 </td>
                 <td>
-                  <span>{{ order_item.purchased_entity.sku }}</span>
+                  <span>{{ order_item.package }}</span>
                 </td>
 <!--                <td>-->
 <!--                  <v-btn icon small @click="removeShoppingCart(product.uuid)">-->
@@ -175,8 +175,10 @@ export default {
   },
 
   mounted() {
-    let vm = this;
-    vm.loadCart();
+    let vm = this
+    vm.loadCart()
+
+    // console.log(vm.cart, "12312")
   },
 
   methods: {

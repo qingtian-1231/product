@@ -45,6 +45,7 @@ module.exports = {
     orderHistory: '订单历史',
     orderNumber: '订单号',
     orderTotalPrice: '总价',
+    orderProduct: '产品',
     orderStatus: '订单状态',
     orderCreate: '创建时间',
     OrderTime: '下单时间',
@@ -202,14 +203,15 @@ module.exports = {
     orderList: {
       productList: '产品列表',
       productName: '产品名称',
+      productV: '产品',
       amount: '数量',
-      variation: '规格',
+      variation: '包装',
       action: '操作',
       cancel: '取消产品',
       addCart: '添加购物车',
       unSuccessProduct: '未完成订单',
-      cancelOrder: '取消当前订单',
-      completeOrder: '结算当前订单',
+      cancelOrder: '取消订单',
+      completeOrder: '结算订单',
       price: '价格',
       productWeight: '产品分量',
       emptyCart: '您的样品订单为空，请添加产品！'
@@ -257,6 +259,8 @@ module.exports = {
     sheet_metal: '板材',
     thickness: '厚度',
     SST: 'SST',
+    filterSubtitle: '水性金属防护应用配方',
+    withOutFilterSubtitle: '其他工业涂料应用配方'
   },
   accountSetting: {
     title: '个人信息修改',

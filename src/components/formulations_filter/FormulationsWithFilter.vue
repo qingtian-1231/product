@@ -4,6 +4,9 @@
       class="mx-auto formulations-with-filter fade-enter-active clearfix"
       width="100%"
     >
+      <div class="formulations-subtitle">
+        <span>水性金属防护应用配方</span>
+      </div>
       <template v-for="(item, index) in formulationFilterList">
         <v-list
           two-line
@@ -30,6 +33,18 @@
               ></v-select>
             </v-col>
             <v-col cols="2">
+              <template v-if="item.filedName === 'field_sheet' && currentLanguage === 'zh-hans'">
+                <v-tooltip v-model="show" top>
+                  <template v-slot:activator="{ on }">
+                    <v-icon v-on="on">mark_chat_unread</v-icon>
+                  </template>
+                  <span>
+                    HDG：镀锌板<br>
+                    CRS：冷轧钢板<br>
+                    AI：铝板<br>
+                  </span>
+                </v-tooltip>
+              </template>
             </v-col>
           </v-list-item>
         </v-list>
@@ -52,6 +67,9 @@
       width="100%"
     >
 
+      <div class="formulations-subtitle">
+        <span>其他工业涂料应用配方</span>
+      </div>
       <v-list
         two-line
       >
@@ -130,6 +148,7 @@
 <script>
   import { mapState } from "vuex";
   import Icon from "../../components/svg/features/Icon";
+  import { getCookie } from "../../utils/cookie"
 
   export default {
     components: { Icon },
@@ -213,6 +232,7 @@
           }
         ],
         formulationList: [],
+        currentLanguage: 'zh-hans'
       }
     },
 
@@ -226,6 +246,13 @@
      industry: {
        type: String,
      }
+    },
+
+    created () {
+      let cookieLanguage = getCookie('drupal:session:language')
+      if (cookieLanguage) {
+        this.currentLanguage = cookieLanguage
+      }
     },
 
     mounted () {
@@ -355,6 +382,11 @@
   .v-btn {
     margin: 25px 0;
   }
+}
+
+.formulations-subtitle {
+  padding: 24px 10px 0 42px;
+  color: #333;
 }
 
 .clearfix:after {

@@ -160,7 +160,10 @@
         formulationFilterList: [
           {
             label: this.$t('formulationFilter.gloss_60'),
-            selected: {},
+            selected: {
+              name: '>85°',
+              value: '>85°',
+            },
             filedName: 'field_luster_60',
             selectList: [
               {
@@ -175,7 +178,10 @@
           },
           {
             label: this.$t('formulationFilter.sheet_metal'),
-            selected: {},
+            selected: {
+              name: 'HDG',
+              value: 'HDG',
+            },
             filedName: 'field_sheet',
             selectList: [
               {
@@ -194,7 +200,10 @@
           },
           {
             label: this.$t('formulationFilter.thickness'),
-            selected: {},
+            selected: {
+              name: '50um±5',
+              value: '50um±5',
+            },
             filedName: 'field_thickness',
             selectList: [
               {
@@ -213,7 +222,10 @@
           },
           {
             label: this.$t('formulationFilter.SST'),
-            selected: {},
+            selected: {
+              name: '≤150h',
+              value: '≤150h',
+            },
             filedName: 'field_sst',
             selectList: [
               {
@@ -349,6 +361,10 @@
   .v-list {
     width: 50%;
     float: left;
+
+    @media screen and (max-width: 480px) {
+      width: 100%;
+    }
   }
   
   .v-btn {

@@ -22,7 +22,7 @@
           {{ $t('home.middleContent.registerDescription') }}
         </p>
         <div class="row text-center mx-0">
-          <v-col cols="12" md="6" sm="12">
+          <v-col cols="6" md="6" sm="6">
             <router-link :to="{ name: 'Login' }">
               <v-btn class="ma-2" block rounded color="info" @click="closeLoginDialog()">
                 {{ $t('global.login') }}
@@ -30,7 +30,7 @@
             </router-link>
           </v-col>
 
-          <v-col cols="12" md="6" sm="12" class="mx-0">
+          <v-col cols="6" md="6" sm="6" class="mx-0">
             <router-link :to="{ name: 'Register' }">
               <v-btn class="ma-2" right block rounded color="info" @click="closeLoginDialog()">
                 {{ $t('global.register') }}

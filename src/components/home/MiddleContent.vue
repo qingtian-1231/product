@@ -308,6 +308,10 @@
           }
         }
       }
+
+      @media screen and (max-width: 480px) {
+        padding: 0 25px;
+      }
     }
 
     .english-version {
@@ -342,6 +346,10 @@
       .wechat-image {
         /*margin-top: 20px;*/
       }
+
+      @media screen and (max-width: 480px) {
+        padding: 0 25px;
+      }
     }
 
     .introduce {
@@ -353,6 +361,10 @@
       
       .special-color {
         color: #004a96;
+      }
+
+      @media screen and (max-width: 480px) {
+        padding: 0 25px;
       }
     }
 

@@ -412,6 +412,10 @@
         & > .search-input {
           width: 100%;
         }
+
+        @media screen and (max-width: 480px) {
+          padding-left: 12px;
+        }
       }
 
       & > .v-progress-circular {

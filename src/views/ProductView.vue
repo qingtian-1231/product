@@ -533,6 +533,12 @@ ${vm.currentLocation}`
                 opacity: 0.12;
               }
             }
+
+            @media screen and (max-width: 480px) {
+              font-size: 10px;
+              padding: 0;
+              min-width: auto;
+            }
           }
         }
       }

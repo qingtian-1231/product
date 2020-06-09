@@ -36,7 +36,7 @@
       </template>
 
       <template v-else>
-        <v-col cols="3">
+        <div class="col-sm-12 col-lg-3 col">
           <div class="title mb-1">{{ $t('global.followWechat') }}</div>
           <v-img
             :src="require('@/assets/global/wechat.png')"
@@ -44,8 +44,8 @@
             contain
           >
           </v-img>
-        </v-col>
-        <v-col cols="5">
+        </div>
+        <div class="col-sm-12 col-lg-5 col">
           <v-form ref="loginForm" id="login-form" class="form" v-model="loginValid" lazy-validation>
             <v-col cols="12">
               <v-text-field
@@ -72,14 +72,14 @@
               <small><a target="_blank" href="/forget-pass">{{ $t('global.forget') }}</a></small>
             </div>
             <div class="bottom row text-center mx-0">
-              <v-col cols="12" md="6" sm="12">
+              <v-col cols="6" md="6" sm="6">
                 <v-btn class="ma-2" block rounded color="info" @click="$router.back(-1)">
                   {{ $t('global.cancel') }}
                   <v-icon right>close</v-icon>
                 </v-btn>
               </v-col>
 
-              <v-col cols="12" md="6" sm="12" class="mx-0">
+              <v-col cols="6" md="6" sm="6" class="mx-0">
                 <v-btn class="ma-2" right block rounded color="info" @click="userLogin()">
                   {{ $t('global.login') }}
                   <v-icon right>keyboard_arrow_right</v-icon>
@@ -87,8 +87,8 @@
               </v-col>
             </div>
           </v-form>
-        </v-col>
-        <v-col cols="4">
+        </div>
+        <div class="col-sm-12 col-lg-4 col">
           <div class="unlock">
             <h2>
               <v-icon>lock_open</v-icon>
@@ -98,7 +98,7 @@
               {{ $t('home.middleContent.registerDescription') }}
             </p>
           </div>
-        </v-col>
+        </div>
       </template>
     </v-row>
   </v-container>

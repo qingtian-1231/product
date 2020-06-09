@@ -161,6 +161,11 @@ export default {
       right: 0;
       min-width: 400px;
 
+      @media screen and (max-width: 480px) {
+        right: -60px;
+        width: 100%;
+      }
+
       &.hiddenBasket {
         display: none;
       }

@@ -56,7 +56,7 @@
 
     created () {
       if (this._isMobile()) {
-        this.height = 240
+        this.height = 208
       }
     },
 
@@ -87,6 +87,14 @@
     -webkit-transition: all .3s ease-in .5s;
     -o-transition: all .3s ease-in .5s;
     transition: all .3s ease-in .5s;
+
+    @media screen and (max-width: 480px) {
+      margin-left: 0;
+      left: 0;
+      font-size: 11px;
+      padding: 10px;
+      bottom: 20px;
+    }
 
     h2 {
       font-size: 2em;

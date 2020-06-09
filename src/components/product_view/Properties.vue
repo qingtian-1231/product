@@ -55,6 +55,10 @@
         float: left;
         width: 48%;
         margin: 10px 1%;
+
+        @media screen and (max-width: 480px) {
+          width: 96%;
+        }
       }
 
       @media screen and (min-width: 768px) {

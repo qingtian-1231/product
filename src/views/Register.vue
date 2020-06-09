@@ -75,7 +75,7 @@
               <v-text-field
                 :label="$t('global.phone')"
                 outlined
-                :rules="[rules.required]"
+                :rules="[rules.required, rules.phoneNumber]"
                 v-model="phone"
               ></v-text-field>
             </v-col>
@@ -191,7 +191,10 @@
         userMail: '',
         companyName: '',
         phone: '',
-        businessModel: {},
+        businessModel: {
+          code: 'Manufacturing',
+          name: this.$t('businessModelList.Manufacturing'),
+        },
         companyPosition: '',
         rules: {
           required: v => !!v || this.$t('global.required'),
@@ -203,6 +206,11 @@
             let reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/
 
             return !reg.test(v) || this.$t('global.chineseVarchar')
+          },
+          phoneNumber: v => {
+            let reg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/
+
+            return reg.test(v) || this.$t('global.phoneNumber')
           },
           FullwidthChar: v => {
             let reg = /[\uFF00-\uFFEF]/

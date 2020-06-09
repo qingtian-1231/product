@@ -14,7 +14,7 @@ module.exports = {
     email: 'Email Address',
     companyName: 'Company Name',
     position: 'Position',
-    register: 'register',
+    register: 'Register',
     registration: 'registration',
     cancel: 'cancel',
     submit: 'submit',
@@ -22,7 +22,7 @@ module.exports = {
     followWechat: 'Follow the public account',
     thanksRegister: 'Thank you for registering this site',
     registerSuccess: 'You have successfully registered, please wait for the administrator to confirm activation of your account, your registered mailbox will receive an email notification of successful registration.',
-    backToHome: 'Back to home page.',
+    backToHome: 'Back to Home',
     loginSuccess: 'You have logged in successfully, now you can access all the functions of BASF Product Center.',
     readMore: 'Read More',
     confirm: 'Confirm',
@@ -37,6 +37,7 @@ module.exports = {
     emailMatch: 'Please enter a valid email address',
     confirmPass: 'Confirm the password is incorrect',
     chineseVarchar: 'Username can only contain underscores or numbers in English characters',
+    phoneNumber: 'You entered an illegal mobile phone number',
     FullwidthChar: 'You entered an illegal full-width character',
     invilideChar: 'You entered an illegal character',
     forgetPass: 'Please input your email address to reset password.',
@@ -87,8 +88,8 @@ module.exports = {
     formulation: 'formulation',
     download: 'download',
     share: 'share',
-    favorite: 'favorite',
-    basket: 'basket',
+    favorite: 'Add to favorite',
+    basket: 'Add to shopping cart',
     techData: 'Technical data',
     techDataDescription: 'For more information, please refer to the product technical specification',
   },
@@ -101,7 +102,7 @@ module.exports = {
     favorite: 'favorite',
     formulationRecipe: {
       formulaRatio: 'Formula ratio',
-      formulaWork: 'Recipe application',
+      formulaWork: 'Explanation',
       formula_Composition: 'Formula composition',
       formula_title: 'Formula calculation',
     },
@@ -138,7 +139,7 @@ module.exports = {
       search: 'Search',
       brand: 'Brand'
     },
-    ad: 'Dispersions & Resins division of BASF develops, produces and markets a range of high-quality resins, additives and polymer dispersions worldwide. These raw materials are used in formulations for various industries, including coatings, construction, printing and packaging, adhesives and paper. With comprehensive product portfolio and extensive knowledge of the industry, we offer our customers innovative and sustainable solutions.',
+    ad: 'Dispersions & Resins division develops, produces and markets a range of high-quality resins, additives and polymer dispersions worldwide, which are used in formulations for various industries, including coatings, construction, printing and packaging, adhesives and paper. With comprehensive product portfolio and extensive industry knowledge, we offer our customers innovative and sustainable solutions.',
     middleContent: {
       aboutBASF: 'About BASF',
       aboutBASFDescription: 'At BASF, we create chemistry for a sustainable future. We combine economic success with environmental protection and social responsibility. More than 117,000 employees in the BASF Group work on contributing to the success of our customers in nearly all sectors and almost every country in the world. Our portfolio is organized into six segments: Chemicals, Materials, Industrial Solutions, Surface Technologies, Nutrition & Care and Agricultural Solutions. BASF generated sales of €59 billion in 2019. BASF shares are traded on the stock exchange in Frankfurt (BAS) and as American Depositary Receipts (BASFY) in the U.S. Further information at ',
@@ -242,6 +243,7 @@ module.exports = {
       emptyCart: 'Your sample order is empty, please add products!'
     },
     orderAddress: {
+      displayName: 'Name',
       firstName: 'First Name',
       lastName: 'Last Name',
       country: 'Country',
@@ -254,6 +256,8 @@ module.exports = {
       company: 'Company',
       editOrder: 'Edit Order',
       goOn: 'Continue',
+      sampleApplication: 'Sample Application',
+      industry: 'Industry'
     },
     OrderResume: {
       title: 'Order Address Information',

@@ -1,5 +1,6 @@
 import { request, apiServer} from '../../utils/request'
 import { convertUTCTimeBeforeTime, convertUTCTimeToLocalTimeShort} from '../../utils/convert-time-formate'
+import { getCookie } from "../../utils/cookie";
 
 const state = {
   productPath: 'api/products/list',
@@ -24,6 +25,13 @@ const mutations = {
 
 const actions = {
   productSearch ({dispatch, commit, state}, keyWord) {
+    let requestPath = state.productPath
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + state.productPath
+    }
+
     let parameter = {
       params: {
         combine: keyWord
@@ -32,7 +40,7 @@ const actions = {
     let productsArr = []
     let formulationsArr = []
 
-    return request().get(state.productPath + '/all/all/all/', parameter)
+    return request().get(requestPath + '/all/all/all/', parameter)
       .then(function (products) {
 
         productsArr = products.data.results.map(item => {
@@ -63,12 +71,19 @@ const actions = {
   },
 
   formulationSearch ({commit, state}, keyWord) {
+    let requestPath = state.formulationPath
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + state.formulationPath
+    }
+
     let parameter = {
       params: {
         combine: keyWord
       }
     }
-    return request().get(state.formulationPath + '/all/', parameter)
+    return request().get(requestPath + '/all/', parameter)
       .then(function (response) {
         return Promise.resolve(response)
       })

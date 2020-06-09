@@ -74,22 +74,18 @@
           >
             <v-tab>
               {{ $t('formulationView.formula') }}
-              <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab @click="showIcon">
               {{ $t('formulationView.basicInfo') }}
-              <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab>
               {{ $t('formulationView.property') }}
-              <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
             <v-tab>
               {{ $t('formulationView.otherInformation') }}
-              <v-icon left class="material-icons-outlined">remove_red_eye</v-icon>
             </v-tab>
 
           </v-tabs>

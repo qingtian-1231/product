@@ -31,6 +31,11 @@
       return {
           headers: [
             {
+              text: this.$t('global.orderNumber'),
+              value: 'order_number',
+              sortable: false,
+            },
+            {
               text: this.$t('global.orderProduct'),
               value: 'order_items_target_id',
               sortable: false,

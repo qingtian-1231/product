@@ -3,7 +3,7 @@
     <div>
       <router-link :to="{name: 'Formulation', params: {id: formulation.uuid}}">
         <icon-additives bg-color-class="default"></icon-additives>
-        <span>{{ formulation.title }}</span>
+        <span>{{ formulation.field_formulation_name }}</span>
         <v-icon class="icon float-right">keyboard_arrow_right</v-icon>
       </router-link>
       <small>

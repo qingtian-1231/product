@@ -29,7 +29,7 @@
             item-value="code"
             return-object
             :rules="[rules.required]"
-            label="行业"
+            :label="$t('sampleOrder.orderAddress.industry')"
             outlined
             solo
           ></v-select>
@@ -37,7 +37,7 @@
 
         <v-col cols="12" sm="6">
           <v-text-field
-            label="样品应用"
+            :label="$t('sampleOrder.orderAddress.sampleApplication')"
             outlined
             :rules="[rules.required, rules.max]"
             v-model="sample_application"

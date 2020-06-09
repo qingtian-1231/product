@@ -50,7 +50,7 @@
             <li :key="index">
               <v-btn>
                 <v-icon>done</v-icon>
-                <small>{{ item.value }}</small>
+                <span>{{ item.value }}</span>
               </v-btn>
             </li>
           </template>
@@ -64,7 +64,7 @@
           <li :key="index">
             <v-btn>
               <v-icon>done</v-icon>
-              <small>{{ item }}</small>
+              <span>{{ item }}</span>
             </v-btn>
           </li>
         </template>
@@ -224,7 +224,6 @@
 
   span {
     display: block;
-    text-transform: capitalize;
     color: #808080;
   }
 

@@ -37,6 +37,7 @@ module.exports = {
     emailMatch: '请输入合法的email地址',
     confirmPass: '确认密码不正确',
     chineseVarchar: '用户名仅能包含英文字符下划线或者数字',
+    phoneNumber: '你输入了非法的手机号',
     FullwidthChar: '您输入了非法的全角字符',
     invilideChar: '您输入了非法字符',
     forgetPass: '输入邮箱地址以重置您的密码',
@@ -101,7 +102,7 @@ module.exports = {
     favorite: '最爱',
     formulationRecipe: {
       formulaRatio: '配方比例',
-      formulaWork: '配方应用',
+      formulaWork: '说明',
       formula_Composition: '配方组成',
       formula_title: '配方公式计算',
     },
@@ -230,6 +231,8 @@ module.exports = {
       company: '公司名称',
       editOrder: '编辑样品订单',
       goOn: '继续',
+      sampleApplication: '样品应用',
+      industry: '行业'
     },
     OrderResume: {
       title: '订单地址信息',

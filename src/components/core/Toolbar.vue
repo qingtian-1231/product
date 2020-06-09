@@ -146,7 +146,7 @@
         globalSearchLoading: false,
         globalSearchKeyWord: '',
         headerMenuClass: 'header-main-menu',
-        searchGlobalClass: 'search d-none',
+        searchGlobalClass: 'search d-none hidden',
       }
     },
 
@@ -166,15 +166,17 @@
       let vm = this
       vm.clearSearchResult()
 
-      $('body').click(function(e){
-        if(
-          $(e.target).attr('class') !== 'router-link-exact-active router-link-active' &&
-          $(e.target).attr('class') !== 'v-icon notranslate material-icons theme--dark' &&
-          $(e.target).attr('class') !== 'smartSearch'
-        ){
-          vm.closeGlobalSearch()
-        }
-      });
+      if (vm.$router.history.current.name !== 'Home') {
+        $('body').click(function(e){
+          if(
+            $(e.target).attr('class') !== 'router-link-exact-active router-link-active' &&
+            $(e.target).attr('class') !== 'v-icon notranslate material-icons theme--dark' &&
+            $(e.target).attr('class') !== 'smartSearch'
+          ){
+            vm.closeGlobalSearch()
+          }
+        });
+      }
     },
 
     methods: {
@@ -223,7 +225,7 @@
 
       closeGlobalSearch () {
         this.headerMenuClass = 'header-main-menu'
-        this.searchGlobalClass = 'search fadeRight-leave-active'
+        this.searchGlobalClass = 'search hidden fadeRight-leave-active'
         // d-none
       },
 
@@ -459,6 +461,10 @@
     }
   }
 
+  .hidden {
+    display: none;
+  }
+  
   .current {
     background-color: #028fd2;
     color: #fff;

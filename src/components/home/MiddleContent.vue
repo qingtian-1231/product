@@ -29,6 +29,18 @@
           >
           </v-img>
         </p>
+
+        <p class="footer-welcome">
+          <v-icon>chevron_right</v-icon>
+          <a href="http://www.basf.com/solution-finder" target="_blank">{{ $t('home.footer.weChat2') }}</a>
+          <v-img
+            class="wechat-image"
+            width="130"
+            height="130"
+            :src="require('@/assets/global/wechat2.png')"
+          >
+          </v-img>
+        </p>
       </v-col>
 
       <v-col cols="12" :class="{'contact': 1, 'english-version': currentLanguage === 'en'}">

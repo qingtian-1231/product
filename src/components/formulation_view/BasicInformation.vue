@@ -3,12 +3,12 @@
     <div class="information">
       <h2 v-html="formulationBasic.description.value"></h2>
 
-      <p>
-        <span class="grey-2">
-        {{ formulationBasic.formulation_number.label }}
-        </span>
-        {{ formulationBasic.formulation_number.value }}
-      </p>
+<!--      <p>-->
+<!--        <span class="grey-2">-->
+<!--        {{ formulationBasic.formulation_number.label }}-->
+<!--        </span>-->
+<!--        {{ formulationBasic.formulation_number.value }}-->
+<!--      </p>-->
       <p>
         <span class="grey-2">
         {{ formulationBasic.industry.label }}
@@ -25,7 +25,9 @@
         <span class="grey-2">
         {{ formulationBasic.benefits.label }}
         </span>
-        {{ formulationBasic.benefits.value }}
+        <span v-html="formulationBasic.benefits.value" style="color: #333;">
+          
+        </span>
       </p>
     </div>
   </v-card>

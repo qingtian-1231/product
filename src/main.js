@@ -8,7 +8,7 @@ import store from './store'
 
 import VueI18n from 'vue-i18n'
 // import { messages } from './lang'
-import { getCookie } from "./utils/cookie.js";
+import { getCookie, setCookie } from "./utils/cookie.js";
 import loading from './utils/loading.js' // 引入loading
 // For Nprogress 页面加载动画.
 import NProgress from 'nprogress'
@@ -24,7 +24,15 @@ const isDev = process.env.NODE_ENV !== 'production'
 let language = getCookie('drupal:session:language')
 
 if (!language) {
-  language = 'zh-hans'
+  const expireTime = 30 * 24 * 3600 * 1000;
+  language = 'en'
+
+  setCookie(
+    'drupal:session:language',
+    'en',
+    expireTime,
+    "/"
+  )
 }
 
 if (isDev) {

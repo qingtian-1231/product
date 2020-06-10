@@ -88,8 +88,8 @@ module.exports = {
     formulation: '配方',
     download: '下载',
     share: '分享',
-    favorite: '最爱',
-    basket: '购物车',
+    favorite: '收藏',
+    basket: '加入购物车',
     techData: '技术数据',
     techDataDescription: '更多信息详见产品技术说明书',
   },
@@ -99,7 +99,7 @@ module.exports = {
     otherInformation: '其他信息',
     formula: '配方公式',
     share: '分享',
-    favorite: '最爱',
+    favorite: '收藏',
     formulationRecipe: {
       formulaRatio: '配方比例',
       formulaWork: '说明',
@@ -194,6 +194,7 @@ module.exports = {
       disclaimerLink: 'https://www.basf.com/cn/zh/legal/disclaimer.html',
       disclaimer: '免责声明',
       weChat: '欢迎关注“巴斯夫分散体与树脂”官方微信公众号',
+      weChat2: '欢迎访问巴斯夫助剂解决方案网站',
     }
   },
   sampleOrder: {
@@ -207,7 +208,7 @@ module.exports = {
       productV: '产品',
       amount: '数量',
       variation: '包装',
-      action: '操作',
+      action: '删除',
       cancel: '取消产品',
       addCart: '添加购物车',
       unSuccessProduct: '未完成订单',

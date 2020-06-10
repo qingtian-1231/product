@@ -50,6 +50,10 @@ const mutations = {
       }
       if (field === 'field_formulationbenefits') {
         state.formulationBasicInformation.benefits = result.field_formulationbenefits
+
+        if (state.formulationBasicInformation.benefits.value) {
+          state.formulationBasicInformation.benefits.value = state.formulationBasicInformation.benefits.value.replace(/#/g, '<br>')
+        }
         continue
       }
       if (field === 'field_formulation_name') {

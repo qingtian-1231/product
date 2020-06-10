@@ -77,9 +77,12 @@
 
                     <template v-if="(!!parseInt(formulation.field_is_public) || isLogin)">
                       <v-list-item-action>
-                        <v-btn icon>
-                          <v-icon class="material-icons-outlined" @click="previewFormulation(formulation)">pageview</v-icon>
-                        </v-btn>
+<!--                        <v-btn-->
+<!--                          icon-->
+<!--                          @click="previewFormulation(formulation)"-->
+<!--                        >-->
+<!--                          <v-icon class="material-icons-outlined">pageview</v-icon>-->
+<!--                        </v-btn>-->
                       </v-list-item-action>
                       <v-list-item-action>
                         <v-btn

@@ -225,6 +225,10 @@
   span {
     display: block;
     color: #808080;
+
+    span {
+      white-space: break-spaces;
+    }
   }
 
   .app {
@@ -251,20 +255,26 @@
         width: 100%;
 
         .v-btn {
-          height: 38px;
+          height: auto;
+          min-height: 38px;
           width: 100%;
           background-color: transparent;
           text-align: left;
           border-radius: 16px;
           transition: all .15s ease-in-out;
+          padding: 10px 16px;
+
+          .v-icon {
+            margin-right: 10px;
+          }
         }
 
         @media screen and (min-width: 640px) {
-          width: 32%;
+          width: auto;
         }
 
         @media screen and (min-width: 1024px) {
-          width: 10%;
+          width: auto;
         }
       }
     }

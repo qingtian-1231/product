@@ -219,6 +219,7 @@ module.exports = {
       disclaimerLink: 'https://www.basf.com/cn/en/legal/disclaimer.html',
       disclaimer: 'Disclaimer',
       weChat: 'Welcome to follow Wechat Official Account ‘BASF Dispersions & Resins’',
+      weChat2: 'Welcome to BASF Additive Solution Finder',
     }
   },
   sampleOrder: {
@@ -232,13 +233,13 @@ module.exports = {
       productV: 'Product',
       amount: 'Quantity',
       variation: 'Package',
-      action: 'operating',
+      action: 'Delete',
       cancel: 'Cancel product',
       addCart: 'Add to cart',
       unSuccessProduct: 'Incomplete orders',
       cancelOrder: 'Cancel order',
       completeOrder: 'Check Out',
-      price: 'price',
+      price: 'Price',
       productWeight: 'Product Weight',
       emptyCart: 'Your sample order is empty, please add products!'
     },

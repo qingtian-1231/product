@@ -5,7 +5,7 @@
       width="100%"
     >
       <div class="formulations-subtitle">
-        <span>水性金属防护应用配方</span>
+        <span>{{ $t('formulationFilter.filterSubtitle') }}</span>
       </div>
       <template v-for="(item, index) in formulationFilterList">
         <v-list
@@ -68,7 +68,7 @@
     >
 
       <div class="formulations-subtitle">
-        <span>其他工业涂料应用配方</span>
+        <span>{{ $t('formulationFilter.withOutFilterSubtitle') }}</span>
       </div>
       <v-list
         two-line

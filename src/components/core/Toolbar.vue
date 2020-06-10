@@ -203,6 +203,7 @@
           $('.search-content').find('input').focus()
         }
         else {
+          console.log("searchGlobalClasssearchGlobalClass")
           this.headerMenuClass = 'header-main-menu d-none'
           this.searchGlobalClass = 'search fadeRight-enter-active'
           setTimeout(() => {

@@ -117,5 +117,9 @@
     padding: 15px;
     border-radius: 5px;
   }
+
+  .teaser-container .caption {
+    left: 0;
+  }
 }
 </style>

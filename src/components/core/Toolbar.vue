@@ -171,7 +171,8 @@
           if(
             $(e.target).attr('class') !== 'router-link-exact-active router-link-active' &&
             $(e.target).attr('class') !== 'v-icon notranslate material-icons theme--dark' &&
-            $(e.target).attr('class') !== 'smartSearch'
+            $(e.target).attr('class') !== 'smartSearch' &&
+            $(e.target).attr('class') !== 'mx-2 v-btn v-btn--contained v-btn--fab v-btn--round theme--dark v-size--small secondary'
           ){
             vm.closeGlobalSearch()
           }
@@ -465,7 +466,7 @@
   .hidden {
     display: none;
   }
-  
+
   .current {
     background-color: #028fd2;
     color: #fff;

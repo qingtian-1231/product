@@ -13,35 +13,7 @@
     >
       <v-row justify="center" class="mx-0">
         <v-col cols="12" sm="12">
-          <ul class="d-md-none mobile-menu">
-            <template v-for="(link, i) in menuLinks">
-              <template v-if="link.dialog">
-                <li
-                  :key="i"
-                >
-                  <a
-                    @click="headerMenuClick($event, link)"
-                  >
-                    <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
-                    {{ link.title }}
-                  </a>
-                </li>
-              </template>
-              <template v-else>
-                <li
-                  :key="i"
-                >
-                  <a
-                    :href="link.relative"
-                    @click="headerMenuClick($event, link)"
-                  >
-                    <v-icon left class="material-icons-outlined">{{ link.options.icon }}</v-icon>
-                    {{ link.title }}
-                  </a>
-                </li>
-              </template>
-            </template>
-          </ul>
+          <mobile-menu></mobile-menu>
           <v-card
             class="mx-auto px-6 cutome-card"
             outlined
@@ -196,9 +168,10 @@
   import { validationMixin } from 'vuelidate'
   import { required, maxLength, email } from 'vuelidate/lib/validators'
   import OnlineRequestForm from '../OnlineRequestForm'
+  import MobileMenu from '../base/MobileMenu'
 
   export default {
-    components: { OnlineRequestForm },
+    components: { OnlineRequestForm, MobileMenu },
 
     mixins: [validationMixin],
 

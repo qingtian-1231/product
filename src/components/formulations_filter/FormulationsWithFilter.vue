@@ -37,7 +37,7 @@
                 <v-tooltip v-model="show" top>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn icon v-bind="attrs" v-on="on">
-                      <v-icon color="grey lighten-1">mark_chat_unread</v-icon>
+                      <v-icon color="grey lighten-1">info</v-icon>
                     </v-btn>
                   </template>
                   <span>

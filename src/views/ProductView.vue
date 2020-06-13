@@ -305,12 +305,13 @@
         let currentLanguage = getCookie('drupal:session:language')
 
         if (currentLanguage === 'en') {
+          window.location.href = `mailto:?subject=Product ${vm.productInfo.title.value} from BASF Product Center&body= Please browse the product information${vm.productInfo.title.value}。
+I find it at BASF Product Center:
+${vm.currentLocation}`
+        }
+        else {
           window.location.href = `mailto:?subject=产品${vm.productInfo.title.value}来自BASF产品中心&body=请查看产品详细信息${vm.productInfo.title.value}。
 我在BASF产品中心中找到了它：
-${vm.currentLocation}`
-        } else {
-          window.location.href = `mailto:?subject=Product${vm.productInfo.title.value} from BASF Product Center&body= Please browse the product information${vm.productInfo.title.value}。
-I find it at BASF Product Center:
 ${vm.currentLocation}`
         }
 

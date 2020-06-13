@@ -35,8 +35,10 @@
             <v-col cols="2">
               <template v-if="item.filedName === 'field_sheet' && currentLanguage === 'zh-hans'">
                 <v-tooltip v-model="show" top>
-                  <template v-slot:activator="{ on }">
-                    <v-icon v-on="on">mark_chat_unread</v-icon>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon v-bind="attrs" v-on="on">
+                      <v-icon color="grey lighten-1">mark_chat_unread</v-icon>
+                    </v-btn>
                   </template>
                   <span>
                     HDG：镀锌板<br>
@@ -201,17 +203,17 @@
           {
             label: this.$t('formulationFilter.thickness'),
             selected: {
-              name: '50um±5',
+              name: '50µm ± 5',
               value: '50um±5',
             },
             filedName: 'field_thickness',
             selectList: [
               {
-                name: '30um±5',
+                name: '30µm ± 5µm',
                 value: '30um±5',
               },
               {
-                name: '50um±5',
+                name: '50µm ± 5',
                 value: '50um±5',
               }
             ]

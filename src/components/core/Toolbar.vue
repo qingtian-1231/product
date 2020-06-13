@@ -359,7 +359,6 @@
       background: #fff;
       height: 72px;
       margin: 0;
-      overflow: hidden;
       right: 0;
       transition: all .3s;
       width: 100%;

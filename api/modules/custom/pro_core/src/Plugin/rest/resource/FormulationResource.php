@@ -4,6 +4,7 @@ namespace Drupal\pro_core\Plugin\rest\resource;
 
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
 use Drupal\node\Entity\Node;
@@ -97,15 +98,33 @@ class FormulationResource extends ResourceBase {
 
           if ($field_definition instanceof FieldConfig) {
             if ($field_definition->getType() === 'entity_reference_revisions') {
-              $entity_reference_value = [];
-              foreach ($field_item_list as $para) {
-                $entity_reference_value[] = $this->getFields($para->entity->getFields());
-              }
+              if ($field === 'field_formula_composition') {
+                $field_formula_composition = $entity->field_formula_composition->getValue();
+                $values = [];
+                foreach ($field_formula_composition as $item) {
+                  $para = Paragraph::load($item['target_id']);
+                  if ($language === 'en') {
+                    $para = $para->getTranslation('en');
+                  }
 
-              $formulation[$field] = [
-                'label' => $this->getTranslateLabel($field_definition->getLabel()),
-                'value' => $entity_reference_value,
-              ];
+                  $values[] = $this->getFields($para->getFields());
+                }
+                $formulation[$field] = [
+                  'label' => $this->getTranslateLabel($field_definition->getLabel()),
+                  'value' => $values,
+                ];
+              }
+              else {
+                $entity_reference_value = [];
+                foreach ($field_item_list as $para) {
+                  $entity_reference_value[] = $this->getFields($para->entity->getFields());
+                }
+
+                $formulation[$field] = [
+                  'label' => $this->getTranslateLabel($field_definition->getLabel()),
+                  'value' => $entity_reference_value,
+                ];
+              }
             }
             elseif ($field_definition->getType() === 'entity_reference') {
               switch ($field) {

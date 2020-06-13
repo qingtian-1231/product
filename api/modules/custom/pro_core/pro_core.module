@@ -64,10 +64,8 @@ This temporary password change link will expire in 7 days.
 
       break;
 
-//    case 'commerce_order_receipt':
-//      $render = $message['body'][0];
-//      echo (string) $render;exit;
-//      break;
+    case 'commerce_order_receipt':
+      break;
 
     default;
   }
@@ -77,12 +75,11 @@ This temporary password change link will expire in 7 days.
  * Implements hook_theme_registry_alter().
  */
 function pro_core_theme_registry_alter(&$theme_registry) {
-  $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $theme_registry['commerce_order_receipt']['path'] = 'modules/custom/pro_core/templates';
-  if ($language === 'en') {
-    $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-en';
-  } else {
-    $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-zh';
-  }
-
+//  $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+//  $theme_registry['commerce_order_receipt']['path'] = 'modules/custom/pro_core/templates';
+//  if ($language === 'en') {
+//    $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-en';
+//  } else {
+//    $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-zh';
+//  }
 }

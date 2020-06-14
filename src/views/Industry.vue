@@ -21,7 +21,7 @@
           <template v-else>
             <h1>{{ $t('industry.noDescription') }}</h1>
           </template>
-
+          
         </div>
       </v-row>
 
@@ -108,7 +108,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #industry {
 
   .main-content {
@@ -116,10 +116,33 @@
     background-color: #fff;
     padding: 15px;
     border-radius: 5px;
-  }
 
-  .teaser-container .caption {
-    left: 0;
+    p {
+      font-size: 16px !important;
+    }
+
+    .teaser-container {
+
+      .caption {
+        left: auto;
+      }
+    }
+
+    .list-product {
+      padding-left: 350px;
+    }
+
+    .content {
+      float: left;
+      background-color: #ddd;
+      width: 200px;
+      margin-right: 20px;
+
+      ul {
+        list-style: none;
+      }
+
+    }
   }
 }
 </style>

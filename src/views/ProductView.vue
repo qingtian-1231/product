@@ -261,6 +261,14 @@
       }
     },
 
+    watch: {
+      $route(to, from) {
+        let vm = this
+
+        vm.loadProduct()
+      }
+    },
+
     data () {
       return {
         shareDialog: false,

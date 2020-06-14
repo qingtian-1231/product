@@ -1,5 +1,13 @@
 <template>
   <div id="product-details">
+    <v-alert
+      :value="alert"
+      :type="alertType"
+      :class="alterClass"
+      transition="scale-transition"
+    >
+      {{alertMessage}}
+    </v-alert>
     <div>
       <router-link :to="{name: 'Product', params: {id: product.uuid}}">
         <icon-additives bg-color-class="default"></icon-additives>
@@ -46,14 +54,16 @@
         </v-icon>
       </v-btn>
 
-      <v-btn icon>
-        <v-icon class="material-icons-outlined" large>shopping_cart</v-icon>
+      <v-btn icon @click="hasAddBasket ? removeBasket() : addBasket()">
+        <v-icon v-if="hasAddBasket" color="yellow" large class="material-icons-outlined">shopping_cart</v-icon>
+        <v-icon v-else class="material-icons-outlined" large>shopping_cart</v-icon>
       </v-btn>
     </div>
   </div>
 </template>
 <script>
   import IconAdditives from '../components/svg/Additives'
+  import { mapState } from "vuex";
 
   export default {
     name: 'product-details',
@@ -77,10 +87,23 @@
 
     data: function () {
       return {
+        alertMessage: '',
+        alertType: '',
+        alterClass: '',
+        alert: false,
         productTitle: '',
         productBasic: {},
         productProp: {},
+        hasAddBasket: false,
       }
+    },
+
+    computed: {
+      ...mapState({
+        productDetails: state=> state.product.productDetails,
+        isLogin: state => state.user.isLogin,
+        shoppingCart: state => state.basket.shoppingCart
+      })
     },
 
     methods: {
@@ -103,22 +126,72 @@
             .dispatch("processFavoriteForUser", favoriteInfo)
             .then(result => {
               if (result.status === 200) {
-                vm.productList = vm.productList.map(product => {
-                  if (product.uuid === productId) {
-                    if (action === "add") {
-                      product.isFeature = true;
-                    } else if (action === "delete") {
-                      product.isFeature = false;
-                    }
-                  }
-                  return product;
-                });
+                if (action === "add") {
+                  vm.product.isFeature = true;
+                } else if (action === "delete") {
+                  vm.product.isFeature = false;
+                }
               }
 
               vm.$loading.hide();
             });
         }
       },
+
+      addBasket () {
+        let vm = this
+
+        if (vm.productDetails.hasOwnProperty('variations') && vm.productDetails.variations.length > 0) {
+          vm.$store.dispatch('addShoppingCart', {product: vm.productDetails})
+          vm.changeProductBasketStatus()
+        } else {
+          vm.setAlert('当前产品未设置价格以及产品规格，如果您希望获得此产品的样品，请联系管理员添加', 'warning')
+        }
+      },
+
+      changeProductBasketStatus () {
+        let vm = this
+        vm.hasAddBasket = false
+        vm.shoppingCart.forEach(item => {
+
+          console.log(item.uuid, vm.product.uuid, item.uuid === vm.product.uuid)
+          if (item.uuid === vm.product.uuid) {
+            vm.hasAddBasket = true
+          }
+        })
+      },
+
+      removeBasket () {
+        this.$store.dispatch('removeShoppingCart', this.product.uuid)
+
+        this.changeProductBasketStatus()
+      },
+
+      setAlert (message, style, type) {
+        type === 'append'
+          ? (this.alertMessage += message)
+          : (this.alertMessage = message)
+        this.alertType = style
+        this.alterClass = 'bounce-enter-active'
+        this.alert = true
+        setTimeout(() => {
+          this.clearAlert()
+        }, 5000)
+      },
+
+      clearAlert () {
+        let vm = this
+        vm.alterClass='bounce-leave-active'
+        setTimeout(() => {
+          vm.alert = false
+          vm.alertMessage = ''
+          vm.alertType = ''
+        }, 800)
+      },
+    },
+
+    mounted () {
+      this.changeProductBasketStatus()
     }
   }
 </script>

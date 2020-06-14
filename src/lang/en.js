@@ -178,12 +178,12 @@ module.exports = {
       },
       xianggangInfo: {
         title: 'Japan',
-        city: 'Roppongi Hills ',
-        street: 'Mori Tower 21/F',
-        address: '6-10-1 Roppongi, Minato-ku ',
-        postCode: 'Tokyo 106-6121',
+        city: 'OVOL Nihonbashi Bldg.',
+        street: '3F 3-4-4 Nihonbashi',
+        address: 'Muromachi,Chuo-ku,',
+        postCode: 'Tokyo 103-0022, ',
         city2: 'Japan',
-        phone: 'Tel: +81 3 3796 9293',
+        phone: 'Tel: +81 3 5290 3000',
       },
       greaterChinaInfo: {
         title: 'Greater China',

@@ -213,6 +213,7 @@
 
   export default {
     components: { Icon, BasicInformation, Properties, Additional, FormulationRecipe },
+
     data () {
       return {
         shareDialog: false,
@@ -234,6 +235,14 @@
 
       formulationTitle: function () {
         return (this.formulationBasic && this.formulationBasic.name) ? this.formulationBasic.name.value.replace('®', '<sup>®</sup>') : ''
+      }
+    },
+
+    watch: {
+      $route(to, from) {
+        let vm = this
+
+        vm.loadFormulation()
       }
     },
 

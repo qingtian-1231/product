@@ -104,7 +104,7 @@
                 </template>
 
                 <template v-else>
-                  <router-link :to="{name: 'Formulation', params: {id: result.uuid}}">
+                  <router-link :to="{name: 'Formulation', params: {id: result.uuid}}" @click.native="flushCom">
                   {{ result.title }}
                 </router-link>
                 </template>

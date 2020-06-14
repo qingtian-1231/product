@@ -238,6 +238,10 @@
           let requestPath = '/user/register?_format=hal_json'
           let currentLanguage = getCookie('drupal:session:language')
 
+          if (!currentLanguage) {
+            currentLanguage = 'en'
+          }
+
           if (currentLanguage === 'en') {
             requestPath = '/en/user/register?_format=hal_json'
           }
@@ -252,6 +256,9 @@
               },
               "pass":{
                 "value": vm.password
+              },
+              "preferred_langcode": {
+                "value": currentLanguage
               },
               "field_company_name": {
                 "value": vm.companyName

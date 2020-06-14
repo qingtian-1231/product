@@ -13,10 +13,10 @@
           height="60"
           :key="index">
           <v-list-item>
-            <v-col cols="2">
+            <v-col cols="5" sm="2">
               <v-subheader>{{ item.label }}</v-subheader>
             </v-col>
-            <v-col cols="8">
+            <v-col cols="6" sm="8">
               <v-select
                 class="select small"
                 v-model="item.selected"
@@ -32,7 +32,7 @@
                 solo
               ></v-select>
             </v-col>
-            <v-col cols="2">
+            <v-col cols="1" sm="2">
               <template v-if="item.filedName === 'field_sheet' && currentLanguage === 'zh-hans'">
                 <v-tooltip v-model="show" top>
                   <template v-slot:activator="{ on, attrs }">
@@ -368,6 +368,11 @@
   .v-btn {
     margin: 25px;
     float: right;
+
+    @media screen and (max-width: 480px) {
+      margin: 0;
+      float: inherit;
+    }
   }
 }
 .formulations-without-filter {

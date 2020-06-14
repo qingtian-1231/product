@@ -207,7 +207,7 @@ module.exports = {
       productName: '产品名称',
       productV: '产品',
       amount: '数量',
-      variation: '包装',
+      variation: '规格',
       action: '删除',
       cancel: '取消产品',
       addCart: '添加购物车',

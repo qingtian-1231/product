@@ -232,7 +232,7 @@ module.exports = {
       productName: 'Product Name',
       productV: 'Product',
       amount: 'Quantity',
-      variation: 'Package',
+      variation: 'Variation',
       action: 'Delete',
       cancel: 'Cancel product',
       addCart: 'Add to cart',

@@ -103,7 +103,7 @@ class FormulationResource extends ResourceBase {
                 $values = [];
                 foreach ($field_formula_composition as $item) {
                   $para = Paragraph::load($item['target_id']);
-                  if ($language === 'en') {
+                  if ($language === 'en' && $para->hasTranslation('en')) {
                     $para = $para->getTranslation('en');
                   }
 

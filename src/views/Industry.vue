@@ -130,6 +130,10 @@
 
     .list-product {
       padding-left: 350px;
+
+      @media screen and (max-width: 480px) {
+        padding-left: 15px;
+      }
     }
 
     .content {
@@ -139,7 +143,7 @@
       margin-right: 20px;
 
       ul {
-        list-style: none;
+        list-style: square;
       }
 
     }

@@ -111,8 +111,8 @@ module.exports = {
     }
   },
   industry: {
-    checkFormulation: '查看当前行业配方',
-    checkProduct: '查看当前行业产品',
+    checkFormulation: '行业配方',
+    checkProduct: '行业产品',
     noDescription: '暂无行业介绍',
   },
   onlineRequestForm: {

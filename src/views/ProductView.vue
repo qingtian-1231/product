@@ -313,7 +313,7 @@
         let currentLanguage = getCookie('drupal:session:language')
 
         if (currentLanguage === 'en') {
-          window.location.href = `mailto:?subject=Product ${vm.productInfo.title.value} from BASF Product Center&body= Please browse the product information${vm.productInfo.title.value}。
+          window.location.href = `mailto:?subject=Product ${vm.productInfo.title.value} from BASF Product Center&body= Please browse the product information ${vm.productInfo.title.value}.
 I find it at BASF Product Center:
 ${vm.currentLocation}`
         }

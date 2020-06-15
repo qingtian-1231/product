@@ -112,8 +112,8 @@ module.exports = {
   },
   industry: {
     noDescription: 'No industry introduction',
-    checkFormulation: 'View current industry recipes',
-    checkProduct: 'View current industry products',
+    checkFormulation: 'Industry Recipes',
+    checkProduct: 'Industry Products',
   },
   onlineRequestForm: {
     title: 'Contact Us',

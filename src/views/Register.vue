@@ -191,10 +191,7 @@
         userMail: '',
         companyName: '',
         phone: '',
-        businessModel: {
-          code: 'Manufacturing',
-          name: this.$t('businessModelList.Manufacturing'),
-        },
+        businessModel: {},
         companyPosition: '',
         rules: {
           required: v => !!v || this.$t('global.required'),

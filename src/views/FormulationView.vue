@@ -308,7 +308,7 @@
         let currentLanguage = getCookie('drupal:session:language')
 
         if (currentLanguage === 'en') {
-          window.location.href = `mailto:?subject=Formulation ${vm.formulationBasic.name.value} from BASF Product Center&body=Please browse the formulation information${vm.formulationBasic.name.value}。
+          window.location.href = `mailto:?subject=Formulation ${vm.formulationBasic.name.value} from BASF Product Center&body=Please browse the formulation information ${vm.formulationBasic.name.value}.
 I find it at BASF Product Center:
 ${vm.currentLocation}`
         } else {
@@ -320,10 +320,10 @@ ${vm.currentLocation}`
       },
 
       onCopy(e) {
-        this.$store.commit('SET_SNACKBAR', {
-          globalSnackbar: true,
-          snackbarMessage: '您已经将链接复制到粘贴板'
-        })
+        // this.$store.commit('SET_SNACKBAR', {
+        //   globalSnackbar: true,
+        //   snackbarMessage: '您已经将链接复制到粘贴板'
+        // })
 
         this.closeShareDialog()
       },

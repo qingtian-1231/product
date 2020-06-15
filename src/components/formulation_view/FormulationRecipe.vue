@@ -223,7 +223,7 @@
       }
 
       &:nth-child(2) {
-        width: 22.5%;
+        width: 33.5%;
         -webkit-animation: .4s ease-out 0s 1 rotateX;
         animation: .4s ease-out 0s 1 rotateX;
         display: inline-block;

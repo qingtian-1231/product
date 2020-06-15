@@ -136,7 +136,7 @@
       <v-row class="formulations-without-filter-button" style="margin: 0">
         <v-col cols="6"></v-col>
         <v-col cols="6" style="text-align: right">
-          <v-btn rounded color="info" @click="findFormulations()">
+          <v-btn rounded color="info" @click="findFormulationsWithOurtFilter()">
             {{ $t('formulationFilter.moreFormulation') }}
             <v-icon right>keyboard_arrow_right</v-icon>
           </v-btn>
@@ -302,6 +302,15 @@
           if (selected.hasOwnProperty('value')) {
             options[fieldName] = selected.value
           }
+        }
+
+        vm.$router.push({ path: 'formulations', query: options})
+      },
+
+      findFormulationsWithOurtFilter () {
+        let vm = this
+        let options = {
+          industry: vm.industry
         }
 
         vm.$router.push({ path: 'formulations', query: options})

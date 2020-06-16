@@ -81,22 +81,22 @@ class UpdateOrderResource extends ResourceBase {
   public function post(array $address_data) {
     $orderId = $address_data['order_id'];
     $order = \Drupal\commerce_order\Entity\Order::load($orderId);
-    $list = \Drupal::entityTypeManager()
-      ->getStorage('profile')
-      ->loadByProperties([
-        'uid' => $this->currentUser->id(),
-        'type' => 'customer',
-      ]);
-    $profile = reset($list);
+    $profile = $order->getBillingProfile();
+    $storage = \Drupal::entityTypeManager()->getStorage('commerce_order');
+//    $list = \Drupal::entityTypeManager()
+//      ->getStorage('profile')
+//      ->loadByProperties([
+//        'uid' => $this->currentUser->id(),
+//        'type' => 'customer',
+//      ]);
+////    $profile = reset($list);
     $languageCode = \Drupal::languageManager()->getCurrentLanguage()->getId();
     $return = [];
 
     if (empty($profile)) {
       $profile = Profile::create([
         'type' => 'customer',
-        'uid' => [
-          'target_id' => $this->currentUser->id()
-        ]
+        'uid' => $this->currentUser->id()
       ]);
     }
 
@@ -113,13 +113,15 @@ class UpdateOrderResource extends ResourceBase {
     $profile->address->postal_code = isset($address_data['postal_code']) ? $address_data['postal_code'] : null;
     $profile->address->address_line1 = isset($address_data['address_line1']) ? $address_data['address_line1'] :null;
     $profile->address->address_line2 = isset($address_data['address_line2']) ? $address_data['address_line2'] : null;
-//    $profile->setData('uid', $this->currentUser->id());
+    $profile->copy_to_address_book = 1;
     $profile->setDefault(TRUE);
+    $profile->setData('address_book_profile_id', $profile->id());
+    $profile->setData('copy_to_address_book', TRUE);
+    $profile->setOwnerId($this->currentUser->id());
     $profile->save();
 
-//    var_dump($profile->toArray());exit;
-//    $order->setBillingProfile($profile);
-//    $order->save();
+    $order->setBillingProfile($profile);
+    $order->postSave($storage, TRUE);
 
 
     $return['order_total_price'] = $order->getTotalPrice()->toArray();

@@ -92,7 +92,7 @@
               v-model="globalSearchKeyWord"
               @keyup="globalSearch()"
             >
-            <ul class="search-result">
+            <ul id="search-result" class="search-result">
               <template v-for="(result, index) in globalSearchResult">
                 <li :key="index">
                   <div class="item listed product result">
@@ -240,6 +240,7 @@
           vm.globalSearchLoading = true
           vm.$store.dispatch('productSearch', vm.globalSearchKeyWord).then(result => {
             vm.globalSearchLoading = false
+            $('#search-result').removeClass('hidden')
           });
         } else {
           vm.clearSearchResult()
@@ -253,6 +254,7 @@
 
       clearSearchResult() {
         this.$store.commit('clearSearchResult')
+        $('#search-result').addClass('hidden')
       }
     }
   }

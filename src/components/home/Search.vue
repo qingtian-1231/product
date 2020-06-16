@@ -18,7 +18,7 @@
         clearable
       >
       </v-text-field>
-      <ul class="search-result">
+      <ul id="middle-search-result" class="search-result">
         <template v-for="(result, index) in searchResult">
           <li :key="index">
             <div class="item listed product result">
@@ -117,6 +117,7 @@
 import IconModulator from "../../components/svg/Modulator";
 import { debounce } from '../../utils/globalUtils'
 import { mapState } from "vuex";
+import $ from 'jquery'
 
 export default {
   components: { IconModulator },
@@ -147,6 +148,7 @@ export default {
         vm.searchLoading = true
         vm.$store.dispatch('productSearch', vm.searchKeyWord).then(result => {
           vm.searchLoading = false
+          $('#middle-search-result').removeClass('hidden')
         });
       } else {
         vm.clearSearchResult()
@@ -160,6 +162,7 @@ export default {
 
     clearSearchResult() {
       this.$store.commit('clearSearchResult')
+      $('#middle-search-result').addClass('hidden')
     }
   }
 };

@@ -155,7 +155,7 @@
               {{ $t('home.middleContent.xianggangInfo.city') }}<br>
               {{ $t('home.middleContent.xianggangInfo.street') }}<br>
               {{ $t('home.middleContent.xianggangInfo.address') }}<br>
-              Tokyo 106-6121, Japan<br><br>
+              {{ $t('home.middleContent.xianggangInfo.postCode') }}{{ $t('home.middleContent.xianggangInfo.city2') }}<br><br>
               {{ $t('home.middleContent.xianggangInfo.phone') }}<br>
               Email:<a :href="`mailto:Dispersions-Resins-Asia@basf.com`">
               Dispersions-Resins-Asia<br><span class="special-class">@basf.com</span></a>
@@ -370,7 +370,7 @@
       h1 {
         padding: 20px 0;
       }
-      
+
       .special-color {
         color: #004a96;
       }

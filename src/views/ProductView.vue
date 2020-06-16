@@ -415,10 +415,10 @@ ${vm.currentLocation}`
       },
 
       onCopy(e) {
-        this.$store.commit('SET_SNACKBAR', {
-                globalSnackbar: true,
-                snackbarMessage: '您已经将链接复制到粘贴板'
-              })
+        // this.$store.commit('SET_SNACKBAR', {
+        //         globalSnackbar: true,
+        //         snackbarMessage: '您已经将链接复制到粘贴板'
+        //       })
 
         this.closeShareDialog()
       },

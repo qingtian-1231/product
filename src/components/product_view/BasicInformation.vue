@@ -227,7 +227,8 @@
     color: #808080;
 
     span {
-      white-space: break-spaces;
+      white-space: normal;
+      display: inline-block;
     }
   }
 
@@ -266,6 +267,7 @@
 
           .v-icon {
             margin-right: 10px;
+            top: -4px;
           }
         }
 

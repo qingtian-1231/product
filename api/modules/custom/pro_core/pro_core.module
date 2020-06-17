@@ -65,6 +65,23 @@ This temporary password change link will expire in 7 days.
       break;
 
     case 'commerce_order_receipt':
+      $builder = \Drupal::entityTypeManager()->getViewBuilder('profile');
+      $order = $message['params']['order'];
+      $customerId = $order->getCustomerId();
+      $list = \Drupal::entityTypeManager()
+        ->getStorage('profile')
+        ->loadByProperties([
+          'uid' => $customerId,
+          'type' => 'customer',
+          'is_default' => 1,
+        ]);
+
+      $profile = reset($list);
+      if ($profile) {
+        $message['params']['body']['#billing_information'] = $builder->view($profile);
+      }
+
+      $message['body'][0] = \Drupal::service('renderer')->renderPlain($message['params']['body']);
       break;
 
     default;
@@ -75,11 +92,11 @@ This temporary password change link will expire in 7 days.
  * Implements hook_theme_registry_alter().
  */
 function pro_core_theme_registry_alter(&$theme_registry) {
-//  $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
-//  $theme_registry['commerce_order_receipt']['path'] = 'modules/custom/pro_core/templates';
-//  if ($language === 'en') {
-//    $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-en';
-//  } else {
-//    $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-zh';
-//  }
+  $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $theme_registry['commerce_order_receipt']['path'] = 'modules/custom/pro_core/templates';
+  if ($language === 'en') {
+    $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-en';
+  } else {
+    $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-zh';
+  }
 }

@@ -82,16 +82,20 @@ class UserProfileResource extends ResourceBase {
       ->loadByProperties([
         'uid' => $this->currentUser->id(),
         'type' => 'customer',
+        'is_default' => 1,
       ]);
     $return = [];
+
     if (count($list) > 0) {
       $profile_data = reset($list);
-      $profile_arr = $profile_data->toArray();
+      if ($profile_data) {
+        $profile_arr = $profile_data->toArray();
 
-      $return = $profile_arr['address'][0];
-      $return['field_company_industry'] = $profile_arr['field_company_industry'][0]['value'];
-      $return['field_display_name'] = $profile_arr['field_display_name'][0]['value'];
-      $return['field_sample_application'] = $profile_arr['field_sample_application'][0]['value'];
+        $return = $profile_arr['address'][0];
+        $return['field_company_industry'] = $profile_arr['field_company_industry'][0]['value'];
+        $return['field_display_name'] = $profile_arr['field_display_name'][0]['value'];
+        $return['field_sample_application'] = $profile_arr['field_sample_application'][0]['value'];
+      }
     }
 
     return new ResourceResponse($return);

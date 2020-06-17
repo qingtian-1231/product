@@ -82,7 +82,8 @@ class UpdateOrderResource extends ResourceBase {
     $orderId = $address_data['order_id'];
     $order = \Drupal\commerce_order\Entity\Order::load($orderId);
     $profile = $order->getBillingProfile();
-    $storage = \Drupal::entityTypeManager()->getStorage('commerce_order');
+//    $profileStorage = \Drupal::entityTypeManager()->getStorage('profile');
+//    $storage = \Drupal::entityTypeManager()->getStorage('commerce_order');
 //    $list = \Drupal::entityTypeManager()
 //      ->getStorage('profile')
 //      ->loadByProperties([
@@ -118,11 +119,11 @@ class UpdateOrderResource extends ResourceBase {
     $profile->setData('address_book_profile_id', $profile->id());
     $profile->setData('copy_to_address_book', TRUE);
     $profile->setOwnerId($this->currentUser->id());
+//    $profile->postSave($profileStorage, TRUE);
     $profile->save();
 
-    $order->setBillingProfile($profile);
-    $order->postSave($storage, TRUE);
-
+//    $order->setBillingProfile($profile)->postSave($storage, TRUE);
+//    $order->save();
 
     $return['order_total_price'] = $order->getTotalPrice()->toArray();
     foreach ($order->getItems() as $order_item) {

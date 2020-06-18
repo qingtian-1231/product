@@ -258,6 +258,10 @@
 
       productBrandValue: function () {
         return (this.productBasic.brand) ? this.productBasic.brand.value : ''
+      },
+      
+      isPublic: function () {
+        return (this.productInfo && this.productInfo.is_public) ? this.productInfo.is_public : ''
       }
     },
 
@@ -303,7 +307,10 @@
           vm.productInfo = vm.productInformation
           vm.productFormulation = vm.productRelationFormulation
           vm.$loading.hide();
-          // console.log(vm.productBasic, 'productProperties')
+          if (!vm.isPublic && !vm.isLogin) {
+            vm.$router.push({ path: `/login/` });
+            return
+          }
           vm.changeProductBasketStatus()
         })
       },
@@ -314,7 +321,7 @@
 
         if (currentLanguage === 'en') {
           window.location.href = `mailto:?subject=Product ${vm.productInfo.title.value} from BASF Product Center&body= Please browse the product information ${vm.productInfo.title.value}.
-I find it at BASF Product Center:
+ I find it at BASF Product Center:
 ${vm.currentLocation}`
         }
         else {

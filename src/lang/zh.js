@@ -79,7 +79,7 @@ module.exports = {
   basket: {
     title: '样品购物车',
     clearBasket: '清空购物车',
-    seeOrder: '结算订单',
+    seeOrder: '查看购物车',
     productWeight: '产品分量'
   },
   productView: {
@@ -210,7 +210,7 @@ module.exports = {
       variation: '规格',
       action: '删除',
       cancel: '取消产品',
-      addCart: '添加购物车',
+      addCart: '添加到订单',
       unSuccessProduct: '未完成订单',
       cancelOrder: '取消订单',
       completeOrder: '结算订单',

@@ -56,6 +56,22 @@
         width: 48%;
         margin: 10px 1%;
 
+        span {
+
+          &:first-child {
+            width: 45%;
+          }
+
+          &:last-child {
+            line-height: 1.4;
+            max-width: 75%;
+            right: 0;
+            text-align: left;
+            float: right;
+            width: 55%;
+          }
+        }
+
         @media screen and (max-width: 480px) {
           width: 96%;
         }

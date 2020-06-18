@@ -139,6 +139,14 @@ const mutations = {
         continue
       }
 
+
+      if (field === 'field_is_public') {
+        state.productInfo.is_public = result.field_is_public.value
+
+        // console.log(state.productRelationFormulation, 'state.productRelationFormulation')
+        continue
+      }
+
       if (field === 'field_product_file') {
         state.productRelationFile = result.field_product_file
         continue

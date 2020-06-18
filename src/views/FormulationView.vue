@@ -309,7 +309,7 @@
 
         if (currentLanguage === 'en') {
           window.location.href = `mailto:?subject=Formulation ${vm.formulationBasic.name.value} from BASF Product Center&body=Please browse the formulation information ${vm.formulationBasic.name.value}.
-I find it at BASF Product Center:
+ I find it at BASF Product Center:
 ${vm.currentLocation}`
         } else {
           window.location.href = `mailto:?subject=配方${vm.formulationBasic.name.value}来自BASF产品中心&body=请查看配方详细信息${vm.formulationBasic.name.value}。

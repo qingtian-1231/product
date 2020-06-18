@@ -268,8 +268,14 @@ const actions = {
   },
 
   updateOrderAddress ({commit, state}, address) {
+    let requestPath = 'api/order_rest/submit?_format=hal_json'
+    let currentLanguage = getCookie('drupal:session:language')
+
+    if (currentLanguage === 'en') {
+      requestPath = 'en/' + requestPath
+    }
     return request()
-      .post('/api/order_rest/submit?_format=hal_json', address)
+      .post(requestPath, address)
       .then(result => {
         commit('processShippingOrder', result.data)
         return Promise.resolve(result)

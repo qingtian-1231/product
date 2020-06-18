@@ -79,7 +79,7 @@ module.exports = {
   basket: {
     title: 'Sample Shopping Cart',
     clearBasket: 'Empty shopping cart',
-    seeOrder: 'Check Out',
+    seeOrder: 'View Shopping Cart',
     productWeight: 'Product Weight'
   },
   productView: {
@@ -232,10 +232,10 @@ module.exports = {
       productName: 'Product Name',
       productV: 'Product',
       amount: 'Quantity',
-      variation: 'Variation',
+      variation: 'Weight/Unit',
       action: 'Delete',
       cancel: 'Cancel product',
-      addCart: 'Add to cart',
+      addCart: 'Add to Order',
       unSuccessProduct: 'Incomplete orders',
       cancelOrder: 'Cancel order',
       completeOrder: 'Check Out',

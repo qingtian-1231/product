@@ -291,6 +291,9 @@ module.exports = {
     filterSubtitle: 'Waterborne resins for metal protective coatings',
     withOutFilterSubtitle: 'Other formulations for industrial coating'
   },
+  formulations: {
+    other: 'other',
+  },
   accountSetting: {
     title: 'Personal Information Modify',
     confirm: 'confirm',

@@ -94,25 +94,25 @@
             >
             <ul id="search-result" class="search-result">
               <template v-for="(result, index) in globalSearchResult">
-                <li :key="index">
+                <li :key="index" :class="result.isPublic ? `normal` : `locked`">
                   <div class="item listed product result">
-              <span>
-                <template v-if="result.type === 'product'">
-                  <router-link :to="{name: 'Product', params: {id: result.uuid}}" @click.native="flushCom">
-                    {{ result.title }}
-                  </router-link>
-                </template>
+                    <span>
+                      <template v-if="result.type === 'product'">
+                        <router-link :to="{name: 'Product', params: {id: result.uuid}}" @click.native="flushCom">
+                          {{ result.title }}
+                        </router-link>
+                      </template>
 
-                <template v-else>
-                  <router-link :to="{name: 'Formulation', params: {id: result.uuid}}" @click.native="flushCom">
-                  {{ result.title }}
-                </router-link>
-                </template>
+                      <template v-else>
+                        <router-link :to="{name: 'Formulation', params: {id: result.uuid}}" @click.native="flushCom">
+                        {{ result.title }}
+                      </router-link>
+                      </template>
 
-                <small>
-                  - {{ result.type }}
-                </small>
-              </span>
+                      <small>
+                        - {{ result.type }}
+                      </small>
+                    </span>
                     <span></span>
                   </div>
                 </li>
@@ -455,10 +455,20 @@
         width: 100%;
         transition: all 0.3s;
         border-top: 1px solid #ddd;
+        display: grid;
 
         li {
           text-align: left;
           padding: 0 10%;
+
+          &.locked {
+            background: #ddd;
+
+
+            .result {
+              background: #ddd;
+            }
+          }
         }
       }
     }

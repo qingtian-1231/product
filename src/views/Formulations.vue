@@ -334,6 +334,7 @@
         let filter = {
           'formulation_application_ids': 'all'
         }
+        let action = 'getFormulationList'
 
         options.items_per_page = pageCount
         options.page = Math.ceil(vm.formulationList.length / pageCount)
@@ -398,8 +399,21 @@
           }
         }
 
+        if (vm.formulationQuery.hasOwnProperty("other")) {
+          let filterTerm = {
+            field: 'other',
+            name: vm.$t('formulations.other')
+          }
+          let hasFilter = vm.currentTerm.findIndex(item => item.field === 'other')
+          if (hasFilter === -1) {
+            vm.currentTerm.push(filterTerm)
+          }
+
+          action = 'getFormulationWithoutList'
+        }
+
         vm.$loading.show()
-        vm.$store.dispatch('getFormulationList', {filter: filter, options: options}).then(() => {
+        vm.$store.dispatch(action, {filter: filter, options: options}).then(() => {
           let formulations = vm.$store.state.formulation.formulationList
           // formulations = formulations.map((formulation) => {
           //   vm.$store.dispatch('getFormulationDetails', {

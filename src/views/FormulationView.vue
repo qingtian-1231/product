@@ -235,6 +235,10 @@
 
       formulationTitle: function () {
         return (this.formulationBasic && this.formulationBasic.name) ? this.formulationBasic.name.value.replace('®', '<sup>®</sup>') : ''
+      },
+
+      isPublic: function () {
+        return (this.formulationBasicInformation && this.formulationBasicInformation.is_public) ? this.formulationBasicInformation.is_public : ''
       }
     },
 
@@ -262,6 +266,10 @@
           vm.formulationProp = vm.formulationProperties
           vm.formulationRecipeInfo = vm.formulationInfo
 
+          if (!vm.isPublic && !vm.isLogin) {
+            vm.$router.push({ path: `/login/` });
+            return
+          }
           // console.log(vm.formulationRecipeInfo, 'vm.formulationBasic')
         })
       },

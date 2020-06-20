@@ -107,6 +107,8 @@
   import { mapState } from 'vuex'
 
   export default {
+    name: 'login-page',
+
     components: {},
 
     computed: {
@@ -136,6 +138,14 @@
           confirmPass: v => this.password === v || this.$t('global.confirmPass'),
         },
       }
+    },
+
+    mounted () {
+      document.addEventListener("keyup", this.enterKey);
+    },
+
+    destroyed () {
+      document.removeEventListener("keyup", this.enterKey);
     },
 
     methods: {
@@ -185,6 +195,21 @@
         this.alertMessage = ''
         this.alertClass = ''
         this.alert = false
+      },
+
+      enterKey(event) {
+        let loginContainer = document.getElementById('login')
+        if (loginContainer) {
+          const code = event.keyCode
+            ? event.keyCode
+            : event.which
+              ? event.which
+              : event.charCode;
+
+          if (code == 13) {
+            this.userLogin();
+          }
+        }
       },
     }
   }

@@ -310,7 +310,8 @@
       findFormulationsWithOurtFilter () {
         let vm = this
         let options = {
-          industry: vm.industry
+          industry: vm.industry,
+          other: 'other',
         }
 
         vm.$router.push({ path: 'formulations', query: options})

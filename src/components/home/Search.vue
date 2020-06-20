@@ -20,7 +20,7 @@
       </v-text-field>
       <ul id="middle-search-result" class="search-result">
         <template v-for="(result, index) in searchResult">
-          <li :key="index">
+          <li :key="index" :class="result.isPublic ? `normal` : `locked`">
             <div class="item listed product result">
               <span>
                 <template v-if="result.type === 'product'">
@@ -38,8 +38,9 @@
                 <small>
                   - {{ result.type }}
                 </small>
+
               </span>
-              <span></span>
+
             </div>
           </li>
         </template>
@@ -204,6 +205,16 @@ export default {
       li {
         text-align: left;
         padding: 0 10%;
+        display: grid;
+
+        &.locked {
+          background: #ddd;
+
+
+          .result {
+            background: #ddd;
+          }
+        }
       }
     }
 

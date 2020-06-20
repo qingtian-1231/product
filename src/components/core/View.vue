@@ -171,6 +171,8 @@
   import MobileMenu from '../base/MobileMenu'
 
   export default {
+    name: 'core-view',
+
     components: { OnlineRequestForm, MobileMenu },
 
     mixins: [validationMixin],
@@ -245,6 +247,11 @@
 
       updateLoginStatus (value) {
         this.$store.state.core.loginStatus = value
+        if (!value) {
+          document.removeEventListener("keyup", this.enterKey);
+        } else {
+          document.addEventListener("keyup", this.enterKey);
+        }
       },
 
       headerMenuClick (e, item) {
@@ -316,6 +323,22 @@
         this.alertClass = ''
         this.alert = false
       },
+
+      enterKey(event) {
+        const componentTag = this.$options._componentTag
+
+        if (componentTag == 'core-view') {
+          const code = event.keyCode
+            ? event.keyCode
+            : event.which
+              ? event.which
+              : event.charCode;
+
+          if (code == 13) {
+            this.userLogin();
+          }
+        }
+      }
     }
   }
 </script>

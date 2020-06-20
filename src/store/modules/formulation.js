@@ -74,6 +74,12 @@ const mutations = {
         continue
       }
 
+      if (field === 'field_is_public') {
+        state.formulationBasicInformation.is_public = parseInt(result.field_is_public.value)
+        // console.log(state.productRelationFormulation, 'state.productRelationFormulation')
+        continue
+      }
+
       if (field === 'field_formulation_file') {
         if (result.field_formulation_file.value.length > 0) {
           state.formulationFiles = result.field_formulation_file.value.map(item => {

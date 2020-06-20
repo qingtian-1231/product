@@ -266,6 +266,9 @@ module.exports = {
     filterSubtitle: '水性金属防护应用配方',
     withOutFilterSubtitle: '其他工业涂料应用配方'
   },
+  formulations: {
+    other: '其他',
+  },
   accountSetting: {
     title: '个人信息修改',
     confirm: '确认修改',

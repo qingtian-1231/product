@@ -43,7 +43,6 @@ class FormulationResource extends ResourceBase {
       'changed',
       'content_translation_source',
       'content_translation_outdated',
-      'field_is_public',
       'field_is_feature',
       'langcode',
       'vid',

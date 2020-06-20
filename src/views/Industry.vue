@@ -111,6 +111,9 @@
 <style lang="scss">
 #industry {
 
+  h1, h2, h3, h4, h5 {
+    font-weight: bold;
+  }
   .main-content {
     width: 100%;
     background-color: #fff;

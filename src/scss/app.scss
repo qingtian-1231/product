@@ -626,6 +626,7 @@ main {
 
         &:last-child {
           width: auto;
+          max-width: 100%;
         }
 
         & > a {

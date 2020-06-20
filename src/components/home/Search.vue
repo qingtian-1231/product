@@ -205,14 +205,13 @@ export default {
       li {
         text-align: left;
         padding: 0 10%;
-        display: grid;
 
         &.locked {
-          background: #ddd;
+          /*background: #ddd;*/
 
 
           .result {
-            background: #ddd;
+            /*background: #ddd;*/
           }
         }
       }

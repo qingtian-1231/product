@@ -455,18 +455,17 @@
         width: 100%;
         transition: all 0.3s;
         border-top: 1px solid #ddd;
-        display: grid;
 
         li {
           text-align: left;
           padding: 0 10%;
 
           &.locked {
-            background: #ddd;
+            /*background: #ddd;*/
 
 
             .result {
-              background: #ddd;
+              /*background: #ddd;*/
             }
           }
         }

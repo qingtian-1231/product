@@ -47,17 +47,19 @@ function pro_core_mail_alter(&$message) {
 
         $message['subject'] = "Account $displayName at BASF Product Center (Changing Password)";
         $message['body'] = [
-          "{$displayName},
-A request to reset the password of this account
-on the Basf Product Center has been submitted.
-You can now reset your password by clicking or
-copying the following address:
-Your username is：{$displayName}
-This is your temporary password change connection
-https://www.basf-product.com/reset-pass/{$tempPass}，
-This temporary password change link will expire in 7 days.
+          "Dear user,
+To reset the password of BASF Product Center, please you can copy the
+following temporary link to the browser to open it.
+
+https://www.basf-product.com/reset-pass/{$tempPass},
+
+This temporary password change link will expire after 24 hours, please do not forward it.
+
+Warm reminder: After the password is reset, please log in through the registered email and
+password.
 
 -BASF Product Center Team
+
 #This email is an automatic email, please do not reply directly#"
         ];
       }

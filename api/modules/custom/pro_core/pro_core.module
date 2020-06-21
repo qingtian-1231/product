@@ -80,6 +80,10 @@ password.
 
       $profile = reset($list);
       if ($profile) {
+        if ($language === 'en') {
+          $profile->address->langcode = $language;
+          $profile->address->setLangcode($language);
+        }
         $message['params']['body']['#billing_information'] = $builder->view($profile);
       }
 

@@ -114,7 +114,7 @@ class UpdateOrderResource extends ResourceBase {
     $profile->address->postal_code = isset($address_data['postal_code']) ? $address_data['postal_code'] : null;
     $profile->address->address_line1 = isset($address_data['address_line1']) ? $address_data['address_line1'] :null;
     $profile->address->address_line2 = isset($address_data['address_line2']) ? $address_data['address_line2'] : null;
-//    $profile->copy_to_address_book = 1;
+    //    $profile->copy_to_address_book = 1;
     $profile->setDefault(TRUE);
 //    $profile->setData('address_book_profile_id', $profile->id());
 //    $profile->setData('copy_to_address_book', TRUE);

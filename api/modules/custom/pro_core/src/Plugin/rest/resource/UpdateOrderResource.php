@@ -143,11 +143,15 @@ class UpdateOrderResource extends ResourceBase {
 
           case 'administrative_area':
             if ($value) {
-              $address_return[$index][$field] = $sub
+              $administrative_area = $sub
                 ->get($value, [
                   $address_data['country_code']
-                ])
-                ->getLocalName();
+                ]);
+              $address_return[$index][$field] = $administrative_area->getLocalName();
+
+              if ($languageCode === 'en') {
+                $address_return[$index][$field] = $administrative_area->getName();
+              }
             }
             else {
               $address_return[$index][$field] = $value;
@@ -157,12 +161,16 @@ class UpdateOrderResource extends ResourceBase {
 
           case 'locality':
             if ($value) {
-              $address_return[$index][$field] = $sub
+              $locality = $sub
                 ->get($value, [
                   $address_data['country_code'],
                   $address_data['administrative_area']
-                ])
-                ->getLocalName();
+                ]);
+              $address_return[$index][$field] = $locality->getLocalName();
+
+              if ($languageCode === 'en') {
+                $address_return[$index][$field] = $locality->getName();
+              }
             }
             else {
               $address_return[$index][$field] = $value;
@@ -171,13 +179,17 @@ class UpdateOrderResource extends ResourceBase {
 
           case 'dependent_locality':
             if ($value) {
-              $address_return[$index][$field] = $sub
+              $dependent_locality = $sub
                 ->get($value, [
                   $address_data['country_code'],
                   $address_data['administrative_area'],
                   $address_data['locality']
-                ])
-                ->getLocalName();
+                ]);
+              $address_return[$index][$field] = $dependent_locality->getLocalName();
+
+              if ($languageCode === 'en') {
+                $address_return[$index][$field] = $dependent_locality->getName();
+              }
             }
             else {
               $address_return[$index][$field] = $value;

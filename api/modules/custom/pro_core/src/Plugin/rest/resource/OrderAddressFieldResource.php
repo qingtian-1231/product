@@ -90,7 +90,7 @@ class OrderAddressFieldResource extends ResourceBase {
       foreach ($states as $state_code => $state) {
         $return[] = [
           'code' => $state_code,
-          'name' => $language === 'en' ? $state->getName() : $state->getLocalName(),
+          'name' => ($language === 'en' || empty($state->getLocalName())) ? $state->getName() : $state->getLocalName(),
         ];
       }
     }
@@ -105,7 +105,7 @@ class OrderAddressFieldResource extends ResourceBase {
         foreach ($cities as $city_code => $city) {
           $return[] = [
             'code' => $city_code,
-            'name' => $language === 'en' ? $city->getName() : $city->getLocalName(),
+            'name' => ($language === 'en' || empty($city->getLocalName())) ? $city->getName() : $city->getLocalName(),
           ];
         }
       }
@@ -123,7 +123,7 @@ class OrderAddressFieldResource extends ResourceBase {
         foreach ($locals as $local_code => $local) {
           $return[] = [
             'code' => $local_code,
-            'name' => $language === 'en' ? $local->getName() : $local->getLocalName(),
+            'name' => ($language === 'en' || empty($local->getLocalName())) ? $local->getName() : $local->getLocalName(),
           ];
         }
       }

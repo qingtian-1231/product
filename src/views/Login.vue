@@ -36,7 +36,7 @@
       </template>
 
       <template v-else>
-        <div class="col-sm-12 col-lg-3 col">
+        <div class="col-sm-12 col-lg-3">
           <div class="title mb-1">{{ $t('global.followWechat') }}</div>
           <v-img
             :src="require('@/assets/global/wechat.png')"
@@ -45,7 +45,7 @@
           >
           </v-img>
         </div>
-        <div class="col-sm-12 col-lg-5 col">
+        <div class="col-sm-12 col-lg-5">
           <v-form ref="loginForm" id="login-form" class="form" v-model="loginValid" lazy-validation>
             <v-col cols="12">
               <v-text-field
@@ -88,7 +88,7 @@
             </div>
           </v-form>
         </div>
-        <div class="col-sm-12 col-lg-4 col">
+        <div class="col-sm-12 col-lg-4">
           <div class="unlock">
             <h2>
               <v-icon>lock_open</v-icon>

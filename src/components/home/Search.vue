@@ -204,7 +204,7 @@ export default {
 
       li {
         text-align: left;
-        padding: 0 10%;
+        /*padding: 0 10%;*/
 
         &.locked {
           /*background: #ddd;*/

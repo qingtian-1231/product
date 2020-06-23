@@ -235,11 +235,15 @@
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
         padding: 0 8px 0 3.5%;
         margin-left: 2%;
+
+        @media screen and (max-width: 640px) {
+          display: none;
+        }
       }
 
       &:last-child {
         padding: 0 8px 0 12.5%;
-        width: 50%;
+        width: 40%;
         margin-left: 2%;
         -webkit-animation: .4s ease-out 0s 1 rotateX;
         animation: .4s ease-out 0s 1 rotateX;
@@ -272,6 +276,11 @@
           border-radius: 50%;
           left: 8px;
           position: absolute;
+        }
+
+
+        @media screen and (max-width: 640px) {
+          width: 75%;
         }
       }
     }

@@ -248,7 +248,8 @@
 
     computed: {
       ...mapState({
-        taxonomyProductApplication: state => state.core.taxonomyProductApplication
+        taxonomyProductApplication: state => state.core.taxonomyProductApplication,
+        isLogin: state => state.user.isLogin
       })
     },
 
@@ -374,7 +375,7 @@
       width: 100%;
     }
   }
-  
+
   .v-btn {
     margin: 25px;
     float: right;

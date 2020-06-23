@@ -84,7 +84,7 @@
             color="primary"
             grow
           >
-            <v-tab @click="showIcon">
+            <v-tab>
               {{ $t('productView.basicInfo') }}
             </v-tab>
 

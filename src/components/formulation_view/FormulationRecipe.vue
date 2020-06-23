@@ -369,6 +369,10 @@
             overflow: hidden;
             font-size: 1em;
             padding: 30px;
+
+            @media screen and (max-width: 480px) {
+              padding: 15px;
+            }
           }
         }
       }

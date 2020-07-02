@@ -350,7 +350,7 @@
         if (vm.formulationQuery.hasOwnProperty("field_luster_60")) {
           let filterTerm = {
             field: 'field_luster_60',
-            name: '光泽 60'
+            name: vm.$t('formulationFilter.gloss_60')
           }
           let hasFilter = vm.currentTerm.findIndex(item => item.field === 'field_luster_60')
           options.field_luster_60 = vm.formulationQuery.field_luster_60
@@ -363,7 +363,7 @@
         if (vm.formulationQuery.hasOwnProperty("field_sheet")) {
           let filterTerm = {
             field: 'field_sheet',
-            name: '板材'
+            name: vm.$t('formulationFilter.sheet_metal')
           }
           let hasFilter = vm.currentTerm.findIndex(item => item.field === 'field_sheet')
           options.field_sheet = vm.formulationQuery.field_sheet
@@ -376,7 +376,7 @@
         if (vm.formulationQuery.hasOwnProperty("field_thickness")) {
           let filterTerm = {
             field: 'field_thickness',
-            name: '厚度'
+            name: vm.$t('formulationFilter.thickness')
           }
           let hasFilter = vm.currentTerm.findIndex(item => item.field === 'field_thickness')
           options.field_thickness = vm.formulationQuery.field_thickness

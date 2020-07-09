@@ -32,9 +32,24 @@
     />
     <script src="//cbe.convertlab.com/cbe/collect?tid=7810995073841487960&at=0&h=web"></script>
     <script>
-      clab_tracker.ready(function() {
-        this.push({ pageType: "web" });
-        this.track("open_page", {"identityType":"wechat","identityValue":"微信openid",});
+      var openid     // 当前用户的openid
+
+      clab_tracker.ready(function(){
+
+        if(openid){
+
+          this.push({"pageType":"web","identityType":"wechat","identityValue":openid});
+
+        }
+
+        else{
+
+          this.push({"pageType":"web"});
+
+        }
+
+        this.track("open_page",{});
+
       });
     </script>
   </head>

@@ -139,6 +139,9 @@ store.dispatch('getApiMenu').then(() => {
             }
           }),
           render: h => h(App),
+          mounted () {
+            document.dispatchEvent(new Event('render-event'))
+          }
         }).$mount('#app')
       })
     })

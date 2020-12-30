@@ -318,12 +318,14 @@ export default {
     goProductDetail(productId, UnLocked) {
       let vm = this;
       if (UnLocked) {
-        vm.$router.push({ path: `/product/${productId}` });
+        window.location.href = `/product/?product=${productId}`
+        // vm.$router.push({ path: `/product/${productId}` });
       } else {
         if (!vm.isLogin) {
           vm.$store.commit("open_login_dialog");
         } else {
-          vm.$router.push({ path: `/product/${productId}` });
+          window.location.href = `/product/?product=${productId}`
+          // vm.$router.push({ path: `/product/${productId}` });
         }
       }
     },

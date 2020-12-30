@@ -38,6 +38,7 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心' : 'BASF Product Center for Dispersions and Resins',
         keywords: defaultKeywords,
@@ -49,6 +50,7 @@ export default new Router({
       path: '/industry',
       name: 'Industry',
       component: Industry,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_行业' : 'BASF Product Center for Dispersions and Resins_Industry',
         keywords: defaultKeywords,
@@ -60,6 +62,7 @@ export default new Router({
       path: '/products',
       name: 'Products',
       component: Products,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_产品' : 'BASF Product Center for Dispersions and Resins_Products',
         keywords: defaultKeywords,
@@ -79,9 +82,21 @@ export default new Router({
       }
     },
     {
+      path: '/product',
+      name: 'Product',
+      component: ProductView,
+      meta: {
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_产品详情页' : 'BASF Product Center for Dispersions and Resins --- Product Details Page',
+        keywords: defaultKeywords,
+        description: defaultDescription,
+        keepAlive: true
+      }
+    },
+    {
       path: '/formulations',
       name: 'Formulations',
       component: Formulations,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_配方' : 'BASF Product Center for Dispersions and Resins_Formulations',
         keywords: defaultKeywords,
@@ -93,6 +108,19 @@ export default new Router({
       path: '/formulation/:id',
       name: 'Formulation',
       component: FormulationView,
+      mode: 'history',
+      meta: {
+        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_配方详情页' : 'BASF Product Center for Dispersions and Resins --- Formula Details Page',
+        keywords: defaultKeywords,
+        description: defaultDescription,
+        keepAlive: true
+      }
+    },
+    {
+      path: '/formulation',
+      name: 'Formulation',
+      component: FormulationView,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_配方详情页' : 'BASF Product Center for Dispersions and Resins --- Formula Details Page',
         keywords: defaultKeywords,
@@ -104,6 +132,7 @@ export default new Router({
       path: '/sample-order',
       name: 'SampleOrder',
       component: SampleOrder,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_样品订单' : 'BASF Product Center for Dispersions and Resins_Sample Order',
         auth: 'user-login',
@@ -116,6 +145,7 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--登录' : 'BASF Product Center for Dispersions and Resins --- Login',
         keywords: defaultKeywords,
@@ -127,6 +157,7 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--注册' : 'BASF Product Center for Dispersions and Resins ---  Registration',
         keywords: defaultKeywords,
@@ -138,6 +169,7 @@ export default new Router({
       path: '/download',
       name: 'Download',
       component: Download,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_下载' : 'BASF Product Center for Dispersions and Resins_Download',
         keywords: defaultKeywords,
@@ -149,6 +181,7 @@ export default new Router({
       path: '/formulations-filter',
       name: 'FormulationsFilter',
       component: FormulationsFilter,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--配方选择' : 'BASF Product Center for Dispersions and Resins ---  Select Formulation',
         keywords: defaultKeywords,
@@ -160,6 +193,7 @@ export default new Router({
       path: '/my-favorites',
       name: 'MyFavorites',
       component: MyFavorites,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--我的收藏' : 'BASF Product Center for Dispersions and Resins ---  My Collection',
         keywords: defaultKeywords,
@@ -171,6 +205,7 @@ export default new Router({
       path: '/order-history',
       name: 'OrderHistory',
       component: OrderHistory,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--订单历史' : 'BASF Product Center for Dispersions and Resins ---  Order History',
         keywords: defaultKeywords,
@@ -182,6 +217,7 @@ export default new Router({
       path: '/account-setting',
       name: 'AccountSetting',
       component: AccountSetting,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--账户设置' : 'BASF Product Center for Dispersions and Resins ---  Account Setting',
         keywords: defaultKeywords,
@@ -193,6 +229,7 @@ export default new Router({
       path: '/disclaimer',
       name: 'Disclaimer',
       component: Disclaimer,
+      mode: 'history',
       meta: {
         title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心--免责声明' : 'BASF Product Center for Dispersions and Resins ---  Disclaimer',
         keywords: defaultKeywords,
@@ -203,22 +240,26 @@ export default new Router({
     {
       path: '/unauthorized',
       name: 'Unauthorized',
-      component: Unauthorized
+      component: Unauthorized,
+      mode: 'history',
     },
     {
       path: '/forget-pass',
       name: 'ForgetPass',
-      component: ForgetPass
+      component: ForgetPass,
+      mode: 'history',
     },
     {
       path: '/reset-pass/:tempPass',
       name: 'ResetPass',
-      component: ResetPass
+      component: ResetPass,
+      mode: 'history',
     },
     {
       path: '/notfound',
       name: 'NotFound',
       component: NotFound,
+      mode: 'history',
       meta: {
         title: '404',
         keywords: defaultKeywords,

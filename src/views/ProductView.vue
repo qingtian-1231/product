@@ -259,7 +259,7 @@
       productBrandValue: function () {
         return (this.productBasic.brand) ? this.productBasic.brand.value : ''
       },
-      
+
       isPublic: function () {
         return (this.productInfo && this.productInfo.is_public) ? this.productInfo.is_public : ''
       }
@@ -298,6 +298,12 @@
       loadProduct() {
         let vm = this
         let productId = vm.$route.params.id
+
+        if (!productId) {
+          let query = vm.$router.history.current.query
+          productId = query.product
+        }
+
         vm.$loading.show();
         vm.currentLocation = window.location.href
         vm.$store.dispatch('getProductDetails', {

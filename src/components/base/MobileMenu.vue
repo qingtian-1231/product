@@ -106,7 +106,8 @@
           return
         }
 
-        this.$router.push({ path: item.relative})
+        window.location.href = item.relative
+        // this.$router.push({ path: item.relative})
       },
     }
   }

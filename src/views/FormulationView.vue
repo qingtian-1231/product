@@ -258,6 +258,12 @@
       loadFormulation() {
         let vm = this
         let formulationId = vm.$route.params.id
+
+        if (!formulationId) {
+          let query = vm.$router.history.current.query
+          formulationId = query.formulation
+        }
+
         vm.currentLocation = window.location.href
         vm.$store.dispatch('getFormulationDetails', {
           id: formulationId

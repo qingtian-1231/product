@@ -11,8 +11,8 @@ import VueI18n from 'vue-i18n'
 import { getCookie, setCookie } from "./utils/cookie.js";
 import loading from './utils/loading.js' // 引入loading
 // For Nprogress 页面加载动画.
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
+// import NProgress from 'nprogress'
+// import 'nprogress/nprogress.css'
 import SvgIcon from 'vue-svgicon'
 import './icons'   //引入svg-icon
 
@@ -46,11 +46,11 @@ Vue.config.productionTip = false
  * @see https://github.com/rstacruz/nprogress/
  */
 
-NProgress.inc(0.2)
-NProgress.configure({ easing: 'ease', speed: 500, showSpinner: true })
+// NProgress.inc(0.2)
+// NProgress.configure({ easing: 'ease', speed: 500, showSpinner: true })
 
 router.beforeEach((to, from, next) => {
-  NProgress.start()
+  // NProgress.start()
   // 每个路由跳转时都将其跳转的路由推给百度
   if (!isDev && window._hmt) {
     // console.log(window._hmt)
@@ -81,7 +81,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
-  NProgress.done()
+  // NProgress.done()
 })
 
 Vue.use(loading) // 全局使用loading加载动画

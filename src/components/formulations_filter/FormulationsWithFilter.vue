@@ -136,7 +136,7 @@
       <v-row class="formulations-without-filter-button" style="margin: 0">
         <v-col cols="6"></v-col>
         <v-col cols="6" style="text-align: right">
-          <v-btn rounded color="info" @click="findFormulationsWithOurtFilter()">
+          <v-btn rounded color="info" @click="findFormulationsWithOutFilter()">
             {{ $t('formulationFilter.moreFormulation') }}
             <v-icon right>keyboard_arrow_right</v-icon>
           </v-btn>
@@ -305,17 +305,29 @@
           }
         }
 
-        vm.$router.push({ path: 'formulations', query: options})
+        let parameters = '';
+        for (let j in options) {
+          parameters += `&${j}=${options[j]}`
+        }
+
+        window.location.href = 'formulations?' + parameters
+        // vm.$router.push({ path: 'formulations', query: options})
       },
 
-      findFormulationsWithOurtFilter () {
+      findFormulationsWithOutFilter () {
         let vm = this
         let options = {
           industry: vm.industry,
           other: 'other',
         }
 
-        vm.$router.push({ path: 'formulations', query: options})
+        let parameters = '';
+        for (let j in options) {
+          parameters += `&${j}=${options[j]}`
+        }
+
+        window.location.href = 'formulations?' + parameters
+        // vm.$router.push({ path: 'formulations', query: options})
       },
 
       goFormulationDetail (formulationId, UnLocked) {

@@ -127,6 +127,8 @@
       let vm = this
       let step = vm.$router.history.current.query.step
 
+      if ( window.__PRERENDER_INJECTED && window.__PRERENDER_INJECTED.prerender === 'domain' ) { return }
+
       if (!vm.isLogin) {
         window.location = '/'
       }

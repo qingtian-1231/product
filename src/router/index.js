@@ -28,6 +28,8 @@ const defaultDescription = '巴斯夫产品, 巴斯夫配方'
 
 let language = getCookie('drupal:session:language') || 'zh-hans'
 
+if ( window.__PRERENDER_INJECTED && window.__PRERENDER_INJECTED.prerender === 'domain' ) { language = 'zh-hans' }
+
 console.log(language, 'language')
 
 export default new Router({
@@ -70,17 +72,17 @@ export default new Router({
         keepAlive: true
       }
     },
-    {
-      path: '/product/:id',
-      name: 'Product',
-      component: ProductView,
-      meta: {
-        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_产品详情页' : 'BASF Product Center for Dispersions and Resins --- Product Details Page',
-        keywords: defaultKeywords,
-        description: defaultDescription,
-        keepAlive: true
-      }
-    },
+    // {
+    //   path: '/product/:id',
+    //   name: 'Product',
+    //   component: ProductView,
+    //   meta: {
+    //     title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_产品详情页' : 'BASF Product Center for Dispersions and Resins --- Product Details Page',
+    //     keywords: defaultKeywords,
+    //     description: defaultDescription,
+    //     keepAlive: true
+    //   }
+    // },
     {
       path: '/product',
       name: 'Product',
@@ -104,18 +106,18 @@ export default new Router({
         keepAlive: true
       }
     },
-    {
-      path: '/formulation/:id',
-      name: 'Formulation',
-      component: FormulationView,
-      mode: 'history',
-      meta: {
-        title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_配方详情页' : 'BASF Product Center for Dispersions and Resins --- Formula Details Page',
-        keywords: defaultKeywords,
-        description: defaultDescription,
-        keepAlive: true
-      }
-    },
+    // {
+    //   path: '/formulation/:id',
+    //   name: 'Formulation',
+    //   component: FormulationView,
+    //   mode: 'history',
+    //   meta: {
+    //     title: language === 'zh-hans' ? '巴斯夫分散体与树脂产品中心_配方详情页' : 'BASF Product Center for Dispersions and Resins --- Formula Details Page',
+    //     keywords: defaultKeywords,
+    //     description: defaultDescription,
+    //     keepAlive: true
+    //   }
+    // },
     {
       path: '/formulation',
       name: 'Formulation',
@@ -250,7 +252,7 @@ export default new Router({
       mode: 'history',
     },
     {
-      path: '/reset-pass/:tempPass',
+      path: '/reset-pass',
       name: 'ResetPass',
       component: ResetPass,
       mode: 'history',

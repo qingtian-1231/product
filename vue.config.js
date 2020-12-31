@@ -30,9 +30,19 @@ if (process.env.NODE_ENV === "production") {
       '/product',
       '/formulations',
       '/formulation',
+      '/formulations-filter',
       '/login',
       '/register',
-      '/download'
+      '/download',
+      '/sample-order',
+      '/account-setting',
+      '/my-favorites',
+      '/order-history',
+      '/disclaimer',
+      '/unauthorized',
+      '/forget-pass',
+      '/reset-pass',
+      '/notfound'
     ],
     // 这个很重要，如果没有配置这段，也不会进行预编译
     renderer: new Renderer({
@@ -40,7 +50,7 @@ if (process.env.NODE_ENV === "production") {
         prerender: 'domain'
       },
       headless: false,
-      renderAfterTime: 12000,
+      renderAfterTime: 18000,
       // 在 main.js 中 document.dispatchEvent(new Event('render-event'))，两者的事件名称要对应上。
       // renderAfterDocumentEvent: 'render-event',
       // renderAfterElementExists: 'v-application--wrap'

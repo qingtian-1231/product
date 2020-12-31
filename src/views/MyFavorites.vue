@@ -214,6 +214,8 @@
     },
 
     created () {
+      if ( window.__PRERENDER_INJECTED && window.__PRERENDER_INJECTED.prerender === 'domain' ) { return }
+
       if (!this.isLogin) {
         window.location = '/'
       }

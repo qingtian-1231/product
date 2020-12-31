@@ -146,18 +146,25 @@
           industry: vm.industry
         }
 
-        vm.$router.push({ path: 'formulations', query: options})
+        let parameters = '';
+        for (let j in options) {
+          parameters += `&${j}=${options[j]}`
+        }
+        window.location.href = '/formulations?' + parameters
+        // vm.$router.push({ path: 'formulations', query: options})
       },
 
       goFormulationDetail (formulationId, UnLocked) {
         let vm = this
         if (UnLocked) {
-          vm.$router.push({path:`/formulation/${formulationId}`})
+          window.location.href = `/formulation/?formulation=${formulationId}`
+          // vm.$router.push({path:`/formulation/${formulationId}`})
         } else {
           if (!vm.isLogin) {
             vm.$store.commit('open_login_dialog')
           } else {
-            vm.$router.push({path:`/formulation/${formulationId}`})
+            window.location.href = `/formulation/?formulation=${formulationId}`
+            // vm.$router.push({path:`/formulation/${formulationId}`})
           }
         }
       },

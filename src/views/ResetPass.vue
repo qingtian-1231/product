@@ -130,14 +130,19 @@
 
           let requestPath = '/user/lost-password-reset?_format=json'
           let currentLanguage = getCookie('drupal:session:language')
+          let tempPass = vm.$router.history.current.params.tempPass
 
+          if (!tempPass) {
+            let query = vm.$router.history.current.query
+            tempPass = query.tempPass
+          }
           if (currentLanguage === 'en') {
             requestPath = '/en/user/lost-password-reset?_format=json'
           }
           request().post(requestPath,
             {
               "name": vm.userMail,
-              "temp_pass": vm.$router.history.current.params.tempPass,
+              "temp_pass": tempPass,
               "new_pass": vm.password
             }
           )

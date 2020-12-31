@@ -299,6 +299,8 @@
         let vm = this
         let productId = vm.$route.params.id
 
+        if ( window.__PRERENDER_INJECTED && window.__PRERENDER_INJECTED.prerender === 'domain' ) { return }
+
         if (!productId) {
           let query = vm.$router.history.current.query
           productId = query.product
@@ -312,6 +314,7 @@
           vm.productBasic = vm.productBasicInformation
           vm.productInfo = vm.productInformation
           vm.productFormulation = vm.productRelationFormulation
+          console.log('99999999')
           vm.$loading.hide();
           if (!vm.isPublic && !vm.isLogin) {
             vm.$router.push({ path: `/login/` });

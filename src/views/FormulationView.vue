@@ -259,6 +259,8 @@
         let vm = this
         let formulationId = vm.$route.params.id
 
+        if ( window.__PRERENDER_INJECTED && window.__PRERENDER_INJECTED.prerender === 'domain' ) { return }
+
         if (!formulationId) {
           let query = vm.$router.history.current.query
           formulationId = query.formulation

@@ -25,11 +25,11 @@ let language = getCookie('drupal:session:language')
 
 if (!language) {
   const expireTime = 30 * 24 * 3600 * 1000;
-  language = 'en'
+  language = 'zh-hans'
 
   setCookie(
     'drupal:session:language',
-    'en',
+    'zh-hans',
     expireTime,
     "/"
   )

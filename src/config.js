@@ -7,7 +7,7 @@ module.exports = {
     pageCount: 10,
     apiServer: "https://api.basf-product.com/"
   },
-  test: {
+  stage: {
     pageCount: 10,
     apiServer: "http://api.basf.infiniteread.com"
   },

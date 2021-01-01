@@ -16,7 +16,7 @@ let plugins = [
   }),
 ];
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV !== "development") {
   plugins.push(new PrerenderSPAPlugin({
     // 生成文件的路径，也可以与webpakc打包的一致。
     // 下面这句话非常重要！！！

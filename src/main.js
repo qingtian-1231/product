@@ -20,7 +20,7 @@ import './icons'   //引入svg-icon
 import VueClipboard from 'vue-clipboard2'
 VueClipboard.config.autoSetContainer = true
 
-const isDev = process.env.NODE_ENV !== 'production'
+const isDev = process.env.NODE_ENV === 'development'
 let language = getCookie('drupal:session:language')
 
 if (!language) {

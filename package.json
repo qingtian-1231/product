@@ -5,8 +5,9 @@
   "scripts": {
     "svg": "vsvg -s ./src/assets/svg-icons -t ./src/icons",
     "deploy": "yarn build && now && now alias",
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --mode development",
     "build": "vue-cli-service build",
+    "stage": "vue-cli-service build --mode stage",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"

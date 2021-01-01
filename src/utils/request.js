@@ -2,10 +2,23 @@ import axios from "axios";
 import { getCookie } from "../utils/cookie.js";
 import config from "../config";
 
-const isDev = process.env.NODE_ENV !== "production";
+// const isDev = process.env.NODE_ENV !== "production";
 const sessionKey = "drupal:session";
-const apiServer = isDev ? config.dev.apiServer : config.prod.apiServer;
+let apiServer = config.prod.apiServer;
 
+if (process.env.NODE_ENV === "production") {
+  apiServer = config.prod.apiServer;
+}
+
+if (process.env.NODE_ENV === "stage") {
+  apiServer = config.stage.apiServer;
+}
+
+if (process.env.NODE_ENV === "development") {
+  apiServer = config.dev.apiServer;
+}
+
+console.log(process.env, 'process.env.NODE_ENV');
 function request(isAdmin) {
   const session = getCookie(sessionKey);
   const sessionValue = session ? JSON.parse(session) : "";

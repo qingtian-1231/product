@@ -503,7 +503,9 @@ export default {
 
     removeFilter() {
       this.currentTerm = []
-      this.$router.push({ path: `/products` });
+
+      window.location.href = '/products'
+      // this.$router.push({ path: `/products` });
     }
   }
 };

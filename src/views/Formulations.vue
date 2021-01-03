@@ -542,7 +542,14 @@
 
         delete newQuery[field]
         vm.currentTerm.splice(vm.currentTerm.findIndex(item => item.field === field), 1)
-        vm.$router.push({ path: 'formulations', query: newQuery});
+
+        let parameters = '';
+        for (let j in newQuery) {
+          parameters += `&${j}=${newQuery[j]}`
+        }
+
+        window.location.href = '/formulations?' + parameters
+        // vm.$router.push({ path: 'formulations', query: newQuery});
       }
     }
   }

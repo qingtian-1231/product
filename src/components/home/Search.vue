@@ -24,15 +24,15 @@
             <div class="item listed product result">
               <span>
                 <template v-if="result.type === 'product'">
-                  <router-link :to="{name: 'Product', params: {id: result.uuid}}">
-                  {{ result.title }}
-                </router-link>
+                  <a target="_blank" :href="`/product/?product=${result.uuid}`">
+                    {{ result.title }}
+                  </a>
                 </template>
 
                 <template v-else>
-                  <router-link :to="{name: 'Formulation', params: {id: result.uuid}}">
-                  {{ result.title }}
-                </router-link>
+                  <a target="_blank" :href="`/formulation/?formulation=${result.uuid}`">
+                    {{ result.title }}
+                  </a>
                 </template>
 
                 <small>

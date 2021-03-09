@@ -8,7 +8,7 @@
       <v-col cols="12" md="6" sm="6" v-for="(featureProduct, index) in featureProducts" :key="index">
         <v-hover v-slot:default="{ hover }">
           <div :class="`teaser-container ${featureProduct.field_front_product_color}`" :elevation="hover ? 18 : 2">
-            <a target="_blank" :href="`/product/${featureProduct.uuid}`">
+            <a target="_blank" :href="`/product/?product=${featureProduct.uuid}`">
               <picture target="_blank" :href="featureProduct.field_media_image">
                 <!--[if IE 9]><video style="display: none;"><![endif]-->
                 <source :srcset="featureProduct.field_media_image" media="(min-width: 1024px)">
@@ -19,12 +19,12 @@
             </a>
 
             <div class="caption">
-              <a target="_blank" :href="`/product/${featureProduct.uuid}`">
+              <a target="_blank" :href="`/product/?product=${featureProduct.uuid}`">
 <!--                <h1>What’s new</h1>-->
                 <h2 class="title" v-html="featureProduct.title"></h2>
               </a>
               <p v-html="featureProduct.field_front_product_description"></p>
-              <a target="_blank" :href="`/product/${featureProduct.uuid}`">
+              <a target="_blank" :href="`/product/?product=${featureProduct.uuid}`">
                 {{ $t('global.readMore') }}
               </a>
             </div>

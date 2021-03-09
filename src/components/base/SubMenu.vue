@@ -5,15 +5,15 @@
       :key="index"
     >
       <template v-if="item.vid === 'applacation'">
-        <router-link  :to="{path: '/industry', query: {industry: item.tid}}">
+        <a :href="`/industry/?industry=${item.tid}`">
           {{ item.name }}
-        </router-link>
+        </a>
       </template>
 
       <template v-else>
-        <router-link  :to="{path: '/products', query: {product_type: item.tid}}">
+        <a :href="`/products/?product_type=${item.tid}`">
           {{ item.name }}
-        </router-link>
+        </a>
       </template>
 
       <template v-if="item.children.length">

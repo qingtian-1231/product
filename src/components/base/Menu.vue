@@ -94,6 +94,7 @@
           return
         }
 
+        console.log(item.to, !item.relative)
         if (item.to || !item.relative) {
           return
         }

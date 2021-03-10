@@ -197,9 +197,9 @@
 
       <v-col cols="12" class="introduce">
         <h1>
-          <router-link :to="{ name: 'Register' }" class="special-color">
+          <a class="special-color" :href="`/register`">
             {{ $t('global.register') }} !
-          </router-link>
+          </a>
           {{ $t('home.middleContent.registerTitle') }}
         </h1>
         <p>

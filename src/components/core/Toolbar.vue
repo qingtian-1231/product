@@ -98,15 +98,15 @@
                   <div class="item listed product result">
                     <span>
                       <template v-if="result.type === 'product'">
-                        <router-link :to="{name: 'Product', params: {id: result.uuid}}" @click.native="flushCom">
+                        <a :href="`/product/?product=${result.uuid}`">
                           {{ result.title }}
-                        </router-link>
+                        </a>
                       </template>
 
                       <template v-else>
-                        <router-link :to="{name: 'Formulation', params: {id: result.uuid}}" @click.native="flushCom">
-                        {{ result.title }}
-                      </router-link>
+                        <a :href="`/formulation/?formulation=${result.uuid}`">
+                          {{ result.title }}
+                        </a>
                       </template>
 
                       <small>
@@ -219,10 +219,6 @@
           left: 0,
           behavior: 'smooth'
         });
-      },
-
-      flushCom () {
-        this.$router.go(0);
       },
 
       closeGlobalSearch () {

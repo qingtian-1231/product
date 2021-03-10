@@ -31,19 +31,19 @@
               <div class="person-center">
                 <ul>
                   <li >
-                    <router-link :to="{name: 'MyFavorites'}">
+                    <a :href="`/my-favorites`">
                       <v-icon class="material-icons-outlined">star_outline</v-icon>{{ $t('global.myFavorite') }}
-                    </router-link>
+                    </a>
                   </li>
                   <li >
-                    <router-link :to="{name: 'OrderHistory'}">
+                    <a :href="`/order-history`">
                       <v-icon class="material-icons-outlined">shopping_basket</v-icon>{{ $t('global.orderHistory') }}
-                    </router-link>
+                    </a>
                   </li>
                   <li >
-                    <router-link :to="{name: 'AccountSetting'}">
+                    <a :href="`/account-setting`">
                       <v-icon class="material-icons-outlined">settings</v-icon>{{ $t('global.accountSetting') }}
-                    </router-link>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -123,21 +123,11 @@
             <v-divider class="py-0"></v-divider>
 
             <blockquote class="blockquote px-0 py-4">
-              <router-link :to="{ name: 'Register' }" class="special-color" style="text-transform: capitalize">
+              <a class="special-color" style="text-transform: capitalize" :href="`/register`">
                 {{ $t('global.register') }} !
-              </router-link>
+              </a>
               {{ $t('home.middleContent.registerDescriptionPart') }}
             </blockquote>
-<!--            <router-link :to="{name: 'Register'}">-->
-<!--              <v-btn-->
-<!--                block-->
-<!--                rounded-->
-<!--                color="secondary"-->
-<!--                dark-->
-<!--              >-->
-<!--                {{ $t('global.register') }}<v-icon right dark>keyboard_arrow_right</v-icon>-->
-<!--              </v-btn>-->
-<!--            </router-link>-->
           </v-card>
         </v-col>
       </v-row>
@@ -407,14 +397,14 @@
       ul {
         padding: 0;
         margin-left: -5px;
-        
+
         li {
           position: relative;
           width: 100%;
           display: inline-block;
           float: left;
           margin-bottom: 20px;
-          
+
           a {
             text-decoration: none;
             font-size: 1em;

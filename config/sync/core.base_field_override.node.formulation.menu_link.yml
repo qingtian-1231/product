@@ -1,0 +1,20 @@
+uuid: 2d8e8b8d-7f4e-476c-b14f-05f91c420204
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.formulation
+id: node.formulation.menu_link
+field_name: menu_link
+entity_type: node
+bundle: formulation
+label: 菜单链接
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

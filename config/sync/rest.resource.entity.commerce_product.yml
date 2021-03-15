@@ -1,0 +1,23 @@
+uuid: 747c19a7-6f0a-4177-b38d-4572287e52a8
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - commerce_product
+    - hal
+    - serialization
+id: entity.commerce_product
+plugin_id: 'entity:commerce_product'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+    - DELETE
+    - PATCH
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth

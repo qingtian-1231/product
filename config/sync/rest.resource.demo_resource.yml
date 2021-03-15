@@ -1,0 +1,22 @@
+uuid: 42d8a540-fa23-4ec3-bfaf-a041814be090
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - pro_core
+    - serialization
+    - user
+id: demo_resource
+plugin_id: demo_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth
+    - cookie

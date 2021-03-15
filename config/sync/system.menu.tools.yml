@@ -1,0 +1,10 @@
+uuid: b7cf7b32-e54b-4c2c-9f11-62c7fe7fab48
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: BCM-vV1zzRaLHN18dqAR_CuGOj8AFJvTx7BKl_8Gcxc
+id: tools
+label: 工具
+description: 用户工具链接，通常由模块创建。
+locked: true

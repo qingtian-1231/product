@@ -1,0 +1,10 @@
+uuid: c07908e6-d740-4450-8e3f-991972a9be32
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - contact
+id: contact_message.token
+label: Token
+targetEntityType: contact_message
+cache: true

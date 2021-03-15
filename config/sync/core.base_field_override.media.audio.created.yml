@@ -1,0 +1,18 @@
+uuid: b2da733f-9364-4b0a-9f51-254ea7bad50e
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.audio
+id: media.audio.created
+field_name: created
+entity_type: media
+bundle: audio
+label: 发布于
+description: 媒体项创建的时间。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\media\Entity\Media::getRequestTime'
+settings: {  }
+field_type: created

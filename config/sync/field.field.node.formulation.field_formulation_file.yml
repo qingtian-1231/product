@@ -1,0 +1,40 @@
+uuid: 6ba97b21-3e14-444f-89a9-e33cd411c1d8
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_formulation_file
+    - node.type.formulation
+    - paragraphs.paragraphs_type.entity_files
+  module:
+    - entity_reference_revisions
+id: node.formulation.field_formulation_file
+field_name: field_formulation_file
+entity_type: node
+bundle: formulation
+label: 配方文件
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      entity_files: entity_files
+    target_bundles_drag_drop:
+      basf_product:
+        weight: 5
+        enabled: false
+      country_registration_group:
+        weight: 6
+        enabled: false
+      entity_files:
+        enabled: true
+        weight: 7
+      normal_product:
+        weight: 8
+        enabled: false
+field_type: entity_reference_revisions

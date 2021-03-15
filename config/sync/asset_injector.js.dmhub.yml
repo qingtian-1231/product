@@ -1,0 +1,27 @@
+uuid: 09cd2b3b-7eba-4aa8-818b-e54510ecfeea
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: dmhub
+label: DMHub
+code: "<script src=\"//cbe.convertlab.com/cbe/collect?tid=7810995073841487960&at=0&h=web\"></script>\n<script>\n  clab_tracker.ready(function(){\n    this.push({});\n    this.track(event, targetName, targetId);\n  });\n</script>"
+conditions_require_all: true
+conditions:
+  node_type:
+    id: node_type
+    bundles:
+      formulation: formulation
+      global_download: global_download
+      page: page
+      webform: webform
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+contexts: {  }
+header: true
+preprocess: true
+jquery: false
+noscript: ''
+noscriptRegion: {  }

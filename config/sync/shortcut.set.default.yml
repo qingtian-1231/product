@@ -1,0 +1,8 @@
+uuid: 24a59e03-af24-4111-a614-bef42ce1b4fe
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: U5VlGjd_SfV0Qm_EfnaynOfc549cNscFAx48JfYoMRI
+id: default
+label: Default

@@ -1,0 +1,12 @@
+uuid: ddec6413-d798-43d6-8d69-6f70a4a1b0da
+langcode: zh-hans
+status: false
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: fVFfJv_GzBRE-wpRHbfD5a3VjnhbEOXG6lvRd3uaccY
+id: node.search_index
+label: 搜索索引
+targetEntityType: node
+cache: true

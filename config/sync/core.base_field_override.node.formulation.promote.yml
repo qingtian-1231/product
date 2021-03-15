@@ -1,0 +1,22 @@
+uuid: 7dba1508-2568-4432-9782-29a213f1ea79
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.formulation
+id: node.formulation.promote
+field_name: promote
+entity_type: node
+bundle: formulation
+label: 推荐到首页
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 开启
+  off_label: 关闭
+field_type: boolean

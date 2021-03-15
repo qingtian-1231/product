@@ -1,0 +1,19 @@
+uuid: d930818e-89e8-4e29-a763-745e8f47b87d
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field__nco
+id: commerce_product.default.field__nco
+field_name: field__nco
+entity_type: commerce_product
+bundle: default
+label: '% NCO'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

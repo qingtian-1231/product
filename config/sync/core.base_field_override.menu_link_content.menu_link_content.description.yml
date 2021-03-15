@@ -1,0 +1,18 @@
+uuid: 9a2b8287-2bf6-4b38-9fe7-81b98e73c28f
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - menu_link_content
+id: menu_link_content.menu_link_content.description
+field_name: description
+entity_type: menu_link_content
+bundle: menu_link_content
+label: 描述
+description: 当鼠标移动至菜单链接上时显示。
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

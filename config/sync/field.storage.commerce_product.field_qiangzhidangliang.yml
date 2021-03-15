@@ -1,0 +1,21 @@
+uuid: e533f415-a1f4-4b8f-96d3-e60daf83341a
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_qiangzhidangliang
+field_name: field_qiangzhidangliang
+entity_type: commerce_product
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

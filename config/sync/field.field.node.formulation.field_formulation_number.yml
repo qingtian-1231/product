@@ -1,0 +1,19 @@
+uuid: 22093a37-0fad-4878-a615-2b255c199455
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_formulation_number
+    - node.type.formulation
+id: node.formulation.field_formulation_number
+field_name: field_formulation_number
+entity_type: node
+bundle: formulation
+label: 配方编号
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,10 @@
+uuid: abcf1c19-452d-487f-936e-f7c8112e7085
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - tour
+id: tour.token
+label: Token
+targetEntityType: tour
+cache: true

@@ -1,0 +1,23 @@
+uuid: d32c11e2-f747-488a-a409-dd0015d46d45
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.global_download
+  module:
+    - text
+id: node.global_download.body
+field_name: body
+entity_type: node
+bundle: global_download
+label: 文件描述
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

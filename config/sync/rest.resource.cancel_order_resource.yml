@@ -1,0 +1,22 @@
+uuid: 65c7b151-1ca2-4484-bbd0-8628e49212f4
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - pro_core
+    - serialization
+    - user
+id: cancel_order_resource
+plugin_id: cancel_order_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth
+    - cookie

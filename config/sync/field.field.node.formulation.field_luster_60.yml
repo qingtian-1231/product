@@ -1,0 +1,21 @@
+uuid: d7e06707-f156-45f2-ab34-ff1c743328ee
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_luster_60
+    - node.type.formulation
+  module:
+    - options
+id: node.formulation.field_luster_60
+field_name: field_luster_60
+entity_type: node
+bundle: formulation
+label: '光泽 60'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

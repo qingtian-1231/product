@@ -1,0 +1,10 @@
+uuid: 56a9dfef-d617-4641-8a2c-87b3d6b9ca2d
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: front_carousel
+label: 首页轮播图
+icon_uuid: null
+icon_default: null
+description: 轮播图
+behavior_plugins: {  }

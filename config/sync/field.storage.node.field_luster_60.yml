@@ -1,0 +1,27 @@
+uuid: 3945fdaa-a6dd-4bb1-8e64-b5f4aac18167
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_luster_60
+field_name: field_luster_60
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '>85°'
+      label: 大于85°
+    -
+      value: '<85°'
+      label: 小于85°
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

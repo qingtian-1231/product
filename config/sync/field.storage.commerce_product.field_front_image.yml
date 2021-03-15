@@ -1,0 +1,20 @@
+uuid: 79856722-7bfe-4d28-adc6-633b8f1b5831
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - media
+id: commerce_product.field_front_image
+field_name: field_front_image
+entity_type: commerce_product
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

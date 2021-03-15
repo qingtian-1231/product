@@ -1,0 +1,10 @@
+uuid: df7d0f34-5a98-419b-81f8-176b436d7bcf
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - file
+id: file.token
+label: Token
+targetEntityType: file
+cache: true

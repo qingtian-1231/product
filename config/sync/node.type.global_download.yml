@@ -1,0 +1,17 @@
+uuid: 35a02411-bb30-4fd0-8aeb-19d258582042
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 全局下载
+type: global_download
+description: 提供前端下载页面的内容类型
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: true

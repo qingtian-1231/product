@@ -1,0 +1,645 @@
+uuid: f368fdb8-6c10-4e69-a4fa-064bc2c22898
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.field.commerce_product.default.body
+    - field.field.commerce_product.default.field__nco
+    - field.field.commerce_product.default.field__oh
+    - field.field.commerce_product.default.field_acidity
+    - field.field.commerce_product.default.field_average_particle
+    - field.field.commerce_product.default.field_benefits
+    - field.field.commerce_product.default.field_boiling_point
+    - field.field.commerce_product.default.field_buy_link
+    - field.field.commerce_product.default.field_calculated_value
+    - field.field.commerce_product.default.field_cas_number
+    - field.field.commerce_product.default.field_country_registration_group
+    - field.field.commerce_product.default.field_density
+    - field.field.commerce_product.default.field_formulation
+    - field.field.commerce_product.default.field_free_formaldehyde_content
+    - field.field.commerce_product.default.field_freeze_thaw_stability
+    - field.field.commerce_product.default.field_front_image
+    - field.field.commerce_product.default.field_front_product_color
+    - field.field.commerce_product.default.field_front_product_description
+    - field.field.commerce_product.default.field_functional_group
+    - field.field.commerce_product.default.field_generic_chemical_name
+    - field.field.commerce_product.default.field_glass_transition_temperatu
+    - field.field.commerce_product.default.field_hazen_chroma
+    - field.field.commerce_product.default.field_hydroxyl_value
+    - field.field.commerce_product.default.field_ingredient_content
+    - field.field.commerce_product.default.field_is_feature
+    - field.field.commerce_product.default.field_is_public
+    - field.field.commerce_product.default.field_melting_point
+    - field.field.commerce_product.default.field_minimum_film_forming_tempe
+    - field.field.commerce_product.default.field_molar_mass
+    - field.field.commerce_product.default.field_molecular_weight
+    - field.field.commerce_product.default.field_other_names
+    - field.field.commerce_product.default.field_ph
+    - field.field.commerce_product.default.field_physical_form
+    - field.field.commerce_product.default.field_product_art
+    - field.field.commerce_product.default.field_product_brand
+    - field.field.commerce_product.default.field_product_file
+    - field.field.commerce_product.default.field_product_name
+    - field.field.commerce_product.default.field_product_origin
+    - field.field.commerce_product.default.field_product_package
+    - field.field.commerce_product.default.field_product_prd
+    - field.field.commerce_product.default.field_product_sbu
+    - field.field.commerce_product.default.field_product_type
+    - field.field.commerce_product.default.field_qiangzhidangliang
+    - field.field.commerce_product.default.field_recommended_application
+    - field.field.commerce_product.default.field_segment_industry
+    - field.field.commerce_product.default.field_softening_point
+    - field.field.commerce_product.default.field_solid_content
+    - field.field.commerce_product.default.field_solvent
+    - field.field.commerce_product.default.field_spray_viscosity
+    - field.field.commerce_product.default.field_suitable_application
+    - field.field.commerce_product.default.field_thinner
+    - field.field.commerce_product.default.field_total_voc
+    - field.field.commerce_product.default.field_viscosity
+    - field.field.commerce_product.default.field_weight
+    - field.field.commerce_product.default.field_zhandu23_c_mpa_s_
+  module:
+    - address
+    - commerce
+    - field_group
+    - file
+    - link
+    - media_library
+    - paragraphs
+    - text
+third_party_settings:
+  field_group:
+    group_physical_data:
+      children:
+        - field_molar_mass
+        - field_physical_form
+        - field_density
+        - field_ingredient_content
+        - field_boiling_point
+        - field_melting_point
+        - field_solid_content
+        - field_glass_transition_temperatu
+        - field_viscosity
+      parent_name: ''
+      weight: 25
+      format_type: details_sidebar
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        effect: bounceslide
+        formatter: closed
+        description: ''
+        required_fields: true
+        open: false
+        weight: 0
+      label: 物理性质
+    group_associated_recipes:
+      children:
+        - field_formulation
+      parent_name: ''
+      weight: 29
+      format_type: details_sidebar
+      region: hidden
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: true
+        weight: 0
+      label: 关联配方
+    group_chemical_data:
+      children:
+        - field_molecular_weight
+        - field_softening_point
+        - field_ph
+        - field_solvent
+        - field_acidity
+        - field_minimum_film_forming_tempe
+        - field_average_particle
+        - field_freeze_thaw_stability
+        - field_total_voc
+        - field_hydroxyl_value
+        - field_qiangzhidangliang
+        - field_functional_group
+        - field_hazen_chroma
+        - field_spray_viscosity
+        - field__oh
+        - field_calculated_value
+        - field_thinner
+        - field__nco
+        - field_free_formaldehyde_content
+      parent_name: ''
+      weight: 26
+      format_type: details_sidebar
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: true
+        weight: 0
+      label: 化学性质
+    group_front_config:
+      children:
+        - field_is_feature
+        - field_weight
+        - field_front_product_color
+        - field_front_image
+        - field_front_product_description
+      parent_name: ''
+      weight: 24
+      format_type: details_sidebar
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: true
+        weight: 0
+      label: 首页配置
+_core:
+  default_config_hash: BDUahqbl6ovXlCW_hMsROdYniMyDis2uJ7ljT8vW5j8
+id: commerce_product.default.default
+targetEntityType: commerce_product
+bundle: default
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 18
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field__nco:
+    weight: 43
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field__oh:
+    weight: 40
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_acidity:
+    weight: 30
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_average_particle:
+    weight: 32
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_benefits:
+    weight: 19
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_boiling_point:
+    weight: 20
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_buy_link:
+    weight: 20
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_calculated_value:
+    weight: 41
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_cas_number:
+    weight: 14
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_country_registration_group:
+    type: entity_reference_paragraphs
+    weight: 22
+    settings:
+      title: 段落
+      title_plural: 段落
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_density:
+    weight: 18
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_free_formaldehyde_content:
+    weight: 44
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_freeze_thaw_stability:
+    weight: 33
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_front_image:
+    type: media_library_widget
+    weight: 6
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  field_front_product_color:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_front_product_description:
+    weight: 7
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_functional_group:
+    weight: 37
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_generic_chemical_name:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_glass_transition_temperatu:
+    weight: 23
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hazen_chroma:
+    weight: 38
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hydroxyl_value:
+    weight: 35
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ingredient_content:
+    weight: 19
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_is_feature:
+    weight: 3
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_is_public:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_melting_point:
+    weight: 21
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_minimum_film_forming_tempe:
+    weight: 31
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_molar_mass:
+    weight: 16
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_molecular_weight:
+    weight: 25
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_other_names:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ph:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_physical_form:
+    weight: 17
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_product_art:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_product_brand:
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_product_file:
+    weight: 17
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_product_name:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_product_origin:
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: address_country_default
+    region: content
+  field_product_package:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_product_prd:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_product_sbu:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_product_type:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_qiangzhidangliang:
+    weight: 36
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_recommended_application:
+    weight: 23
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_segment_industry:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_softening_point:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_solid_content:
+    weight: 22
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_solvent:
+    weight: 29
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_spray_viscosity:
+    weight: 39
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_suitable_application:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_thinner:
+    weight: 42
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_total_voc:
+    weight: 34
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_viscosity:
+    weight: 24
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_weight:
+    weight: 4
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_zhandu23_c_mpa_s_:
+    weight: 45
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  langcode:
+    type: language_select
+    weight: 6
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  stores:
+    type: commerce_entity_select
+    weight: 0
+    settings:
+      hide_single_entity: true
+      autocomplete_threshold: 7
+      autocomplete_size: 60
+      autocomplete_placeholder: ''
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  translation:
+    weight: 21
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_formulation: true
+  path: true
+  status: true
+  variations: true

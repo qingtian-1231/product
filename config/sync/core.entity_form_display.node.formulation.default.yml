@@ -1,0 +1,366 @@
+uuid: 3893f9dd-2402-496a-b05b-ddf48163caba
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.field.node.formulation.body
+    - field.field.node.formulation.field_file_type
+    - field.field.node.formulation.field_film_thickness
+    - field.field.node.formulation.field_fineness
+    - field.field.node.formulation.field_formula_composition
+    - field.field.node.formulation.field_formulation_cluster
+    - field.field.node.formulation.field_formulation_file
+    - field.field.node.formulation.field_formulation_industry
+    - field.field.node.formulation.field_formulation_name
+    - field.field.node.formulation.field_formulation_number
+    - field.field.node.formulation.field_formulationbenefits
+    - field.field.node.formulation.field_industry_of_formula
+    - field.field.node.formulation.field_is_public
+    - field.field.node.formulation.field_ku
+    - field.field.node.formulation.field_luster_20
+    - field.field.node.formulation.field_luster_60
+    - field.field.node.formulation.field_luster_85
+    - field.field.node.formulation.field_ph
+    - field.field.node.formulation.field_pvc
+    - field.field.node.formulation.field_sheet
+    - field.field.node.formulation.field_solid_content
+    - field.field.node.formulation.field_spray_gun_caliber
+    - field.field.node.formulation.field_spray_pressure
+    - field.field.node.formulation.field_spray_size
+    - field.field.node.formulation.field_spray_thickness
+    - field.field.node.formulation.field_sprayed_layers
+    - field.field.node.formulation.field_sst
+    - field.field.node.formulation.field_thickness
+    - field.field.node.formulation.field_weizhiziduan
+    - node.type.formulation
+  module:
+    - field_group
+    - paragraphs
+    - text
+third_party_settings:
+  field_group:
+    group_formula_content:
+      children:
+        - field_formula_composition
+      parent_name: ''
+      weight: 7
+      format_type: details_sidebar
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: true
+        weight: 0
+      label: 配方内容
+    group_basic_performance:
+      children:
+        - field_pvc
+        - field_solid_content
+        - field_fineness
+        - field_ph
+        - field_ku
+        - field_luster_20
+        - field_luster_60
+        - field_luster_85
+        - field_film_thickness
+        - field_sst
+        - field_sheet
+        - field_file_type
+        - field_weizhiziduan
+      parent_name: ''
+      weight: 8
+      format_type: details_sidebar
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: true
+        weight: 0
+      label: 基础性能
+    group_construction_process:
+      children:
+        - field_thickness
+        - field_spray_gun_caliber
+        - field_spray_pressure
+        - field_spray_size
+        - field_sprayed_layers
+        - field_spray_thickness
+      parent_name: ''
+      weight: 9
+      format_type: details_sidebar
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: true
+        weight: 0
+      label: 施工工艺
+id: node.formulation.default
+targetEntityType: node
+bundle: formulation
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 6
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  field_file_type:
+    weight: 39
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_film_thickness:
+    weight: 36
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_fineness:
+    weight: 30
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_formula_composition:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: 段落
+      title_plural: 段落
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_formulation_cluster:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_formulation_file:
+    type: entity_reference_paragraphs
+    weight: 14
+    settings:
+      title: 段落
+      title_plural: 段落
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_formulation_industry:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_formulation_name:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_formulation_number:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_formulationbenefits:
+    weight: 13
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_industry_of_formula:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_is_public:
+    weight: 4
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_ku:
+    weight: 32
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_luster_20:
+    weight: 33
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_luster_60:
+    weight: 34
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_luster_85:
+    weight: 35
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ph:
+    weight: 31
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_pvc:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sheet:
+    weight: 38
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_solid_content:
+    weight: 29
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_spray_gun_caliber:
+    weight: 44
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_spray_pressure:
+    weight: 45
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_spray_size:
+    weight: 46
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_spray_thickness:
+    weight: 48
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sprayed_layers:
+    weight: 47
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sst:
+    weight: 37
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_thickness:
+    weight: 43
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_weizhiziduan:
+    weight: 40
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  langcode:
+    type: language_select
+    weight: 3
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

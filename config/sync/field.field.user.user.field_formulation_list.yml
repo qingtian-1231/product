@@ -1,0 +1,20 @@
+uuid: 00c29204-9962-4999-a711-4bc2e495c747
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_formulation_list
+  module:
+    - user
+id: user.user.field_formulation_list
+field_name: field_formulation_list
+entity_type: user
+bundle: user
+label: 配方收藏列表
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

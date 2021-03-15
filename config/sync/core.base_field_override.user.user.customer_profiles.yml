@@ -1,0 +1,20 @@
+uuid: 46d4683e-3ede-4f27-95ea-e93cfd600ae4
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - user
+id: user.user.customer_profiles
+field_name: customer_profiles
+entity_type: user
+bundle: user
+label: '顾客 profiles'
+description: 'User profiles.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

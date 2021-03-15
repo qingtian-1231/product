@@ -1,0 +1,21 @@
+uuid: 299b767f-671e-4755-b081-ca69766dc636
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_generic_chemical_name
+field_name: field_generic_chemical_name
+entity_type: commerce_product
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

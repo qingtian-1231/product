@@ -1,0 +1,13 @@
+uuid: eb9562d7-a876-4fe1-9c10-8dbf3da70cb6
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - media
+_core:
+  default_config_hash: nh83qNNrmWE-CDdHz2MdFOAk60T9mzv3R-MaKfZR2jw
+id: media_publish_action
+label: 'Publish media'
+type: media
+plugin: 'entity:publish_action:media'
+configuration: {  }

@@ -1,0 +1,19 @@
+uuid: 1362f4a5-757e-4781-9bfb-4860f4c03cef
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_front_carousel_description
+field_name: field_front_carousel_description
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,18 @@
+uuid: f2d6c05b-3095-4154-a09f-c6ce5d24f2f5
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.basf_product
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.basf_product
+target_entity_type_id: paragraph
+target_bundle: basf_product
+default_langcode: site_default
+language_alterable: true

@@ -1,0 +1,18 @@
+uuid: f0803b40-49cb-476f-a28a-74f7a99ccb84
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+id: block_content.basic.info
+field_name: info
+entity_type: block_content
+bundle: basic
+label: 区块描述
+description: 你的区块简介。
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,28 @@
+uuid: 77f823ae-3ad0-4e1b-862e-9954fc06f717
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_attribute.product_amount
+    - commerce_product.commerce_product_variation_type.default
+    - field.storage.commerce_product_variation.attribute_product_amount
+id: commerce_product_variation.default.attribute_product_amount
+field_name: attribute_product_amount
+entity_type: commerce_product_variation
+bundle: default
+label: 产品剂量
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:commerce_product_attribute_value'
+  handler_settings:
+    target_bundles:
+      product_amount: product_amount
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,22 @@
+uuid: 85901b46-f105-43a0-a5c5-151ebab8a7bc
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.global_download
+id: node.global_download.promote
+field_name: promote
+entity_type: node
+bundle: global_download
+label: 推荐到首页
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 开启
+  off_label: 关闭
+field_type: boolean

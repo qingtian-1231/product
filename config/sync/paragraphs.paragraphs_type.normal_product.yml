@@ -1,0 +1,9 @@
+uuid: c09ed8a4-759b-41e0-a7ba-3b54759d66c1
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: normal_product
+label: 普通产品
+icon_uuid: null
+description: 普通产品组成配方
+behavior_plugins: {  }

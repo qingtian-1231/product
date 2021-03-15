@@ -1,0 +1,20 @@
+uuid: c56c7306-c41c-48b7-8a37-700344ec6238
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.remote_video
+  module:
+    - path
+id: media.remote_video.path
+field_name: path
+entity_type: media
+bundle: remote_video
+label: URL别名
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

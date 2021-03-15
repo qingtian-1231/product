@@ -1,0 +1,57 @@
+uuid: 2994c4b0-3eaa-4736-9a65-3676a65e26d5
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.front_carousel.field_front_carousel_description
+    - field.field.paragraph.front_carousel.field_front_carousel_image
+    - field.field.paragraph.front_carousel.field_front_carousel_link
+    - field.field.paragraph.front_carousel.field_sort_weight
+    - paragraphs.paragraphs_type.front_carousel
+  module:
+    - link
+    - text
+id: paragraph.front_carousel.default
+targetEntityType: paragraph
+bundle: front_carousel
+mode: default
+content:
+  field_front_carousel_description:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_front_carousel_image:
+    type: entity_reference_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_front_carousel_link:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_sort_weight:
+    weight: 3
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+hidden:
+  search_api_excerpt: true

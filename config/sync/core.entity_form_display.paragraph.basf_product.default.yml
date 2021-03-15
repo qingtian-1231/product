@@ -1,0 +1,48 @@
+uuid: 12acf181-e0d9-456c-b009-49f7b1093c45
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.basf_product.field_basf_work
+    - field.field.paragraph.basf_product.field_part_basf_product
+    - field.field.paragraph.basf_product.field_proportion_char
+    - paragraphs.paragraphs_type.basf_product
+id: paragraph.basf_product.default
+targetEntityType: paragraph
+bundle: basf_product
+mode: default
+content:
+  field_basf_work:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_part_basf_product:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_proportion_char:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  translation:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true

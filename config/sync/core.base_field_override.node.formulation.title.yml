@@ -1,0 +1,18 @@
+uuid: 350ecbce-3d53-4346-bbc3-d9b04918db0e
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.formulation
+id: node.formulation.title
+field_name: title
+entity_type: node
+bundle: formulation
+label: 目标名称
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

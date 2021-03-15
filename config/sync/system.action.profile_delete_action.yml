@@ -1,0 +1,16 @@
+uuid: 0ddd329d-4249-4333-8dd1-01266117a95c
+langcode: zh-hans
+status: true
+dependencies:
+  enforced:
+    module:
+      - profile
+  module:
+    - profile
+_core:
+  default_config_hash: eoobeznDDPWSXzEXh6a3AT21rMluXtseCPjsguEgHKs
+id: profile_delete_action
+label: 删除选择的配置
+type: profile
+plugin: 'entity:delete_action:profile'
+configuration: {  }

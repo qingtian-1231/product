@@ -1,0 +1,22 @@
+uuid: 417c01fb-d7cd-4010-8afd-f315a50e84dd
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+id: commerce_product.default.status
+field_name: status
+entity_type: commerce_product
+bundle: default
+label: 已发布
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 开启
+  off_label: 关闭
+field_type: boolean

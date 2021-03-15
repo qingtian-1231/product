@@ -1,0 +1,18 @@
+uuid: 396dc782-c333-44c4-b992-f7501bfaa420
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.remote_video
+id: media.remote_video.created
+field_name: created
+entity_type: media
+bundle: remote_video
+label: 发布于
+description: 媒体项创建的时间。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\media\Entity\Media::getRequestTime'
+settings: {  }
+field_type: created

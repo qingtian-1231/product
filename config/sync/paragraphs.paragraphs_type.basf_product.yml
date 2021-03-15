@@ -1,0 +1,9 @@
+uuid: a7c586ce-6df0-4f03-9ed9-b874461a0211
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: basf_product
+label: 巴斯夫产品
+icon_uuid: null
+description: 引用巴斯夫产品组成配方
+behavior_plugins: {  }

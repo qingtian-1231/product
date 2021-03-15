@@ -1,0 +1,42 @@
+uuid: 225bb53c-605c-4d40-bbad-8368b50580f6
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.entity_files.field_entity_file
+    - field.field.paragraph.entity_files.field_file_description
+    - field.field.paragraph.entity_files.field_file_type
+    - paragraphs.paragraphs_type.entity_files
+  module:
+    - file
+id: paragraph.entity_files.default
+targetEntityType: paragraph
+bundle: entity_files
+mode: default
+content:
+  field_entity_file:
+    weight: 0
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_file_description:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_file_type:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

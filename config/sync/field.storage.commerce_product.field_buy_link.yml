@@ -1,0 +1,19 @@
+uuid: 0c8d2e4c-9646-4670-92f1-9086d308b180
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - link
+id: commerce_product.field_buy_link
+field_name: field_buy_link
+entity_type: commerce_product
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

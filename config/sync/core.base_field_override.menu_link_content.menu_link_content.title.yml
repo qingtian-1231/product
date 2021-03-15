@@ -1,0 +1,18 @@
+uuid: 4d717632-deda-421e-9123-4ffc1cf2a0c6
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - menu_link_content
+id: menu_link_content.menu_link_content.title
+field_name: title
+entity_type: menu_link_content
+bundle: menu_link_content
+label: 菜单链接标题
+description: 此链接在菜单中显示的文本。
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

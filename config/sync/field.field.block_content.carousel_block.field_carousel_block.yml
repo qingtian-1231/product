@@ -1,0 +1,43 @@
+uuid: 98726bb6-e484-49b8-866b-7392abb6545c
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - block_content.type.carousel_block
+    - field.storage.block_content.field_carousel_block
+    - paragraphs.paragraphs_type.front_carousel
+  module:
+    - entity_reference_revisions
+id: block_content.carousel_block.field_carousel_block
+field_name: field_carousel_block
+entity_type: block_content
+bundle: carousel_block
+label: 轮播图区块
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      front_carousel: front_carousel
+    target_bundles_drag_drop:
+      basf_product:
+        weight: 6
+        enabled: false
+      country_registration_group:
+        weight: 7
+        enabled: false
+      entity_files:
+        weight: 8
+        enabled: false
+      front_carousel:
+        enabled: true
+        weight: 9
+      normal_product:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

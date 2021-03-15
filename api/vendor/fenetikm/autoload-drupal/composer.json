@@ -1,0 +1,26 @@
+{
+    "name": "fenetikm/autoload-drupal",
+    "description": "Autoload Drupal modules into composer autoloader",
+    "type": "composer-plugin",
+    "authors": [
+        {
+            "name": "Michael Welford",
+            "email": "mail@michaelwelford.com"
+        }
+    ],
+    "require": {
+        "composer-plugin-api": "^1.1",
+        "composer/composer": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "fenetikm\\": "src"
+        }
+    },
+    "extra": {
+      "class": "fenetikm\\DrupalAutoloadPlugin"
+    },
+    "license": "MIT",
+     "minimum-stability": "dev",
+    "prefer-stable": true
+}

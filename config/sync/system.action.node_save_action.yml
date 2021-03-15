@@ -1,0 +1,13 @@
+uuid: e8863c17-7fe0-4c04-83d0-ecd825ceaf10
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: LhdsoZPL_pFas2fjaAWue4zvrQ_tEVofLYtcNec-JGM
+id: node_save_action
+label: 保存内容
+type: node
+plugin: 'entity:save_action:node'
+configuration: {  }

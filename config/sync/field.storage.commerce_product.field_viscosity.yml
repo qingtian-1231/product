@@ -1,0 +1,21 @@
+uuid: 788d807d-6812-4dc8-8b00-f381bbcf0b0a
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_viscosity
+field_name: field_viscosity
+entity_type: commerce_product
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

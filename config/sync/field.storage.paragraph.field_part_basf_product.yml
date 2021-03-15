@@ -1,0 +1,20 @@
+uuid: 9bb07f31-0c1d-4c73-bef2-9a0e9dd9b0cc
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - paragraphs
+id: paragraph.field_part_basf_product
+field_name: field_part_basf_product
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: commerce_product
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

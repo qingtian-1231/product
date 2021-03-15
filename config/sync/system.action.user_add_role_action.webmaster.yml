@@ -1,0 +1,14 @@
+uuid: d835fac2-8139-4fdc-b52d-0cc2f2397557
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - user.role.webmaster
+  module:
+    - user
+id: user_add_role_action.webmaster
+label: '为选择的用户添加 webmaster 角色'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: webmaster

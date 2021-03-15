@@ -1,0 +1,19 @@
+uuid: 5d2374b2-cfa8-461f-8107-ac7d794b543f
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_country_registration_descr
+    - paragraphs.paragraphs_type.country_registration_group
+id: paragraph.country_registration_group.field_country_registration_descr
+field_name: field_country_registration_descr
+entity_type: paragraph
+bundle: country_registration_group
+label: 注册国家解释
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

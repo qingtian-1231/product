@@ -1,0 +1,20 @@
+uuid: e3a35dd5-e818-4834-b9f3-ef2d9facd405
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - node
+id: commerce_product.field_formulation
+field_name: field_formulation
+entity_type: commerce_product
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

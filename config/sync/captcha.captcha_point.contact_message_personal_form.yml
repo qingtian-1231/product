@@ -1,0 +1,9 @@
+uuid: 3bf27307-4ae3-4474-94cf-6f807228979c
+langcode: zh-hans
+status: false
+dependencies: {  }
+_core:
+  default_config_hash: JWbmGm_KvY_3No38GsmOrkAy8N9u5Sm4yjJlDJlAW7c
+formId: contact_message_personal_form
+captchaType: default
+label: null

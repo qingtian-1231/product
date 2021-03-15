@@ -776,18 +776,18 @@ $settings['entity_update_backup'] = TRUE;
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
-$databases['default']['default'] = array (
-  'database' => 'product_b',
-  'username' => 'root',
-  'password' => '123456',
-  'prefix' => 'pro',
-  'host' => '127.0.0.1',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
-$config_directories['sync'] = 'sites/default/files/config_8bIetQ2uwWAYigRj2vC7oUY7sWtjZH_8_rzaWI6gjuhS5K5Fw2fU-iI0I1n_XZ_7Cw_sA-ZQxw/sync';
-$config['system.logging']['error_level'] = 'verbose';
+
+$config_directories['sync'] = '../config/sync';
+$content_directories['sync'] = '../content/sync';
+
 $settings['http_client_config']['timeout'] = 120;
 $settings['file_private_path'] = 'sites/private';
 $config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
+$settings['trusted_host_patterns'] = [
+  '^api\.basf.\infiniteread.\com',
+  '^api\.basf-product\.com',
+];
+
+if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+  include $app_root . '/' . $site_path . '/settings.local.php';
+}

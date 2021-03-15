@@ -1,0 +1,13 @@
+uuid: be54990f-7429-4027-b4ac-e9da967b0321
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+_core:
+  default_config_hash: 6gfQWDjHFkJsE2C2ayhUL7x1jBGPgOhr3SGF15Kxy-w
+id: commerce_unpublish_product
+label: 不发布产品
+type: commerce_product
+plugin: commerce_unpublish_product
+configuration: {  }

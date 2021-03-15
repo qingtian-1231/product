@@ -1,0 +1,20 @@
+uuid: b0a652b1-d607-4b2b-89de-12d5e52b2a9d
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.page
+  module:
+    - path
+id: node.page.path
+field_name: path
+entity_type: node
+bundle: page
+label: URL别名
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

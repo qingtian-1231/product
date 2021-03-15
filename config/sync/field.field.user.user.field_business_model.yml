@@ -1,0 +1,21 @@
+uuid: e7960ebd-f316-4c68-8317-19e4921a8603
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_business_model
+  module:
+    - options
+    - user
+id: user.user.field_business_model
+field_name: field_business_model
+entity_type: user
+bundle: user
+label: 经营模式
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

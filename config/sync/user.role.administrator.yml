@@ -1,0 +1,11 @@
+uuid: 0b163eff-63b6-401e-be6d-4777f890d637
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Om6FEO7vZZMkPIbVvfxtdkWerQ2PvQM4sWUd6Q3ZnfI
+id: administrator
+label: 超级管理员
+weight: 2
+is_admin: true
+permissions: {  }

@@ -1,0 +1,19 @@
+uuid: 89291412-fe3c-454c-89d9-1e60f29d0013
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_physical_form
+id: commerce_product.default.field_physical_form
+field_name: field_physical_form
+entity_type: commerce_product
+bundle: default
+label: 外观/物理形态
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

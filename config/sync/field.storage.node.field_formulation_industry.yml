@@ -1,0 +1,20 @@
+uuid: 629564a7-7b10-4b95-b290-b9ac0bd10280
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_formulation_industry
+field_name: field_formulation_industry
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

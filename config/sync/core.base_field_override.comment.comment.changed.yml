@@ -1,0 +1,18 @@
+uuid: 51de206c-5898-4381-885c-8516931ad2e4
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - comment.type.comment
+id: comment.comment.changed
+field_name: changed
+entity_type: comment
+bundle: comment
+label: 已更改
+description: 评论的最近一次编辑时间。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

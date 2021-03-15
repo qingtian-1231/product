@@ -1,0 +1,11 @@
+uuid: 64f638ce-7d94-41c0-af11-5d1b533c633b
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: eNX6lLCKDaY83nCMh20My---y03KbiFlv802DKCCpvg
+id: und
+label: 未指定
+direction: ltr
+weight: 2
+locked: true

@@ -1,0 +1,8 @@
+parameters:
+	featureToggles:
+		deadCatchesRule: true
+		missingReturnRule: true
+		noopRule: true
+		subtractableTypes: true
+		unreachableStatement: true
+		yieldRules: true

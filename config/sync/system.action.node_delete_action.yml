@@ -1,0 +1,13 @@
+uuid: 577535b0-47a8-45bf-920b-12290b6b3f22
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: t43OqwzP3CTbcAagSsWKNy6KwMm_zShXo3c4-So6rQg
+id: node_delete_action
+label: 删除内容
+type: node
+plugin: 'entity:delete_action:node'
+configuration: {  }

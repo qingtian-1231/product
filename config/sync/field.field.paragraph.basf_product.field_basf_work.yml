@@ -1,0 +1,19 @@
+uuid: e6e9a043-0d8b-4a6d-8449-73e4f7eba745
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_basf_work
+    - paragraphs.paragraphs_type.basf_product
+id: paragraph.basf_product.field_basf_work
+field_name: field_basf_work
+entity_type: paragraph
+bundle: basf_product
+label: 解释说明
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

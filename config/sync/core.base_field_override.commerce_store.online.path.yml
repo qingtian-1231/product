@@ -1,0 +1,20 @@
+uuid: 2291a8dd-a493-458a-b171-3e2be4982b7d
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_store.commerce_store_type.online
+  module:
+    - path
+id: commerce_store.online.path
+field_name: path
+entity_type: commerce_store
+bundle: online
+label: URL别名
+description: 店铺URL的别名。
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

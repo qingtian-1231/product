@@ -1,0 +1,8 @@
+uuid: fb09ae35-4edb-48b3-b71d-b724266826f0
+langcode: zh-hans
+status: true
+dependencies: {  }
+name: 产品品牌
+vid: prduct_brand
+description: 产品品牌列表
+weight: 0

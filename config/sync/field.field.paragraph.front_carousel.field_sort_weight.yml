@@ -1,0 +1,24 @@
+uuid: be2b9cae-070d-4263-9fd1-c33dc2f21ef8
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sort_weight
+    - paragraphs.paragraphs_type.front_carousel
+  module:
+    - weight
+id: paragraph.front_carousel.field_sort_weight
+field_name: field_sort_weight
+entity_type: paragraph
+bundle: front_carousel
+label: 排序权重
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings:
+  range: '20'
+field_type: weight

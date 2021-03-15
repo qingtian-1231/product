@@ -1,0 +1,18 @@
+uuid: 901992a8-8a1c-4e40-8449-b6e79fe12a7a
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.formulation
+id: node.formulation.created
+field_name: created
+entity_type: node
+bundle: formulation
+label: 发布于
+description: 节点的创建时间。
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

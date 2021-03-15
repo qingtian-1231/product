@@ -1,0 +1,23 @@
+uuid: 35f9f0cf-89cc-42fd-b4c9-d51e03d9727d
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_is_feature
+id: commerce_product.default.field_is_feature
+field_name: field_is_feature
+entity_type: commerce_product
+bundle: default
+label: 显示在首页
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 开启
+  off_label: 关闭
+field_type: boolean

@@ -1,0 +1,14 @@
+uuid: a92b7a6d-bf0e-4f6a-aefb-1d0022386e6b
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - user.role.editor
+  module:
+    - user
+id: user_add_role_action.editor
+label: '为选择的用户添加 editor 角色'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: editor

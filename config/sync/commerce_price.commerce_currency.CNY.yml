@@ -1,0 +1,9 @@
+uuid: 22c185cb-9e01-4cff-a890-8f5eaacd9411
+langcode: zh-hans
+status: true
+dependencies: {  }
+currencyCode: CNY
+name: 人民币
+numericCode: '156'
+symbol: ¥
+fractionDigits: 2

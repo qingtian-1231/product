@@ -1,0 +1,24 @@
+uuid: 93b336af-f59c-4acc-840a-e722fc1ae92b
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - commerce_cart_api
+    - hal
+    - serialization
+    - user
+_core:
+  default_config_hash: 4nYqayd8aO5e2acUdQAIbm5_cWyLV2Z5pdVB9eM_L-U
+id: commerce_cart_canonical
+plugin_id: commerce_cart_canonical
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth
+    - cookie

@@ -1,0 +1,15 @@
+uuid: 4cefde92-80bb-40f7-8395-4a128eb9a700
+langcode: zh-hans
+status: true
+dependencies: {  }
+name: front_image
+label: 首页轮播图1600x700
+effects:
+  75e0090f-a99a-41fa-b079-ab07528e9fda:
+    uuid: 75e0090f-a99a-41fa-b079-ab07528e9fda
+    id: image_scale
+    weight: 2
+    data:
+      width: 1600
+      height: null
+      upscale: false

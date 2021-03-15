@@ -1,0 +1,19 @@
+uuid: a1d18100-203e-4a2d-a846-fe0c5554f936
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_formulation_cluster
+    - node.type.formulation
+id: node.formulation.field_formulation_cluster
+field_name: field_formulation_cluster
+entity_type: node
+bundle: formulation
+label: 配方集群
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

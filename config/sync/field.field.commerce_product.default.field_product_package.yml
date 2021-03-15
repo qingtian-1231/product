@@ -1,0 +1,19 @@
+uuid: 7cfdc3ec-2fb4-46ad-8b5e-fcf88c4fe43e
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_product_package
+id: commerce_product.default.field_product_package
+field_name: field_product_package
+entity_type: commerce_product
+bundle: default
+label: 包装
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

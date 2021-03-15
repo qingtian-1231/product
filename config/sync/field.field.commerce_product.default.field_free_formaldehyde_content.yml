@@ -1,0 +1,19 @@
+uuid: 4bb21eb7-f1ea-4382-9816-67e91e79564f
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_free_formaldehyde_content
+id: commerce_product.default.field_free_formaldehyde_content
+field_name: field_free_formaldehyde_content
+entity_type: commerce_product
+bundle: default
+label: 含水量%
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

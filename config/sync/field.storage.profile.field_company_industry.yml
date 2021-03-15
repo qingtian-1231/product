@@ -1,0 +1,39 @@
+uuid: ed9dfe4e-1f2e-4c4b-bf40-d3126c2ee83e
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - options
+    - profile
+id: profile.field_company_industry
+field_name: field_company_industry
+entity_type: profile
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Automotive Coating'
+      label: 汽车涂料
+    -
+      value: 'Industrial Coating'
+      label: 工业涂料
+    -
+      value: 'Wood Coating'
+      label: 木器涂料
+    -
+      value: 'Printing & Packaging'
+      label: 印刷与包装
+    -
+      value: Construction
+      label: 建筑
+    -
+      value: Adhesive
+      label: 粘合剂
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,28 @@
+uuid: 24bd98f6-a04e-42e8-a2fa-59c19a182b16
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_front_image
+    - media.type.image
+id: commerce_product.default.field_front_image
+field_name: field_front_image
+entity_type: commerce_product
+bundle: default
+label: 首页产品图片
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

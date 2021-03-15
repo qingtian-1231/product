@@ -1,0 +1,21 @@
+uuid: 6fe0908a-4ece-44c4-a671-7ea2c2546339
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_recommended_application
+field_name: field_recommended_application
+entity_type: commerce_product
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

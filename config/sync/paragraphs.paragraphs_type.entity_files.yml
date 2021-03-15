@@ -1,0 +1,9 @@
+uuid: f971f0d1-ca7f-4b8c-bec4-2593fa5d652e
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: entity_files
+label: 实体类型文件
+icon_uuid: null
+description: 实体类型带解释的文件
+behavior_plugins: {  }

@@ -1,0 +1,18 @@
+uuid: 5f1924b4-5860-4ed1-b3f5-3121af711e90
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.document
+id: media.document.changed
+field_name: changed
+entity_type: media
+bundle: document
+label: 已更改
+description: 媒体项最后一次被编辑的时间。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

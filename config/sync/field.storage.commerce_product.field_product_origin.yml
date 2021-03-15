@@ -1,0 +1,19 @@
+uuid: f2c1e053-1dd7-45f1-b82f-9ffc03498843
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - address
+    - commerce_product
+id: commerce_product.field_product_origin
+field_name: field_product_origin
+entity_type: commerce_product
+type: address_country
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

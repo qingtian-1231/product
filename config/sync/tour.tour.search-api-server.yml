@@ -1,0 +1,53 @@
+uuid: 2b88de95-e001-4a30-ad48-2fb0118237af
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - search_api
+_core:
+  default_config_hash: j-YgGnx-C5I3OTFsDsNkTyPC8zH7ZQyBMvmZ6gUMH3Q
+id: search-api-server
+label: 'Information about a server'
+module: search_api
+routes:
+  -
+    route_name: entity.search_api_server.canonical
+tips:
+  search-api-server-introduction:
+    id: search-api-server-introduction
+    plugin: text
+    label: 'Information about a server'
+    body: 'This page shows a summary of a search server.'
+    weight: 1
+  search-api-server-status:
+    id: search-api-server-status
+    plugin: text
+    label: Status
+    body: 'Shows whether the server is currently enabled or disabled.'
+    weight: 2
+    attributes:
+      data-class: search-api-server-summary--status
+  search-api-server-backend:
+    id: search-api-server-backend
+    plugin: text
+    label: 后端类
+    body: '此服务器使用的后端插件。后端插件决定了项目索引和搜索的方式 - 例如，使用数据库还是 Apache Solr 服务器。'
+    weight: 3
+    attributes:
+      data-class: search-api-server-summary--backend
+  search-api-server-indexes:
+    id: search-api-server-indexes
+    plugin: text
+    label: 'Search indexes'
+    body: 'Lists all search indexes that are attached to this server.'
+    weight: 4
+    attributes:
+      data-class: search-api-server-summary--indexes
+  search-api-server-clear:
+    id: search-api-server-clear
+    plugin: text
+    label: 删除已索引的全部数据
+    body: 这将永久删除此服务器中已索引的全部非只读数据。项目将会重新排入索引的队列。在重新进行索引之前，搜索所影响的索引将不会返回任何结果。
+    weight: 5
+    attributes:
+      data-id: edit-clear

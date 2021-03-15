@@ -1,0 +1,14 @@
+uuid: 5d326c61-f15f-4f62-87a2-a78879c2af2b
+langcode: zh-hans
+status: true
+dependencies: {  }
+name: product_image_size
+label: 首页产品图片尺寸320x320
+effects:
+  b1d34c44-b852-43c0-9804-db29975a5e6d:
+    uuid: b1d34c44-b852-43c0-9804-db29975a5e6d
+    id: image_resize
+    weight: 1
+    data:
+      width: 320
+      height: 320

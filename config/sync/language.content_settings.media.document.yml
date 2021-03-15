@@ -1,0 +1,18 @@
+uuid: 469a8d6a-6db5-4f6a-be0e-5ac5d62e8b62
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.document
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: media.document
+target_entity_type_id: media
+target_bundle: document
+default_langcode: site_default
+language_alterable: false

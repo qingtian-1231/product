@@ -1,0 +1,11 @@
+uuid: e9fad2ea-aeac-401e-8123-2c1af7933ec5
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: I0ambmTIGFVABBaGMLbQcw-a5eWKxnsz7k2COEPKga4
+id: default_db
+label: 默认的Drupal数据库
+type: DefaultDB
+config:
+  name: 'Default Drupal Database'

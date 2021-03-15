@@ -1,0 +1,23 @@
+uuid: 9a4128a2-effe-4cf3-9c2d-5ba674962d47
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.formulation
+  module:
+    - text
+id: node.formulation.body
+field_name: body
+entity_type: node
+bundle: formulation
+label: 配方描述
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

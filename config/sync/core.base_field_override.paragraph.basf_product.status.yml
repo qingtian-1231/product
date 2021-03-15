@@ -1,0 +1,22 @@
+uuid: e623e322-c191-42ff-8c28-5f3c6c84c6cc
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.basf_product
+id: paragraph.basf_product.status
+field_name: status
+entity_type: paragraph
+bundle: basf_product
+label: 已发布
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 开启
+  off_label: 关闭
+field_type: boolean

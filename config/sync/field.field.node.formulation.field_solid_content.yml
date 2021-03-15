@@ -1,0 +1,19 @@
+uuid: 4ff37916-7735-457f-b37a-3ad5d2eab6bc
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_solid_content
+    - node.type.formulation
+id: node.formulation.field_solid_content
+field_name: field_solid_content
+entity_type: node
+bundle: formulation
+label: 固体份
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

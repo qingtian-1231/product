@@ -1,0 +1,21 @@
+uuid: 40be4e8e-ebbd-4e30-b777-0a8be0cf4d2b
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - entity_reference_revisions
+    - node
+    - paragraphs
+id: node.field_formulation_file
+field_name: field_formulation_file
+entity_type: node
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: 5
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,29 @@
+uuid: fe15ff36-9e5c-4f00-9d74-1f0b55f4acaa
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_formulation_industry
+    - node.type.formulation
+    - taxonomy.vocabulary.applacation
+id: node.formulation.field_formulation_industry
+field_name: field_formulation_industry
+entity_type: node
+bundle: formulation
+label: 行业
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      applacation: applacation
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

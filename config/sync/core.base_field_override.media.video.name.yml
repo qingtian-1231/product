@@ -1,0 +1,20 @@
+uuid: e3212cda-ddf4-45c7-bc3e-e3bb0c6750b0
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.video
+id: media.video.name
+field_name: name
+entity_type: media
+bundle: video
+label: Name
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string

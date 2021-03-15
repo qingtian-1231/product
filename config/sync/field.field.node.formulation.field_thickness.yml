@@ -1,0 +1,21 @@
+uuid: 60417f38-09dc-49d5-9903-752314f66f83
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_thickness
+    - node.type.formulation
+  module:
+    - options
+id: node.formulation.field_thickness
+field_name: field_thickness
+entity_type: node
+bundle: formulation
+label: 厚度
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,18 @@
+uuid: 1946cf1f-3205-4c02-87e6-c2cff3066ec2
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - comment.type.comment
+id: comment.comment.homepage
+field_name: homepage
+entity_type: comment
+bundle: comment
+label: 首页
+description: 评论作者的主页地址
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: uri

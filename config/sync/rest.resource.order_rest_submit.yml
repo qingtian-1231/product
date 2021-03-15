@@ -1,0 +1,20 @@
+uuid: e3149091-2803-41de-a9be-51a01a4109d8
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - pro_core
+    - serialization
+id: order_rest_submit
+plugin_id: order_rest_submit
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth

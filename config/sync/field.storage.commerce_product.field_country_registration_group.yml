@@ -1,0 +1,21 @@
+uuid: 83ef8e01-f50a-4194-9db8-3430e43e0a99
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - entity_reference_revisions
+    - paragraphs
+id: commerce_product.field_country_registration_group
+field_name: field_country_registration_group
+entity_type: commerce_product
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

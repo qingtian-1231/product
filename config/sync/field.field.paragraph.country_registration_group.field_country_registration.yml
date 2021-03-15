@@ -1,0 +1,40 @@
+uuid: 3808cf02-ecc7-4600-bfd4-2b7d535bb0f4
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_country_registration
+    - paragraphs.paragraphs_type.country_registration_group
+  module:
+    - address
+id: paragraph.country_registration_group.field_country_registration
+field_name: field_country_registration
+entity_type: paragraph
+bundle: country_registration_group
+label: 注册国家
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: CN
+default_value_callback: ''
+settings:
+  available_countries:
+    AU: AU
+    PH: PH
+    KR: KR
+    CA: CA
+    US: US
+    JP: JP
+    CH: CH
+    TW: TW
+    TR: TR
+    NZ: NZ
+    IN: IN
+    GB: GB
+    VN: VN
+    CN: CN
+    MO: MO
+    HK: HK
+field_type: address_country

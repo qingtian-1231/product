@@ -1,0 +1,19 @@
+uuid: 6b624629-a717-420e-a4c6-8340cd7db227
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_weizhiziduan
+    - node.type.formulation
+id: node.formulation.field_weizhiziduan
+field_name: field_weizhiziduan
+entity_type: node
+bundle: formulation
+label: 未知字段
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

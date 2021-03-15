@@ -1,0 +1,14 @@
+uuid: 04a3a96f-e5b5-4047-8b1c-1668ec0155b1
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - user.role.webmaster
+  module:
+    - user
+id: user_remove_role_action.webmaster
+label: '从选择的用户中删除webmaster 角色'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: webmaster

@@ -1,0 +1,10 @@
+uuid: d8b8e1bc-4dae-4a7e-ac49-eb564e1a120f
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Z7KuCUwM_WdTNvLcoltuX3_8d-s-8FZkTN6KgNwF0eM
+id: html_month
+label: 'HTML 月份'
+locked: true
+pattern: Y-m

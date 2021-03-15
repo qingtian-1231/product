@@ -1,0 +1,14 @@
+uuid: dcce93ff-b13b-4c5a-a212-ffc522075fc1
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - user.role.editor
+  module:
+    - user
+id: user_remove_role_action.editor
+label: '从选择的用户中删除editor 角色'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: editor

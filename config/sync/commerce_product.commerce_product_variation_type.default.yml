@@ -1,0 +1,12 @@
+uuid: 8def93b0-fc69-4662-9541-8d405f1d96ab
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 3vA4FKQ1Qu8B1R8UdGPnmMfJrYO6Y6uMqeNgDgXxods
+id: default
+label: Default
+orderItemType: default
+generateTitle: true
+traits: {  }
+locked: false

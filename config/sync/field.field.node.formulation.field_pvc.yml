@@ -1,0 +1,19 @@
+uuid: 89f25f25-2757-4eec-9ef3-13fdaee89522
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pvc
+    - node.type.formulation
+id: node.formulation.field_pvc
+field_name: field_pvc
+entity_type: node
+bundle: formulation
+label: PVC
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,21 @@
+uuid: 0bbe0af1-aa1d-461d-9f93-0d2789b1aa54
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_freeze_thaw_stability
+field_name: field_freeze_thaw_stability
+entity_type: commerce_product
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

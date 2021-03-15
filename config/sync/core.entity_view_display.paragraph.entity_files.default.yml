@@ -1,0 +1,41 @@
+uuid: 7fd7dbc4-cab5-467c-adb2-04f4415378c3
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.entity_files.field_entity_file
+    - field.field.paragraph.entity_files.field_file_description
+    - field.field.paragraph.entity_files.field_file_type
+    - paragraphs.paragraphs_type.entity_files
+  module:
+    - file
+id: paragraph.entity_files.default
+targetEntityType: paragraph
+bundle: entity_files
+mode: default
+content:
+  field_entity_file:
+    weight: 0
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_file_description:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_file_type:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,13 @@
+uuid: 6d2f11d3-21ce-48a5-a243-9f8a8b86e17d
+langcode: zh-hans
+status: true
+dependencies:
+  enforced:
+    module:
+      - commerce_order
+  module:
+    - profile
+id: profile.billing
+label: Billing
+targetEntityType: profile
+cache: true

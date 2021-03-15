@@ -1,0 +1,9 @@
+uuid: 3b350a3f-6003-4847-a874-e2162a394e5f
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: country_registration_group
+label: 注册国家字段组
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,19 @@
+uuid: c225a2e2-bc3e-482e-a902-56a4938f19c9
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_film_thickness
+    - node.type.formulation
+id: node.formulation.field_film_thickness
+field_name: field_film_thickness
+entity_type: node
+bundle: formulation
+label: 膜厚
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

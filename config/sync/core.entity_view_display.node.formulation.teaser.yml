@@ -1,0 +1,88 @@
+uuid: 58c1f28b-b80f-454d-87d6-d8dae289dbc0
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.formulation.body
+    - field.field.node.formulation.field_file_type
+    - field.field.node.formulation.field_film_thickness
+    - field.field.node.formulation.field_fineness
+    - field.field.node.formulation.field_formula_composition
+    - field.field.node.formulation.field_formulation_cluster
+    - field.field.node.formulation.field_formulation_file
+    - field.field.node.formulation.field_formulation_industry
+    - field.field.node.formulation.field_formulation_name
+    - field.field.node.formulation.field_formulation_number
+    - field.field.node.formulation.field_formulationbenefits
+    - field.field.node.formulation.field_industry_of_formula
+    - field.field.node.formulation.field_is_public
+    - field.field.node.formulation.field_ku
+    - field.field.node.formulation.field_luster_20
+    - field.field.node.formulation.field_luster_60
+    - field.field.node.formulation.field_luster_85
+    - field.field.node.formulation.field_ph
+    - field.field.node.formulation.field_pvc
+    - field.field.node.formulation.field_sheet
+    - field.field.node.formulation.field_solid_content
+    - field.field.node.formulation.field_spray_gun_caliber
+    - field.field.node.formulation.field_spray_pressure
+    - field.field.node.formulation.field_spray_size
+    - field.field.node.formulation.field_spray_thickness
+    - field.field.node.formulation.field_sprayed_layers
+    - field.field.node.formulation.field_sst
+    - field.field.node.formulation.field_thickness
+    - field.field.node.formulation.field_weizhiziduan
+    - node.type.formulation
+  module:
+    - text
+    - user
+id: node.formulation.teaser
+targetEntityType: node
+bundle: formulation
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_file_type: true
+  field_film_thickness: true
+  field_fineness: true
+  field_formula_composition: true
+  field_formulation_cluster: true
+  field_formulation_file: true
+  field_formulation_industry: true
+  field_formulation_name: true
+  field_formulation_number: true
+  field_formulationbenefits: true
+  field_industry_of_formula: true
+  field_is_public: true
+  field_ku: true
+  field_luster_20: true
+  field_luster_60: true
+  field_luster_85: true
+  field_ph: true
+  field_pvc: true
+  field_sheet: true
+  field_solid_content: true
+  field_spray_gun_caliber: true
+  field_spray_pressure: true
+  field_spray_size: true
+  field_spray_thickness: true
+  field_sprayed_layers: true
+  field_sst: true
+  field_thickness: true
+  field_weizhiziduan: true
+  langcode: true
+  search_api_excerpt: true

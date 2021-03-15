@@ -1,0 +1,13 @@
+uuid: 2cff20ee-ab19-4cbf-87b0-15ea775cc823
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - media
+_core:
+  default_config_hash: CsK6TseQ2DatEbZgbd30swOlZ28_HHwAESU2LvEnWq0
+id: media_unpublish_action
+label: 'Unpublish media'
+type: media
+plugin: 'entity:unpublish_action:media'
+configuration: {  }

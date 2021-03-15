@@ -1,0 +1,22 @@
+uuid: 3cb9ab2c-b3d4-4a12-b852-86628acec6d4
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - pro_core
+    - serialization
+    - user
+id: complete_order_resource
+plugin_id: complete_order_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth
+    - cookie

@@ -1,0 +1,32 @@
+uuid: 3b62543d-784a-4cb5-bab0-d0c8f382a50e
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.country_registration_group.field_country_registration
+    - field.field.paragraph.country_registration_group.field_country_registration_descr
+    - paragraphs.paragraphs_type.country_registration_group
+  module:
+    - address
+id: paragraph.country_registration_group.default
+targetEntityType: paragraph
+bundle: country_registration_group
+mode: default
+content:
+  field_country_registration:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: address_country_default
+    region: content
+  field_country_registration_descr:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

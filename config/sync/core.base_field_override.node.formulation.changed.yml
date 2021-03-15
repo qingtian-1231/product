@@ -1,0 +1,18 @@
+uuid: 425f59e6-7f73-4a95-9b73-0ecf2538adf4
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.formulation
+id: node.formulation.changed
+field_name: changed
+entity_type: node
+bundle: formulation
+label: 已更改
+description: 节点上一次被编辑的时间。
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

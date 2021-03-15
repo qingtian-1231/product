@@ -1,0 +1,19 @@
+uuid: b748bd60-c23a-42f5-a5fd-599314a9c793
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_luster_85
+    - node.type.formulation
+id: node.formulation.field_luster_85
+field_name: field_luster_85
+entity_type: node
+bundle: formulation
+label: '光泽 85'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,20 @@
+uuid: 3a791d5c-68d7-44f6-bf33-a7b5cad87556
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - comment.type.comment
+id: comment.comment.uid
+field_name: uid
+entity_type: comment
+bundle: comment
+label: '用户 ID'
+description: 评论作者的用户ID。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\comment\Entity\Comment::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

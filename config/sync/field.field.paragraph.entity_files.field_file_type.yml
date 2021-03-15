@@ -1,0 +1,19 @@
+uuid: 294821a6-bb61-4c01-b070-ebfc8189896f
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_file_type
+    - paragraphs.paragraphs_type.entity_files
+id: paragraph.entity_files.field_file_type
+field_name: field_file_type
+entity_type: paragraph
+bundle: entity_files
+label: 文件类型
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

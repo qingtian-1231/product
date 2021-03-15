@@ -1,0 +1,18 @@
+uuid: 398dd51b-8a2f-4cb4-bb5c-a10bfc8a5ba3
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - comment.type.comment
+id: comment.comment.subject
+field_name: subject
+entity_type: comment
+bundle: comment
+label: 主题
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

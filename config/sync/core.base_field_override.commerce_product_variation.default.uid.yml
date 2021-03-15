@@ -1,0 +1,20 @@
+uuid: 7e8fb699-f328-47fb-8337-f9fba6c46bb7
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.default
+id: commerce_product_variation.default.uid
+field_name: uid
+entity_type: commerce_product_variation
+bundle: default
+label: 作者
+description: 规格的创建者。
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\commerce_product\Entity\ProductVariation::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

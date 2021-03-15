@@ -1,0 +1,18 @@
+uuid: 61aabf45-c009-4bff-af65-d2f75b078323
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - menu_link_content
+id: menu_link_content.menu_link_content.changed
+field_name: changed
+entity_type: menu_link_content
+bundle: menu_link_content
+label: 已更改
+description: 上次编辑菜单链接的时间。
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

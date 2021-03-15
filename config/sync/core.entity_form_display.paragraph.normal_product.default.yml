@@ -1,0 +1,46 @@
+uuid: f1ff9bb6-74eb-4836-b3b7-7fa540a6827d
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.normal_product.field_part_normal_product
+    - field.field.paragraph.normal_product.field_proportion_char
+    - field.field.paragraph.normal_product.field_work
+    - paragraphs.paragraphs_type.normal_product
+id: paragraph.normal_product.default
+targetEntityType: paragraph
+bundle: normal_product
+mode: default
+content:
+  field_part_normal_product:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_proportion_char:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_work:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  translation:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true

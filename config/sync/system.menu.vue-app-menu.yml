@@ -1,0 +1,8 @@
+uuid: a9381ae6-c840-4946-be50-7ac5c15bda50
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: vue-app-menu
+label: 'vue app menu'
+description: 'vue app menu'
+locked: false

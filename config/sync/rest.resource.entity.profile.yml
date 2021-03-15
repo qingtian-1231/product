@@ -1,0 +1,22 @@
+uuid: e840154a-1a71-4318-8094-99d6ddd922fb
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - profile
+    - serialization
+id: entity.profile
+plugin_id: 'entity:profile'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+    - PATCH
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth

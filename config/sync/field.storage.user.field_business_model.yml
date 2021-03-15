@@ -1,0 +1,30 @@
+uuid: bf90f6a3-3280-4d15-a232-b213209fe351
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - options
+    - user
+id: user.field_business_model
+field_name: field_business_model
+entity_type: user
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Manufacturing
+      label: 生产型企业
+    -
+      value: Trade
+      label: 贸易型企业
+    -
+      value: 'Research Institutes'
+      label: 科研机构
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

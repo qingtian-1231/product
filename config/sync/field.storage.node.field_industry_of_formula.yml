@@ -1,0 +1,21 @@
+uuid: d8bb6ebd-6c95-4711-8fb3-ab8cd2b733d1
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_industry_of_formula
+field_name: field_industry_of_formula
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

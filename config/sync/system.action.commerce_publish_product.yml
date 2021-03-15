@@ -1,0 +1,13 @@
+uuid: 99deec50-d8e8-47f8-abb6-e8a126811580
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+_core:
+  default_config_hash: 83abjxFWTlkso65OfwvUzv_VvAc9iIswF2kW_MGZmY8
+id: commerce_publish_product
+label: 发布产品
+type: commerce_product
+plugin: commerce_publish_product
+configuration: {  }

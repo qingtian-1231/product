@@ -1,0 +1,21 @@
+uuid: e148bb56-d32b-4f24-8a8b-5c90cf996c97
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_front_carousel_description
+    - paragraphs.paragraphs_type.front_carousel
+  module:
+    - text
+id: paragraph.front_carousel.field_front_carousel_description
+field_name: field_front_carousel_description
+entity_type: paragraph
+bundle: front_carousel
+label: 轮播图文字描述
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

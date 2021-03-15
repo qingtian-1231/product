@@ -16,10 +16,6 @@
       "type": "composer",
       "url": "https://packages.drupal.org/8"
     },
-    "packagist": {
-      "type": "composer",
-      "url": "https://mirrors.aliyun.com/composer"
-    },
 
     "drush_cmi_tools": {
       "type": "git",
@@ -51,7 +47,7 @@
 
     "drupal/console": "^1.5",
 
-    "drupal/core": "~8.8.1",
+    "drupal/core": "^8.9.13",
 
     "drupal/config_installer": "^1.5",
 
@@ -89,11 +85,13 @@
     "drupal/file_delete": "^1.0",
     "drupal/mailsystem": "^4.3",
     "drupal/adminimal_theme": "^1.5",
-    "drupal/swiftmailer": "^1.0@beta",
+    "drupal/swiftmailer": "^2.0",
     "drupal/rest_password": "^1.6",
     "drupal/views_data_export": "^1.0@RC",
     "drupal/dropdown_language": "^2.6",
-    "drupal/toolbar_language_switcher": "^1.0@alpha"
+    "drupal/toolbar_language_switcher": "^1.0@alpha",
+    "drupal/asset_injector": "^2.7",
+    "drupal/libraries": "^3.0@beta"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
@@ -232,9 +230,6 @@
     "patches": {
       "drupal/core": {
         "Symlinks in files directory (https://www.drupal.org/project/drupal/issues/1008402)": "https://www.drupal.org/files/issues/stream_wrappers-allow_symlinks-1008402-115.patch"
-      },
-      "drupal/libraries": {
-        "Fatal error: Cannot declare interface Drupal\\libraries\\ExternalLibrary\\Utility\\LibraryAccessorIdInterface (https://www.drupal.org/project/libraries/issues/2882709)": "https://www.drupal.org/files/issues/2882709-2-interface-libraryidaccessorinterface-misnamed.patch"
       },
       "drupal/node_revision_delete": {
         "Missing group by in NodeRevisionDelete patche one": "https://www.drupal.org/files/issues/2019-09-18/node_revision_delete-fix_candidate_nodes_group_by-3082021-2.patch",

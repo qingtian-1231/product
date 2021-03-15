@@ -1,0 +1,19 @@
+uuid: e79c42fb-7aa1-4aab-b710-414ae3f155a6
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_formulationbenefits
+field_name: field_formulationbenefits
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

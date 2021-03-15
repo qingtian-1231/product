@@ -1,0 +1,22 @@
+uuid: e8e404b1-5e53-42a2-ac68-3a61208e64b0
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.normal_product
+id: paragraph.normal_product.status
+field_name: status
+entity_type: paragraph
+bundle: normal_product
+label: 已发布
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 开启
+  off_label: 关闭
+field_type: boolean

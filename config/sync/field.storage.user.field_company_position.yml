@@ -1,0 +1,21 @@
+uuid: f75c3279-c752-4cdf-92c7-787d4f44eb02
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_company_position
+field_name: field_company_position
+entity_type: user
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

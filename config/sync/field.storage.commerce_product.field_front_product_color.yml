@@ -1,0 +1,39 @@
+uuid: 948ac30b-6ea8-4429-a62f-fc622632dd90
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - options
+id: commerce_product.field_front_product_color
+field_name: field_front_product_color
+entity_type: commerce_product
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: green_dark1
+      label: 绿色
+    -
+      value: light_green1
+      label: 浅绿
+    -
+      value: red1
+      label: 红色
+    -
+      value: orange1
+      label: 橙色
+    -
+      value: blue1
+      label: 蓝色
+    -
+      value: blue_dark1
+      label: 深蓝
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

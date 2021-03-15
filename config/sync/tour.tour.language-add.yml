@@ -1,0 +1,35 @@
+uuid: e439e24d-5943-4e63-a4f3-ee79fe897145
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - language
+_core:
+  default_config_hash: PM2qJqRak_LRDoD905MdombBZUvJvM4ID29VbjtYcZA
+id: language-add
+label: 添加语言
+module: language
+routes:
+  -
+    route_name: language.add
+tips:
+  language-add-overview:
+    id: language-add-overview
+    plugin: text
+    label: 添加语言
+    body: '<p>这个页面提供语言本地化到您站点</p><p>如果没有您需要的语言，您可以添加自定义语言。</p>'
+    weight: 1
+  language-add-choose:
+    id: language-add-choose
+    plugin: text
+    label: 选择语言
+    body: '<p>从列表中选择一种语言，或选择 “自定义语言。。。”。</p><p>点击“添加语言”按钮后选择你的语言。</p><p>如果想添加自定义语言，您将填写语言的名称，代码，用法。</p>'
+    weight: 2
+    attributes:
+      data-id: edit-predefined-langcode
+  language-add-continue:
+    id: language-add-continue
+    plugin: text
+    label: 接下来
+    body: '<p>Now that you have an overview of the "Add languages" feature, you can continue by:<ul><li>Adding a language</li><li>Adding a custom language</li><li><a href="[site:url]admin/config/regional/language">Viewing configured languages</a></li></ul></p>'
+    weight: 3

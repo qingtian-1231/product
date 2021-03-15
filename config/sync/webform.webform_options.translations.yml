@@ -1,0 +1,14 @@
+uuid: 920a6a5d-81b6-4bb3-8469-6f18bcdf5eaa
+langcode: zh-hans
+status: true
+dependencies:
+  enforced:
+    module:
+      - webform
+_core:
+  default_config_hash: Mb_L3vE-0IBZH5s2rjpk2LNn0QHClQP9AARQdCmVLt4
+id: translations
+label: Translations
+category: Language
+likert: false
+options: ''

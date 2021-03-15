@@ -1,0 +1,10 @@
+uuid: d5075622-7477-4e10-a4b5-b1df1342328d
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - node
+id: node.token
+label: Token
+targetEntityType: node
+cache: true

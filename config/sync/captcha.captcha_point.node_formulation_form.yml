@@ -1,0 +1,7 @@
+uuid: 8124c15c-0e45-4e73-b55c-ee9c9a957d4c
+langcode: zh-hans
+status: false
+dependencies: {  }
+formId: node_formulation_form
+captchaType: default
+label: null

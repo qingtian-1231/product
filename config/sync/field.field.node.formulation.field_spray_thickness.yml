@@ -1,0 +1,19 @@
+uuid: 167828e4-6ddf-4f92-b4a4-21a715d09b0c
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_spray_thickness
+    - node.type.formulation
+id: node.formulation.field_spray_thickness
+field_name: field_spray_thickness
+entity_type: node
+bundle: formulation
+label: 立面喷涂干膜厚度
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

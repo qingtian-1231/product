@@ -1,0 +1,18 @@
+uuid: b5582507-9ea7-49dc-9829-b2db551776aa
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.front_carousel
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.front_carousel
+target_entity_type_id: paragraph
+target_bundle: front_carousel
+default_langcode: site_default
+language_alterable: true

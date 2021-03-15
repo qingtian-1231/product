@@ -1,0 +1,18 @@
+uuid: 69d0d552-7075-4115-8a21-f6e343c48312
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.page
+id: node.page.title
+field_name: title
+entity_type: node
+bundle: page
+label: 目标名称
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

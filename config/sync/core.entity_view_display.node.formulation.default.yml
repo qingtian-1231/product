@@ -1,0 +1,283 @@
+uuid: 7f4dd61d-d9df-4351-819f-bc7ba994397d
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.field.node.formulation.body
+    - field.field.node.formulation.field_file_type
+    - field.field.node.formulation.field_film_thickness
+    - field.field.node.formulation.field_fineness
+    - field.field.node.formulation.field_formula_composition
+    - field.field.node.formulation.field_formulation_cluster
+    - field.field.node.formulation.field_formulation_file
+    - field.field.node.formulation.field_formulation_industry
+    - field.field.node.formulation.field_formulation_name
+    - field.field.node.formulation.field_formulation_number
+    - field.field.node.formulation.field_formulationbenefits
+    - field.field.node.formulation.field_industry_of_formula
+    - field.field.node.formulation.field_is_public
+    - field.field.node.formulation.field_ku
+    - field.field.node.formulation.field_luster_20
+    - field.field.node.formulation.field_luster_60
+    - field.field.node.formulation.field_luster_85
+    - field.field.node.formulation.field_ph
+    - field.field.node.formulation.field_pvc
+    - field.field.node.formulation.field_sheet
+    - field.field.node.formulation.field_solid_content
+    - field.field.node.formulation.field_spray_gun_caliber
+    - field.field.node.formulation.field_spray_pressure
+    - field.field.node.formulation.field_spray_size
+    - field.field.node.formulation.field_spray_thickness
+    - field.field.node.formulation.field_sprayed_layers
+    - field.field.node.formulation.field_sst
+    - field.field.node.formulation.field_thickness
+    - field.field.node.formulation.field_weizhiziduan
+    - node.type.formulation
+  module:
+    - entity_reference_revisions
+    - options
+    - text
+    - user
+id: node.formulation.default
+targetEntityType: node
+bundle: formulation
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_file_type:
+    weight: 23
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_film_thickness:
+    weight: 22
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_fineness:
+    weight: 10
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_formula_composition:
+    type: entity_reference_revisions_entity_view
+    weight: 3
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_formulation_cluster:
+    weight: 7
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_formulation_file:
+    type: entity_reference_revisions_entity_view
+    weight: 11
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_formulation_industry:
+    weight: 25
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_formulation_name:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_formulation_number:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_formulationbenefits:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_industry_of_formula:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_is_public:
+    weight: 24
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_ku:
+    weight: 15
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_luster_20:
+    weight: 16
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_luster_60:
+    weight: 27
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_luster_85:
+    weight: 17
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_ph:
+    weight: 14
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_pvc:
+    weight: 12
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sheet:
+    weight: 28
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_solid_content:
+    weight: 13
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_spray_gun_caliber:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_spray_pressure:
+    weight: 18
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_spray_size:
+    weight: 19
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_spray_thickness:
+    weight: 21
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sprayed_layers:
+    weight: 20
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sst:
+    weight: 26
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_thickness:
+    weight: 29
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_weizhiziduan:
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  search_api_excerpt: true

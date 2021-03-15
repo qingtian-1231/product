@@ -1,0 +1,8 @@
+uuid: 59e24f97-05cb-4d37-b1ad-e50c910393a5
+langcode: zh-hans
+status: true
+dependencies: {  }
+name: 产品分类
+vid: product_type
+description: 产品分类列表
+weight: 0

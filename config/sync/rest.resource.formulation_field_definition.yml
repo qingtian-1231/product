@@ -1,0 +1,22 @@
+uuid: 432904e3-e359-4db7-9fa9-5b8c24a70116
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - pro_core
+    - serialization
+    - user
+id: formulation_field_definition
+plugin_id: formulation_field_definition
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth
+    - cookie

@@ -1,0 +1,10 @@
+uuid: d4008247-db5d-4633-a98b-7d706e98535d
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 7klS5IWXrwzVaPpYZFAs6wcx8U2FF1X73OfrtTsvuvE
+id: fallback
+label: 回滚日期格式
+locked: true
+pattern: 'D, m/d/Y - H:i'

@@ -1,0 +1,18 @@
+uuid: a00268a5-306c-4d9b-b395-3507629a4713
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.normal_product
+id: paragraph.normal_product.created
+field_name: created
+entity_type: paragraph
+bundle: normal_product
+label: 发布于
+description: 段落的创建时间。
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

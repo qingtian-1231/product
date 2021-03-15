@@ -1,0 +1,22 @@
+uuid: 2ffb8b48-9192-4b55-b9f1-58d5c49a919e
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.applacation
+id: taxonomy_term.applacation.status
+field_name: status
+entity_type: taxonomy_term
+bundle: applacation
+label: 已发布
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 开启
+  off_label: 关闭
+field_type: boolean

@@ -1,0 +1,18 @@
+uuid: f8af5860-7448-422d-91a2-f98b4d3daede
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tags
+id: taxonomy_term.tags.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: tags
+label: 已更改
+description: 术语最后一次编辑的时间。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

@@ -1,0 +1,21 @@
+uuid: e69ff529-ef07-4d97-8ef3-69bbbc429124
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_part_normal_product
+field_name: field_part_normal_product
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

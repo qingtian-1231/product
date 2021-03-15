@@ -1,0 +1,20 @@
+uuid: a1a9e4d1-21c1-4124-91dc-54edacce5394
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.formulation
+id: node.formulation.uid
+field_name: uid
+entity_type: node
+bundle: formulation
+label: 作者
+description: 内容作者的用户名。
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

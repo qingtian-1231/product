@@ -1,0 +1,8 @@
+uuid: 0350a0d5-21a1-4cb3-859a-c6c2ed066b14
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: carousel_block
+label: 轮播图区块
+revision: 0
+description: 轮播图区块

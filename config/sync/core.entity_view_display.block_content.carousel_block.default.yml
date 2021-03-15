@@ -1,0 +1,35 @@
+uuid: 2c1ef2cb-fbba-42f6-8961-33f305173f8f
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - block_content.type.carousel_block
+    - field.field.block_content.carousel_block.body
+    - field.field.block_content.carousel_block.field_carousel_block
+  module:
+    - entity_reference_revisions
+    - text
+id: block_content.carousel_block.default
+targetEntityType: block_content
+bundle: carousel_block
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_carousel_block:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

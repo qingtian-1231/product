@@ -1,0 +1,22 @@
+uuid: eddff532-0caf-4ac8-b71b-f0c9ad5b86d2
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - pro_core
+    - serialization
+    - user
+id: order_address_field_resource
+plugin_id: order_address_field_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth
+    - cookie

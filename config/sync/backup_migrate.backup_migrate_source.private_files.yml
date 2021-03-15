@@ -1,0 +1,12 @@
+uuid: 6bab7c22-e330-4eda-815e-5cea7890c882
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: skfrgCS5JC2HXCG6QfQfiuuFWy_-OQ5Qs0FvaPwc6Vc
+id: private_files
+label: 私有文件目录
+type: DrupalFiles
+config:
+  name: 'Private Files Directory'
+  directory: 'private://'

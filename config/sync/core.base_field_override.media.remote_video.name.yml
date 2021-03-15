@@ -1,0 +1,20 @@
+uuid: cf9b62ed-5ecf-4668-bf2c-711490d3f901
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.remote_video
+id: media.remote_video.name
+field_name: name
+entity_type: media
+bundle: remote_video
+label: Name
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string

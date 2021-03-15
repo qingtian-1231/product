@@ -1,0 +1,22 @@
+uuid: ec3959dd-c25b-4fe0-9397-920c8f7c856b
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - rest_menu_items
+    - serialization
+    - user
+id: rest_menu_item
+plugin_id: rest_menu_item
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth
+    - cookie

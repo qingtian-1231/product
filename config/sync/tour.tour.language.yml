@@ -1,0 +1,59 @@
+uuid: 8e07f5b9-4be4-4d7a-93eb-684bbd69ad81
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - language
+_core:
+  default_config_hash: K3KVksdkREnIdd2idoIA9TDHQew_WreFzTG-DHmz9Z4
+id: language
+label: Language
+module: language
+routes:
+  -
+    route_name: entity.configurable_language.collection
+tips:
+  language-overview:
+    id: language-overview
+    plugin: text
+    label: Languages
+    body: '<p>"语言 (Languages)" 页面允许您为站点添加、修改、删除或者排序语言。</p>'
+    weight: 1
+  language-add:
+    id: language-add
+    plugin: text
+    label: 添加语言
+    body: '<p>要为您的站点添加更多语言，点击“添加语言”按钮。</p><p>您添加的语言将会显示在语言列表中，并可以编辑或删除。</p>'
+    weight: 2
+    attributes:
+      data-class: button-action
+  language-reorder:
+    id: language-reorder
+    plugin: text
+    label: 更改语言的顺序
+    body: '<p>要对您网站上的语言进行重新排序，请使用每种语言旁边的拖动图标。</p> <p>此处显示的顺序是网站上语言列表的显示顺序，例如语言切换器块中提供的顺序。 界面翻译和内容翻译模块。</p> <p>完成语言重新排序后，单击“保存配置”按钮，使更改生效。</p>'
+    weight: 3
+    attributes:
+      data-class: draggable
+  language-default:
+    id: language-default
+    plugin: text
+    label: 将语言设置为默认
+    body: '<p>您可以选择一种配置的语言作为默认语言来更改网站的默认语言。 在没有做出选择但应该设置语言的情况下，该站点将使用默认语言，例如作为所显示界面的语言。</p>'
+    weight: 4
+    attributes:
+      data-class: js-form-item-site-default-language
+  language-operations:
+    id: language-operations
+    plugin: text
+    label: 修改语言
+    body: '<p>Operations are provided for editing and deleting your languages.</p><p>You can edit the name and the direction of the language.</p><p>Deleted languages can be added back at a later time. Deleting a language will remove all interface translations associated with it, and content in this language will be set to be language neutral. Note that you cannot delete the default language of the site.</p>'
+    weight: 5
+    attributes:
+      data-class: dropbutton-wrapper
+  language-continue:
+    id: language-continue
+    plugin: text
+    label: 接下来
+    body: '<p>Now that you have an overview of the "Languages" page, you can continue by:<ul><li><a href="[site:url]admin/config/regional/language/add">Adding a language</a></li><li>Reordering languages</li><li>Editing a language</li><li>Deleting a language</li></ul></p>'
+    weight: 6

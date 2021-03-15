@@ -1,0 +1,19 @@
+uuid: 7b4d1aa5-5a3a-4f13-8e9a-b334a4139bde
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_solid_content
+id: commerce_product.default.field_solid_content
+field_name: field_solid_content
+entity_type: commerce_product
+bundle: default
+label: 固含量%
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

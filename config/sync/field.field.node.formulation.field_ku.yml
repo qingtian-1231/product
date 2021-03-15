@@ -1,0 +1,19 @@
+uuid: 2da147fb-6814-4a7a-b5ba-bb0ba5f5fcc6
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ku
+    - node.type.formulation
+id: node.formulation.field_ku
+field_name: field_ku
+entity_type: node
+bundle: formulation
+label: KU
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

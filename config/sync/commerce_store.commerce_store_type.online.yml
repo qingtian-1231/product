@@ -1,0 +1,11 @@
+uuid: 15c1859a-485b-470f-a62b-994180755157
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: FGYrs0ZrjxSzRQMODyYqquV1UW5MN7S5wUG0Dp_OxWU
+id: online
+label: 在线
+description: ''
+traits: {  }
+locked: false

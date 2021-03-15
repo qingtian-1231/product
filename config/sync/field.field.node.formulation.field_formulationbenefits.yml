@@ -1,0 +1,19 @@
+uuid: fab1dad7-b8a6-4baa-8e24-367c91c32dfe
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_formulationbenefits
+    - node.type.formulation
+id: node.formulation.field_formulationbenefits
+field_name: field_formulationbenefits
+entity_type: node
+bundle: formulation
+label: 配方优点
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

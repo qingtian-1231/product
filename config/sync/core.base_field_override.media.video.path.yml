@@ -1,0 +1,20 @@
+uuid: 2908ae4f-8f9f-4b49-8791-ad95c366c868
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.video
+  module:
+    - path
+id: media.video.path
+field_name: path
+entity_type: media
+bundle: video
+label: URL别名
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

@@ -1,0 +1,19 @@
+uuid: 1704142c-ecc9-41e9-9d9c-31df04b0364b
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - hal
+    - serialization
+    - user
+id: user_registration
+plugin_id: user_registration
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - cookie

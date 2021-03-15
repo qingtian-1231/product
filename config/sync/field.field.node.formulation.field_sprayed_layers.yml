@@ -1,0 +1,19 @@
+uuid: 713efd9f-3671-43ac-9651-a72f63cd67cb
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sprayed_layers
+    - node.type.formulation
+id: node.formulation.field_sprayed_layers
+field_name: field_sprayed_layers
+entity_type: node
+bundle: formulation
+label: 喷涂层数
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

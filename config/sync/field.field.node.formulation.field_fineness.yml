@@ -1,0 +1,19 @@
+uuid: c5960167-cf18-425a-9ae0-c27844a8746e
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fineness
+    - node.type.formulation
+id: node.formulation.field_fineness
+field_name: field_fineness
+entity_type: node
+bundle: formulation
+label: 细度
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

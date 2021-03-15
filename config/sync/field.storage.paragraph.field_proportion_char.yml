@@ -1,0 +1,21 @@
+uuid: e01e6e21-ca88-4889-816a-98cddfa0d6ed
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_proportion_char
+field_name: field_proportion_char
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

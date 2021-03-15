@@ -1,0 +1,12 @@
+uuid: debda62f-f1f6-4cfa-a9de-b038078df6fb
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: Mz9qWr1kUYK0mjRAGDsr5XS6PvtZ24en_7ndt-pyWe4
+id: node.teaser
+label: 摘要
+targetEntityType: node
+cache: true

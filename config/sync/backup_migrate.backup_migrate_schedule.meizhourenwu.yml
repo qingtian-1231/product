@@ -1,0 +1,13 @@
+uuid: 1f3b7f37-a938-4caf-ad49-391d6db8974e
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: meizhourenwu
+label: 每周任务
+enabled: true
+keep: 30
+period: 86400
+cron: null
+source_id: default_db
+destination_id: private_files
+settings_profile_id: null

@@ -1,0 +1,43 @@
+uuid: 3a80efcf-2d1b-4873-b187-1fc852fcb861
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_country_registration_group
+    - paragraphs.paragraphs_type.country_registration_group
+  module:
+    - entity_reference_revisions
+id: commerce_product.default.field_country_registration_group
+field_name: field_country_registration_group
+entity_type: commerce_product
+bundle: default
+label: 化学品亚太区注册状态
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      country_registration_group: country_registration_group
+    target_bundles_drag_drop:
+      basf_product:
+        weight: 3
+        enabled: false
+      normal_product:
+        weight: 4
+        enabled: false
+      country_registration_group:
+        enabled: true
+        weight: 5
+      entity_files:
+        weight: 8
+        enabled: false
+      front_carousel:
+        weight: 9
+        enabled: false
+field_type: entity_reference_revisions

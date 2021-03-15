@@ -1,0 +1,22 @@
+uuid: 5378d2c6-a9cd-4f09-909b-6ede239d35b0
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - serialization
+    - system
+    - user
+id: entity.menu
+plugin_id: 'entity:menu'
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth
+    - cookie

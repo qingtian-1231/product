@@ -1,0 +1,27 @@
+uuid: 1a2f8138-38cd-471f-a870-e5c8500e2ea9
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_global_file
+    - node.type.global_download
+  module:
+    - file
+id: node.global_download.field_global_file
+field_name: field_global_file
+entity_type: node
+bundle: global_download
+label: 全局文件
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

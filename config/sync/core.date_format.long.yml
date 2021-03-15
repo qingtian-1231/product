@@ -1,0 +1,10 @@
+uuid: ecae92c2-c9fe-420f-821b-244cd8d6763c
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: og8sWXhBuHbLMw3CoiBEZjgqSyhFBFmcbUW_wLcfNbo
+id: long
+label: 默认长日期
+locked: false
+pattern: 'l, F j, Y - H:i'

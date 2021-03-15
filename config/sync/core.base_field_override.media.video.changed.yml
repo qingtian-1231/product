@@ -1,0 +1,18 @@
+uuid: af189b7a-eaf4-4bcb-9e00-d7bb20d300dd
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.video
+id: media.video.changed
+field_name: changed
+entity_type: media
+bundle: video
+label: 已更改
+description: 媒体项最后一次被编辑的时间。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

@@ -1,0 +1,23 @@
+uuid: e4e3a068-1b98-4765-a618-5dbec7ac2560
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_public
+    - node.type.formulation
+id: node.formulation.field_is_public
+field_name: field_is_public
+entity_type: node
+bundle: formulation
+label: 是否公开
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

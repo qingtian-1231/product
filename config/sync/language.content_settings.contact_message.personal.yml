@@ -1,0 +1,11 @@
+uuid: 5134ada0-870f-4351-9df0-122f2b051f79
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - contact.form.personal
+id: contact_message.personal
+target_entity_type_id: contact_message
+target_bundle: personal
+default_langcode: site_default
+language_alterable: false

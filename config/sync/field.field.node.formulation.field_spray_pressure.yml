@@ -1,0 +1,19 @@
+uuid: 78444614-0248-4029-b2c3-bd53eaeec021
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_spray_pressure
+    - node.type.formulation
+id: node.formulation.field_spray_pressure
+field_name: field_spray_pressure
+entity_type: node
+bundle: formulation
+label: 喷涂气压
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

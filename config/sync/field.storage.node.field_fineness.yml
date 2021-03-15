@@ -1,0 +1,21 @@
+uuid: 6b0606ea-9a2b-40dc-8179-34947b5fd0a0
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_fineness
+field_name: field_fineness
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

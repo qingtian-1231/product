@@ -1,0 +1,49 @@
+uuid: b2d237a6-9ce8-468c-b6a3-e932f6959924
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.field.node.global_download.body
+    - field.field.node.global_download.field_file_type
+    - field.field.node.global_download.field_global_file
+    - node.type.global_download
+  module:
+    - file
+    - text
+    - user
+id: node.global_download.default
+targetEntityType: node
+bundle: global_download
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_file_type:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_global_file:
+    weight: 103
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

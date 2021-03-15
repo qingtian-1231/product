@@ -1,0 +1,7 @@
+uuid: de806729-a5e0-469c-9778-0aa29f9f6bd1
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: product_amount
+label: 产品剂量
+elementType: radios

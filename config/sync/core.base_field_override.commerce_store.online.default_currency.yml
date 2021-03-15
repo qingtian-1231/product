@@ -1,0 +1,20 @@
+uuid: 119c6b26-1c67-4368-b504-6a6b63d27ad9
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_store.commerce_store_type.online
+id: commerce_store.online.default_currency
+field_name: default_currency
+entity_type: commerce_store
+bundle: online
+label: 默认货币
+description: 店铺使用的默认货币。
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

@@ -1,0 +1,36 @@
+uuid: d1c74bb9-b7a1-4d1e-834b-0cd714a60f75
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: btW6TFHajhy7Eo6YUvdFiPh4TcPggo8GBXYctjV6zag
+id: authenticated
+label: 已登录用户
+weight: 1
+is_admin: false
+permissions:
+  - 'access checkout'
+  - 'access comments'
+  - 'access content'
+  - 'access file download'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'create customer profile'
+  - 'delete own customer profile'
+  - 'post comments'
+  - 'restful get rest_menu_item'
+  - 'restful post lost_password_reset'
+  - 'restful post lost_password_resource'
+  - 'restful post user_registration'
+  - 'restful post webform_rest_submit'
+  - 'search content'
+  - 'skip comment approval'
+  - 'update own customer profile'
+  - 'use text format basic_html'
+  - 'view commerce_product'
+  - 'view media'
+  - 'view own commerce_order'
+  - 'view own customer profile'
+  - 'view own profile'
+  - 'view own unpublished profile'
+  - 'view own webform submission'

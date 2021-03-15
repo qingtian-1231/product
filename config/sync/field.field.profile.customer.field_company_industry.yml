@@ -1,0 +1,21 @@
+uuid: f98cb790-af92-4b2c-bf8d-ce5283b6a20b
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_company_industry
+    - profile.type.customer
+  module:
+    - options
+id: profile.customer.field_company_industry
+field_name: field_company_industry
+entity_type: profile
+bundle: customer
+label: 行业
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

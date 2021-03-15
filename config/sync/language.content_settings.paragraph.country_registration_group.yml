@@ -1,0 +1,18 @@
+uuid: 3c2d56c2-d51d-4f17-82eb-0c3d2743628a
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.country_registration_group
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.country_registration_group
+target_entity_type_id: paragraph
+target_bundle: country_registration_group
+default_langcode: site_default
+language_alterable: true

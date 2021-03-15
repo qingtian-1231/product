@@ -1,0 +1,23 @@
+uuid: fe99bcc2-7b16-40aa-96a4-2577a22d3ec9
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_front_carousel_link
+    - paragraphs.paragraphs_type.front_carousel
+  module:
+    - link
+id: paragraph.front_carousel.field_front_carousel_link
+field_name: field_front_carousel_link
+entity_type: paragraph
+bundle: front_carousel
+label: 轮播图链接
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

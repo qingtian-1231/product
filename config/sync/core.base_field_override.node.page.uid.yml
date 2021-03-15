@@ -1,0 +1,20 @@
+uuid: 4228169e-52af-4783-9e8e-2ce66f0604a4
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.page
+id: node.page.uid
+field_name: uid
+entity_type: node
+bundle: page
+label: 作者
+description: 内容作者的用户名。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

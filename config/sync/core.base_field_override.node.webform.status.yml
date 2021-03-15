@@ -1,0 +1,22 @@
+uuid: 3c54d97c-8bed-4ee2-858c-64334e94dd57
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.webform
+id: node.webform.status
+field_name: status
+entity_type: node
+bundle: webform
+label: 已发布
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

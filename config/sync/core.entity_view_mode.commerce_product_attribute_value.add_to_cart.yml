@@ -1,0 +1,12 @@
+uuid: 53da6e9c-62f0-4ced-b5a8-d8f51cd8c62f
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - commerce_product
+_core:
+  default_config_hash: ry5RvX-mOnp2GQWzMqSYjPz-jKfP1nSo4Xo4kJCodlE
+id: commerce_product_attribute_value.add_to_cart
+label: 添加到购物车表单
+targetEntityType: commerce_product_attribute_value
+cache: true

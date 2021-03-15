@@ -1,0 +1,27 @@
+uuid: 18730bbb-99f8-4da9-9b24-56381340b9ca
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_product_file
+  module:
+    - file
+id: commerce_product.default.field_product_file
+field_name: field_product_file
+entity_type: commerce_product
+bundle: default
+label: 产品文件
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: product-introduce-files
+  file_extensions: 'txt pdf'
+  max_filesize: ''
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

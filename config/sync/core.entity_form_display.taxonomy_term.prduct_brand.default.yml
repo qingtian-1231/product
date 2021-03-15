@@ -1,0 +1,29 @@
+uuid: 82c0e308-3f7f-4d31-80e0-3abdaa6d1880
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.prduct_brand
+id: taxonomy_term.prduct_brand.default
+targetEntityType: taxonomy_term
+bundle: prduct_brand
+mode: default
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true
+  status: true

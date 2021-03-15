@@ -1,0 +1,15 @@
+uuid: 6453e246-3d32-446a-85e2-5ca854cecd75
+name: BASF产品中心
+mail: info@basf-product.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: zh-hans
+default_langcode: zh-hans
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE
+mail_notification: info@basf-product.com

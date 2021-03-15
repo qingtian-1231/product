@@ -1,0 +1,19 @@
+uuid: 6c033ed9-48ad-4f1b-8755-b249f31e6c49
+langcode: zh-hans
+status: false
+dependencies:
+  module:
+    - hal
+    - serialization
+    - user
+id: entity.rest_resource_config
+plugin_id: 'entity:rest_resource_config'
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - cookie

@@ -1,0 +1,29 @@
+uuid: 32d76ed0-e3b8-420f-8ee2-cdd2aa3e4c14
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_suitable_application
+    - taxonomy.vocabulary.applacation
+id: commerce_product.default.field_suitable_application
+field_name: field_suitable_application
+entity_type: commerce_product
+bundle: default
+label: 适用行业
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      applacation: applacation
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

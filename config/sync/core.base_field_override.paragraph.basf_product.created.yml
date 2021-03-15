@@ -1,0 +1,18 @@
+uuid: b33a058c-4b8a-4f4d-9551-494f4b7c8ef6
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.basf_product
+id: paragraph.basf_product.created
+field_name: created
+entity_type: paragraph
+bundle: basf_product
+label: 发布于
+description: 段落的创建时间。
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

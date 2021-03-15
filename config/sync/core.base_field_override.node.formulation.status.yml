@@ -1,0 +1,22 @@
+uuid: fc0623a7-ca1b-4ea5-845a-6e127baebbaa
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.formulation
+id: node.formulation.status
+field_name: status
+entity_type: node
+bundle: formulation
+label: 已发布
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 开启
+  off_label: 关闭
+field_type: boolean

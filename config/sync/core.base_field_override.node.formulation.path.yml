@@ -1,0 +1,20 @@
+uuid: cf18bfbb-2f1a-4e29-a6c0-cac3967e0219
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.formulation
+  module:
+    - path
+id: node.formulation.path
+field_name: path
+entity_type: node
+bundle: formulation
+label: URL别名
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

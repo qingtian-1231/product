@@ -1,0 +1,22 @@
+uuid: a3704edc-25d2-41bf-9cab-5f6cb8e8779c
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.global_download
+id: node.global_download.status
+field_name: status
+entity_type: node
+bundle: global_download
+label: 已发布
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 开启
+  off_label: 关闭
+field_type: boolean

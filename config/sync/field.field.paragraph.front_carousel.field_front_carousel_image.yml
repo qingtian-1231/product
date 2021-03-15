@@ -1,0 +1,28 @@
+uuid: 089b7bdd-4fdd-4e0e-9a97-a2d73b5ec33d
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_front_carousel_image
+    - media.type.image
+    - paragraphs.paragraphs_type.front_carousel
+id: paragraph.front_carousel.field_front_carousel_image
+field_name: field_front_carousel_image
+entity_type: paragraph
+bundle: front_carousel
+label: 轮播图图片
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

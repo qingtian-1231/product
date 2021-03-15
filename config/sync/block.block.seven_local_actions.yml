@@ -1,0 +1,20 @@
+uuid: f4b32bff-24b7-4182-928a-0785124b37ba
+langcode: zh-hans
+status: true
+dependencies:
+  theme:
+    - seven
+_core:
+  default_config_hash: HHryZVJbeKi9WnuBGC8FOhBZmBnk2G1H6KxFuy-rC9A
+id: seven_local_actions
+theme: seven
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 主要管理动作
+  provider: core
+  label_display: '0'
+visibility: {  }

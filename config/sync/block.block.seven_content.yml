@@ -1,0 +1,22 @@
+uuid: 45110ecd-1b01-453f-b625-e6a6a72ed6ea
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - seven
+_core:
+  default_config_hash: YRY68JWkaUiGeZlWMv1nzeIgDm0ZZwXYgpqUpLFzwAY
+id: seven_content
+theme: seven
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 主页内容
+  provider: system
+  label_display: '0'
+visibility: {  }

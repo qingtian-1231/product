@@ -1,0 +1,20 @@
+uuid: 30e983f6-af14-4f0a-8d14-e8eefabae1de
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.document
+id: media.document.name
+field_name: name
+entity_type: media
+bundle: document
+label: Name
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string

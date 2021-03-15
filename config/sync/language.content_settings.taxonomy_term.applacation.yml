@@ -1,0 +1,18 @@
+uuid: 52684f33-529d-4338-8a27-f7711ea5f512
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.applacation
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: taxonomy_term.applacation
+target_entity_type_id: taxonomy_term
+target_bundle: applacation
+default_langcode: site_default
+language_alterable: true

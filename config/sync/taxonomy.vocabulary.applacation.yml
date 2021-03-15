@@ -1,0 +1,8 @@
+uuid: f8ce76d2-e183-40b1-ab99-77149aeab53e
+langcode: zh-hans
+status: true
+dependencies: {  }
+name: 行业
+vid: applacation
+description: 应用行业列表
+weight: 0

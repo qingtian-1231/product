@@ -1,0 +1,21 @@
+uuid: 26d1bdb8-428c-4e57-b382-4e23d5e65753
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - block_content
+    - entity_reference_revisions
+    - paragraphs
+id: block_content.field_carousel_block
+field_name: field_carousel_block
+entity_type: block_content
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: 8
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

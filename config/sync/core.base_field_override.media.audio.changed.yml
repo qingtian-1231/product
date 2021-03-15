@@ -1,0 +1,18 @@
+uuid: c03ad1a0-7b35-4b2e-ab7c-0cc075f3e25c
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.audio
+id: media.audio.changed
+field_name: changed
+entity_type: media
+bundle: audio
+label: 已更改
+description: 媒体项最后一次被编辑的时间。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

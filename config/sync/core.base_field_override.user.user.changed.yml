@@ -1,0 +1,18 @@
+uuid: 88fffd26-9bd2-4463-8d4f-5a9fc78b58b5
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - user
+id: user.user.changed
+field_name: changed
+entity_type: user
+bundle: user
+label: 已更改
+description: 该用户最后被修改的时间。
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

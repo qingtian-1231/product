@@ -1,0 +1,22 @@
+uuid: 6a0d12eb-c796-432c-b2a4-eea37a907328
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - pro_core
+    - serialization
+    - user
+id: user_favorite_submit
+plugin_id: user_favorite_submit
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth
+    - cookie

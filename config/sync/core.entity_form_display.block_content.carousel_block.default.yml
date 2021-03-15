@@ -1,0 +1,56 @@
+uuid: 148ee17e-002d-4a9a-b902-1a7fb6c2bc28
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - block_content.type.carousel_block
+    - field.field.block_content.carousel_block.body
+    - field.field.block_content.carousel_block.field_carousel_block
+  module:
+    - paragraphs
+id: block_content.carousel_block.default
+targetEntityType: block_content
+bundle: carousel_block
+mode: default
+content:
+  field_carousel_block:
+    type: paragraphs
+    weight: 3
+    settings:
+      title: 段落
+      title_plural: 段落
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: front_carousel
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: '0'
+    third_party_settings: {  }
+    region: content
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  translation:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true

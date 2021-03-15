@@ -1,0 +1,19 @@
+uuid: 27e6a582-0a0c-4380-a3dd-e810df7324a0
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_spray_gun_caliber
+    - node.type.formulation
+id: node.formulation.field_spray_gun_caliber
+field_name: field_spray_gun_caliber
+entity_type: node
+bundle: formulation
+label: 喷枪口径
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

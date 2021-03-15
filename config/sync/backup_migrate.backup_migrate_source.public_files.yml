@@ -1,0 +1,12 @@
+uuid: f5a26aa9-2842-4cf9-b5c1-cc62484e369a
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: PY9HA-hogF4_qq5gZ-TqZDTixx170-APxTcq4rpa014
+id: public_files
+label: 公共文件目录
+type: DrupalFiles
+config:
+  name: 'Public Files Directory'
+  directory: 'public://'

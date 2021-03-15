@@ -1,0 +1,51 @@
+uuid: f23724c1-5814-4e81-9dd2-e2c3a4e29ff0
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - language
+_core:
+  default_config_hash: uwUxQwqEzjNphw2r1_eXr3GJkw1uI0gWkmWQ6J5OvPI
+id: language-edit
+label: 编辑语言
+module: language
+routes:
+  -
+    route_name: entity.configurable_language.edit_form
+tips:
+  language-edit-overview:
+    id: language-edit-overview
+    plugin: text
+    label: 编辑语言
+    body: '<p>此页面让您编辑您站点上的语言，包括自定义的语言。</p>'
+    weight: 1
+  language-edit-langcode:
+    id: language-edit-langcode
+    plugin: text
+    label: 语言代码
+    body: '<p>您不能改变站点中语言的代码，因为系统使用它来管理对应的语言。</p>'
+    weight: 2
+    attributes:
+      data-id: edit-langcode-view
+  language-edit-label:
+    id: language-edit-label
+    plugin: text
+    label: 语言名称
+    body: '<p>在整个网站上，所有用户都使用该语言名称，并且使用英语书写。可以使用“界面翻译”模块来翻译内置语言的名称，并且可以使用“配置翻译”模块来翻译内置和自定义语言的名称。</p>'
+    weight: 3
+    attributes:
+      data-id: edit-label
+  language-edit-direction:
+    id: language-edit-direction
+    plugin: text
+    label: 语言方向
+    body: '<p>选择语言是“从左到右”还是“从右到左”语言。</p> <p>请注意，并非所有主题都支持“从右到左”布局，因此如果您使用的话，请测试您的主题 “从右到左”。</p>'
+    weight: 4
+    attributes:
+      data-id: edit-direction--wrapper--description
+  language-edit-continue:
+    id: language-edit-continue
+    plugin: text
+    label: 接下来
+    body: '<p>现在您已经对“编辑语言”功能进行了概述，您可以继续：<ul> <li>编辑语言</li><li><a href="[site:url]admin/config/regional/language">查看配置的语言</a> </li> </ul> </p>'
+    weight: 5

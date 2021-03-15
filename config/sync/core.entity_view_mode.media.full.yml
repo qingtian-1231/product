@@ -1,0 +1,12 @@
+uuid: 411588b1-1712-4957-9e1f-5103960d2b37
+langcode: zh-hans
+status: false
+dependencies:
+  module:
+    - media
+_core:
+  default_config_hash: 6NBUEuGmlkClK8Fb76tSMMpO2eZ4LWCBdbUk4z7CuP0
+id: media.full
+label: 'Full content'
+targetEntityType: media
+cache: true

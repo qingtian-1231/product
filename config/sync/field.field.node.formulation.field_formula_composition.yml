@@ -1,0 +1,45 @@
+uuid: 3cb6be6e-0f60-4bf5-9afc-39c0ec16a3f5
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_formula_composition
+    - node.type.formulation
+    - paragraphs.paragraphs_type.basf_product
+    - paragraphs.paragraphs_type.normal_product
+  module:
+    - entity_reference_revisions
+id: node.formulation.field_formula_composition
+field_name: field_formula_composition
+entity_type: node
+bundle: formulation
+label: 配方组成
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      basf_product: basf_product
+      normal_product: normal_product
+    target_bundles_drag_drop:
+      basf_product:
+        enabled: true
+        weight: 3
+      normal_product:
+        enabled: true
+        weight: 4
+      country_registration_group:
+        weight: 7
+        enabled: false
+      entity_files:
+        weight: 8
+        enabled: false
+      front_carousel:
+        weight: 9
+        enabled: false
+field_type: entity_reference_revisions

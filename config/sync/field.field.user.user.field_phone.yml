@@ -1,0 +1,20 @@
+uuid: 88bd7da2-2b5b-430d-8fd5-ffc29deca8ce
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_phone
+  module:
+    - user
+id: user.user.field_phone
+field_name: field_phone
+entity_type: user
+bundle: user
+label: 手机
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

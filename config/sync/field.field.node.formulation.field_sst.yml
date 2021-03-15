@@ -1,0 +1,21 @@
+uuid: 82360e3e-c0fa-46bb-9d42-d06ddebfd5d2
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sst
+    - node.type.formulation
+  module:
+    - options
+id: node.formulation.field_sst
+field_name: field_sst
+entity_type: node
+bundle: formulation
+label: 盐雾测试(SST)
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

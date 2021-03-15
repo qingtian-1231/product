@@ -1,0 +1,18 @@
+uuid: 404e2d59-9388-427c-89f2-d542c0d560d1
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - node.type.page
+id: node.page.created
+field_name: created
+entity_type: node
+bundle: page
+label: 发布于
+description: 节点的创建时间。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

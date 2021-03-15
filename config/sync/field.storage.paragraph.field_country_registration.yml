@@ -1,0 +1,19 @@
+uuid: 93c8c20d-4966-425b-a092-016239c24ebe
+langcode: zh-hans
+status: true
+dependencies:
+  module:
+    - address
+    - paragraphs
+id: paragraph.field_country_registration
+field_name: field_country_registration
+entity_type: paragraph
+type: address_country
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

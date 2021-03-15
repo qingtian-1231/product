@@ -1,0 +1,19 @@
+uuid: ef0f6a36-fb57-4d27-9c62-46166e797832
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_spray_size
+    - node.type.formulation
+id: node.formulation.field_spray_size
+field_name: field_spray_size
+entity_type: node
+bundle: formulation
+label: 喷幅大小
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

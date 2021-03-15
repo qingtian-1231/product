@@ -1,0 +1,19 @@
+uuid: 2ea4062a-ac2b-47a3-8429-b6568b601060
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_work
+    - paragraphs.paragraphs_type.normal_product
+id: paragraph.normal_product.field_work
+field_name: field_work
+entity_type: paragraph
+bundle: normal_product
+label: 解释说明
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

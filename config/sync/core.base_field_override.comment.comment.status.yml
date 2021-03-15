@@ -1,0 +1,22 @@
+uuid: 3b6fb99a-8a39-46d8-be20-672c501e1ee0
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - comment.type.comment
+id: comment.comment.status
+field_name: status
+entity_type: comment
+bundle: comment
+label: 已发布
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: 'Drupal\comment\Entity\Comment::getDefaultStatus'
+settings:
+  on_label: 开启
+  off_label: 关闭
+field_type: boolean

@@ -1,0 +1,19 @@
+uuid: 4400ff9e-39a0-4787-89d0-4dd811f4a12c
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_qiangzhidangliang
+id: commerce_product.default.field_qiangzhidangliang
+field_name: field_qiangzhidangliang
+entity_type: commerce_product
+bundle: default
+label: 羟基含量（%基于固含）
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

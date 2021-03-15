@@ -1,0 +1,18 @@
+uuid: a331d924-48c4-47fd-acdc-93f714cde37e
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - media.type.remote_video
+id: media.remote_video.changed
+field_name: changed
+entity_type: media
+bundle: remote_video
+label: 已更改
+description: 媒体项最后一次被编辑的时间。
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

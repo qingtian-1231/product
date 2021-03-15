@@ -1,0 +1,16 @@
+display:
+  embed_administer:
+    display_options:
+      fields:
+        completed:
+          label: Completed
+  embed_manage:
+    display_options:
+      fields:
+        completed:
+          label: Completed
+  embed_review:
+    display_options:
+      fields:
+        completed:
+          label: Completed

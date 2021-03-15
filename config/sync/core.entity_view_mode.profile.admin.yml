@@ -1,0 +1,15 @@
+uuid: 1dd62c90-730b-4362-b858-fae98eaf29b6
+langcode: zh-hans
+status: true
+dependencies:
+  enforced:
+    module:
+      - commerce_order
+  module:
+    - profile
+_core:
+  default_config_hash: rNBHCP7hJFMjP_iDe9-0AsSfkGC98V6Lh_oeOwmLos8
+id: profile.admin
+label: 管理员
+targetEntityType: profile
+cache: true

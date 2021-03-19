@@ -8,21 +8,6 @@
         <div
           :align="alignment"
           :justify="justify"
-          class="search-container"
-          style="height: 320px;"
-        >
-            <span>
-              {{ $t('home.search.searchDescription1') }}
-              <a target="_blank" href="/register">{{ $t('global.registration') }}</a>
-              {{ $t('home.search.searchDescription2') }}
-            </span>
-          <search></search>
-        </div>
-      </v-col>
-      <v-col cols="12" md="6" sm="6">
-        <div
-          :align="alignment"
-          :justify="justify"
           class="teaser-container orange1"
         >
           <a href="https://www.basf.com/" target="_blank">
@@ -43,8 +28,24 @@
               {{ $t('home.ad') }}
             </span>
 
-<!--            <a href="https://www.basf.com/global/en/corona-information.html" target="_blank" class="external">Read More</a>-->
+            <!--            <a href="https://www.basf.com/global/en/corona-information.html" target="_blank" class="external">Read More</a>-->
           </div>
+        </div>
+      </v-col>
+
+      <v-col cols="12" md="6" sm="6">
+        <div
+          :align="alignment"
+          :justify="justify"
+          class="search-container"
+          style="height: 320px;"
+        >
+            <span>
+              {{ $t('home.search.searchDescription1') }}
+              <a target="_blank" href="/register">{{ $t('global.registration') }}</a>
+              {{ $t('home.search.searchDescription2') }}
+            </span>
+          <search></search>
         </div>
       </v-col>
     </v-row>

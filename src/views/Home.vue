@@ -7,8 +7,6 @@
     <features />
 
     <middle-content />
-
-    <contact-us />
   </div>
 </template>
 
@@ -22,7 +20,6 @@
       Features: () => import('@/components/home/Features'),
       Banner: () => import('@/components/home/Banner'),
       MiddleContent: () => import('@/components/home/MiddleContent'),
-      ContactUs: () => import('@/components/home/ContactUs')
     }
   }
 </script>

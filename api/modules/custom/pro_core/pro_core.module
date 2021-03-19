@@ -12,6 +12,16 @@ function pro_core_rest_resource_alter(&$definitions) {
 }
 
 /**
+ * Implements hook_mail().
+ */
+function pro_core_mail($key, &$message, $params) {
+  $message['format'] = 'text/html';
+  $message['headers']['Content-Type'] = SWIFTMAILER_FORMAT_HTML;
+
+  var_dump($message);exit;
+}
+
+/**
  * Implements hook_mail_alter().
  *
  * Sets the default "from" address to the current store email.
@@ -20,6 +30,8 @@ function pro_core_mail_alter(&$message) {
   $to = $message['to'];
   $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
 
+  $message['format'] = 'text/html';
+  $message['headers']['Content-Type'] = SWIFTMAILER_FORMAT_HTML;
   if (substr($message['id'], 0, 9) == 'commerce_') {
     if (strpos($to, '@basf.com') === false) {
       $config = \Drupal::config('system.site');

@@ -1,0 +1,63 @@
+@mixin front_switch_color($color) {
+  header, footer, .slide-caption .button {
+    background-color: $color !important;
+    transition: background-color .3s ease-in-out,color .3s ease-in-out;
+  }
+
+  .search-container {
+    border-bottom: 20px solid $color !important;
+  }
+
+  .caption {
+
+    & > a {
+
+      &:first-child {
+        color: $color;
+        text-decoration: none;
+      }
+
+      &:last-child {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+  }
+
+  #middle-content .col {
+
+    h1 {
+      color: $color;
+    }
+
+    h2 {
+      color: $color;
+    }
+
+    a {
+      color: $color;
+    }
+
+    .v-icon {
+      background-color: $color;
+    }
+
+    .footer-welcome {
+      color: $color;
+      width: 50%;
+      float: left;
+
+      @media screen and (max-width: 480px) {
+        width: 100%;
+      }
+    }
+  }
+
+  #home-search .v-size--large {
+    background-color: $color;
+
+    &:after {
+      background: $color;
+    }
+  }
+}

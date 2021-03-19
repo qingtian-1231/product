@@ -1,3 +1,12 @@
+@import "common.scss";
+
+$default: #2196f3;
+$green: #00793a;
+$green_light: #65ac1e;
+$blue: #004a96;
+$red: #c50022;
+$orange: #f39500;
+
 body {
   font-family: Helvetica Neue LT W01_55 Roman,Helvetica,Arial,sans-serif;
   font-size: 16px;
@@ -73,358 +82,28 @@ body {
   }
 
   /*默认颜色==========*/
-  header, footer, .slide-caption .button {
-    background-color: #2196f3 !important;
-    transition: background-color .3s ease-in-out,color .3s ease-in-out;
-  }
-
-  .search-container {
-    border-bottom: 20px solid #2196f3 !important;
-  }
-
-  .caption {
-
-    & > a {
-
-      &:first-child {
-        color: #2196f3;
-        text-decoration: none;
-      }
-
-      &:last-child {
-        color: #000;
-        text-decoration: none;
-      }
-    }
-  }
-
-  #middle-content .col {
-
-    h1 {
-      color: #2196f3;
-    }
-
-    h2 {
-      color: #2196f3;
-    }
-
-    a {
-      color: #2196f3;
-    }
-
-    .v-icon {
-      background-color: #2196f3;
-    }
-
-    .footer-welcome {
-      color: #2196f3;
-      width: 50%;
-      float: left;
-    }
-  }
-
-  #home-search .v-size--large {
-    background-color: #2196f3;
-
-    &:after {
-      background: #2196f3;
-    }
-  }
+  @include front_switch_color($default);
 
   /*默认颜色==========*/
 
   .green_dark2, .green_dark1 {
-    border-color: #00793a !important;
-
-    header, footer, .slide-caption .button {
-      background-color: #00793a !important;
-    }
-
-    .search-container {
-      border-bottom: 20px solid #00793a !important;
-    }
-
-    .caption {
-
-      & > a {
-
-        &:first-child {
-          color: #00793a;
-          text-decoration: none;
-        }
-
-        &:last-child {
-          color: #000;
-          text-decoration: none;
-        }
-      }
-    }
-
-    #middle-content .col {
-      h1 {
-        color: #00793a;
-      }
-
-      h2 {
-        color: #00793a;
-      }
-
-      a {
-        color: #00793a;
-      }
-
-      .v-icon {
-        background-color: #00793a;
-      }
-
-      .footer-welcome {
-        color: #00793a;
-      }
-    }
-
-    #home-search .v-size--large {
-      background-color: #00793a;
-
-      &:after {
-        background: #00793a;
-      }
-    }
-  }
-
-  .blue_dark2, .blue_dark1 {
-    border-color: #004a96 !important;
-
-    header, footer, .slide-caption .button {
-      background-color: #004a96 !important;
-    }
-
-    .search-container {
-      border-bottom: 20px solid #004a96 !important;
-    }
-
-    .caption {
-
-      & > a {
-
-        &:first-child {
-          color: #004a96;
-          text-decoration: none;
-        }
-
-        &:last-child {
-          color: #000;
-          text-decoration: none;
-        }
-      }
-    }
-
-    #middle-content .col {
-
-      h1 {
-        color: #004a96;
-      }
-
-      h2 {
-        color: #004a96;
-      }
-
-      a {
-        color: #004a96;
-      }
-
-      .v-icon {
-        background-color: #004a96;
-      }
-
-      .footer-welcome {
-        color: #004a96;
-      }
-    }
-
-    #home-search .v-size--large {
-      background-color: #004a96;
-
-      &:after {
-        background: #004a96;
-      }
-    }
+    @include front_switch_color($green);
   }
 
   .green_light2, .green_light1 {
-    border-color: #65ac1e !important;
+    @include front_switch_color($green_light);
+  }
 
-    header, footer, .slide-caption .button {
-      background-color: #65ac1e !important;
-    }
-
-    .search-container {
-      border-bottom: 20px solid #65ac1e !important;
-    }
-
-    .caption {
-
-      & > a {
-
-        &:first-child {
-          color: #65ac1e;
-          text-decoration: none;
-        }
-
-        &:last-child {
-          color: #000;
-          text-decoration: none;
-        }
-      }
-    }
-
-    #middle-content .col {
-
-      h1 {
-        color: #65ac1e;
-      }
-
-      h2 {
-        color: #65ac1e;
-      }
-
-      a {
-        color: #65ac1e;
-      }
-
-      .v-icon {
-        background-color: #65ac1e;
-      }
-
-      .footer-welcome {
-        color: #65ac1e;
-      }
-    }
-
-    #home-search .v-size--large {
-      background-color: #65ac1e;
-
-      &:after {
-        background: #65ac1e;
-      }
-    }
+  .blue_dark2, .blue_dark1 {
+    @include front_switch_color($blue);
   }
 
   .red1, .red2 {
-    border-color: #c50022 !important;
-
-    header, footer, .slide-caption .button {
-      background-color: #c50022 !important;
-    }
-
-    .search-container {
-      border-bottom: 20px solid #c50022 !important;
-    }
-
-    .caption {
-
-      & > a {
-
-        &:first-child {
-          color: #c50022;
-          text-decoration: none;
-        }
-
-        &:last-child {
-          color: #000;
-          text-decoration: none;
-        }
-      }
-    }
-
-    #middle-content .col {
-
-      h1 {
-        color: #c50022;
-      }
-
-      h2 {
-        color: #c50022;
-      }
-
-      a {
-        color: #c50022;
-      }
-
-      .v-icon {
-        background-color: #c50022;
-      }
-
-      .footer-welcome {
-        color: #c50022;
-      }
-    }
-
-    #home-search .v-size--large {
-      background-color: #c50022;
-
-      &:after {
-        background: #c50022;
-      }
-    }
+    @include front_switch_color($red);
   }
 
   .orange1, .orange2 {
-    border-color: #f39500 !important;
-
-    header, footer, .slide-caption .button {
-      background-color: #f39500 !important;
-    }
-
-    .search-container {
-      border-bottom: 20px solid #f39500 !important;
-    }
-    
-    .caption {
-      
-      & > a {
-
-        &:first-child {
-          color: #f39500;
-          text-decoration: none;
-        }
-
-        &:last-child {
-          color: #000;
-          text-decoration: none;
-        }
-      }
-    }
-
-    #middle-content .col {
-
-      h1 {
-        color: #f39500;
-      }
-
-      h2 {
-        color: #f39500;
-      }
-
-      a {
-        color: #f39500;
-      }
-
-      .v-icon {
-        background-color: #f39500;
-      }
-
-      .footer-welcome {
-        color: #f39500;
-      }
-    }
-
-    #home-search .v-size--large {
-      background-color: #f39500;
-
-      &:after {
-        background: #f39500;
-      }
-    }
+    @include front_switch_color($orange);
   }
 
   .v-application {
@@ -453,7 +132,6 @@ body {
       max-width: 200px !important;
     }
   }
-
 
   .teaser-container {
     background-color: #fff;

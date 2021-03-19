@@ -1,0 +1,19 @@
+uuid: 5be8c9e1-90df-4df4-90ed-9342f065a1ab
+langcode: zh-hans
+status: true
+dependencies:
+  config:
+    - business_rules.action.send_email
+description: 在线请求有人提交内容
+id: webform_feedback
+label: 'webform feedback'
+enabled: null
+reacts_on: entity_insert
+items:
+  send_email:
+    id: send_email
+    type: action
+    weight: -9
+tags: {  }
+target_bundle: feedback
+target_entity_type: webform_submission

@@ -1,0 +1,13 @@
+uuid: 32a6720c-cc80-4a6c-9c97-37ef1e8eeeab
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: webform_feedback_value
+label: 'webform feedback value'
+description: 在线请求表单提交内容
+settings:
+  field: uuid
+tags: {  }
+type: data_comparison
+target_entity_type: webform_submission
+target_bundle: feedback

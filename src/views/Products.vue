@@ -9,7 +9,7 @@
           </v-btn>
         </v-col>
 
-        <v-col class="col-xs-8" md="8">
+        <v-col class="col-xs-8 product-filter-list" md="8">
           <template v-for="(item, index) in currentTerms">
             <v-chip
               :key="index"
@@ -583,6 +583,11 @@ export default {
 <style lang="scss" scoped>
 #products {
   max-width: 1318px;
+
+  .product-filter-list {
+    align-items: center;
+    display: flex;
+  }
 
   .product-list {
     .v-list {

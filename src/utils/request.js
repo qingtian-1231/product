@@ -14,6 +14,10 @@ if (process.env.NODE_ENV === "stage") {
   apiServer = config.stage.apiServer;
 }
 
+if (process.env.NODE_ENV === "local") {
+  apiServer = config.local.apiServer;
+}
+
 if (process.env.NODE_ENV === "development") {
   apiServer = config.dev.apiServer;
 }

@@ -96,8 +96,9 @@
                 }
               })
             }
-            vm.$loading.hide()
           }
+
+          vm.$loading.hide()
         })
       },
 

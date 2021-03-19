@@ -136,7 +136,6 @@
     <v-dialog
       v-model="requestDialog"
       transition="dialog-bottom-transition"
-      scrollable
       persistent
       max-width="940px"
     >

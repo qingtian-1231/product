@@ -1,0 +1,20 @@
+uuid: 5628d415-0804-4bc8-ad00-ba55d1bb1c81
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: send_email
+label: 'send email'
+description: 发送电子邮件
+settings:
+  use_site_mail_as_sender: true
+  from: ''
+  to: chenpeiqing.1393599253@live.com
+  subject: 测试邮箱
+  format: html
+  body:
+    value: "<h1>测试富文本文字</h1>\r\n\r\n<p>[webform_submission:values:html]</p>\r\n\r\n<p>[webform_submission:values:?]</p>\r\n"
+    format: full_html
+tags: {  }
+type: send_email
+target_entity_type: null
+target_bundle: null

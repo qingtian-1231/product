@@ -29,6 +29,7 @@
 
 <script>
   import { mapState } from 'vuex'
+  import { isMobile } from '../../utils/globalUtils'
 
   export default {
     name: 'carousel',
@@ -55,7 +56,7 @@
     },
 
     created () {
-      if (this._isMobile()) {
+      if (isMobile()) {
         this.height = 208
       }
     },
@@ -65,12 +66,7 @@
       vm.$store.dispatch('getCarousel')
     },
 
-    methods: {
-      _isMobile() {
-        let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
-        return flag;
-      }
-    }
+    methods: {}
   }
 </script>
 

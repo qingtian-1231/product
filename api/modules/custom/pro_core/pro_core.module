@@ -106,3 +106,19 @@ function pro_core_theme_registry_alter(&$theme_registry) {
     $theme_registry['commerce_order_receipt']['template'] = 'commerce-order-receipt-zh';
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function pro_core_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'user_register_form' || $form_id === 'user_pass') {
+    $form['#access'] = FALSE;
+    $form['#markup'] = t('Access Denied.');
+    $form['#cache'] = [
+      'contexts' => [],
+      'max-age' => 0,
+      'tags' => []
+    ];
+  }
+
+}

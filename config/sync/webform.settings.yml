@@ -25,7 +25,7 @@ settings:
   default_form_file_limit: ''
   form_classes: "container-inline clearfix\nform--inline clearfix\nmessages messages--error\nmessages messages--warning\nmessages messages--status\n"
   button_classes: ''
-  default_wizard_prev_button_label: '<上一页'
+  default_wizard_prev_button_label: '< Previous'
   default_wizard_next_button_label: 下一页>
   default_wizard_start_label: 开始
   default_wizard_confirmation_label: Complete

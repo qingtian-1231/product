@@ -10,6 +10,7 @@ dependencies:
     - field.field.user.user.field_formulation_list
     - field.field.user.user.field_phone
     - field.field.user.user.field_product_list
+    - field.field.user.user.field_receive_message
     - field.field.user.user.field_user_account_name
     - field.field.user.user.user_picture
     - image.style.thumbnail
@@ -40,6 +41,7 @@ hidden:
   field_formulation_list: true
   field_phone: true
   field_product_list: true
+  field_receive_message: true
   field_user_account_name: true
   langcode: true
   member_for: true

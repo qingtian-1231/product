@@ -2,29 +2,33 @@
   <v-container id="products" tag="section">
     <v-col lg="12" md="12" sm="12">
       <v-row class="back">
-        <v-col class="col-xs-3" md="3">
+        <v-col class="col-xs-2" md="2">
           <v-btn class="float-left" color="primary" @click="$router.back(-1)">
             <v-icon>apps</v-icon>
             {{ $t('global.goBack') }}
           </v-btn>
         </v-col>
 
-        <v-col class="col-xs-5" md="5">
-          <template v-if="!Array.isArray(currentTerm)">
+        <v-col class="col-xs-8" md="8">
+          <template v-for="(item, index) in currentTerms">
             <v-chip
+              :key="index"
               class="float-left"
               close
-              color="teal"
+              small
+              color="primary"
               text-color="white"
-              @click:close="removeFilter()"
+              @click:close="removeFilter(item)"
             >
-              <v-icon>mdi-label</v-icon>
-              {{ currentTerm.name }}
+              <v-icon left>
+                mdi-label
+              </v-icon>
+              {{ item.name }}
             </v-chip>
           </template>
         </v-col>
 
-        <v-col class="col-xs-4" style="text-align: right;">
+        <v-col class="col-xs-2" style="text-align: right;">
           <span class="product-list-count">{{ productListCount }}</span>
 <!--          <v-btn-->
 <!--            icon-->
@@ -256,6 +260,7 @@ import ProductDetails from "../components/ProductDetails";
 import Icon from "../components/svg/features/Icon";
 import { mapState } from "vuex";
 import config from "../config";
+import {globalUtils} from "../utils/globalUtils";
 
 const isDev = process.env.NODE_ENV !== "production";
 // 每页显示的产品条数
@@ -287,13 +292,20 @@ export default {
     productQuery: {},
     previewProductBasic: {},
     previewProductProp: {},
-    currentTerm: [],
+    currentTerms: [],
+    productsFilter: {
+      'product_application_ids': 'all',
+      'product_type_ids': 'all',
+      'product_brand_ids': 'all',
+    },
+    subIds: [],
   }),
 
   mounted() {
     let vm = this;
     vm.productQuery = this.$router.history.current.query;
     vm.distance = 1;
+    vm.buildProductsFilter();
     vm.changeFilter();
   },
 
@@ -301,11 +313,49 @@ export default {
     $route(to, from) {
       let vm = this;
       vm.productQuery = to.query;
+      vm.buildProductsFilter();
       vm.changeFilter();
     }
   },
 
   methods: {
+    buildProductsFilter () {
+      let vm = this
+      vm.productQuery = vm.$router.history.current.query
+      vm.currentTerms = []
+      vm.subIds = []
+      vm.productsFilter = {
+        'product_application_ids': 'all',
+        'product_type_ids': 'all',
+        'product_brand_ids': 'all',
+      }
+      if (vm.productQuery.hasOwnProperty("industry")) {
+        vm.getChildrenIds(vm.taxonomyProductApplication, vm.productQuery.industry)
+        if (!vm.subIds) {
+          vm.subIds = [];
+        }
+        vm.productsFilter.product_application_ids = vm.productQuery.industry + '+' + vm.subIds.join('+')
+      }
+
+      if (vm.productQuery.hasOwnProperty("product_type")) {
+        // 获得当前层级产品类型的所有子类型
+        vm.getChildrenIds(vm.taxonomyProductType, vm.productQuery.product_type)
+        if (!vm.subIds) {
+          vm.subIds = [];
+        }
+        vm.productsFilter.product_type_ids = vm.productQuery.product_type + '+' + vm.subIds.join('+')
+      }
+
+      if (vm.productQuery.hasOwnProperty("product_brand")) {
+        vm.getChildrenIds(vm.taxonomyProductBrand, vm.productQuery.product_brand);
+        if (!vm.subIds) {
+          vm.subIds = [];
+        }
+
+        vm.productsFilter.product_brand_ids = vm.productQuery.product_brand + '+' + vm.subIds.join('+')
+      }
+    },
+
     showProductCard () {
      let vm = this
       vm.showList = false
@@ -338,44 +388,11 @@ export default {
     infiniteHandler($state) {
       let vm = this;
       let options = {};
-      let filter = {
-        'product_application_ids': 'all',
-        'product_type_ids': 'all',
-        'product_brand_ids': 'all',
-      }
-
       options.items_per_page = pageCount
       options.page = Math.ceil(vm.productList.length / pageCount)
 
-      if (vm.productQuery.hasOwnProperty("industry")) {
-        let subIds = []
-        subIds = vm.getChildrenIds(vm.taxonomyProductApplication, vm.productQuery.industry)
-        if (!subIds) {
-          subIds = [];
-        }
-        filter.product_application_ids = vm.productQuery.industry + '+' + subIds.join('+')
-      }
-
-      if (vm.productQuery.hasOwnProperty("product_type")) {
-        let subIds = []
-        subIds = vm.getChildrenIds(vm.taxonomyProductType, vm.productQuery.product_type)
-        if (!subIds) {
-          subIds = [];
-        }
-        filter.product_type_ids = vm.productQuery.product_type + '+' + subIds.join('+')
-      }
-
-      if (vm.productQuery.hasOwnProperty("product_brand")) {
-        let subIds = []
-        subIds = vm.getChildrenIds(vm.taxonomyProductBrand, vm.productQuery.product_brand);
-        if (!subIds) {
-          subIds = [];
-        }
-        filter.product_brand_ids = vm.productQuery.product_brand + '+' + subIds.join('+')
-      }
-
       vm.$loading.show()
-      vm.$store.dispatch("getProductList", {filter: filter, options: options}).then(() => {
+      vm.$store.dispatch("getProductList", {filter: vm.productsFilter, options: options}).then(() => {
         let products = vm.$store.state.product.productList;
         // products = products.map((product) => {
         //   vm.$store.dispatch('getProductDetails', {
@@ -474,38 +491,91 @@ export default {
       this.$store.state.core.requestProductDialog = false;
     },
 
-    getChildrenIds(terms, target_id) {
+    getChildrenIds(terms, target_id, isTarget = false) {
       let vm = this
-      let childrens = []
-
-      for (let id in terms) {
-        if (terms[id]['tid'] == target_id) {
-          childrens = terms[id]['children_ids']
-
-          if (terms[id].children.length > 0) {
-            for (let cid in terms[id].children) {
-              // 已经选中的分类获得他所有的孩子的id
-              childrens.push.apply(childrens, terms[id].children[cid]['children_ids']);
-            }
-          }
-          vm.currentTerm = terms[id]
-        }
+      if (!terms) {
+        // return; 中断执行
+        return;
       }
+      for (let id in terms) {
+        /**
+         * 如果相等则返回所有的children ids
+         * 如果不等则继续迭代每一个children
+         */
+        const childTerms = terms[id]['children']
+        if (terms[id]['tid'] == target_id) {
+          // 已经选中的分类获得他所有的孩子的id
+          vm.subIds.push.apply(vm.subIds, terms[id]['children_ids'])
+          vm.getChildrenIds(childTerms, target_id, true)
 
-      if (childrens.length <= 0) {
-        for (let id in terms) {
-          return vm.getChildrenIds(terms[id]['children'], target_id)
+          // 设置当前顶部的过滤选项
+          vm.setCurrentTerms(terms[id])
         }
-      } else {
-        return childrens
+        else {
+          vm.getChildrenIds(childTerms, target_id)
+        }
+
+        // 所有选中的目标分类的所有子分类
+        if (isTarget) {
+          vm.subIds.push.apply(vm.subIds, terms[id]['children_ids'])
+        }
       }
     },
 
-    removeFilter() {
-      this.currentTerm = []
+    //递归设置当前过滤项及其所有父亲层级
+    setCurrentTerms(targetTerm) {
+      if (!targetTerm) {
+        // return; 中断执行
+        return;
+      }
+      let vm = this
+      vm.currentTerms.unshift(targetTerm)
+      let parentProductType = globalUtils.findParentTid(vm.taxonomyProductType, targetTerm['tid'])
 
-      window.location.href = '/products'
-      // this.$router.push({ path: `/products` });
+      if (parentProductType && parentProductType['tid'] !== targetTerm['tid']) {
+        // 如果当前存在父亲层级，那么继续向上追索
+        vm.setCurrentTerms(parentProductType)
+      }
+    },
+
+    removeFilter(targetItem, currentLevel = true) {
+      let vm = this
+      let query = this.$router.history.current.query
+      let newQuery = JSON.parse(JSON.stringify(query));
+
+      // 第一次进来时删除当前筛选
+      if (currentLevel) {
+        vm.currentTerms.splice(vm.currentTerms.findIndex(item => {
+          return item.tid === targetItem.tid
+        }), 1)
+      }
+
+      // 删除筛选项的子项
+      vm.currentTerms = vm.currentTerms.filter(item => {
+
+        return !targetItem.children_ids.includes(item.tid)
+      })
+
+      // 如果筛选项存在孩子则继续迭代删除子项
+      if (Array.isArray(targetItem.children) && targetItem.children.length) {
+        targetItem.children.forEach(child => {
+          vm.removeFilter(child, false)
+        })
+      }
+
+      // 如果存在筛选项则拼接成新的连接，不存在在访问默认全部列表
+      if (vm.currentTerms.length) {
+        const currentTerm = vm.currentTerms[vm.currentTerms.length - 1]
+        // let parameters = '';
+        for (let j in newQuery) {
+          newQuery[j] = currentTerm.tid
+          // parameters = `&${j}=${newQuery[j]}`
+        }
+        // window.location.href = '/products?' + parameters
+        vm.$router.push({ path: '/products', query: newQuery })
+      } else {
+        vm.$router.push({ path: '/products'})
+      }
     }
   }
 };

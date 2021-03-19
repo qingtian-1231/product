@@ -128,7 +128,43 @@
             <v-col cols="12" sm="6" class="yin-si-xie-yi">
               <v-row align="center">
                 <v-switch v-model="agree" :label="$t('global.agree')" :rules="[rules.required]"></v-switch>
-                <a target="_blank" href="https://www.basf.com/en/tools/legal/data-protection.html">{{ $t('global.private') }}</a>
+                <v-dialog
+                  v-model="privacyDialog"
+                  width="500"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <a
+                      color="red lighten-2"
+                      dark
+                      v-bind="attrs"
+                      v-on="on"
+                    >{{ $t('global.private') }}</a>
+                  </template>
+                  <v-card>
+                    <v-card-title class="headline grey lighten-2">
+                      {{ $t('global.private') }}
+                    </v-card-title>
+
+                    <v-card-text class="privacy-agreement">
+                      <br/>
+                        {{ $t('global.privateContent1') }}<br/><br/>
+                      {{ $t('global.privateContent2') }}
+                    </v-card-text>
+
+                    <v-divider></v-divider>
+
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="primary"
+                        text
+                        @click="closeDialog()"
+                      >
+                        {{ $t('global.agree') }}
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
               </v-row>
             </v-col>
           </v-row>
@@ -163,6 +199,7 @@
 
     data: function () {
       return {
+        privacyDialog: false,
         agree: false,
         businessModelList: [
           {
@@ -224,8 +261,14 @@
     },
 
     methods: {
-      closeRequestDialog: function () {
-        this.$emit('fatherMethod')
+      // closeRequestDialog: function () {
+      //   this.$emit('fatherMethod')
+      // },
+
+      closeDialog: function () {
+        let vm = this
+        vm.privacyDialog = false
+        vm.agree = true
       },
 
       registerUser () {
@@ -372,6 +415,11 @@
     .bottom {
       padding-top: 40px;
       border-top: 1px solid #eee;
+    }
+
+    .privacy-agreement {
+      text-indent: 20px;
+      text-align: justify;
     }
   }
 

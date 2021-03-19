@@ -55,6 +55,8 @@ module.exports = {
     forget: '忘记密码?',
     agree: '同意',
     private: '隐私协议',
+    privateContent1: '我同意将上述信息提供给巴斯夫（中国）有限公司（“巴斯夫中国”）及其在中华人民共和国境内和/或境外的关联方※（合称“巴斯夫”）以及其各自的服务商。',
+    privateContent2: '※关联方是指，直接或间接控制巴斯夫中国或被巴斯夫中国控制或与巴斯夫中国共同直接或间接受他方控制的任何公司或其他实体。为本定义之目的，“控制”是指直接或间接地拥有所述公司或实体的百分之五十（50%）以上的股份或注册资本（或类似性质的权益）的所有权。',
     shareThisPage: '分享这个页面',
     copyLink: '复制链接',
     sendEmail: '发送邮件',
@@ -120,6 +122,7 @@ module.exports = {
     description: '如果您对使用巴斯夫产品中心有任何建议或疑问，请随时与我们联系。',
     feedbackContent: '内容',
     yourEmail: '您的邮箱地址',
+    yourPhone: '您的手机号',
     thanks: '感谢您的反馈！',
   },
   loginDialog: {

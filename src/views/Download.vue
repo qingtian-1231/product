@@ -14,17 +14,49 @@
             <template v-for="(download, index) in downloadList">
               <v-hover :key="index" v-slot:default="{ hover }">
                 <v-list-item targe :class="hover ? 'elevation-12' : ''" @click="test">
-                  <v-list-item-content>
-                    <v-list-item-title v-text="download.title"></v-list-item-title>
-                  </v-list-item-content>
+<!--                  <v-list-item-content>-->
+<!--                    <v-list-item-title v-text="download.title"></v-list-item-title>-->
+<!--                  </v-list-item-content>-->
 
-                  <v-list-item-avatar>
-                    <v-icon class="material-icons-outlined">attach_file</v-icon>
-                  </v-list-item-avatar>
+                  <div v-if="download.extension.toLowerCase() === 'pdf'">
+                    <v-list-item-avatar>
+                      <v-icon color="secondary" class="material-icons-outlined">mdi-file-pdf</v-icon>
+                    </v-list-item-avatar>
+                  </div>
+
+                  <div v-else-if="download.extension.toLowerCase() === 'txt'">
+                    <v-list-item-avatar>
+                      <v-icon color="secondary" class="material-icons-outlined">mdi-clipboard-text</v-icon>
+                    </v-list-item-avatar>
+                  </div>
+
+                  <div v-else-if="download.extension.toLowerCase() === 'doc' || download.extension.toLowerCase() === 'docx'">
+                    <v-list-item-avatar>
+                      <v-icon color="secondary" class="material-icons-outlined">mdi-file-word</v-icon>
+                    </v-list-item-avatar>
+                  </div>
+
+                  <div v-else-if="download.extension.toLowerCase() === 'ppt' || download.extension.toLowerCase() === 'pptx'">
+                    <v-list-item-avatar>
+                      <v-icon color="secondary" class="material-icons-outlined">mdi-file-powerpoint</v-icon>
+                    </v-list-item-avatar>
+                  </div>
+
+                  <div v-else-if="download.extension.toLowerCase() === 'xls' || download.extension.toLowerCase() === 'xlsx'">
+                    <v-list-item-avatar>
+                      <v-icon color="secondary" class="material-icons-outlined">mdi-file-excel</v-icon>
+                    </v-list-item-avatar>
+                  </div>
+
+                  <div v-else>
+                    <v-list-item-avatar>
+                      <v-icon color="secondary" class="material-icons-outlined">mdi-file-document</v-icon>
+                    </v-list-item-avatar>
+                  </div>
 
                   <v-list-item-content>
                     <a @click="trackClickEvent()" :href="download.field_global_file" download target="_blank">
-                      <v-list-item-title v-text="download.filename"></v-list-item-title>
+                      <v-list-item-title v-text="download.title"></v-list-item-title>
                     </a>
                   </v-list-item-content>
 

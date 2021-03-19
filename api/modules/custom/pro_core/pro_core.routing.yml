@@ -1,0 +1,6 @@
+pro_core.user_export_csv:
+  path: '/admin/people/export/list'
+  defaults:
+    _title: '导出用户列表'
+  requirements:
+    _permission: 'access content'

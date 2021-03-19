@@ -1,0 +1,10 @@
+uuid: 3f1cabb9-55af-4fa2-97f7-afa00d1ad4bb
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: z9ULI9nj9yt73YKI3ZE8v9yXhkVfvQsDJToEDzijcxY
+id: access_token
+label: 'Access Token'
+description: 'The access token type.'
+locked: true

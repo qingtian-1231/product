@@ -1,0 +1,10 @@
+uuid: 2a0a29d1-d431-4a7f-a5fd-2ccf52f0e9f2
+langcode: zh-hans
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: zYKaSl4QZrKMFj7aIhSGDRcBy4SoNjvY2EZlT7amrBk
+id: auth_code
+label: 'Auth code'
+description: 'The auth code type.'
+locked: true

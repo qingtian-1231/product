@@ -21,7 +21,7 @@
           <template v-else>
             <h1>{{ $t('industry.noDescription') }}</h1>
           </template>
-          
+
         </div>
       </v-row>
 
@@ -102,7 +102,10 @@
       },
 
       goClick (path, tid) {
-        this.$router.push({ path: path, query: {industry: tid}})
+        // this.$router.push({ path: path, query: {industry: tid}})
+
+        // 从vue 无刷新改为刷新跳转
+        window.location.href = `/${path}/?industry=${tid}`
       }
     }
   }

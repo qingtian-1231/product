@@ -1,0 +1,6 @@
+pro_core_user_export_csv:
+  route_name: pro_core.user_export_csv
+  title: '导出用户列表'
+#  class: '\Drupal\example\Plugin\Menu\LocalAction\CustomLocalAction'
+  appears_on:
+    - entity.user.collection

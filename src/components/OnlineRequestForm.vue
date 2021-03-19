@@ -40,12 +40,57 @@
             outlined
           ></v-text-field>
 
+          <v-text-field
+            :label="$t('onlineRequestForm.yourPhone')"
+            required
+            v-model="phoneNumber"
+            :rules="[rules.required, rules.phoneNumber]"
+            outlined
+          ></v-text-field>
+
           <v-col cols="12" sm="6" class="yin-si-xie-yi">
             <v-row align="center">
               <v-switch v-model="agree" :label="$t('global.agree')" :rules="[rules.required]"></v-switch>
-              <a target="_blank" href="https://www.basf.com/en/tools/legal/data-protection.html">{{ $t('global.private') }}</a>
+              <v-dialog
+                v-model="privacyDialog"
+                width="500"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <a
+                    color="red lighten-2"
+                    dark
+                    v-bind="attrs"
+                    v-on="on"
+                  >{{ $t('global.private') }}</a>
+                </template>
+                <v-card>
+                  <v-card-title class="headline grey lighten-2">
+                    {{ $t('global.private') }}
+                  </v-card-title>
+
+                  <v-card-text class="privacy-agreement">
+                    <br/>
+                    {{ $t('global.privateContent1') }}<br/><br/>
+                    {{ $t('global.privateContent2') }}
+                  </v-card-text>
+
+                  <v-divider></v-divider>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="primary"
+                      text
+                      @click="closeDialog()"
+                    >
+                      {{ $t('global.agree') }}
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
             </v-row>
           </v-col>
+
           <div class="row text-center mx-0">
             <v-col cols="6" md="6" sm="6">
               <v-btn class="ma-2" block rounded color="info" @click="closeRequestDialog()">
@@ -74,18 +119,32 @@
 
     data: function () {
       return {
+        agree: false,
+        privacyDialog: false,
         onlineRequestValid: true,
         feedback_success: 0,
         feedback_content: '',
         email_address: '',
+        phoneNumber: '',
         rules: {
           required: v => !!v || this.$t('global.required'),
-          emailMatch: v => (/.+@.+\..+/.test(v) || this.$t('global.emailMatch'))
+          emailMatch: v => (/.+@.+\..+/.test(v) || this.$t('global.emailMatch')),
+          phoneNumber: v => {
+            let reg = /^\d+$/
+
+            return reg.test(v) || this.$t('global.phoneNumber')
+          },
         },
       }
     },
 
     methods: {
+      closeDialog: function () {
+        let vm = this
+        vm.privacyDialog = false
+        vm.agree = true
+      },
+
       closeRequestDialog: function () {
         let vm = this
         vm.$emit('fatherMethod')
@@ -99,6 +158,7 @@
             {
               webform_id: 'feedback',
               email_address: vm.email_address,
+              phone: vm.phoneNumber,
               feedback_content: vm.feedback_content
             }
           )

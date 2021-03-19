@@ -17,6 +17,7 @@
             <v-chip
               :key="index"
               class="float-left"
+              small
               close
               color="teal"
               text-color="white"
@@ -549,7 +550,7 @@
         }
 
         window.location.href = '/formulations?' + parameters
-        // vm.$router.push({ path: 'formulations', query: newQuery});
+        // vm.$router.push({ path: '/formulations', query: newQuery});
       }
     }
   }

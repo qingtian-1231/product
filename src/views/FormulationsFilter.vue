@@ -56,15 +56,18 @@
     },
 
     data: () => ({
-      panel: 0,
+      panel: [],
     }),
 
     created() {
       this.formulationApplicationList.forEach((item, index) => {
-        if (item.name === '工业涂料' || item.name === 'Industrial coating') {
-          this.panel = index
-        }
-      })
+        /**
+         * 默认第一个工业涂料不再展开
+         */
+        // if (item.name === '工业涂料' || item.name === 'Industrial coating') {
+        //   this.panel = index
+        // }
+      });
     }
   }
 </script>

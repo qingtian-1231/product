@@ -16,7 +16,7 @@ const loading = {
   },
   hide() { // 隐藏方法
     instance.show = false
-    console.log(instance.$el, 'instance.$el')
+    // console.log(instance.$el, 'instance.$el')
     document.body.removeChild(instance.$el)
   }
 }

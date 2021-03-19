@@ -165,10 +165,10 @@ parameters:
     # Specify allowed request methods, specify ['*'] to allow all possible ones.
     allowedMethods: ['*']
     # Configure requests allowed from specific origins.
-    allowedOrigins: ['*']
+    allowedOrigins: ['http://localhost:8080', 'http://product.dev.cpq', 'http://basf.infiniteread.com', 'https://www.basf-product.com']
     # Sets the Access-Control-Expose-Headers header.
     exposedHeaders: false
     # Sets the Access-Control-Max-Age header.
-    maxAge: false
+    maxAge: 86400
     # Sets the Access-Control-Allow-Credentials header.
     supportsCredentials: false

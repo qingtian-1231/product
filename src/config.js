@@ -11,6 +11,10 @@ module.exports = {
     pageCount: 10,
     apiServer: "http://api.basf.infiniteread.com"
   },
+  local: {
+    pageCount: 5,
+    apiServer: "http://api.product.cpq"
+  },
   dev: {
     pageCount: 5,
     apiServer: "http://api.product.cpq"

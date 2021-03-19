@@ -9,6 +9,7 @@ dependencies:
     - field.field.user.user.field_formulation_list
     - field.field.user.user.field_phone
     - field.field.user.user.field_product_list
+    - field.field.user.user.field_receive_message
     - field.field.user.user.field_user_account_name
     - field.field.user.user.user_picture
     - image.style.thumbnail
@@ -69,6 +70,16 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_receive_message:
+    weight: 13
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_user_account_name:
     weight: 11

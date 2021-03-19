@@ -55,6 +55,8 @@ module.exports = {
     forget: 'Forgot your password?',
     agree: 'Agree',
     private: 'Privacy Agreement',
+    privateContent1: 'I agree to provide the above information to BASF (China) Co., Ltd. (“BCH”) and its Affiliates※ inside and/or outside of the People’s Republic of China (collectively referred to as “BASF”) and their respective service providers. \n',
+    privateContent2: '※Affiliates mean any company or other entity directly or indirectly controlling or controlled by or under direct or indirect common control with BCH. For the purpose of this definition, “control” means direct or indirect ownership of more than fifty  percent (50%) of the shares or registered capital (or other equity interests of similar nature) of the said company or entity. \n',
     shareThisPage: 'Share This Page',
     copyLink: 'Copy Link',
     sendEmail: 'Send Email',
@@ -120,6 +122,7 @@ module.exports = {
     description: 'If you have any suggestions or questions regarding the usage of BASF Product Center, please do not hesitate to give us your feedback.',
     feedbackContent: 'Content',
     yourEmail: 'E-mail',
+    yourPhone: 'Phone',
     thanks: 'Thanks for your feedback！',
   },
   loginDialog: {

@@ -12,16 +12,6 @@ function pro_core_rest_resource_alter(&$definitions) {
 }
 
 /**
- * Implements hook_mail().
- */
-function pro_core_mail($key, &$message, $params) {
-  $message['format'] = 'text/html';
-  $message['headers']['Content-Type'] = SWIFTMAILER_FORMAT_HTML;
-
-  var_dump($message);exit;
-}
-
-/**
  * Implements hook_mail_alter().
  *
  * Sets the default "from" address to the current store email.
@@ -89,7 +79,8 @@ password.
           'type' => 'customer',
           'is_default' => 1,
         ]);
-
+      // 用户创建订单之后邮件给当前管理员账户发送一封相同邮件。
+      $message['to'] .= 'basf_product@163.com';
       $profile = reset($list);
       if ($profile) {
         if ($language === 'en') {

@@ -25,6 +25,8 @@ settings:
             - JustifyBlock
             - Outdent
             - Indent
+            - BGColor
+            - TextColor
         -
           name: Linking
           items:
@@ -80,6 +82,8 @@ settings:
       styles: ''
     language:
       language_list: un
+    colorbutton:
+      colors: ''
 image_upload:
   status: true
   scheme: public

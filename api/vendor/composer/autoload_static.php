@@ -275,6 +275,7 @@ class ComposerStaticInite30618fd8ecca5896c1323bfd836b529
             'Drupal\\path_alias\\' => 18,
             'Drupal\\path\\' => 12,
             'Drupal\\paragraphs\\' => 18,
+            'Drupal\\panelbutton\\' => 19,
             'Drupal\\page_cache\\' => 18,
             'Drupal\\options\\' => 15,
             'Drupal\\node\\' => 12,
@@ -337,6 +338,7 @@ class ComposerStaticInite30618fd8ecca5896c1323bfd836b529
             'Drupal\\commerce_cart_api\\' => 25,
             'Drupal\\commerce\\' => 16,
             'Drupal\\comment\\' => 15,
+            'Drupal\\colorbutton\\' => 19,
             'Drupal\\color\\' => 13,
             'Drupal\\ckeditor\\' => 16,
             'Drupal\\captcha\\' => 15,
@@ -942,6 +944,7 @@ class ComposerStaticInite30618fd8ecca5896c1323bfd836b529
         'Drupal\\typed_data\\' => 
         array (
             0 => __DIR__ . '/../../..' . '/api/modules/contributed/typed_data/src',
+            1 => __DIR__ . '/../../..' . '/api/modules/contributed/typed_data/src',
         ),
         'Drupal\\tracker\\' => 
         array (
@@ -1051,6 +1054,7 @@ class ComposerStaticInite30618fd8ecca5896c1323bfd836b529
         'Drupal\\rules\\' => 
         array (
             0 => __DIR__ . '/../../..' . '/api/modules/contributed/rules/src',
+            1 => __DIR__ . '/../../..' . '/api/modules/contributed/rules/src',
         ),
         'Drupal\\restui\\' => 
         array (
@@ -1111,6 +1115,10 @@ class ComposerStaticInite30618fd8ecca5896c1323bfd836b529
         array (
             0 => __DIR__ . '/../../..' . '/api/modules/contributed/paragraphs/src',
             1 => __DIR__ . '/../../..' . '/api/modules/contributed/paragraphs/src',
+        ),
+        'Drupal\\panelbutton\\' => 
+        array (
+            0 => __DIR__ . '/../../..' . '/api/modules/contributed/panelbutton/src',
         ),
         'Drupal\\page_cache\\' => 
         array (
@@ -1421,6 +1429,10 @@ class ComposerStaticInite30618fd8ecca5896c1323bfd836b529
         array (
             0 => __DIR__ . '/../../..' . '/api/core/modules/comment/src',
             1 => __DIR__ . '/../../..' . '/api/core/modules/comment/src',
+        ),
+        'Drupal\\colorbutton\\' => 
+        array (
+            0 => __DIR__ . '/../../..' . '/api/modules/contributed/colorbutton/src',
         ),
         'Drupal\\color\\' => 
         array (
@@ -5350,6 +5362,7 @@ class ComposerStaticInite30618fd8ecca5896c1323bfd836b529
         'Drupal\\color\\EventSubscriber\\ColorConfigCacheInvalidator' => __DIR__ . '/../../..' . '/api/core/modules/color/src/EventSubscriber/ColorConfigCacheInvalidator.php',
         'Drupal\\color\\Plugin\\migrate\\destination\\Color' => __DIR__ . '/../../..' . '/api/core/modules/color/src/Plugin/migrate/destination/Color.php',
         'Drupal\\color\\Plugin\\migrate\\source\\d7\\Color' => __DIR__ . '/../../..' . '/api/core/modules/color/src/Plugin/migrate/source/d7/Color.php',
+        'Drupal\\colorbutton\\Plugin\\CKEditorPlugin\\ColorButton' => __DIR__ . '/../../..' . '/api/modules/contributed/colorbutton/src/Plugin/CKEditorPlugin/ColorButton.php',
         'Drupal\\comment\\CommentAccessControlHandler' => __DIR__ . '/../../..' . '/api/core/modules/comment/src/CommentAccessControlHandler.php',
         'Drupal\\comment\\CommentBreadcrumbBuilder' => __DIR__ . '/../../..' . '/api/core/modules/comment/src/CommentBreadcrumbBuilder.php',
         'Drupal\\comment\\CommentFieldItemList' => __DIR__ . '/../../..' . '/api/core/modules/comment/src/CommentFieldItemList.php',
@@ -7056,6 +7069,7 @@ class ComposerStaticInite30618fd8ecca5896c1323bfd836b529
         'Drupal\\options\\Plugin\\views\\argument\\StringListField' => __DIR__ . '/../../..' . '/api/core/modules/options/src/Plugin/views/argument/StringListField.php',
         'Drupal\\options\\Plugin\\views\\filter\\ListField' => __DIR__ . '/../../..' . '/api/core/modules/options/src/Plugin/views/filter/ListField.php',
         'Drupal\\page_cache\\StackMiddleware\\PageCache' => __DIR__ . '/../../..' . '/api/core/modules/page_cache/src/StackMiddleware/PageCache.php',
+        'Drupal\\panelbutton\\Plugin\\CKEditorPlugin\\PanelButton' => __DIR__ . '/../../..' . '/api/modules/contributed/panelbutton/src/Plugin/CKEditorPlugin/PanelButton.php',
         'Drupal\\paragraphs\\Annotation\\ParagraphsBehavior' => __DIR__ . '/../../..' . '/api/modules/contributed/paragraphs/src/Annotation/ParagraphsBehavior.php',
         'Drupal\\paragraphs\\Controller\\ParagraphsTypeListBuilder' => __DIR__ . '/../../..' . '/api/modules/contributed/paragraphs/src/Controller/ParagraphsTypeListBuilder.php',
         'Drupal\\paragraphs\\Element\\ParagraphOperations' => __DIR__ . '/../../..' . '/api/modules/contributed/paragraphs/src/Element/ParagraphOperations.php',

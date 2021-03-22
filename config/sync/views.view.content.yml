@@ -184,7 +184,7 @@ display:
           group_type: group
           admin_label: ''
           label: UUID
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''

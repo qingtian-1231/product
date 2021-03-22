@@ -66,6 +66,7 @@ final class Versions
   'drupal/backup_migrate' => '4.1.0@8.x-4.1',
   'drupal/business_rules' => '2.0.0-beta1@2.0.0-beta1',
   'drupal/captcha' => '1.1.0@8.x-1.1',
+  'drupal/colorbutton' => '1.2.0@8.x-1.2',
   'drupal/commerce' => '2.24.0@8.x-2.24',
   'drupal/commerce_cart' => '2.24.0@',
   'drupal/commerce_cart_api' => '1.5.0@8.x-1.5',
@@ -101,6 +102,7 @@ final class Versions
   'drupal/libraries' => '3.0.0-beta1@8.x-3.0-beta1',
   'drupal/mailsystem' => '4.3.0@8.x-4.3',
   'drupal/module_filter' => '3.2.0@8.x-3.2',
+  'drupal/panelbutton' => '1.3.0@8.x-1.3',
   'drupal/paragraphs' => '1.12.0@8.x-1.12',
   'drupal/profile' => '1.2.0@8.x-1.2',
   'drupal/rest_menu_items' => '2.9.0@8.x-2.9',
@@ -314,7 +316,7 @@ final class Versions
   'theseer/tokenizer' => '1.1.3@11336f6f84e16a720dae9d8e6ed5019efa85a0f9',
   'vimeo/psalm' => '3.2.12@fe0f352132f798512ced19faf75cbfc84e4aabe7',
   'webmozart/glob' => '4.1.0@3cbf63d4973cf9d780b93d2da8eec7e4a9e63bbe',
-  'product' => 'dev-dev-seo@396d0b82fa66bd782ef59fe850bf56d7fc48aa4a',
+  'product' => 'dev-dev-seo@b582c1714334b12c374dcfdfa1655665e2ac3e1e',
 );
 
     private function __construct()

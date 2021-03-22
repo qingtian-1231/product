@@ -8,11 +8,11 @@ description: 发送电子邮件
 settings:
   use_site_mail_as_sender: true
   from: ''
-  to: chenpeiqing.1393599253@live.com
-  subject: 测试邮箱
+  to: basf_product@163.com
+  subject: 用户反馈信息
   format: html
   body:
-    value: "<h1>测试富文本文字</h1>\r\n\r\n<p>[webform_submission:values:html]</p>\r\n\r\n<p>[webform_submission:values:?]</p>\r\n"
+    value: "<h1>有一条在线请求的反馈信息</h1>\r\n\r\n<p>[webform_submission:values:html]</p>\r\n\r\n<div aria-describedby=\"bubble-2\" class=\"jfk-bubble gtx-bubble\" role=\"alertdialog\" style=\"visibility: visible; left: 98px; top: -6px; opacity: 1;\">\r\n<div class=\"jfk-bubble-content-id\" id=\"bubble-2\">\r\n<div id=\"gtx-host\" style=\"min-width: 200px; max-width: 400px;\">&nbsp;</div>\r\n</div>\r\n\r\n<div aria-label=\"Close\" class=\"jfk-bubble-closebtn-id jfk-bubble-closebtn\" role=\"button\" tabindex=\"0\">&nbsp;</div>\r\n\r\n<div class=\"jfk-bubble-arrow-id jfk-bubble-arrow jfk-bubble-arrowdown\" style=\"left: 105px;\">\r\n<div class=\"jfk-bubble-arrowimplbefore\">&nbsp;</div>\r\n\r\n<div class=\"jfk-bubble-arrowimplafter\">&nbsp;</div>\r\n</div>\r\n</div>\r\n"
     format: full_html
 tags: {  }
 type: send_email

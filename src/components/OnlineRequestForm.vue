@@ -154,6 +154,7 @@
       sendFeedback () {
         let vm = this
         if (this.$refs.onlineRequestForm.validate()) {
+          vm.$loading.show()
           request().post('/webform_rest/submit?_format=json',
             {
               webform_id: 'feedback',
@@ -166,12 +167,14 @@
               if (res.status === '200' || res.statusText === 'OK') {
                 vm.feedback_success = 1
               }
-
+              vm.$loading.hide()
               return Promise.resolve(res)
             }, err => {
+              vm.$loading.hide()
               return Promise.resolve(err)
             })
             .catch(function (error) {
+              vm.$loading.hide()
               console.log(error)
               return Promise.resolve(error)
             })

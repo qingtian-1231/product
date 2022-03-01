@@ -51,7 +51,7 @@
 
     "drupal/console": "^1.5",
 
-    "drupal/core": "~8.8.1",
+    "drupal/core": "~8.9.20",
 
     "drupal/config_installer": "^1.5",
 
